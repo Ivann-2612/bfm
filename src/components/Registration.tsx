@@ -7,6 +7,7 @@ import { fieldErrors, registrationSchema } from "@/lib/schema";
 import { SectionHead, type LangProps } from "./ui";
 import { Turnstile } from "./Turnstile";
 import { PaymentDetails } from "./PaymentDetails";
+import { countryNames } from "@/lib/countries";
 
 type Form = {
   firstName: string;
@@ -48,10 +49,32 @@ export function Registration({ lang }: LangProps) {
   // Early bird depends on today's date, so it is decided only in the browser after mount.
   const [now, setNow] = useState<Date | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const stubRef = useRef<HTMLElement>(null);
+  // Phones: the price summary sits below the long form, so a slim bar keeps the total in view
+  // while the form is on screen and the summary itself is not.
+  const [formInView, setFormInView] = useState(false);
+  const [stubInView, setStubInView] = useState(false);
+  useEffect(() => {
+    const form = formRef.current;
+    const stub = stubRef.current;
+    if (!form || !stub) return;
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.target === form) setFormInView(e.isIntersecting);
+        if (e.target === stub) setStubInView(e.isIntersecting);
+      }
+    });
+    io.observe(form);
+    io.observe(stub);
+    return () => io.disconnect();
+  }, [status.kind]);
   const honeypot = useRef<HTMLInputElement>(null);
   const doneRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setNow(new Date()), []);
+  // Suggestions for the country field, filled in the browser (see countries.ts for why).
+  const [countries, setCountries] = useState<string[]>([]);
+  useEffect(() => setCountries(countryNames(s.c.site.locale)), [s.c.site.locale]);
 
   // The long form is swapped for a short message, so the page shrinks and leaves the visitor
   // scrolled past it (very visible on phones). Bring the message into view and focus it.
@@ -169,8 +192,24 @@ export function Registration({ lang }: LangProps) {
               </div>
 
               <label className="field">
-                <span>{L.country}</span>
-                <input name="country" autoComplete="country-name" required maxLength={80} value={form.country} onChange={(e) => set("country", e.target.value)} {...aria("country")} />
+                <span>
+                  {L.country} <small>{L.countryHint}</small>
+                </span>
+                <input
+                  name="country"
+                  list="country-list"
+                  autoComplete="country-name"
+                  required
+                  maxLength={80}
+                  value={form.country}
+                  onChange={(e) => set("country", e.target.value)}
+                  {...aria("country")}
+                />
+                <datalist id="country-list">
+                  {countries.map((c) => (
+                    <option key={c} value={c} />
+                  ))}
+                </datalist>
                 {err("country")}
               </label>
 
@@ -249,7 +288,7 @@ export function Registration({ lang }: LangProps) {
               </button>
             </form>
 
-            <aside className="stub" aria-label={L.summary} aria-live="polite">
+            <aside ref={stubRef} className="stub" aria-label={L.summary} aria-live="polite">
               <p className="kicker">{L.summary}</p>
               {quote ? (
                 <>
@@ -274,6 +313,24 @@ export function Registration({ lang }: LangProps) {
                 <p className="stub__note">{L.calculating}</p>
               )}
             </aside>
+            {quote && formInView && !stubInView && (
+              <div className="total-bar" aria-hidden="true">
+                <span className="total-bar__text">
+                  <small>{p.items.find((it) => it.id === form.packageId)?.name}</small>
+                  <span>
+                    {L.total} <b>{money(quote.total)}</b>
+                  </span>
+                </span>
+                <button
+                  type="button"
+                  className="total-bar__link"
+                  tabIndex={-1}
+                  onClick={() => stubRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })}
+                >
+                  {L.summaryLink} ↓
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>

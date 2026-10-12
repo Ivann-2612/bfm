@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { isLang } from "@/lib/content";
+import { getContent, isLang } from "@/lib/content";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
@@ -20,6 +20,7 @@ import { Organizers } from "@/components/Organizers";
 import { Closing } from "@/components/Closing";
 import { Partners } from "@/components/Partners";
 import { Footer } from "@/components/Footer";
+import { StickyCta } from "@/components/StickyCta";
 
 // Sections whose list in the JSON is empty render nothing.
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
@@ -50,6 +51,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <Partners lang={lang} />
       </main>
       <Footer lang={lang} />
+      <StickyCta label={getContent(lang).ui.register} />
     </>
   );
 }

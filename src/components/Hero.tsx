@@ -63,16 +63,47 @@ export function Hero({ lang }: LangProps) {
           </ul>
         </div>
 
-        <figure className="hero__poster">
-          <Image
-            src={event.poster.src}
-            alt={event.poster.alt}
-            width={event.poster.width}
-            height={event.poster.height}
-            sizes="(min-width: 960px) 34vw, 80vw"
-            priority
-          />
-        </figure>
+        {event.poster.translatedTitle ? (
+          // The poster lettering is baked into the image (in Serbian), so other languages show the
+          // text-free stage crop with the title and slogan set as real, translated text.
+          <figure className="hero__poster">
+            <div className="poster" role="img" aria-label={`${event.poster.translatedTitle.replace("|", " ")} ${event.year} — ${event.tagline}`}>
+              <div className="poster__top" aria-hidden="true">
+                <p className="poster__title">
+                  {event.poster.translatedTitle.split("|").map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </p>
+                <p className="poster__year">
+                  <span />
+                  {event.year}
+                  <span />
+                </p>
+                <p className="poster__tagline">{event.tagline}</p>
+              </div>
+              <Image
+                src={event.poster.scene.src}
+                alt=""
+                width={event.poster.scene.width}
+                height={event.poster.scene.height}
+                sizes="(min-width: 960px) 34vw, 80vw"
+                priority
+                className="poster__scene"
+              />
+            </div>
+          </figure>
+        ) : (
+          <figure className="hero__poster">
+            <Image
+              src={event.poster.src}
+              alt={event.poster.alt}
+              width={event.poster.width}
+              height={event.poster.height}
+              sizes="(min-width: 960px) 34vw, 80vw"
+              priority
+            />
+          </figure>
+        )}
       </div>
     </section>
   );

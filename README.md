@@ -37,6 +37,7 @@ Svaki dan dobija znak po redu ♠ ♥ ♣ ♦.
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile |
 | `CRON_SECRET` | proizvoljan dugačak string; Vercel ga šalje cron ruti |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics; bez njega nema ni cookie banera |
+| `NEXT_PUBLIC_SITE_URL` | opciono, npr. `https://bfm.rs` kad bude sopstveni domen; inače se koristi Vercel adresa (za slike pri deljenju linka) |
 
 Bez Supabase ključeva forma u dev modu radi „na suvo“ (prijava i mejlovi se loguju u terminal). U produkciji vraća 503.
 
@@ -49,6 +50,11 @@ organizatoru mejlom (sa svim podacima; „Odgovori“ ide učesniku), a učesnik
 - Supabase je opcion: ako su `SUPABASE_*` podešeni, prijava se i upisuje u tabelu (plus provera duplikata i podsetnik posle 7 dana).
 - Turnstile je opcion: bez njega botove hvata skriveno polje u formi.
 - Bez Resend-a i bez Supabase-a produkcija odbija prijave (503), da se ne bi izgubile.
+
+## Slika pri deljenju linka
+
+`public/og-sr.png` i `public/og-en.png` (1200×630). Kad se promene naziv, datumi ili mesto: izmeni `scripts/og-text.json`
+i pokreni `powershell -ExecutionPolicy Bypass -File scripts/make-og.ps1` (Windows).
 
 ## Pregled prijava za organizatora (karte)
 

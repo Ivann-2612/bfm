@@ -20,7 +20,7 @@
     "endDate": "2027-02-28",
     "tagline": "Magija koja povezuje. Umetnost koja oduševljava.",
     "intro": "Dva festivalska dana vrhunskih iluzija, međunarodnih umetnika, porodičnih programa, takmičenja i stručnih sadržaja.",
-    "poster": { "src": "/images/naslovna.png", "alt": "Magični Varijete 2027 — zvanična naslovna vizuelna prezentacija", "width": 1055, "height": 1491 },
+    "poster": { "src": "/images/naslovna.png", "alt": "Magični Varijete 2027 — zvanična naslovna vizuelna prezentacija", "width": 1055, "height": 1491, "translatedTitle": "", "scene": { "src": "/images/naslovna-scena.png", "alt": "Mađioničar na sceni pred punom salom", "width": 1055, "height": 891 } },
     "stats": [
       { "value": "2", "label": "festivalska dana" },
       { "value": "7", "label": "održanih izdanja" },
@@ -58,6 +58,8 @@
     "next": "Sledeća",
     "menuOpen": "Otvori meni",
     "menuClose": "Zatvori meni",
+    "bioSoon": "Biografija uskoro.",
+    "aboutArtist": "Više o izvođaču",
     "dayLink": "Program: {date}"
   },
 
@@ -143,13 +145,13 @@
     "title": "Izvođači Gala šoua",
     "intro": "Umetnici koji nastupaju na velikoj sceni MTS dvorane.",
     "artists": [
-      { "name": "Woody Aragón", "country": "Španija", "photo": "/images/artists/woody-aragon.jpg" },
-      { "name": "Den Den", "country": "Japan", "photo": "/images/artists/den-den.png" },
-      { "name": "Igor Trifunov", "country": "Srbija", "photo": "/images/artists/igor-trifunov.png" },
-      { "name": "Maxim Gladstein", "country": "Rusija", "photo": "/images/artists/maxim-gladstein.png" },
-      { "name": "Tamia", "country": "Slovenija", "photo": "/images/artists/tamia.png" },
-      { "name": "Elastic", "country": "Belgija", "photo": "/images/artists/elastic.png" },
-      { "name": "Françoise Roshe", "country": "Belgija", "photo": "", "hidden": true }
+      { "name": "Woody Aragón", "country": "Španija", "photo": "/images/artists/woody-aragon.jpg", "bio": "" },
+      { "name": "Den Den", "country": "Japan", "photo": "/images/artists/den-den.png", "bio": "" },
+      { "name": "Igor Trifunov", "country": "Srbija", "photo": "/images/artists/igor-trifunov.png", "bio": "" },
+      { "name": "Maxim Gladstein", "country": "Rusija", "photo": "/images/artists/maxim-gladstein.png", "bio": "" },
+      { "name": "Tamia", "country": "Slovenija", "photo": "/images/artists/tamia.png", "bio": "" },
+      { "name": "Elastic", "country": "Belgija", "photo": "/images/artists/elastic.png", "bio": "" },
+      { "name": "Françoise Roshe", "country": "Belgija", "photo": "", "bio": "", "hidden": true }
     ]
   },
 
@@ -404,6 +406,7 @@
       "email": "Email",
       "phone": "Telefon",
       "country": "Država",
+      "countryHint": "počnite da kucate i izaberite sa spiska",
       "package": "Paket",
       "notes": "Napomena",
       "notesHint": "ishrana, pristupačnost, nastup na takmičenju",
@@ -411,6 +414,7 @@
       "submit": "Pošalji prijavu",
       "sending": "Šaljem…",
       "summary": "Ukupno za uplatu",
+      "summaryLink": "Detalji",
       "total": "Ukupno",
       "calculating": "Računam…",
       "earlyNote": "Cena rane prijave važi do {date}.",
@@ -532,24 +536,16 @@
     "updated": "Poslednja izmena: 12. oktobar 2026.",
     "sections": [
       { "title": "Ko obrađuje vaše podatke", "text": "Podatke obrađuje {organiser}, organizator Beogradskog festivala magije. Za sva pitanja pišite na {contact}." },
-      {
-        "title": "Koje podatke prikupljamo",
-        "text": "Kada se prijavite: ime, prezime, email, telefon ako ga unesete, državu, izabrani paket i dodatke, napomenu, kao i tekst i vreme vaše saglasnosti."
-      },
-      {
-        "title": "Zašto ih koristimo",
-        "text": "Da obradimo prijavu, pošaljemo vam rezime i podatke za uplatu, podsetimo vas ako uplata ne stigne i organizujemo festival. Podatke ne prodajemo i ne koristimo za reklame."
-      },
-      {
-        "title": "Ko još ima pristup",
-        "text": "Prijave čuvamo u bazi kod servisa Supabase, a prijavu i potvrdu šaljemo mejlom preko servisa Resend. Ovi servisi podatke obrađuju samo po našem nalogu."
-      },
+      { "title": "Koje podatke prikupljamo", "text": "Kada se prijavite: ime, prezime, email, telefon ako ga unesete, državu, izabrani paket i dodatke, napomenu, kao i tekst i vreme vaše saglasnosti." },
+      { "title": "Da li morate da date podatke", "text": "Ime, prezime, email, država i izbor paketa su neophodni za obradu prijave; bez njih prijava nije moguća. Telefon i napomena nisu obavezni." },
+      { "title": "Zašto ih koristimo", "text": "Da obradimo prijavu, pošaljemo vam rezime i podatke za uplatu, podsetimo vas ako uplata ne stigne i organizujemo festival. Podatke ne prodajemo i ne koristimo za reklame." },
+      { "title": "Pravni osnov", "text": "Podatke iz prijave obrađujemo radi izvršenja ugovora o učešću na festivalu, odnosno vaše prijave i kotizacije. Saglasnost koju dajete u formi odnosi se na čuvanje podataka radi obrade prijave. Google Analytics, ako ga uključimo, koristi se samo uz vaš izričit pristanak." },
+      { "title": "Ko još ima pristup", "text": "Prijave čuvamo u bazi kod servisa Supabase, a prijavu i potvrdu šaljemo mejlom preko servisa Resend. Ovi servisi podatke obrađuju samo po našem nalogu." },
+      { "title": "Prenos podataka u inostranstvo", "text": "Resend je kompanija iz SAD, a Supabase podatke može čuvati na serverima van Srbije. Podaci se prenose na osnovu standardnih ugovornih klauzula koje ovi servisi primenjuju, u skladu sa Zakonom o zaštiti podataka o ličnosti i GDPR-om." },
       { "title": "Koliko ih čuvamo", "text": "Do završetka festivala i izmirenja svih obaveza, osim ako zakon ne nalaže duže čuvanje." },
       { "title": "Vaša prava", "text": "Možete da zatražite uvid u svoje podatke, njihovu ispravku ili brisanje. Pišite na {contact} i odgovorićemo u roku od 30 dana." },
-      {
-        "title": "Kolačići i spoljni sadržaj",
-        "text": "Google Analytics se učitava samo ako ga dozvolite u obaveštenju o kolačićima. Mapa dolazi sa OpenStreetMap-a. Video sa YouTube-a, ako postoji, učitava se tek kada kliknete na njega."
-      }
+      { "title": "Povlačenje saglasnosti i pritužba", "text": "Saglasnost možete povući u svakom trenutku pisanjem na {contact}; to ne utiče na zakonitost obrade pre povlačenja. Ako smatrate da vaše podatke obrađujemo nezakonito, imate pravo da podnesete pritužbu Povereniku za informacije od javnog značaja i zaštitu podataka o ličnosti (www.poverenik.rs)." },
+      { "title": "Kolačići i spoljni sadržaj", "text": "Google Analytics se učitava samo ako ga dozvolite u obaveštenju o kolačićima. Mapa dolazi sa OpenStreetMap-a. Video sa YouTube-a, ako postoji, učitava se tek kada kliknete na njega." }
     ]
   },
 

@@ -22,7 +22,7 @@ export const otherLang = (lang: Lang): Lang => (lang === "sr" ? "en" : "sr");
 export type Lecturer = { name: string; country: string; specialty: string; photo: string; bio: string };
 export type JuryMember = { name: string; role: string; photo: string };
 /** Set "hidden": true in the JSON to keep an entry without showing it (e.g. until a photo arrives). */
-export type Artist = { name: string; country: string; photo: string; hidden?: boolean };
+export type Artist = { name: string; country: string; photo: string; bio: string; hidden?: boolean };
 export type Partner = { name: string; logo: string; url: string };
 export type ScheduleItem = { time: string; title: string; place?: string; text?: string; highlight?: boolean };
 
