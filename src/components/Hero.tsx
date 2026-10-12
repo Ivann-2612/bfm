@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { firstWord, restWords, site } from "@/lib/content";
+import { fill, firstWord, restWords, site } from "@/lib/content";
 import { SuitMark, type LangProps } from "./ui";
 
 export function Hero({ lang }: LangProps) {
@@ -23,12 +23,19 @@ export function Hero({ lang }: LangProps) {
 
           <p className="hero__dates">
             <span className="visually-hidden">{s.dateRange()}</span>
-            <span aria-hidden="true" className="hero__deal">
+            {/* Each card opens that day's tab in the schedule (Schedule listens for #tab-<date>). */}
+            <span className="hero__deal">
               {s.days.map((d, i) => (
-                <span key={d.date} className="hero__card" style={{ "--i": i } as React.CSSProperties}>
+                <a
+                  key={d.date}
+                  href={`#tab-${d.date}`}
+                  className="hero__card"
+                  style={{ "--i": i } as React.CSSProperties}
+                  aria-label={fill(ui.dayLink, { date: `${s.weekday(d.date)}, ${s.longDate(d.date)}` })}
+                >
                   <SuitMark suit={d.suit} />
                   {s.dayNum(d.date)}
-                </span>
+                </a>
               ))}
             </span>
             <span aria-hidden="true" className="hero__month">

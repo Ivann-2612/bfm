@@ -14,8 +14,7 @@ type Form = {
   phone: string;
   country: string;
   packageId: string;
-  companions: number;
-  transfer: boolean;
+  extras: Record<string, number>;
   notes: string;
   consent: boolean;
 };
@@ -27,8 +26,7 @@ const initial = (lang: Lang): Form => ({
   phone: "",
   country: "",
   packageId: getContent(lang).packages.items[0].id,
-  companions: 0,
-  transfer: false,
+  extras: {},
   notes: "",
   consent: false,
 });
@@ -53,6 +51,8 @@ export function Registration({ lang }: LangProps) {
   useEffect(() => setNow(new Date()), []);
 
   const quote = now ? computePrice(form, now, lang) : null;
+  const chosen = p.items.find((it) => it.id === form.packageId);
+  const allowedExtras = p.extras.filter((x) => (chosen?.allowExtras as string[] | undefined)?.includes(x.id));
 
   function set<K extends keyof Form>(key: K, value: Form[K]) {
     setForm((f) => ({ ...f, [key]: value }));
@@ -61,7 +61,8 @@ export function Registration({ lang }: LangProps) {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    const payload = { ...form, lang, turnstileToken: token || undefined };
+    const extras = Object.fromEntries(allowedExtras.map((x) => [x.id, form.extras[x.id] ?? 0]));
+    const payload = { ...form, extras, lang, turnstileToken: token || undefined };
     const check = registrationSchema(lang).safeParse(payload);
     if (!check.success) {
       const errs = fieldErrors(check.error);
@@ -158,32 +159,38 @@ export function Registration({ lang }: LangProps) {
                     <input type="radio" name="packageId" value={it.id} checked={form.packageId === it.id} onChange={() => set("packageId", it.id)} />
                     <span className="choice__label">
                       <b>{it.name}</b>
-                      <small>{it.includes}</small>
+                      <small>{it.summary}</small>
                     </span>
                   </label>
                 ))}
                 {err("packageId")}
               </fieldset>
 
-              <div className="form__row">
-                <label className="field">
-                  <span>{p.companion.pluralLabel}</span>
-                  <select name="companions" value={form.companions} onChange={(e) => set("companions", Number(e.target.value))}>
-                    {Array.from({ length: p.companion.max + 1 }, (_, n) => (
-                      <option key={n} value={n}>
-                        {n === 0 ? L.companionsNone : n}
-                      </option>
+              {allowedExtras.length > 0 && (
+                <fieldset className="field extras">
+                  <legend>{L.extras}</legend>
+                  <div className="form__row">
+                    {allowedExtras.map((x) => (
+                      <label key={x.id} className="field">
+                        <span>
+                          {x.label} <small>{money(x.price)}</small>
+                        </span>
+                        <select
+                          name={`extras.${x.id}`}
+                          value={form.extras[x.id] ?? 0}
+                          onChange={(e) => set("extras", { ...form.extras, [x.id]: Number(e.target.value) })}
+                        >
+                          {Array.from({ length: x.max + 1 }, (_, n) => (
+                            <option key={n} value={n}>
+                              {n === 0 ? L.none : n}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
                     ))}
-                  </select>
-                  <small className="field__hint">{p.companion.note}</small>
-                </label>
-                <label className="check">
-                  <input type="checkbox" name="transfer" checked={form.transfer} onChange={(e) => set("transfer", e.target.checked)} />
-                  <span>
-                    {p.transfer.label} <small>{p.transfer.note}</small>
-                  </span>
-                </label>
-              </div>
+                  </div>
+                </fieldset>
+              )}
 
               <label className="field">
                 <span>

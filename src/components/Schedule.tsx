@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { site, type ScheduleItem } from "@/lib/content";
 import { SectionHead, SuitMark, type LangProps } from "./ui";
 
@@ -10,6 +10,22 @@ export function Schedule({ lang }: LangProps) {
   const days = s.days;
   const [active, setActive] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  // Links like #tab-2027-02-28 (the date cards in the hero) open that day's tab:
+  // on page load from the URL, and on every click (the hash may already be the same).
+  useEffect(() => {
+    const open = (hash: string) => {
+      const i = days.findIndex((d) => `#tab-${d.date}` === hash);
+      if (i >= 0) setActive(i);
+    };
+    open(window.location.hash);
+    const onClick = (e: MouseEvent) => {
+      const link = (e.target as Element | null)?.closest?.('a[href^="#tab-"]');
+      if (link) open(link.getAttribute("href")!);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, [days]);
 
   function onKey(e: React.KeyboardEvent, i: number) {
     const dir = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;

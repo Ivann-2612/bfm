@@ -39,7 +39,7 @@ export function CookieBanner({ lang }: LangProps) {
 
   const c = getContent(lang).cookies;
   return (
-    <div className="cookie" role="region" aria-label="Analytics consent">
+    <div className="cookie" role="region" aria-label={c.label}>
       <p>{c.text}</p>
       <div className="cookie__actions">
         <button type="button" className="btn btn--small" onClick={() => decide("granted")}>

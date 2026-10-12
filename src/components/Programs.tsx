@@ -36,6 +36,9 @@ export function Programs({ lang }: LangProps) {
                   ))}
                 </ul>
               )}
+              <a href="#izvodjaci" className="link-arrow program__more">
+                {ui.seeArtists}
+              </a>
             </div>
           </article>
 

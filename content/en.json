@@ -20,12 +20,7 @@
     "endDate": "2027-02-28",
     "tagline": "Magic that connects. Art that amazes.",
     "intro": "Two festival days of world-class illusion, international artists, family shows, competitions and sessions for magicians.",
-    "poster": {
-      "src": "/images/naslovna.png",
-      "alt": "Magični Varijete 2027 — official festival poster",
-      "width": 1055,
-      "height": 1491
-    },
+    "poster": { "src": "/images/naslovna.png", "alt": "Magični Varijete (Gala Show Variete) 2027 — official festival poster", "width": 1055, "height": 1491 },
     "stats": [
       { "value": "2", "label": "festival days" },
       { "value": "7", "label": "past editions" },
@@ -54,14 +49,37 @@
     "daysNav": "Festival days",
     "partners": "Partners",
     "privacy": "Privacy policy",
-    "backToSite": "Back to the festival"
+    "backToSite": "Back to the festival",
+    "seeArtists": "Meet the artists",
+    "openPhoto": "Enlarge photo",
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "dayLink": "Programme for {date}"
   },
 
   "nav": [
     { "label": "Festival", "href": "#festival" },
     { "label": "Programme", "href": "#program" },
+    { "label": "Artists", "href": "#izvodjaci" },
+    { "label": "Lecturers", "href": "#predavaci" },
     { "label": "Gallery", "href": "#galerija" },
     { "label": "Organisers", "href": "#organizatori" }
+  ],
+
+  "menu": [
+    { "label": "Festival", "href": "#festival" },
+    { "label": "Programme", "href": "#program" },
+    { "label": "Artists", "href": "#izvodjaci" },
+    { "label": "Lecturers", "href": "#predavaci" },
+    { "label": "Gallery", "href": "#galerija" },
+    { "label": "Prices", "href": "#cene" },
+    { "label": "Accommodation", "href": "#smestaj" },
+    { "label": "Getting here", "href": "#lokacija" },
+    { "label": "Organisers", "href": "#organizatori" },
+    { "label": "Register", "href": "#prijava" }
   ],
 
   "about": {
@@ -72,10 +90,7 @@
       "The Belgrade Magic Festival is the revival of one of the most important magic events in Serbia.",
       "After seven successful editions, the festival returns in a modern format — an international event that brings together leading Serbian and foreign artists, professional magicians, young talent, families and everyone who loves illusion."
     ],
-    "aside": {
-      "title": "More than a show",
-      "text": "A meeting place for art, knowledge and moments of wonder."
-    },
+    "aside": { "title": "More than a show", "text": "A meeting place for art, knowledge and moments of wonder." },
     "photo": { "src": "/images/foaje.jpg", "alt": "Crowds of visitors at a previous edition of the festival" }
   },
 
@@ -86,9 +101,9 @@
     "items": [
       {
         "id": "varijete",
-        "name": "Magični Varijete",
+        "name": "Gala Show Variete",
         "meta": "Main stage · for all ages",
-        "text": "The festival's international gala show, with renowned artists from illusion, variety and contemporary stage performance.",
+        "text": "Magični Varijete is the festival's international gala show, with renowned artists from illusion, variety and contemporary stage performance.",
         "photo": { "src": "/images/finale.jpg", "alt": "Festival performers on stage in front of the audience" },
         "shows": [
           { "date": "2027-02-27", "time": "19:00" },
@@ -107,7 +122,7 @@
         "id": "takmicenja",
         "name": "Competitions",
         "meta": "Serbian and international entrants",
-        "text": "Stage and close-up magic judged by an international jury against professional criteria.",
+        "text": "Stage and close-up magic judged by an international jury against professional criteria. Winners receive valuable prizes.",
         "photo": { "src": "/images/nagrade.jpg", "alt": "Awards presented to participants" },
         "shows": []
       },
@@ -122,6 +137,21 @@
     ]
   },
 
+  "gala": {
+    "kicker": "Gala Show Variete · MTS Hall",
+    "title": "Gala show artists",
+    "intro": "The artists on the main stage at MTS Hall.",
+    "artists": [
+      { "name": "Woody Aragón", "country": "Spain", "photo": "/images/artists/woody-aragon.jpg" },
+      { "name": "Den Den", "country": "Japan", "photo": "/images/artists/den-den.png" },
+      { "name": "Igor Trifunov", "country": "Serbia", "photo": "/images/artists/igor-trifunov.png" },
+      { "name": "Maxim Gladstein", "country": "Russia", "photo": "/images/artists/maxim-gladstein.png" },
+      { "name": "Tamia", "country": "Slovenia", "photo": "/images/artists/tamia.png" },
+      { "name": "Elastic", "country": "Belgium", "photo": "/images/artists/elastic.png" },
+      { "name": "Françoise Roshe", "country": "Belgium", "photo": "" }
+    ]
+  },
+
   "schedule": {
     "kicker": "MTS Hall · Belgrade",
     "title": "Festival programme",
@@ -133,16 +163,32 @@
           {
             "title": "Professional programme",
             "items": [
-              { "time": "09:00", "title": "Registration opens for the professional programme", "text": "Check-in and accreditation for Serbian and international magicians, guests and participants." },
-              { "time": "10:00–18:00", "title": "Exhibition of contemporary magic equipment and props", "text": "Equipment, props, books and other products for professional magicians and fans of illusion, presented and demonstrated." },
-              { "time": "10:30", "title": "International magic competition – close-up", "text": "Competition for Serbian and international magicians in front of an international jury." },
+              {
+                "time": "09:00",
+                "title": "Registration opens for the professional programme",
+                "text": "Check-in and accreditation for Serbian and international magicians, guests and participants."
+              },
+              {
+                "time": "10:00–18:00",
+                "title": "Exhibition of contemporary magic equipment and props",
+                "text": "Equipment, props, books and other products for professional magicians and fans of illusion, presented and demonstrated."
+              },
+              {
+                "time": "10:30",
+                "title": "International magic competition – close-up",
+                "text": "Competition for Serbian and international magicians in front of an international jury."
+              },
               { "time": "14:00", "title": "Seminar / lecture" }
             ]
           },
           {
             "title": "Family programme",
             "items": [
-              { "time": "11:00–17:00", "title": "Festival programme in the MTS Hall foyer", "text": "Close-up magicians, clowns, jugglers and other artists performing right among the visitors." },
+              {
+                "time": "11:00–17:00",
+                "title": "Festival programme in the MTS Hall foyer",
+                "text": "Close-up magicians, clowns, jugglers and other artists performing right among the visitors."
+              },
               { "time": "11:00", "title": "Magic and juggling show for children and families: FILIPINO", "place": "Hall 6" },
               { "time": "12:00", "title": "Clown and close-up magician walkabout", "place": "MTS Hall lobby" },
               { "time": "12:30", "title": "Magic show for children and families: MIHAJLO", "place": "Lower hall" },
@@ -151,14 +197,24 @@
               { "time": "15:00", "title": "Clown and close-up magician walkabout", "place": "MTS Hall lobby" },
               { "time": "15:30", "title": "Magic workshop for children", "place": "Lower hall" },
               { "time": "16:00", "title": "Juggling workshop for children", "place": "Hall 6" },
-              { "time": "17:00", "title": "End of the first day; preparations for Magični Varijete" },
-              { "time": "19:00", "title": "International gala show “Magični Varijete”", "text": "First performance of the international gala show, closing the day's public programme.", "highlight": true }
+              { "time": "17:00", "title": "End of the first day; preparations for Gala Show Variete" },
+              {
+                "time": "19:00",
+                "title": "Gala Show Variete, the international gala show",
+                "text": "First performance of the international gala show, closing the day's public programme.",
+                "highlight": true
+              }
             ]
           },
           {
             "title": "Evening programme for all participants",
             "items": [
-              { "time": "21:00", "title": "Festival dinner and evening get-together", "place": "Club “Lisabon”, inside MTS Hall", "text": "Dinner for Serbian and international magicians, guests and professional programme participants, followed by an informal evening." }
+              {
+                "time": "21:00",
+                "title": "Magic Party",
+                "place": "Bar Club Lisbon, inside MTS Hall",
+                "text": "The first festival evening, with a welcome drink for all participants."
+              }
             ]
           }
         ]
@@ -180,7 +236,11 @@
           {
             "title": "Family programme",
             "items": [
-              { "time": "11:00–17:00", "title": "Festival programme in the MTS Hall foyer", "text": "Close-up magicians, clowns, jugglers and other artists performing right among the visitors." },
+              {
+                "time": "11:00–17:00",
+                "title": "Festival programme in the MTS Hall foyer",
+                "text": "Close-up magicians, clowns, jugglers and other artists performing right among the visitors."
+              },
               { "time": "11:00", "title": "Magic and juggling show for children and families: FILIPINO", "place": "Hall 6" },
               { "time": "12:00", "title": "Clown and close-up magician walkabout", "place": "MTS Hall lobby" },
               { "time": "12:30", "title": "Magic show for children and families: MIHAJLO", "place": "Lower hall" },
@@ -189,8 +249,19 @@
               { "time": "15:00", "title": "Clown and close-up magician walkabout", "place": "MTS Hall lobby" },
               { "time": "15:30", "title": "Magic workshop for children", "place": "Lower hall" },
               { "time": "16:00", "title": "Juggling workshop for children", "place": "Hall 6" },
-              { "time": "17:00", "title": "International gala show “Magični Varijete”", "text": "Second performance of the international gala show, closing the public programme.", "highlight": true },
+              {
+                "time": "17:00",
+                "title": "Gala Show Variete, the international gala show",
+                "text": "Second performance of the international gala show, closing the public programme.",
+                "highlight": true
+              },
               { "time": "19:00", "title": "Official close of the Belgrade Magic Festival 2027" }
+            ]
+          },
+          {
+            "title": "Evening programme for all participants",
+            "items": [
+              { "time": "", "title": "Gala Dinner", "text": "The second festival evening — a gala dinner for all magicians with a paid registration." }
             ]
           }
         ]
@@ -238,16 +309,16 @@
     ]
   },
 
-  "video": {
-    "title": "",
-    "youtubeId": "",
-    "poster": ""
-  },
+  "video": { "title": "", "youtubeId": "", "poster": "" },
 
   "lecturers": {
     "kicker": "Lecturers",
     "title": "Who is teaching this year",
-    "items": []
+    "items": [
+      { "name": "Domenico Dante", "country": "Italy", "specialty": "Friend of the festival · lecture", "photo": "/images/artists/domenico-dante.png", "bio": "Bio coming soon." },
+      { "name": "Den Den", "country": "Japan", "specialty": "Lecture · gala show", "photo": "/images/artists/den-den.png", "bio": "Bio coming soon." },
+      { "name": "Woody Aragón", "country": "Spain", "specialty": "Lecture · gala show", "photo": "/images/artists/woody-aragon.jpg", "bio": "Bio coming soon." }
+    ]
   },
 
   "jury": {
@@ -256,53 +327,53 @@
   },
 
   "packages": {
-    "kicker": "Tickets and registration fees",
+    "kicker": "Registration fees",
     "title": "Prices",
     "earlyBirdUntil": "2026-12-31T23:59:59+01:00",
-    "labels": {
-      "package": "Package",
-      "until": "Until",
-      "after": "After that",
-      "earlySuffix": " (early bird)"
-    },
+    "labels": { "package": "Package", "until": "Until", "after": "After that", "earlySuffix": " (early bird)", "extras": "Dealer package add-ons" },
     "items": [
       {
-        "id": "strucni",
-        "name": "Professional programme, both days",
-        "includes": "Seminars, lectures, equipment exhibition, competitions and a seat at Magični Varijete",
-        "price": { "early": 60, "regular": 80 }
+        "id": "standard",
+        "name": "Standard package",
+        "summary": "The full congress programme, Magic Party, Gala Dinner and the gala show",
+        "includes": [
+          "Congress programme (all events)",
+          "Lectures",
+          "Competitions",
+          "Festival area access (foyer)",
+          "Magic shows (smaller halls)",
+          "Magic Party and welcome drink",
+          "Gala Dinner",
+          "Gala Show Variete – MTS Hall"
+        ],
+        "price": { "early": 99, "regular": 129 },
+        "allowExtras": []
       },
       {
-        "id": "strucni-vecera",
-        "name": "Professional programme and festival dinner",
-        "includes": "Everything in the professional programme plus dinner at Club “Lisabon” on 27 February",
-        "price": { "early": 90, "regular": 110 }
-      },
-      {
-        "id": "varijete",
-        "name": "Magični Varijete ticket",
-        "includes": "One seat at the gala show",
-        "price": { "early": 15, "regular": 20 }
+        "id": "dealer",
+        "name": "Dealer package",
+        "summary": "Everything in the Standard package plus a 2 m dealer table",
+        "includes": ["Everything in the Standard package", "Dealer table (2 m)"],
+        "price": { "early": 149, "regular": 200 },
+        "allowExtras": ["table", "assistant"]
       }
     ],
-    "companion": {
-      "label": "Extra Magični Varijete ticket",
-      "pluralLabel": "Extra Magični Varijete tickets",
-      "note": "For a partner or family member who is not attending the professional programme",
-      "price": 15,
-      "max": 3
-    },
-    "transfer": {
-      "label": "Airport transfer, return",
-      "note": "Per person, Belgrade Nikola Tesla Airport",
-      "price": 30
-    }
+    "extras": [
+      { "id": "table", "label": "Additional table (2 m)", "price": 50, "max": 2 },
+      { "id": "assistant", "label": "Dealer assistant", "price": 50, "max": 2 }
+    ]
   },
 
   "hotels": {
     "kicker": "Accommodation",
-    "title": "Hotels",
-    "items": []
+    "title": "Hotel Park",
+    "intro": "Near MTS Hall, with special rates for festival participants.",
+    "rooms": [
+      { "label": "Single room", "note": "", "price": 55 },
+      { "label": "Double room", "note": "for two people", "price": 60 },
+      { "label": "Triple room", "note": "for three people", "price": 75 }
+    ],
+    "note": "All prices include accommodation and breakfast. Limited capacity: accommodation is not guaranteed at all times."
   },
 
   "travel": {
@@ -314,13 +385,10 @@
     ],
     "transport": {
       "title": "From the airport",
-      "text": "For guests from abroad we run a shared transfer from the airport to the hotels.",
+      "text": "From the airport to the city centre you can take a taxi or a bus.",
       "airports": [
         { "name": "Belgrade Nikola Tesla Airport (BEG)", "distance": "≈ 18 km", "duration": "≈ 25 min by car" }
-      ],
-      "transferLabel": "Shared transfer",
-      "transferUnit": "per person, return.",
-      "transferNote": "Book it in the registration form."
+      ]
     }
   },
 
@@ -336,7 +404,6 @@
       "phone": "Phone",
       "country": "Country",
       "package": "Package",
-      "companionsNone": "None",
       "notes": "Notes",
       "notesHint": "diet, accessibility, competition entry",
       "optional": "optional",
@@ -352,7 +419,9 @@
       "doneText": "We sent a summary and payment details to {email}. Total to pay: {total}.",
       "doneHold": "We hold your place for 7 days. If the email does not arrive, check your spam folder or write to {contact}.",
       "errorFields": "Check the highlighted fields.",
-      "errorNetwork": "Could not reach the server. Check your connection and send the form again."
+      "errorNetwork": "Could not reach the server. Check your connection and send the form again.",
+      "extras": "Dealer package add-ons",
+      "none": "None"
     },
     "errors": {
       "firstName": "Enter your first name",
@@ -382,9 +451,9 @@
     "kicker": "Making magic together",
     "title": "Festival organisers",
     "orgs": [
-      { "role": "Organiser", "name": "Magični krug Srbije", "sub": "Serbia Magic Ring" },
-      { "role": "Organiser", "name": "Čarobni plašt", "sub": "Magicians' association" },
-      { "role": "Organiser", "name": "Magični svet", "sub": "Citizens' association" },
+      { "role": "Organiser", "name": "Serbia Magic Ring", "sub": "Magični krug Srbije" },
+      { "role": "Organiser", "name": "Magic Cloak", "sub": "Čarobni plašt · Magicians' association" },
+      { "role": "Organiser", "name": "Magic World", "sub": "Magični svet · Citizens' association" },
       { "role": "Festival partner", "name": "MTS Hall", "sub": "Belgrade" }
     ],
     "people": [
@@ -396,14 +465,9 @@
 
   "partners": [],
 
-  "closing": {
-    "kicker": "See you in Belgrade",
-    "title": "Do you believe in magic?"
-  },
+  "closing": { "kicker": "See you in Belgrade", "title": "Do you believe in magic?" },
 
-  "footer": {
-    "organiser": "© 2027 Belgrade Magic Festival. All rights reserved."
-  },
+  "footer": { "organiser": "© 2027 Belgrade Magic Festival. All rights reserved." },
 
   "emails": {
     "total": "Total",
@@ -416,10 +480,7 @@
       "bank": "Bank",
       "hold": "We hold your place for 7 days. If anything is wrong, reply to this email."
     },
-    "organizer": {
-      "subject": "New registration: {firstName} {lastName} — {total}",
-      "notes": "Notes"
-    },
+    "organizer": { "subject": "New registration: {firstName} {lastName} — {total}", "notes": "Notes" },
     "expiry": {
       "subject": "{event}: registration expired",
       "greeting": "Hello {firstName},",
@@ -438,7 +499,7 @@
       },
       {
         "title": "What we collect",
-        "text": "When you register: first and last name, email, phone if you give it, country, chosen package, number of extra tickets, whether you need a transfer, your notes, and the text and time of your consent."
+        "text": "When you register: first and last name, email, phone if you give it, country, chosen package and add-ons, your notes, and the text and time of your consent."
       },
       {
         "title": "Why we use it",
@@ -448,14 +509,8 @@
         "title": "Who else has access",
         "text": "Registrations are stored in a Supabase database, emails are sent through Resend, and Cloudflare Turnstile protects the form from spam. These services process data only on our instructions."
       },
-      {
-        "title": "How long we keep it",
-        "text": "Until the festival is over and all obligations are settled, unless the law requires us to keep it longer."
-      },
-      {
-        "title": "Your rights",
-        "text": "You can ask to see, correct or delete your data. Write to {contact} and we will reply within 30 days."
-      },
+      { "title": "How long we keep it", "text": "Until the festival is over and all obligations are settled, unless the law requires us to keep it longer." },
+      { "title": "Your rights", "text": "You can ask to see, correct or delete your data. Write to {contact} and we will reply within 30 days." },
       {
         "title": "Cookies and external content",
         "text": "Google Analytics loads only if you allow it in the cookie notice. The map comes from OpenStreetMap. A YouTube video, if there is one, loads only when you click it."
@@ -465,6 +520,7 @@
 
   "cookies": {
     "text": "We use Google Analytics to see which parts of the site people read. It only loads if you allow it.",
+    "label": "Analytics consent",
     "accept": "Allow analytics",
     "decline": "No thanks"
   }

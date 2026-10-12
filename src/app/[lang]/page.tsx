@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Programs } from "@/components/Programs";
+import { GalaArtists } from "@/components/GalaArtists";
 import { Schedule } from "@/components/Schedule";
 import { Vision } from "@/components/Vision";
 import { Gallery } from "@/components/Gallery";
@@ -32,12 +33,13 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <Hero lang={lang} />
         <About lang={lang} />
         <Programs lang={lang} />
+        <GalaArtists lang={lang} />
+        <Lecturers lang={lang} />
         <Schedule lang={lang} />
         <Vision lang={lang} />
         <Gallery lang={lang} />
         <Video lang={lang} />
         <History lang={lang} />
-        <Lecturers lang={lang} />
         <Jury lang={lang} />
         <Packages lang={lang} />
         <Hotels lang={lang} />

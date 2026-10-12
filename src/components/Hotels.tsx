@@ -3,35 +3,29 @@ import { SectionHead, type LangProps } from "./ui";
 
 export function Hotels({ lang }: LangProps) {
   const s = site(lang);
-  if (s.hotels.length === 0) return null;
-  const { ui } = s.c;
+  const h = s.c.hotels;
+  if (h.rooms.length === 0) return null;
+
   return (
-    <section id="hoteli" className="section hotels" aria-labelledby="hotels-title">
-      <div className="wrap">
-        <SectionHead id="hotels-title" kicker={s.c.hotels.kicker} title={s.c.hotels.title} />
-        <ul className="hotels__list">
-          {s.hotels.map((h, i) => (
-            <li key={i}>
-              <span className="hotels__name">
-                {h.name}{" "}
-                <span className="hotels__stars" aria-label={`${h.stars}★`}>
-                  {"★".repeat(h.stars)}
+    <section id="smestaj" className="section hotels" aria-labelledby="hotels-title">
+      <div className="wrap hotels__grid">
+        <SectionHead id="hotels-title" kicker={h.kicker} title={h.title} intro={h.intro} />
+        <div>
+          <ul className="hotels__rooms">
+            {h.rooms.map((r) => (
+              <li key={r.label}>
+                <span className="hotels__room">
+                  {r.label}
+                  {r.note && <small> · {r.note}</small>}
                 </span>
-              </span>
-              <span className="hotels__distance">{h.distance}</span>
-              <span className="hotels__price">
-                {ui.from} {s.money(h.priceFrom)} / {ui.perNight}
-              </span>
-              {h.url ? (
-                <a href={h.url} className="link-arrow" target="_blank" rel="noopener noreferrer">
-                  {ui.book}
-                </a>
-              ) : (
-                <span className="muted">{ui.bookingSoon}</span>
-              )}
-            </li>
-          ))}
-        </ul>
+                <span className="hotels__price">
+                  {s.money(r.price)} <small>/ {s.c.ui.perNight}</small>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="hotels__note">{h.note}</p>
+        </div>
       </div>
     </section>
   );

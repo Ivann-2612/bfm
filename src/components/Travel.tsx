@@ -3,7 +3,7 @@ import { SectionHead, type LangProps } from "./ui";
 
 export function Travel({ lang }: LangProps) {
   const s = site(lang);
-  const { travel, packages, ui } = s.c;
+  const { travel, ui } = s.c;
   const { transport } = travel;
   const { lat, lng } = travel.center;
   // The bbox is centred on the venue, so the venue is always the centre of the iframe
@@ -58,14 +58,6 @@ export function Travel({ lang }: LangProps) {
                 </div>
               ))}
             </dl>
-            <p className="travel__transfer">
-              <b>
-                {transport.transferLabel}: {s.money(packages.transfer.price)}
-              </b>{" "}
-              {transport.transferUnit}
-              <br />
-              {transport.transferNote}
-            </p>
           </div>
         </div>
       </div>

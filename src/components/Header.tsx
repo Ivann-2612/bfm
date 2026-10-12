@@ -1,12 +1,14 @@
 import { getContent, homePath, otherLang, privacyPath } from "@/lib/content";
+import { MobileMenu } from "./MobileMenu";
 import { Wordmark, type LangProps } from "./ui";
 
 export function Header({ lang, page = "home" }: LangProps & { page?: "home" | "privacy" }) {
-  const { nav, ui } = getContent(lang);
+  const { nav, menu, ui } = getContent(lang);
   const other = otherLang(lang);
+  const otherSite = getContent(other).site;
   const home = homePath(lang);
   // On the privacy page, section links point back to the home page.
-  const prefix = page === "home" ? "" : home === "/" ? "/" : home;
+  const prefix = page === "home" ? "" : home;
   const switchHref = page === "home" ? homePath(other) : privacyPath(other);
 
   return (
@@ -23,13 +25,19 @@ export function Header({ lang, page = "home" }: LangProps & { page?: "home" | "p
             </a>
           ))}
         </nav>
-        <a href={switchHref} className="lang-switch" hrefLang={getContent(other).site.lang} lang={getContent(other).site.lang}>
+        <a href={switchHref} className="lang-switch" hrefLang={otherSite.lang} lang={otherSite.lang}>
           <span aria-hidden="true">{ui.otherLangShort}</span>
           <span className="visually-hidden">{ui.otherLang}</span>
         </a>
-        <a href={`${prefix}#prijava`} className="btn btn--small">
+        <a href={`${prefix}#prijava`} className="btn btn--small site-header__cta">
           {ui.register}
         </a>
+        <MobileMenu
+          links={menu.map((m) => ({ label: m.label, href: `${prefix}${m.href}` }))}
+          privacy={{ label: ui.privacy, href: privacyPath(lang) }}
+          lang={{ href: switchHref, label: ui.otherLang, hrefLang: otherSite.lang }}
+          labels={{ open: ui.menuOpen, close: ui.menuClose, sections: ui.sectionsNav }}
+        />
       </div>
     </header>
   );

@@ -10,6 +10,9 @@ Kostur je napravljen 2026-10-12 (Next.js 16, App Router, `src/`). Pokretanje, en
   rewrite-uje `/` → `/sr` i redirect-uje `/sr` → `/`. Komponente primaju `lang` i koriste `site(lang)` (sadržaj + formatiranje datuma/novca).
 - Sav tekst, uključujući dugmiće, formu, mejlove, greške i privatnost, je u JSON-u; komponente ne sadrže tekst.
   `content.ts` pri buildu poredi sr/en: ključevi iz `DATA_KEYS` (datumi, cene, id, src…) i dužine nizova moraju biti isti.
+- Cene, paketi (Standard / Dealer), dodaci, Hotel Park, predavači i umetnici Gala šoua su sa zvaničnog flajera
+  (snimak ekrana od 2026-10-12). Dodaci (`packages.extras`) važe samo za pakete koji ih navode u `allowExtras`;
+  `computePrice` odbacuje ostale, a u bazu ide samo ono što je naplaćeno (`registrations.extras`).
 - Organizator uvek dobija mejl na srpskom; korisnik na jeziku na kom se prijavio (`registrations.lang`).
 - Sekcije sa praznom listom (predavači, žiri, hoteli, partneri, video) se ne renderuju.
 - `src/lib/content.ts` pri buildu proverava da se datumi slažu (zaštita od greške koju ima goldencat.eu).
@@ -70,7 +73,8 @@ Urađeno: Next.js, vizuelni pravac, kostur (stranica, forma, migracija, API, cro
 `SUPABASE_URL` i `SUPABASE_SECRET_KEY` su u `.env`.
 
 1. Pokrenuti migraciju `supabase/migrations/0001_registrations.sql` u projektu `pnpylpzcgoulsivplhip`.
-2. Placeholderi koje izvorni sajt nema: cene paketa, kontakt mejl, podaci za uplatu, tekst o prevozu, adresa/koordinate MTS dvorane.
+2. Placeholderi koje ni sajt ni flajer nemaju: kontakt mejl, podaci za uplatu, biografije i fotografije predavača.
+   Sa flajera proveriti (slaba rezolucija): „Maxim Gladstein“, „Françoise Roshe“, maksimum 2 za dealer dodatke, termin Gala večere.
 3. Resend domen + Turnstile ključevi.
 4. Stranica `/privacy` (link u footeru već postoji).
 5. Deploy na Vercel + env varijable.

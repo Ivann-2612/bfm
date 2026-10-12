@@ -1,9 +1,10 @@
 import { getContent, type Lang } from "./content";
 
-export type PriceInput = { packageId: string; companions: number; transfer: boolean };
+export type PriceInput = { packageId: string; extras: Partial<Record<string, number>> };
 export type PriceLine = { label: string; amount: number };
 export type Tier = "early" | "regular";
-export type Quote = { tier: Tier; lines: PriceLine[]; total: number };
+/** `extras` holds only the add-ons that were actually charged (allowed by the package, quantity > 0). */
+export type Quote = { tier: Tier; lines: PriceLine[]; total: number; extras: Record<string, number> };
 
 export function tierAt(now: Date, lang: Lang): Tier {
   return now.getTime() <= new Date(getContent(lang).packages.earlyBirdUntil).getTime() ? "early" : "regular";
@@ -20,12 +21,13 @@ export function computePrice(input: PriceInput, now: Date, lang: Lang): Quote {
   const lines: PriceLine[] = [
     { label: `${pkg.name}${tier === "early" ? cfg.labels.earlySuffix : ""}`, amount: pkg.price[tier] },
   ];
-  if (input.companions > 0) {
-    lines.push({ label: `${cfg.companion.label} × ${input.companions}`, amount: cfg.companion.price * input.companions });
+  const extras: Record<string, number> = {};
+  for (const x of cfg.extras) {
+    const allowed = (pkg.allowExtras as string[]).includes(x.id);
+    const qty = Math.min(Math.max(Math.trunc(input.extras[x.id] ?? 0), 0), x.max);
+    if (!allowed || qty === 0) continue;
+    extras[x.id] = qty;
+    lines.push({ label: `${x.label} × ${qty}`, amount: x.price * qty });
   }
-  if (input.transfer) {
-    const people = 1 + input.companions;
-    lines.push({ label: `${cfg.transfer.label} × ${people}`, amount: cfg.transfer.price * people });
-  }
-  return { tier, lines, total: lines.reduce((sum, l) => sum + l.amount, 0) };
+  return { tier, lines, total: lines.reduce((sum, l) => sum + l.amount, 0), extras };
 }

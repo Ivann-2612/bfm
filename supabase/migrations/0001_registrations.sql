@@ -14,8 +14,7 @@ create table if not exists public.registrations (
   country       text not null,
 
   package_id    text     not null,
-  companions    smallint not null default 0 check (companions between 0 and 3),
-  transfer      boolean  not null default false,
+  extras        jsonb    not null default '{}',  -- add-ons actually charged, e.g. {"table": 1}
   notes         text,
 
   price_tier    text  not null check (price_tier in ('early', 'regular')),

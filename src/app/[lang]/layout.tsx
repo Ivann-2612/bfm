@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Bodoni_Moda, IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
 import { LANGS, getContent, homePath, isLang } from "@/lib/content";
 import { CookieBanner } from "@/components/CookieBanner";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import "../globals.css";
 
 const display = Bodoni_Moda({
@@ -43,6 +44,7 @@ export default async function RootLayout({ children, params }: Props) {
       <body>
         {children}
         <CookieBanner lang={lang} />
+        <ScrollReveal />
       </body>
     </html>
   );

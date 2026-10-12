@@ -18,13 +18,12 @@ export const otherLang = (lang: Lang): Lang => (lang === "sr" ? "en" : "sr");
 // Lists that may be empty in the JSON need explicit shapes (an empty JSON array infers never[]).
 export type Lecturer = { name: string; country: string; specialty: string; photo: string; bio: string };
 export type JuryMember = { name: string; role: string; photo: string };
-export type Hotel = { name: string; stars: number; distance: string; priceFrom: number; url: string };
 export type Partner = { name: string; logo: string; url: string };
 export type ScheduleItem = { time: string; title: string; place?: string; text?: string; highlight?: boolean };
 
 export type Suit = "clubs" | "spades" | "hearts" | "diamonds";
 // Alternating black/red so even a two-day event shows both colours.
-const SUITS: Suit[] = ["spades", "hearts", "clubs", "diamonds"];
+export const SUITS: Suit[] = ["spades", "hearts", "clubs", "diamonds"];
 export const SUIT_GLYPH: Record<Suit, string> = { clubs: "♣", spades: "♠", hearts: "♥", diamonds: "♦" };
 export const isRed = (s: Suit) => s === "hearts" || s === "diamonds";
 
@@ -76,7 +75,6 @@ function build(c: Content) {
       new Intl.NumberFormat(c.site.locale, { style: "currency", currency: c.site.currency, maximumFractionDigits: 0 }).format(amount),
     lecturers: c.lecturers.items as Lecturer[],
     jury: c.jury.items as JuryMember[],
-    hotels: c.hotels.items as Hotel[],
     partners: c.partners as Partner[],
   };
 }
@@ -92,7 +90,7 @@ export const site = (lang: Lang) => sites[lang];
 const DATA_KEYS = new Set([
   "date", "startDate", "endDate", "time", "year", "early", "regular", "price", "priceFrom", "max",
   "id", "src", "width", "height", "lat", "lng", "earlyBirdUntil", "youtubeId", "href", "url", "logo",
-  "stars", "highlight", "currency", "timeZone", "contactEmail", "iban", "swift",
+  "highlight", "allowExtras", "currency", "timeZone", "contactEmail", "iban", "swift",
 ]);
 
 function compare(a: unknown, b: unknown, path: string) {
@@ -108,8 +106,8 @@ function compare(a: unknown, b: unknown, path: string) {
     for (const [k, v] of Object.entries(a)) {
       const p = path ? `${path}.${k}` : k;
       if (!(k in bo)) throw new Error(`en.json is missing ${p}`);
-      if (DATA_KEYS.has(k) && (typeof v !== "object" || v === null)) {
-        if (v !== bo[k]) throw new Error(`sr.json / en.json disagree on ${p}: ${String(v)} vs ${String(bo[k])}`);
+      if (DATA_KEYS.has(k) && (typeof v !== "object" || v === null || Array.isArray(v))) {
+        if (JSON.stringify(v) !== JSON.stringify(bo[k])) throw new Error(`sr.json / en.json disagree on ${p}: ${String(v)} vs ${String(bo[k])}`);
       } else {
         compare(v, bo[k], p);
       }

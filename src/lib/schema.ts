@@ -7,6 +7,9 @@ function build(lang: Lang) {
   const c = getContent(lang);
   const e = c.registration.errors;
   const packageIds = c.packages.items.map((p) => p.id);
+  const extraIds = c.packages.extras.map((x) => x.id) as [string, ...string[]];
+  // Per-add-on limits and package rules are applied in computePrice; this only rejects nonsense.
+  const maxExtra = Math.max(...c.packages.extras.map((x) => x.max));
   const required = (error: string) => z.string({ error }).trim().min(1, { error });
 
   return z.object({
@@ -22,8 +25,10 @@ function build(lang: Lang) {
     phone: z.string().trim().max(40).optional().default(""),
     country: required(e.country).max(80),
     packageId: z.string({ error: e.package }).refine((id) => packageIds.includes(id), { error: e.package }),
-    companions: z.coerce.number({ error: e.invalid }).int().min(0).max(c.packages.companion.max),
-    transfer: z.boolean({ error: e.invalid }),
+    extras: z
+      .partialRecord(z.enum(extraIds), z.coerce.number({ error: e.invalid }).int().min(0).max(maxExtra), { error: e.invalid })
+      .optional()
+      .default({}),
     notes: z.string().trim().max(1000, { error: e.notesLength }).optional().default(""),
     consent: z.literal(true, { error: e.consent }),
     turnstileToken: z.string().optional(),
