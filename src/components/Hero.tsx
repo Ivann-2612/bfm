@@ -1,0 +1,72 @@
+import Image from "next/image";
+import { firstWord, restWords, site } from "@/lib/content";
+import { SuitMark, type LangProps } from "./ui";
+
+export function Hero({ lang }: LangProps) {
+  const s = site(lang);
+  const { event, ui } = s.c;
+
+  return (
+    <section id="top" className="hero" aria-labelledby="hero-title">
+      <div className="wrap hero__inner">
+        <div className="hero__text">
+          <p className="kicker hero__kicker">
+            {event.city} · {event.venue} · {event.year}
+          </p>
+
+          <h1 id="hero-title" className="hero__title">
+            <span className="hero__line hero__line--a">{firstWord(event.name)}</span>
+            <span className="hero__line hero__line--b">{restWords(event.name)}</span>
+          </h1>
+
+          <p className="hero__tagline">{event.tagline}</p>
+
+          <p className="hero__dates">
+            <span className="visually-hidden">{s.dateRange()}</span>
+            <span aria-hidden="true" className="hero__deal">
+              {s.days.map((d, i) => (
+                <span key={d.date} className="hero__card" style={{ "--i": i } as React.CSSProperties}>
+                  <SuitMark suit={d.suit} />
+                  {s.dayNum(d.date)}
+                </span>
+              ))}
+            </span>
+            <span aria-hidden="true" className="hero__month">
+              {s.monthYear(event.endDate)}
+            </span>
+          </p>
+
+          <p className="hero__intro">{event.intro}</p>
+
+          <div className="hero__actions">
+            <a href="#program" className="btn">
+              {ui.seeProgramme}
+            </a>
+            <a href="#prijava" className="link-arrow">
+              {ui.register}
+            </a>
+          </div>
+
+          <ul className="hero__stats">
+            {event.stats.map((st) => (
+              <li key={st.label}>
+                <b>{st.value}</b> {st.label}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <figure className="hero__poster">
+          <Image
+            src={event.poster.src}
+            alt={event.poster.alt}
+            width={event.poster.width}
+            height={event.poster.height}
+            sizes="(min-width: 960px) 34vw, 80vw"
+            priority
+          />
+        </figure>
+      </div>
+    </section>
+  );
+}

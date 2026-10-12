@@ -1,0 +1,471 @@
+{
+  "site": {
+    "title": "Beogradski festival magije 2027",
+    "description": "Beogradski festival magije, 27–28. februar 2027. u MTS dvorani — međunarodni Gala šou, porodični program, takmičenja i stručni sadržaji.",
+    "locale": "sr-Latn-RS",
+    "lang": "sr-Latn",
+    "timeZone": "Europe/Belgrade",
+    "currency": "EUR",
+    "contactEmail": "info@example.com",
+    "organiserLegal": "Pravni naziv organizatora, adresa"
+  },
+
+  "event": {
+    "name": "Beogradski festival magije",
+    "year": 2027,
+    "city": "Beograd",
+    "country": "Srbija",
+    "venue": "MTS dvorana",
+    "startDate": "2027-02-27",
+    "endDate": "2027-02-28",
+    "tagline": "Magija koja povezuje. Umetnost koja oduševljava.",
+    "intro": "Dva festivalska dana vrhunskih iluzija, međunarodnih umetnika, porodičnih programa, takmičenja i stručnih sadržaja.",
+    "poster": {
+      "src": "/images/naslovna.png",
+      "alt": "Magični Varijete 2027 — zvanična naslovna vizuelna prezentacija",
+      "width": 1055,
+      "height": 1491
+    },
+    "stats": [
+      { "value": "2", "label": "festivalska dana" },
+      { "value": "7", "label": "održanih izdanja" },
+      { "value": "2012.", "label": "godina osnivanja" }
+    ]
+  },
+
+  "ui": {
+    "skip": "Preskoči na sadržaj",
+    "register": "Prijava",
+    "seeProgramme": "Pogledajte program",
+    "seePackages": "Ulaznice i cene",
+    "backToTop": "Vratite se na početak",
+    "photoPlaceholder": "Fotografija",
+    "openMap": "Otvori mapu",
+    "book": "Rezerviši",
+    "bookingSoon": "Link za rezervaciju uskoro",
+    "playVideo": "Pusti video",
+    "showBio": "Prikaži biografiju",
+    "hideBio": "Sakrij biografiju",
+    "perNight": "noć",
+    "from": "od",
+    "otherLang": "English",
+    "otherLangShort": "EN",
+    "sectionsNav": "Sekcije",
+    "daysNav": "Dani festivala",
+    "partners": "Partneri",
+    "privacy": "Politika privatnosti",
+    "backToSite": "Nazad na festival"
+  },
+
+  "nav": [
+    { "label": "Festival", "href": "#festival" },
+    { "label": "Program", "href": "#program" },
+    { "label": "Galerija", "href": "#galerija" },
+    { "label": "Organizatori", "href": "#organizatori" }
+  ],
+
+  "about": {
+    "kicker": "O festivalu",
+    "title": "Povratak velike tradicije",
+    "lead": "Beograd ponovo postaje prestonica magije.",
+    "paragraphs": [
+      "Beogradski festival magije predstavlja obnovu i razvoj jedne od najznačajnijih mađioničarskih manifestacija u Srbiji.",
+      "Nakon sedam uspešno organizovanih izdanja, festival se vraća u savremenom formatu — kao međunarodna manifestacija koja na jednom mestu povezuje vrhunske domaće i strane umetnike, profesionalne mađioničare, mlade talente, porodice i ljubitelje iluzionizma."
+    ],
+    "aside": {
+      "title": "Više od predstave",
+      "text": "Mesto susreta umetnosti, znanja i čudesnih trenutaka."
+    },
+    "photo": { "src": "/images/foaje.jpg", "alt": "Brojni posetioci prethodnog izdanja festivala" }
+  },
+
+  "programs": {
+    "kicker": "Jedan festival · bezbroj doživljaja",
+    "title": "Program za publiku i profesionalce",
+    "intro": "Od spektakla na velikoj sceni do magije koja se događa na svega nekoliko centimetara od vas.",
+    "items": [
+      {
+        "id": "varijete",
+        "name": "Magični Varijete",
+        "meta": "Velika scena · za sve generacije",
+        "text": "Centralni međunarodni Gala šou sa renomiranim umetnicima iz oblasti iluzionizma, varijetea i savremene scenske umetnosti.",
+        "photo": { "src": "/images/finale.jpg", "alt": "Učesnici festivala na sceni pred publikom" },
+        "shows": [
+          { "date": "2027-02-27", "time": "19:00" },
+          { "date": "2027-02-28", "time": "17:00" }
+        ]
+      },
+      {
+        "id": "publika",
+        "name": "Festival za publiku",
+        "meta": "Celodnevni program",
+        "text": "Predstave za decu i porodice, close-up magija, klovnovi, žongleri, radionice i interaktivni programi.",
+        "photo": { "src": "/images/deca-scena.jpg", "alt": "Deca sa pažnjom prate mađioničarski nastup" },
+        "shows": []
+      },
+      {
+        "id": "takmicenja",
+        "name": "Takmičenja",
+        "meta": "Domaći i strani učesnici",
+        "text": "Scenska i close-up magija pred međunarodnim stručnim žirijem, uz profesionalne kriterijume ocenjivanja.",
+        "photo": { "src": "/images/nagrade.jpg", "alt": "Dodela priznanja učesnicima" },
+        "shows": []
+      },
+      {
+        "id": "strucni",
+        "name": "Stručni program",
+        "meta": "Znanje koje pokreće umetnost",
+        "text": "Seminari, predavanja, demonstracije, razmena iskustava i izložba savremene mađioničarske opreme.",
+        "photo": { "src": "/images/seminar-1.jpg", "alt": "Seminar za mađioničare" },
+        "shows": []
+      }
+    ]
+  },
+
+  "schedule": {
+    "kicker": "MTS dvorana · Beograd",
+    "title": "Program festivala",
+    "note": "Program je okviran i biće dopunjavan imenima umetnika, predavača i detaljima o ulaznicama.",
+    "days": [
+      {
+        "date": "2027-02-27",
+        "groups": [
+          {
+            "title": "Stručni deo festivala",
+            "items": [
+              { "time": "09:00", "title": "Otvaranje registracije učesnika stručnog programa", "text": "Prijava i akreditacija domaćih i stranih mađioničara, gostiju i učesnika festivala." },
+              { "time": "10:00–18:00", "title": "Izložba savremene mađioničarske opreme i rekvizita", "text": "Predstavljanje i demonstracija opreme, rekvizita, literature i drugih proizvoda namenjenih profesionalnim mađioničarima i ljubiteljima iluzionizma." },
+              { "time": "10:30", "title": "Međunarodno takmičenje mađioničara – close-up", "text": "Takmičarski program namenjen domaćim i stranim mađioničarima pred međunarodnim stručnim žirijem." },
+              { "time": "14:00", "title": "Stručni seminar / predavanje" }
+            ]
+          },
+          {
+            "title": "Porodični deo festivala",
+            "items": [
+              { "time": "11:00–17:00", "title": "Festivalski program u foajeu MTS dvorane", "text": "Nastupi close-up mađioničara, klovnova, žonglera i drugih artista, uz neposrednu interakciju sa posetiocima." },
+              { "time": "11:00", "title": "Mađioničarsko-žonglerska predstava za decu i porodice FILIPINO", "place": "Sala 6" },
+              { "time": "12:00", "title": "Animacija klovna i close-up mađioničara", "place": "Hol MTS dvorane" },
+              { "time": "12:30", "title": "Mađioničarska predstava za decu i porodice MIHAJLO", "place": "Donja sala" },
+              { "time": "13:30", "title": "Animacija klovna i close-up mađioničara", "place": "Hol MTS dvorane" },
+              { "time": "14:00", "title": "Mađioničarska predstava za decu i porodice", "place": "Sala 6" },
+              { "time": "15:00", "title": "Animacija klovna i close-up mađioničara", "place": "Hol MTS dvorane" },
+              { "time": "15:30", "title": "Magična radionica za decu", "place": "Donja sala" },
+              { "time": "16:00", "title": "Žonglerska radionica za decu", "place": "Sala 6" },
+              { "time": "17:00", "title": "Završetak prvog festivalskog dana i priprema za Magični Varijete" },
+              { "time": "19:00", "title": "Međunarodni Gala šou „Magični Varijete“", "text": "Prvo izvođenje međunarodnog Gala šoua i završetak festivalskog programa namenjenog širokoj publici.", "highlight": true }
+            ]
+          },
+          {
+            "title": "Večernji deo festivala za sve učesnike",
+            "items": [
+              { "time": "21:00", "title": "Svečana večera i veče druženja učesnika festivala", "place": "Klub „Lisabon“ u objektu MTS dvorane", "text": "Zajednička večera domaćih i stranih mađioničara, gostiju i učesnika stručnog programa, nakon koje je planiran neformalni program druženja." }
+            ]
+          }
+        ]
+      },
+      {
+        "date": "2027-02-28",
+        "groups": [
+          {
+            "title": "Stručni dan i svečano zatvaranje festivala",
+            "items": [
+              { "time": "10:00–17:00", "title": "Izložba savremene mađioničarske opreme i rekvizita" },
+              { "time": "10:30", "title": "Stručni seminar / predavanje" },
+              { "time": "12:00", "title": "Međunarodno takmičenje mađioničara – stage magic" },
+              { "time": "13:30", "title": "Pauza" },
+              { "time": "14:30", "title": "Stručni seminar / predavanje" },
+              { "time": "15:30", "title": "Stručni seminar, prezentacija ili specijalni program gosta festivala" }
+            ]
+          },
+          {
+            "title": "Porodični deo festivala",
+            "items": [
+              { "time": "11:00–17:00", "title": "Festivalski program u foajeu MTS dvorane", "text": "Nastupi close-up mađioničara, klovnova, žonglera i drugih artista, uz neposrednu interakciju sa posetiocima." },
+              { "time": "11:00", "title": "Mađioničarsko-žonglerska predstava za decu i porodice FILIPINO", "place": "Sala 6" },
+              { "time": "12:00", "title": "Animacija klovna i close-up mađioničara", "place": "Hol MTS dvorane" },
+              { "time": "12:30", "title": "Mađioničarska predstava za decu i porodice MIHAJLO", "place": "Donja sala" },
+              { "time": "13:30", "title": "Animacija klovna i close-up mađioničara", "place": "Hol MTS dvorane" },
+              { "time": "14:00", "title": "Mađioničarska predstava za decu i porodice", "place": "Sala 6" },
+              { "time": "15:00", "title": "Animacija klovna i close-up mađioničara", "place": "Hol MTS dvorane" },
+              { "time": "15:30", "title": "Magična radionica za decu", "place": "Donja sala" },
+              { "time": "16:00", "title": "Žonglerska radionica za decu", "place": "Sala 6" },
+              { "time": "17:00", "title": "Međunarodni Gala šou „Magični Varijete“", "text": "Drugo izvođenje međunarodnog Gala šoua i završetak festivalskog programa namenjenog širokoj publici.", "highlight": true },
+              { "time": "19:00", "title": "Zvanični završetak Beogradskog festivala magije 2027." }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  "vision": {
+    "kicker": "Vizija festivala",
+    "title": "Magija pripada svima.",
+    "paragraphs": [
+      "Festival istovremeno predstavlja veliki kulturni događaj namenjen širokoj publici i profesionalni međunarodni skup koji okuplja mađioničare iz zemlje i inostranstva.",
+      "Naša dugoročna vizija je da Beogradski festival magije postane tradicionalni događaj prepoznatljiv u evropskim festivalskim kalendarima — mesto susreta najistaknutijih svetskih mađioničara i nezaobilazna destinacija za sve ljubitelje iluzionizma."
+    ],
+    "quote": "Umetnost, obrazovanje, zabava i međunarodna saradnja na jednom mestu."
+  },
+
+  "gallery": {
+    "kicker": "Trenuci koji se pamte",
+    "title": "Galerija festivala",
+    "intro": "Atmosfera, susreti i aplauzi sa prethodnih izdanja Beogradskog festivala magije.",
+    "items": [
+      { "src": "/images/finale.jpg", "alt": "Finale festivala pred punom dvoranom" },
+      { "src": "/images/nagrade.jpg", "alt": "Dodela priznanja učesnicima" },
+      { "src": "/images/publika.jpg", "alt": "Publika svih generacija" },
+      { "src": "/images/deca-scena.jpg", "alt": "Najmlađi posetioci uz samu scenu" },
+      { "src": "/images/magija-za-decu.jpg", "alt": "Magija iz neposredne blizine" },
+      { "src": "/images/seminar-1.jpg", "alt": "Seminar za mađioničare" },
+      { "src": "/images/seminar-2.jpg", "alt": "Stručna predavanja i demonstracije" },
+      { "src": "/images/izlozba.jpg", "alt": "Izložbeni prostor festivala" },
+      { "src": "/images/foaje.jpg", "alt": "Festivalska atmosfera u foajeu" },
+      { "src": "/images/mediji.jpg", "alt": "Veliko interesovanje medija" },
+      { "src": "/images/magicna-zurka.jpg", "alt": "Večernje druženje učesnika" },
+      { "src": "/images/publika-seminar.jpg", "alt": "Mađioničarska zajednica na okupu" }
+    ]
+  },
+
+  "history": {
+    "year": "2012",
+    "kicker": "Istorijat",
+    "title": "Sedam izdanja. Jedna velika priča.",
+    "paragraphs": [
+      "Beogradski festival magije prvi put je organizovan 2012. godine sa ciljem promocije i razvoja mađioničarske umetnosti u Srbiji.",
+      "Tokom sedam uspešnih izdanja ugostio je brojne domaće umetnike i međunarodne goste iz više evropskih zemalja i postao jedno od najznačajnijih okupljanja mađioničara u regionu."
+    ]
+  },
+
+  "video": {
+    "title": "",
+    "youtubeId": "",
+    "poster": ""
+  },
+
+  "lecturers": {
+    "kicker": "Predavači",
+    "title": "Ko predaje ove godine",
+    "items": []
+  },
+
+  "jury": {
+    "title": "Stručni žiri",
+    "items": []
+  },
+
+  "packages": {
+    "kicker": "Ulaznice i kotizacije",
+    "title": "Cene",
+    "earlyBirdUntil": "2026-12-31T23:59:59+01:00",
+    "labels": {
+      "package": "Paket",
+      "until": "Do",
+      "after": "Posle toga",
+      "earlySuffix": " (rana prijava)"
+    },
+    "items": [
+      {
+        "id": "strucni",
+        "name": "Stručni program, oba dana",
+        "includes": "Seminari, predavanja, izložba opreme, takmičenja i mesto na Magičnom Varijeteu",
+        "price": { "early": 60, "regular": 80 }
+      },
+      {
+        "id": "strucni-vecera",
+        "name": "Stručni program i svečana večera",
+        "includes": "Sve iz stručnog programa i večera u klubu „Lisabon“ 27. februara",
+        "price": { "early": 90, "regular": 110 }
+      },
+      {
+        "id": "varijete",
+        "name": "Ulaznica za Magični Varijete",
+        "includes": "Jedno mesto na Gala šouu",
+        "price": { "early": 15, "regular": 20 }
+      }
+    ],
+    "companion": {
+      "label": "Dodatna ulaznica za Magični Varijete",
+      "pluralLabel": "Dodatne ulaznice za Magični Varijete",
+      "note": "Za pratioca ili člana porodice koji ne prati stručni program",
+      "price": 15,
+      "max": 3
+    },
+    "transfer": {
+      "label": "Prevoz sa aerodroma, u oba smera",
+      "note": "Po osobi, Aerodrom Nikola Tesla",
+      "price": 30
+    }
+  },
+
+  "hotels": {
+    "kicker": "Smeštaj",
+    "title": "Hoteli",
+    "items": []
+  },
+
+  "travel": {
+    "kicker": "Kako do nas",
+    "title": "MTS dvorana na mapi",
+    "center": { "lat": 44.81322, "lng": 20.46263 },
+    "locations": [
+      { "name": "MTS dvorana", "address": "Dečanska 14, Beograd", "lat": 44.81322, "lng": 20.46263 }
+    ],
+    "transport": {
+      "title": "Sa aerodroma",
+      "text": "Gostima iz inostranstva organizujemo zajednički prevoz od aerodroma do hotela.",
+      "airports": [
+        { "name": "Aerodrom Nikola Tesla (BEG)", "distance": "≈ 18 km", "duration": "≈ 25 min kolima" }
+      ],
+      "transferLabel": "Zajednički prevoz",
+      "transferUnit": "po osobi, u oba smera.",
+      "transferNote": "Prevoz se rezerviše u formi za prijavu."
+    }
+  },
+
+  "registration": {
+    "kicker": "Prijava za stručni program",
+    "title": "Prijavite se",
+    "text": "Popunite formu i poslaćemo vam mejlom rezime i podatke za uplatu. Mesto vam čuvamo 7 dana.",
+    "consentText": "Saglasan/saglasna sam da Beogradski festival magije čuva moje podatke radi obrade ove prijave. Mogu u svakom trenutku da zatražim njihovo brisanje.",
+    "labels": {
+      "firstName": "Ime",
+      "lastName": "Prezime",
+      "email": "Email",
+      "phone": "Telefon",
+      "country": "Država",
+      "package": "Paket",
+      "companionsNone": "Bez dodatnih",
+      "notes": "Napomena",
+      "notesHint": "ishrana, pristupačnost, nastup na takmičenju",
+      "optional": "nije obavezno",
+      "submit": "Pošalji prijavu",
+      "sending": "Šaljem…",
+      "summary": "Ukupno za uplatu",
+      "total": "Ukupno",
+      "calculating": "Računam…",
+      "earlyNote": "Cena rane prijave važi do {date}.",
+      "regularNote": "Redovna cena.",
+      "paymentNote": "Plaća se uplatom na račun, podaci stižu mejlom.",
+      "doneTitle": "Prijava je primljena",
+      "doneText": "Poslali smo rezime i podatke za uplatu na {email}. Ukupno za uplatu: {total}.",
+      "doneHold": "Mesto vam čuvamo 7 dana. Ako mejl ne stigne, proverite spam ili pišite na {contact}.",
+      "errorFields": "Proverite označena polja.",
+      "errorNetwork": "Nema veze sa serverom. Proverite internet i pošaljite formu ponovo."
+    },
+    "errors": {
+      "firstName": "Upišite ime",
+      "lastName": "Upišite prezime",
+      "email": "Upišite email",
+      "emailFormat": "Upišite email u obliku ime@primer.rs",
+      "country": "Upišite državu",
+      "package": "Izaberite paket",
+      "notesLength": "Napomena može imati najviše 1000 znakova",
+      "consent": "Bez saglasnosti ne možemo da obradimo prijavu",
+      "invalid": "Proverite ovo polje",
+      "spam": "Provera protiv spama nije uspela. Osvežite stranicu i pokušajte ponovo.",
+      "unavailable": "Prijava trenutno nije dostupna.",
+      "saveFailed": "Nismo uspeli da sačuvamo prijavu. Pokušajte ponovo za minut.",
+      "duplicate": "Ovaj email je već prijavljen za {year}. Za izmenu pišite na {contact}."
+    },
+    "payment": {
+      "bankName": "Naziv banke",
+      "iban": "RS35 0000 0000 0000 0000 00",
+      "swift": "XXXXRSBG",
+      "beneficiary": "Pravni naziv organizatora",
+      "referenceHint": "U pozivu na broj upišite svoje ime i prezime."
+    }
+  },
+
+  "organizers": {
+    "kicker": "Zajedno stvaramo magiju",
+    "title": "Organizacija festivala",
+    "orgs": [
+      { "role": "Organizator", "name": "Magični krug Srbije", "sub": "Serbia Magic Ring" },
+      { "role": "Organizator", "name": "Čarobni plašt", "sub": "Udruženje mađioničara" },
+      { "role": "Organizator", "name": "Magični svet", "sub": "Udruženje građana" },
+      { "role": "Partner festivala", "name": "MTS dvorana", "sub": "Beograd" }
+    ],
+    "people": [
+      { "role": "Direktor festivala", "name": "Dejan Đurđević Piksi" },
+      { "role": "Umetnički direktor", "name": "Igor Trifunov" },
+      { "role": "Koordinatori projekta", "name": "Mihajlo Janković · Filip Đikić" }
+    ]
+  },
+
+  "partners": [],
+
+  "closing": {
+    "kicker": "Vidimo se u Beogradu",
+    "title": "Verujete li u magiju?"
+  },
+
+  "footer": {
+    "organiser": "© 2027 Beogradski festival magije. Sva prava zadržana."
+  },
+
+  "emails": {
+    "total": "Ukupno",
+    "confirmation": {
+      "subject": "{event}: vaša prijava",
+      "greeting": "Zdravo {firstName},",
+      "intro": "Primili smo vašu prijavu za {event}. Ovo ste izabrali:",
+      "paymentTitle": "Uplata",
+      "beneficiary": "Primalac",
+      "bank": "Banka",
+      "hold": "Mesto vam čuvamo 7 dana. Ako nešto nije u redu, odgovorite na ovaj mejl."
+    },
+    "organizer": {
+      "subject": "Nova prijava: {firstName} {lastName} — {total}",
+      "notes": "Napomena"
+    },
+    "expiry": {
+      "subject": "{event}: prijava je istekla",
+      "greeting": "Zdravo {firstName},",
+      "released": "Uplata za vašu prijavu na {event} nije stigla u roku od 7 dana, pa smo oslobodili mesto.",
+      "again": "Cene rane prijave važe do {date}. Ako i dalje želite da dođete, prijavite se ponovo na sajtu ili odgovorite na ovaj mejl."
+    }
+  },
+
+  "privacy": {
+    "title": "Politika privatnosti",
+    "updated": "Poslednja izmena: 12. oktobar 2026.",
+    "sections": [
+      {
+        "title": "Ko obrađuje vaše podatke",
+        "text": "Podatke obrađuje {organiser}, organizator Beogradskog festivala magije. Za sva pitanja pišite na {contact}."
+      },
+      {
+        "title": "Koje podatke prikupljamo",
+        "text": "Kada se prijavite: ime, prezime, email, telefon ako ga unesete, državu, izabrani paket, broj dodatnih ulaznica, da li vam treba prevoz, napomenu, kao i tekst i vreme vaše saglasnosti."
+      },
+      {
+        "title": "Zašto ih koristimo",
+        "text": "Da obradimo prijavu, pošaljemo vam rezime i podatke za uplatu, podsetimo vas ako uplata ne stigne i organizujemo festival. Podatke ne prodajemo i ne koristimo za reklame."
+      },
+      {
+        "title": "Ko još ima pristup",
+        "text": "Prijave se čuvaju u bazi kod servisa Supabase, mejlove šaljemo preko servisa Resend, a formu od spama štiti Cloudflare Turnstile. Ovi servisi podatke obrađuju samo po našem nalogu."
+      },
+      {
+        "title": "Koliko ih čuvamo",
+        "text": "Do završetka festivala i izmirenja svih obaveza, osim ako zakon ne nalaže duže čuvanje."
+      },
+      {
+        "title": "Vaša prava",
+        "text": "Možete da zatražite uvid u svoje podatke, njihovu ispravku ili brisanje. Pišite na {contact} i odgovorićemo u roku od 30 dana."
+      },
+      {
+        "title": "Kolačići i spoljni sadržaj",
+        "text": "Google Analytics se učitava samo ako ga dozvolite u obaveštenju o kolačićima. Mapa dolazi sa OpenStreetMap-a. Video sa YouTube-a, ako postoji, učitava se tek kada kliknete na njega."
+      }
+    ]
+  },
+
+  "cookies": {
+    "text": "Koristimo Google Analytics da vidimo koje delove sajta ljudi čitaju. Učitava se samo ako to dozvolite.",
+    "accept": "Dozvoli analitiku",
+    "decline": "Ne, hvala"
+  }
+}
