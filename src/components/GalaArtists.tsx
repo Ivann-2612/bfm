@@ -1,4 +1,4 @@
-import { SUITS, site, type Suit } from "@/lib/content";
+import { SUITS, site, type Artist, type Suit } from "@/lib/content";
 import { Photo, SectionHead, SuitMark, type LangProps } from "./ui";
 
 // Playing-card corner: the artist's initial over a suit.
@@ -14,7 +14,8 @@ function Index({ initial, suit, flip = false }: { initial: string; suit: Suit; f
 export function GalaArtists({ lang }: LangProps) {
   const s = site(lang);
   const { gala, programs, ui } = s.c;
-  if (gala.artists.length === 0) return null;
+  const artists = (gala.artists as Artist[]).filter((a) => !a.hidden);
+  if (artists.length === 0) return null;
   // Show times come from the gala programme item, so they can't drift from the schedule.
   const shows = programs.items.find((p) => p.id === "varijete")?.shows ?? [];
 
@@ -38,7 +39,7 @@ export function GalaArtists({ lang }: LangProps) {
           )}
         </div>
         <ul className="artists__grid">
-          {gala.artists.map((a, i) => {
+          {artists.map((a, i) => {
             const suit = SUITS[i % SUITS.length];
             const initial = a.name.charAt(0);
             return (
@@ -49,7 +50,7 @@ export function GalaArtists({ lang }: LangProps) {
                     src={a.photo}
                     alt={a.name}
                     label={ui.photoPlaceholder}
-                    sizes="(min-width: 900px) 22vw, 45vw"
+                    sizes="(min-width: 1080px) 160px, (min-width: 600px) 25vw, 48vw"
                     className="artist__photo"
                   />
                   <Index initial={initial} suit={suit} flip />

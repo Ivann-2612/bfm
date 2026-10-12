@@ -49,6 +49,13 @@ organizatoru mejlom (sa svim podacima; „Odgovori“ ide učesniku), a učesnik
 - Turnstile je opcion: bez njega botove hvata skriveno polje u formi.
 - Bez Resend-a i bez Supabase-a produkcija odbija prijave (503), da se ne bi izgubile.
 
+## Pregled prijava za organizatora (karte)
+
+`/karte/<ADMIN_KEY>`: ukupan broj prijava, iznosi, filter po statusu (čeka uplatu / plaćeno / isteklo / otkazano),
+sortiranje klikom na naslov kolone i CSV za Excel. Nema logovanja, ključ u adresi je lozinka (najmanje 16 znakova;
+bez `ADMIN_KEY` stranica u produkciji ne postoji, pogrešan ključ daje 404). Čita iz Supabase-a.
+Lokalno (`npm run dev`, bez `ADMIN_KEY` u `.env`): http://localhost:3000/karte/lokalno, sa primer podacima ako baza nije dostupna.
+
 ## Deploy na Vercel
 
 1. Kod na GitHub (`.env` je u `.gitignore` i ne ide gore).

@@ -44,18 +44,31 @@ const eventName = (lang: Lang) => {
 export async function sendConfirmation(lang: Lang, p: Person, quote: Quote) {
   const { c } = site(lang);
   const m = c.emails.confirmation;
-  const pay = c.registration.payment;
+  const { payment, labels: L } = c.registration;
   const event = eventName(lang);
+  const reference = `${p.firstName} ${p.lastName}`;
+  // Same methods and fields as the copy-to-clipboard panel on the success screen.
+  const methods = payment.methods
+    .map((method) => {
+      const rows = [
+        ...method.fields.map((f) => [f.label, f.copy]),
+        [L.amount, site(lang).money(quote.total)],
+        [L.reference, reference],
+      ]
+        .map(([k, v]) => `<tr><td style="padding:3px 16px 3px 0;color:#666">${esc(k)}</td><td><b>${esc(v)}</b></td></tr>`)
+        .join("");
+      return `<p style="margin:16px 0 4px"><b>${esc(method.label)}</b></p>
+        <table style="border-collapse:collapse">${rows}</table>
+        ${method.note ? `<p style="color:#666;font-size:13px;margin:4px 0 0">${esc(method.note)}</p>` : ""}`;
+    })
+    .join("");
   const html = `
     <p>${esc(fill(m.greeting, { firstName: p.firstName }))}</p>
     <p>${esc(fill(m.intro, { event }))}</p>
     ${quoteTable(lang, quote)}
-    <p><b>${esc(m.paymentTitle)}</b><br>
-      ${esc(m.beneficiary)}: ${esc(pay.beneficiary)}<br>
-      ${esc(m.bank)}: ${esc(pay.bankName)}<br>
-      IBAN: ${esc(pay.iban)}<br>
-      SWIFT: ${esc(pay.swift)}<br>
-      ${esc(pay.referenceHint)}</p>
+    <h3 style="margin:24px 0 0">${esc(m.paymentTitle)}</h3>
+    ${methods}
+    <p>${esc(payment.referenceHint)}</p>
     <p>${esc(fill(m.hold, { contact: c.site.contactEmail }))}</p>`;
   // Replies go to the festival, not to the sending address.
   await send(p.email, fill(m.subject, { event }), html, c.site.contactEmail);

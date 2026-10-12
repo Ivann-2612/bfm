@@ -1,50 +1,43 @@
 import { site } from "@/lib/content";
+import { MapTiles } from "./MapTiles";
 import { SectionHead, type LangProps } from "./ui";
 
 export function Travel({ lang }: LangProps) {
   const s = site(lang);
   const { travel, ui } = s.c;
   const { transport } = travel;
-  const { lat, lng } = travel.center;
-  // The bbox is centred on the venue, so the venue is always the centre of the iframe
-  // and our own pin can sit there without knowing the map's projection.
-  const d = 0.0035;
-  const bbox = [lng - d * 1.6, lat - d, lng + d * 1.6, lat + d].join(",");
-  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik`;
   const venue = travel.locations[0];
+  const directions = `https://www.google.com/maps/dir/?api=1&destination=${venue.lat},${venue.lng}`;
+  const osm = `https://www.openstreetmap.org/?mlat=${venue.lat}&mlon=${venue.lng}#map=17/${venue.lat}/${venue.lng}`;
 
   return (
     <section id="lokacija" className="section travel" aria-labelledby="travel-title">
       <div className="wrap">
         <SectionHead id="travel-title" kicker={travel.kicker} title={travel.title} />
         <div className="travel__grid">
-          <div className="travel__map">
-            <div className="travel__frame">
-              <iframe src={mapSrc} title={travel.title} loading="lazy" />
-              <span className="travel__pin" aria-hidden="true">
-                <span className="travel__pin-label">{venue.name}</span>
-                <span className="travel__pin-head">
-                  <span>♦</span>
-                </span>
+          <figure className="map">
+            <MapTiles lat={venue.lat} lng={venue.lng} />
+            <span className="map__pin" aria-hidden="true">
+              <span className="map__pin-head">
+                <span>♦</span>
               </span>
-            </div>
-            <ul className="travel__places">
-              {travel.locations.map((l) => (
-                <li key={l.name}>
-                  <b>{l.name}</b>
-                  <span>{l.address}</span>
-                  <a
-                    href={`https://www.openstreetmap.org/?mlat=${l.lat}&mlon=${l.lng}#map=17/${l.lat}/${l.lng}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-arrow"
-                  >
-                    {ui.openMap}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+            </span>
+            <figcaption className="map__card">
+              <b className="map__name">{venue.name}</b>
+              <span className="map__address">{venue.address}</span>
+              <span className="map__actions">
+                <a href={directions} target="_blank" rel="noopener noreferrer" className="btn btn--small">
+                  {ui.directions}
+                </a>
+                <a href={osm} target="_blank" rel="noopener noreferrer" className="link-arrow">
+                  {ui.openMap}
+                </a>
+              </span>
+            </figcaption>
+            <a className="map__credit" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">
+              © OpenStreetMap
+            </a>
+          </figure>
           <div className="travel__transport">
             <h3>{transport.title}</h3>
             <p>{transport.text}</p>

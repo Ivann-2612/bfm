@@ -24,7 +24,11 @@ Kostur je napravljen 2026-10-12 (Next.js 16, App Router, `src/`). Pokretanje, en
 - Supabase: samo secret key na serveru, RLS uključen bez politika. Bez `@supabase/ssr`, nema auth-a.
 - Od 2026-10-12 Supabase i Turnstile su opcioni (korisnik je hteo „samo Resend“). Bez baze je mejl organizatoru
   jedina evidencija, pa ako on ne prođe, API vraća grešku. Bez Turnstile-a radi honeypot polje `website`.
-  Politika privatnosti („Ko još ima pristup“) opisuje samo Resend: ako se uključi Supabase ili Turnstile, ažurirati je.
+  Politika privatnosti („Ko još ima pristup“) navodi Supabase i Resend; ako se uključi Turnstile, dodati ga.
+- Organizator vidi prijave na `/karte/<ADMIN_KEY>` (zaseban root layout `src/app/karte/layout.tsx`, noindex; lokalno `/karte/lokalno`).
+  Korisnik je hteo samo `/karte`; ostavljen je ključ u putanji jer stranica prikazuje lične podatke.
+  Korisnik je izričito tražio bez logovanja; Resend ne čuva istoriju, zato podaci dolaze iz Supabase-a.
+- `"hidden": true` na stavci u JSON-u je sakriva bez brisanja (Françoise Roshe, dok ne stigne slika).
 - Srpski je latinica (`sr-Latn-RS`), engleski je britanski (`en-GB`).
 - Lokalno, iza kancelarijskog proxy-ja, Node `fetch` ne dopire do Supabase-a. Korisnik je rekao da se to za sada ne dira.
 

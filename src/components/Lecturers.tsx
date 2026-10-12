@@ -32,7 +32,7 @@ export function Lecturers({ lang }: LangProps) {
                         src={l.photo}
                         alt={l.name}
                         label={ui.photoPlaceholder}
-                        sizes="(min-width: 900px) 25vw, 50vw"
+                        sizes="(min-width: 640px) 260px, 240px"
                         className="pcard__photo"
                       />
                       <span className="pcard__caption">

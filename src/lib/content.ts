@@ -18,6 +18,8 @@ export const otherLang = (lang: Lang): Lang => (lang === "sr" ? "en" : "sr");
 // Lists that may be empty in the JSON need explicit shapes (an empty JSON array infers never[]).
 export type Lecturer = { name: string; country: string; specialty: string; photo: string; bio: string };
 export type JuryMember = { name: string; role: string; photo: string };
+/** Set "hidden": true in the JSON to keep an entry without showing it (e.g. until a photo arrives). */
+export type Artist = { name: string; country: string; photo: string; hidden?: boolean };
 export type Partner = { name: string; logo: string; url: string };
 export type ScheduleItem = { time: string; title: string; place?: string; text?: string; highlight?: boolean };
 
@@ -90,7 +92,7 @@ export const site = (lang: Lang) => sites[lang];
 const DATA_KEYS = new Set([
   "date", "startDate", "endDate", "time", "year", "early", "regular", "price", "priceFrom", "max",
   "id", "src", "width", "height", "lat", "lng", "earlyBirdUntil", "youtubeId", "href", "url", "logo",
-  "highlight", "allowExtras", "currency", "timeZone", "contactEmail", "iban", "swift",
+  "highlight", "hidden", "allowExtras", "copy", "currency", "timeZone", "contactEmail", "iban", "swift",
 ]);
 
 function compare(a: unknown, b: unknown, path: string) {

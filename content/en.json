@@ -35,6 +35,7 @@
     "seePackages": "Tickets and prices",
     "backToTop": "Back to top",
     "photoPlaceholder": "Photo",
+    "directions": "Get directions",
     "openMap": "Open map",
     "book": "Book",
     "bookingSoon": "Booking link coming soon",
@@ -148,7 +149,7 @@
       { "name": "Maxim Gladstein", "country": "Russia", "photo": "/images/artists/maxim-gladstein.png" },
       { "name": "Tamia", "country": "Slovenia", "photo": "/images/artists/tamia.png" },
       { "name": "Elastic", "country": "Belgium", "photo": "/images/artists/elastic.png" },
-      { "name": "Françoise Roshe", "country": "Belgium", "photo": "" }
+      { "name": "Françoise Roshe", "country": "Belgium", "photo": "", "hidden": true }
     ]
   },
 
@@ -416,8 +417,20 @@
       "regularNote": "Regular price.",
       "paymentNote": "Paid by bank transfer, details by email.",
       "doneTitle": "Registration received",
+      "doneLead": "All set — your registration has been sent.",
+      "doneSteps": [
+        "Check your email — we have sent you a summary.",
+        "Pay within 7 days. The payment details are below and can be copied.",
+        "Once the payment arrives, your place is confirmed."
+      ],
       "doneText": "We sent a summary and payment details to {email}. Total to pay: {total}.",
       "doneHold": "We hold your place for 7 days. If the email does not arrive, check your spam folder or write to {contact}.",
+      "payTitle": "Payment details",
+      "payChoose": "How are you paying?",
+      "amount": "Amount",
+      "reference": "Payment reference",
+      "copyButton": "Copy",
+      "copied": "Copied",
       "errorFields": "Check the highlighted fields.",
       "errorNetwork": "Could not reach the server. Check your connection and send the form again.",
       "extras": "Dealer package add-ons",
@@ -439,11 +452,29 @@
       "duplicate": "This email is already registered for {year}. To change it, write to {contact}."
     },
     "payment": {
-      "bankName": "Bank name",
-      "iban": "RS35 0000 0000 0000 0000 00",
-      "swift": "XXXXRSBG",
-      "beneficiary": "Organiser legal name",
-      "referenceHint": "Use your full name as the payment reference."
+      "referenceHint": "Use your full name as the payment reference.",
+      "methods": [
+      {
+        "id": "rsd",
+        "label": "From Serbia (dinars)",
+        "note": "Amount in dinars at the National Bank of Serbia middle rate on the day of payment.",
+        "fields": [
+          { "label": "Beneficiary", "copy": "Pravni naziv organizatora" },
+          { "label": "Account number", "copy": "000-0000000000000-00" }
+        ]
+      },
+      {
+        "id": "eur",
+        "label": "From abroad (EUR)",
+        "note": "Sender's bank charges are paid by the sender.",
+        "fields": [
+          { "label": "Beneficiary", "copy": "Pravni naziv organizatora" },
+          { "label": "IBAN", "copy": "RS35 0000 0000 0000 0000 00" },
+          { "label": "SWIFT / BIC", "copy": "XXXXRSBG" },
+          { "label": "Bank", "copy": "Naziv banke" }
+        ]
+      }
+      ]
     }
   },
 
@@ -476,8 +507,6 @@
       "greeting": "Hello {firstName},",
       "intro": "We have received your registration for {event}. Here is what you booked:",
       "paymentTitle": "Payment",
-      "beneficiary": "Beneficiary",
-      "bank": "Bank",
       "hold": "We hold your place for 7 days. For any questions, reply to this email or write to {contact}."
     },
     "organizer": {
@@ -516,7 +545,7 @@
       },
       {
         "title": "Who else has access",
-        "text": "Registrations and confirmations are sent by email through Resend, and we keep registrations in our mailbox. Resend processes data only on our instructions."
+        "text": "Registrations are stored in a Supabase database, and registrations and confirmations are sent by email through Resend. These services process data only on our instructions."
       },
       { "title": "How long we keep it", "text": "Until the festival is over and all obligations are settled, unless the law requires us to keep it longer." },
       { "title": "Your rights", "text": "You can ask to see, correct or delete your data. Write to {contact} and we will reply within 30 days." },

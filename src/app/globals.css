@@ -770,7 +770,8 @@ html.menu-open .site-header {
 /* ---------- Lecturers: playing cards ---------- */
 .lecturers__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  /* Capped at 260px so small source photos aren't blown up. */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 260px));
   gap: clamp(1rem, 2.5vw, 2rem);
 }
 .pcard {
@@ -1353,10 +1354,12 @@ html.menu-open .site-header {
   font: 500 var(--step-0) var(--mono);
   color: var(--gold-pale);
 }
+/* Small cards on purpose: several source photos are only 200–400 px wide, so cards stay
+   near that size (7 in a row on desktop, 2 on phones) instead of upscaling them into blur. */
 .artists__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12.5rem), 1fr));
-  gap: 2rem clamp(1rem, 2.5vw, 1.75rem);
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  gap: 1.75rem clamp(0.75rem, 2vw, 1.25rem);
 }
 /* Artist cards as playing cards: initial + suit in two corners, photo in between.
    On hover the card lifts and tilts, alternating direction like a fanned hand. */
@@ -1367,8 +1370,8 @@ html.menu-open .site-header {
 .artist__card {
   position: relative;
   aspect-ratio: 5 / 7;
-  padding: 2.6rem 0.75rem;
-  margin-bottom: 0.9rem;
+  padding: 2.1rem 0.5rem;
+  margin-bottom: 0.75rem;
   background: var(--ink-2);
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -1388,25 +1391,25 @@ html.menu-open .site-header {
 }
 .artist__index {
   position: absolute;
-  top: 0.45rem;
-  left: 0.7rem;
+  top: 0.35rem;
+  left: 0.55rem;
   display: grid;
   justify-items: center;
-  font: 400 1.15rem / 1 var(--display);
+  font: 400 1rem / 1 var(--display);
   color: var(--bone);
 }
 .artist__index .suit {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
 }
 .artist__index--flip {
   top: auto;
   left: auto;
-  bottom: 0.45rem;
-  right: 0.7rem;
+  bottom: 0.35rem;
+  right: 0.55rem;
   transform: rotate(180deg);
 }
 .artist__name {
-  font: 400 var(--step-1) / 1.2 var(--display);
+  font: 400 1.1rem / 1.2 var(--display);
 }
 .artist__country {
   font: var(--step--1) var(--mono);
@@ -1437,64 +1440,77 @@ html.menu-open .site-header {
     gap: 4rem;
   }
 }
-.travel__frame {
+/* Static map (MapTiles.tsx): OSM tiles restyled to a warm night look. The venue is the
+   centre of the frame, which is where the pin's tip sits. */
+.map {
   position: relative;
-}
-.travel__frame iframe {
-  display: block;
-  width: 100%;
+  margin: 0;
   aspect-ratio: 4 / 3;
+  overflow: hidden;
   border: 1px solid var(--line);
-  filter: grayscale(1) invert(0.92) sepia(0.25) contrast(0.9);
-  /* Locked so the venue stays under the pin; "Otvori mapu" opens the full interactive map. */
-  pointer-events: none;
+  border-radius: 10px;
+  background: #1a1612;
+  isolation: isolate;
 }
-/* Venue pin: its tip sits exactly on the iframe centre, where the venue is. */
-.travel__pin {
+@media (max-width: 640px) {
+  .map {
+    aspect-ratio: 4 / 5;
+  }
+}
+.map__viewport {
+  position: absolute;
+  inset: 0;
+}
+.map__tiles {
+  position: absolute;
+  /* invert + 180° hue keeps water blue-ish and parks green-ish (plain invert turns them orange);
+     sepia then warms everything toward the site's gold. */
+  filter: invert(1) hue-rotate(180deg) brightness(0.82) contrast(1.05) saturate(0.55) sepia(0.32);
+}
+.map__tiles img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  user-select: none;
+}
+/* Vignette and a soft gold glow on the venue. */
+.map::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, rgb(200 160 75 / 0.18), transparent 22%),
+    radial-gradient(ellipse at 50% 50%, transparent 45%, rgb(13 11 10 / 0.75) 100%);
+}
+.map__pin {
   position: absolute;
   left: 50%;
-  top: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* The rotated head's corner reaches ~0.5rem below its box: lift it so the tip is the centre. */
+  top: calc(50% - 0.5rem);
+  z-index: 2;
   transform: translate(-50%, -100%);
   pointer-events: none;
-  filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.55));
+  filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.6));
 }
-.travel__pin-label {
-  margin-bottom: 0.4rem;
-  padding: 0.35rem 0.7rem;
-  background: var(--ink);
-  border: 1px solid var(--gold);
-  border-radius: 4px;
-  font: 500 var(--step--1) / 1 var(--mono);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--gold-pale);
-  white-space: nowrap;
-}
-.travel__pin-head {
+.map__pin-head {
   display: grid;
   place-items: center;
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2.6rem;
+  height: 2.6rem;
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
-  background: var(--gold);
+  background: linear-gradient(135deg, var(--gold-pale), var(--gold));
   border: 2px solid var(--ink);
   color: var(--velvet);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   line-height: 1;
 }
-/* Glyph counter-rotated so the diamond stays upright inside the tilted pin. */
-.travel__pin-head span {
+.map__pin-head span {
   transform: rotate(45deg);
 }
-/* Rotating the 2.4rem square pushes its corner ~0.5rem below the box; this pulls the tip back onto the centre. */
-.travel__pin {
-  margin-top: -0.5rem;
-}
-.travel__pin::after {
+.map__pin::after {
   content: "";
   position: absolute;
   bottom: -0.85rem;
@@ -1502,8 +1518,8 @@ html.menu-open .site-header {
   width: 0.7rem;
   height: 0.7rem;
   border-radius: 50%;
-  background: rgb(163 48 59 / 0.6);
-  animation: ping 2s ease-out infinite;
+  background: rgb(200 160 75 / 0.7);
+  animation: ping 2.2s ease-out infinite;
 }
 @keyframes ping {
   from {
@@ -1511,22 +1527,61 @@ html.menu-open .site-header {
     opacity: 1;
   }
   to {
-    transform: scale(3);
+    transform: scale(3.2);
     opacity: 0;
   }
 }
-.travel__places {
+.map__card {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 3;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  gap: 0.2rem;
+  max-width: calc(100% - 2rem);
+  padding: 1rem 1.15rem 1.1rem;
+  background: rgb(13 11 10 / 0.88);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--gold);
+  border-radius: 8px;
 }
-.travel__places li {
-  display: grid;
-  gap: 0.3rem;
+.map__name {
+  font: 400 var(--step-1) / 1.2 var(--display);
+  color: var(--bone);
 }
-.travel__places span {
+.map__address {
+  font: var(--step--1) / 1.4 var(--mono);
   color: var(--smoke);
+}
+.map__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-top: 0.75rem;
+}
+.map__credit {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.4rem;
+  z-index: 3;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  background: rgb(13 11 10 / 0.6);
+  font: 0.65rem / 1.3 var(--mono);
+  color: var(--smoke);
+  text-decoration: none;
+}
+.map__credit:hover {
+  color: var(--gold-pale);
+}
+@media (max-width: 640px) {
+  /* Keep the credit clear of the card on narrow frames. */
+  .map__credit {
+    top: 0.4rem;
+    bottom: auto;
+  }
 }
 .travel__transport h3 {
   font: italic 400 var(--step-2) / 1.2 var(--display);
@@ -1868,6 +1923,339 @@ html.menu-open .site-header {
   overflow: hidden;
 }
 
+/* ---------- Payment details (success screen) ---------- */
+.pay {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.pay__title {
+  font: 500 var(--step--1) / 1.3 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+}
+.pay__methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  border: 0;
+}
+.pay__methods legend {
+  margin-bottom: 0.6rem;
+  color: var(--smoke);
+  font-size: 0.95rem;
+}
+.pay__method {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+.pay__method input {
+  accent-color: var(--gold);
+}
+.pay__method.is-active {
+  border-color: var(--gold);
+  background: var(--ink-3);
+}
+.pay__rows {
+  margin-top: 1.25rem;
+}
+.pay__row {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--line);
+}
+.pay__row dt {
+  font: var(--step--1) / 1.3 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--smoke);
+}
+.pay__row dd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.pay__value {
+  font: 500 1.05rem / 1.35 var(--mono);
+  color: var(--bone);
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+.pay__copy {
+  flex: none;
+  min-width: 6.5rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--gold-pale);
+  font: 500 var(--step--1) / 1 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.pay__copy:hover {
+  background: var(--gold);
+  color: var(--ink);
+}
+.pay__note {
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+  color: var(--smoke);
+}
+.register__done {
+  max-width: 44rem;
+  /* Lands below the sticky header when scrolled into view. */
+  scroll-margin-top: 5.5rem;
+}
+.register__done:focus {
+  outline: none;
+}
+.done__badge {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 1.25rem;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--ink);
+  font: 700 1.6rem / 1 var(--body);
+  box-shadow: 0 0 0 6px rgb(200 160 75 / 0.18);
+  animation: badge-pop 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+@keyframes badge-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+.done__lead {
+  font: italic 400 var(--step-1) / 1.35 var(--display);
+  color: var(--gold-pale);
+  margin-bottom: 0.75rem;
+}
+.done__steps {
+  counter-reset: step;
+  margin: 1.25rem 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.done__steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+.done__steps li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  font: 500 0.8rem / 1 var(--mono);
+  color: var(--gold);
+}
+
+/* ---------- Organiser page (/karte/<key>) ---------- */
+.admin__asof {
+  margin-top: 0.5rem;
+  font: var(--step--1) var(--mono);
+  color: var(--smoke);
+}
+.admin__figure--lead dd {
+  font-size: var(--step-3);
+  color: var(--gold);
+}
+.admin__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.admin__filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--bone);
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.admin__filter b {
+  min-width: 1.5rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  background: var(--ink-3);
+  font: 500 0.78rem / 1.3 var(--mono);
+  text-align: center;
+}
+.admin__filter:hover {
+  border-color: var(--gold);
+}
+.admin__filter[aria-pressed="true"] {
+  border-color: var(--gold);
+  background: var(--ink-3);
+  color: var(--gold-pale);
+}
+.admin__filter--paid[aria-pressed="true"] {
+  border-color: #5f9e6e;
+}
+.admin__sort {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.admin__sort span {
+  color: var(--smoke);
+}
+.admin__table th[aria-sort] .admin__sort span {
+  color: var(--gold-pale);
+}
+.admin__empty--inline {
+  padding: 1rem;
+  margin: 0;
+}
+.admin__status--expired,
+.admin__status--cancelled {
+  color: var(--smoke);
+}
+.admin {
+  max-width: 1400px;
+  padding-block: 3rem 5rem;
+}
+.admin__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem 2rem;
+}
+.admin__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1px;
+  margin-top: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--line);
+}
+.admin__figures div {
+  padding: 1rem 1.25rem;
+  background: var(--ink-2);
+}
+.admin__figures dt {
+  font: var(--step--1) / 1.3 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--smoke);
+}
+.admin__figures dd {
+  margin-top: 0.35rem;
+  font: 400 var(--step-2) / 1.1 var(--display);
+  color: var(--gold-pale);
+}
+.admin__packages,
+.admin__hint,
+.admin__empty {
+  margin-top: 1rem;
+  color: var(--smoke);
+  font-size: 0.95rem;
+}
+.admin__error {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border-left: 2px solid var(--velvet);
+  background: rgb(163 48 59 / 0.12);
+}
+.admin__table-wrap {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.admin__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.admin__table th {
+  position: sticky;
+  top: 0;
+  padding: 0.75rem 0.9rem;
+  background: var(--ink-3);
+  font: 500 var(--step--1) / 1.3 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  text-align: left;
+  white-space: nowrap;
+}
+.admin__table td {
+  padding: 0.75rem 0.9rem;
+  border-top: 1px solid var(--line);
+  vertical-align: top;
+}
+.admin__table td small {
+  display: block;
+  color: var(--smoke);
+  font-size: 0.8rem;
+}
+.admin__table tr.is-expired td,
+.admin__table tr.is-cancelled td {
+  opacity: 0.5;
+}
+.admin__nowrap {
+  white-space: nowrap;
+}
+.admin__notes {
+  min-width: 14rem;
+  color: var(--smoke);
+}
+.admin__status {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font: 500 0.75rem / 1.2 var(--mono);
+  white-space: nowrap;
+}
+.admin__status--paid {
+  border-color: #5f9e6e;
+  color: #9fd3ab;
+}
+.admin__status--pending {
+  border-color: var(--gold);
+  color: var(--gold-pale);
+}
+
 /* ---------- Lightbox ---------- */
 .lightbox {
   width: 100vw;
@@ -2056,7 +2444,7 @@ html.menu-open .site-header {
   .lecturers__grid {
     grid-template-columns: none;
     grid-auto-flow: column;
-    grid-auto-columns: 74%;
+    grid-auto-columns: min(15rem, 66%);
     gap: 1rem;
     margin-inline: calc(var(--gutter) * -1);
     padding: 0.5rem var(--gutter) 1.25rem;

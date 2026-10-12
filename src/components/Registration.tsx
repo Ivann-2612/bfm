@@ -6,6 +6,7 @@ import { computePrice } from "@/lib/pricing";
 import { fieldErrors, registrationSchema } from "@/lib/schema";
 import { SectionHead, type LangProps } from "./ui";
 import { Turnstile } from "./Turnstile";
+import { PaymentDetails } from "./PaymentDetails";
 
 type Form = {
   firstName: string;
@@ -31,7 +32,7 @@ const initial = (lang: Lang): Form => ({
   consent: false,
 });
 
-type Status = { kind: "idle" | "sending" } | { kind: "done"; total: number; email: string } | { kind: "error"; message: string };
+type Status = { kind: "idle" | "sending" } | { kind: "done"; total: number; email: string; name: string } | { kind: "error"; message: string };
 
 export function Registration({ lang }: LangProps) {
   const s = site(lang);
@@ -48,8 +49,18 @@ export function Registration({ lang }: LangProps) {
   const [now, setNow] = useState<Date | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const honeypot = useRef<HTMLInputElement>(null);
+  const doneRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setNow(new Date()), []);
+
+  // The long form is swapped for a short message, so the page shrinks and leaves the visitor
+  // scrolled past it (very visible on phones). Bring the message into view and focus it.
+  useEffect(() => {
+    if (status.kind !== "done" || !doneRef.current) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    doneRef.current.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    doneRef.current.focus({ preventScroll: true });
+  }, [status.kind]);
 
   const quote = now ? computePrice(form, now, lang) : null;
   const chosen = p.items.find((it) => it.id === form.packageId);
@@ -81,7 +92,7 @@ export function Registration({ lang }: LangProps) {
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok) {
-        setStatus({ kind: "done", total: data.total, email: check.data.email });
+        setStatus({ kind: "done", total: data.total, email: check.data.email, name: `${check.data.firstName} ${check.data.lastName}` });
         return;
       }
       if (data.errors) setErrors(data.errors);
@@ -110,10 +121,20 @@ export function Registration({ lang }: LangProps) {
         <SectionHead id="register-title" kicker={r.kicker} title={r.title} />
 
         {status.kind === "done" ? (
-          <div className="register__done" role="status">
+          <div ref={doneRef} className="register__done" role="status" tabIndex={-1}>
+            <span className="done__badge" aria-hidden="true">
+              ✓
+            </span>
             <h3>{L.doneTitle}</h3>
+            <p className="done__lead">{L.doneLead}</p>
             <p>{fill(L.doneText, { email: status.email, total: money(status.total) })}</p>
+            <ol className="done__steps">
+              {L.doneSteps.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ol>
             <p>{fill(L.doneHold, { contact: s.c.site.contactEmail })}</p>
+            <PaymentDetails lang={lang} amount={status.total} amountDisplay={money(status.total)} reference={status.name} />
           </div>
         ) : (
           <div className="register__grid">

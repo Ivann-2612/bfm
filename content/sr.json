@@ -35,6 +35,7 @@
     "seePackages": "Ulaznice i cene",
     "backToTop": "Vratite se na početak",
     "photoPlaceholder": "Fotografija",
+    "directions": "Kako stići",
     "openMap": "Otvori mapu",
     "book": "Rezerviši",
     "bookingSoon": "Link za rezervaciju uskoro",
@@ -148,7 +149,7 @@
       { "name": "Maxim Gladstein", "country": "Rusija", "photo": "/images/artists/maxim-gladstein.png" },
       { "name": "Tamia", "country": "Slovenija", "photo": "/images/artists/tamia.png" },
       { "name": "Elastic", "country": "Belgija", "photo": "/images/artists/elastic.png" },
-      { "name": "Françoise Roshe", "country": "Belgija", "photo": "" }
+      { "name": "Françoise Roshe", "country": "Belgija", "photo": "", "hidden": true }
     ]
   },
 
@@ -416,8 +417,20 @@
       "regularNote": "Redovna cena.",
       "paymentNote": "Plaća se uplatom na račun, podaci stižu mejlom.",
       "doneTitle": "Prijava je primljena",
+      "doneLead": "Sve je u redu — vaša prijava je uspešno poslata.",
+      "doneSteps": [
+        "Proverite mejl — poslali smo vam rezime prijave.",
+        "Uplatite iznos u roku od 7 dana. Podaci za uplatu su ispod i mogu da se kopiraju.",
+        "Kad uplata stigne, vaše mesto je potvrđeno."
+      ],
       "doneText": "Poslali smo rezime i podatke za uplatu na {email}. Ukupno za uplatu: {total}.",
       "doneHold": "Mesto vam čuvamo 7 dana. Ako mejl ne stigne, proverite spam ili pišite na {contact}.",
+      "payTitle": "Podaci za uplatu",
+      "payChoose": "Kako plaćate?",
+      "amount": "Iznos",
+      "reference": "Poziv na broj / svrha uplate",
+      "copyButton": "Kopiraj",
+      "copied": "Kopirano",
       "errorFields": "Proverite označena polja.",
       "errorNetwork": "Nema veze sa serverom. Proverite internet i pošaljite formu ponovo.",
       "extras": "Dodaci uz Dealer paket",
@@ -439,11 +452,29 @@
       "duplicate": "Ovaj email je već prijavljen za {year}. Za izmenu pišite na {contact}."
     },
     "payment": {
-      "bankName": "Naziv banke",
-      "iban": "RS35 0000 0000 0000 0000 00",
-      "swift": "XXXXRSBG",
-      "beneficiary": "Pravni naziv organizatora",
-      "referenceHint": "U pozivu na broj upišite svoje ime i prezime."
+      "referenceHint": "U pozivu na broj upišite svoje ime i prezime.",
+      "methods": [
+      {
+        "id": "rsd",
+        "label": "Uplata iz Srbije (dinari)",
+        "note": "Iznos u dinarima po srednjem kursu NBS na dan uplate.",
+        "fields": [
+          { "label": "Primalac", "copy": "Pravni naziv organizatora" },
+          { "label": "Broj računa", "copy": "000-0000000000000-00" }
+        ]
+      },
+      {
+        "id": "eur",
+        "label": "Uplata iz inostranstva (EUR)",
+        "note": "Troškove banke pošiljaoca snosi uplatilac.",
+        "fields": [
+          { "label": "Primalac", "copy": "Pravni naziv organizatora" },
+          { "label": "IBAN", "copy": "RS35 0000 0000 0000 0000 00" },
+          { "label": "SWIFT / BIC", "copy": "XXXXRSBG" },
+          { "label": "Banka", "copy": "Naziv banke" }
+        ]
+      }
+      ]
     }
   },
 
@@ -476,8 +507,6 @@
       "greeting": "Zdravo {firstName},",
       "intro": "Primili smo vašu prijavu za {event}. Ovo ste izabrali:",
       "paymentTitle": "Uplata",
-      "beneficiary": "Primalac",
-      "bank": "Banka",
       "hold": "Mesto vam čuvamo 7 dana. Za sva pitanja odgovorite na ovaj mejl ili pišite na {contact}."
     },
     "organizer": {
@@ -513,7 +542,7 @@
       },
       {
         "title": "Ko još ima pristup",
-        "text": "Prijavu i potvrdu šaljemo mejlom preko servisa Resend, a prijave čuvamo u našem email sandučetu. Resend podatke obrađuje samo po našem nalogu."
+        "text": "Prijave čuvamo u bazi kod servisa Supabase, a prijavu i potvrdu šaljemo mejlom preko servisa Resend. Ovi servisi podatke obrađuju samo po našem nalogu."
       },
       { "title": "Koliko ih čuvamo", "text": "Do završetka festivala i izmirenja svih obaveza, osim ako zakon ne nalaže duže čuvanje." },
       { "title": "Vaša prava", "text": "Možete da zatražite uvid u svoje podatke, njihovu ispravku ili brisanje. Pišite na {contact} i odgovorićemo u roku od 30 dana." },
