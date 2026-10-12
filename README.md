@@ -41,6 +41,23 @@ Bez Supabase ključeva forma u dev modu radi „na suvo“ (prijava i mejlovi se
 
 Na kancelarijskoj mreži (proxy `HTTPS_PROXY`) Node-ov `fetch` lokalno ne može do Supabase-a (`fetch failed`), pa prijava vraća 500. To nije greška u kodu; na Vercelu radi.
 
+## Šta je obavezno
+
+Dovoljna su tri ključa: `RESEND_API_KEY`, `RESEND_FROM`, `ORGANIZER_EMAIL`. Tada svaka prijava stiže
+organizatoru mejlom (sa svim podacima; „Odgovori“ ide učesniku), a učesnik dobija potvrdu.
+- Supabase je opcion: ako su `SUPABASE_*` podešeni, prijava se i upisuje u tabelu (plus provera duplikata i podsetnik posle 7 dana).
+- Turnstile je opcion: bez njega botove hvata skriveno polje u formi.
+- Bez Resend-a i bez Supabase-a produkcija odbija prijave (503), da se ne bi izgubile.
+
+## Deploy na Vercel
+
+1. Kod na GitHub (`.env` je u `.gitignore` i ne ide gore).
+2. vercel.com → Add New → Project → Import repozitorijum. Next.js se prepoznaje sam.
+3. Settings → Environment Variables (vidi „Šta je obavezno“). Posle svake izmene: Redeploy
+   (`NEXT_PUBLIC_*` se ugrađuju pri buildu).
+4. Dok Resend domen nije verifikovan: `RESEND_FROM="Beogradski festival magije <onboarding@resend.dev>"`,
+   a mejlovi stižu samo na adresu Resend naloga (i `ORGANIZER_EMAIL` mora biti ta adresa).
+
 ## Baza
 
 Pokrenuti `supabase/migrations/0001_registrations.sql` u Supabase SQL Editoru.

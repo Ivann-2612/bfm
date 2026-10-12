@@ -795,11 +795,6 @@ html.menu-open .site-header {
 .pcard.is-flipped .pcard__inner {
   transform: rotateY(180deg);
 }
-@media (hover: hover) {
-  .pcard:hover .pcard__inner {
-    transform: rotateY(180deg);
-  }
-}
 .pcard__face {
   position: absolute;
   inset: 0;
@@ -1863,6 +1858,14 @@ html.menu-open .site-header {
   display: flex;
   gap: 0.75rem;
   margin-top: 1rem;
+}
+
+.hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 /* ---------- Lightbox ---------- */

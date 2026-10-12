@@ -480,7 +480,16 @@
       "bank": "Bank",
       "hold": "We hold your place for 7 days. If anything is wrong, reply to this email."
     },
-    "organizer": { "subject": "New registration: {firstName} {lastName} — {total}", "notes": "Notes" },
+    "organizer": {
+      "subject": "New registration: {firstName} {lastName} — {total}",
+      "notes": "Notes",
+      "email": "Email",
+      "phone": "Phone",
+      "country": "Country",
+      "language": "Registration language",
+      "received": "Received",
+      "replyHint": "Replying to this email writes directly to the participant."
+    },
     "expiry": {
       "subject": "{event}: registration expired",
       "greeting": "Hello {firstName},",

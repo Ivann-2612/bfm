@@ -47,6 +47,7 @@ export function Registration({ lang }: LangProps) {
   // Early bird depends on today's date, so it is decided only in the browser after mount.
   const [now, setNow] = useState<Date | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const honeypot = useRef<HTMLInputElement>(null);
 
   useEffect(() => setNow(new Date()), []);
 
@@ -62,7 +63,7 @@ export function Registration({ lang }: LangProps) {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     const extras = Object.fromEntries(allowedExtras.map((x) => [x.id, form.extras[x.id] ?? 0]));
-    const payload = { ...form, extras, lang, turnstileToken: token || undefined };
+    const payload = { ...form, extras, lang, website: honeypot.current?.value ?? "", turnstileToken: token || undefined };
     const check = registrationSchema(lang).safeParse(payload);
     if (!check.success) {
       const errs = fieldErrors(check.error);
@@ -205,6 +206,14 @@ export function Registration({ lang }: LangProps) {
                 <span>{r.consentText}</span>
               </label>
               {err("consent")}
+
+              {/* Honeypot: hidden from people and screen readers; bots that fill every field get rejected. */}
+              <div className="hp" aria-hidden="true">
+                <label>
+                  Website
+                  <input ref={honeypot} type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" />
+                </label>
+              </div>
 
               <Turnstile onToken={setToken} resetKey={resetKey} />
 
