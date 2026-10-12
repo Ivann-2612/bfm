@@ -1,7 +1,7 @@
 import "server-only";
 import { timingSafeEqual } from "node:crypto";
 import { getContent, site, DEFAULT_LANG } from "../content";
-import { supabaseAdmin } from "./supabase";
+import { supabaseAdmin, supabaseMissing } from "./supabase";
 
 const isDev = process.env.NODE_ENV === "development";
 /** Used only on `npm run dev` when ADMIN_KEY isn't set, so the page can be opened locally. */
@@ -97,7 +97,11 @@ export async function loadTickets(): Promise<{ tickets: Ticket[]; error: string 
     // Locally the office proxy blocks Supabase: show sample rows so the page can still be reviewed.
     isDev ? { tickets: DEMO.map(toTicket), error, demo: true } : { tickets: [], error, demo: false };
 
-  if (!db) return fail("Baza (Supabase) nije povezana: dodaj SUPABASE_URL i SUPABASE_SECRET_KEY.");
+  if (!db) {
+    return fail(
+      `Baza (Supabase) nije povezana. Na Vercel-u nedostaje: ${supabaseMissing().join(", ")}. Posle dodavanja uradi Redeploy.`,
+    );
+  }
   try {
     const { data, error } = await db
       .from("registrations")
