@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { LANGS, getContent, homePath, isLang } from "@/lib/content";
+import { DEFAULT_LANG, LANGS, getContent, homePath, isLang } from "@/lib/content";
 import { CookieBanner } from "@/components/CookieBanner";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { fontVars } from "../fonts";
@@ -20,7 +20,10 @@ export async function generateMetadata({ params }: Omit<Props, "children">): Pro
     description: c.site.description,
     alternates: {
       canonical: homePath(lang),
-      languages: Object.fromEntries(LANGS.map((l) => [getContent(l).site.lang, homePath(l)])),
+      languages: {
+        ...Object.fromEntries(LANGS.map((l) => [getContent(l).site.lang, homePath(l)])),
+        "x-default": homePath(DEFAULT_LANG),
+      },
     },
   };
 }

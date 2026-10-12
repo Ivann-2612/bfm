@@ -10,7 +10,8 @@ npm run build
 
 ## Sadržaj
 
-Sajt je dvojezičan: srpski na `/`, engleski na `/en` (privatnost: `/privacy`, `/en/privacy`).
+Sajt je dvojezičan: engleski je podrazumevan, na `/`, a srpski na `/sr` (privatnost: `/privacy`, `/sr/privacy`).
+Podrazumevani jezik je `DEFAULT_LANG` u `src/lib/content.ts` (uz rewrite/redirect u `next.config.ts`). Mejl organizatoru i `/karte` su uvek na srpskom (`ORGANIZER_LANG`).
 
 Sav tekst (dugmići, forma, mejlovi, poruke grešaka, politika privatnosti), datumi, cene, galerija, organizatori:
 **`content/sr.json`** i **`content/en.json`**. Oba fajla imaju istu strukturu.
@@ -52,7 +53,7 @@ organizatoru mejlom (sa svim podacima; „Odgovori“ ide učesniku), a učesnik
 ## Pregled prijava za organizatora (karte)
 
 `/karte/<ADMIN_KEY>`: ukupan broj prijava, iznosi, filter po statusu (čeka uplatu / plaćeno / isteklo / otkazano),
-sortiranje klikom na naslov kolone i CSV za Excel. Nema logovanja, ključ u adresi je lozinka (najmanje 16 znakova;
+sortiranje klikom na naslov kolone, promena statusa iz padajućeg menija u tabeli (odmah se čuva u bazi) i CSV za Excel. Nema logovanja, ključ u adresi je lozinka (najmanje 16 znakova;
 bez `ADMIN_KEY` stranica u produkciji ne postoji, pogrešan ključ daje 404). Čita iz Supabase-a.
 Lokalno (`npm run dev`, bez `ADMIN_KEY` u `.env`): http://localhost:3000/karte/lokalno, sa primer podacima ako baza nije dostupna.
 
@@ -67,8 +68,9 @@ Lokalno (`npm run dev`, bez `ADMIN_KEY` u `.env`): http://localhost:3000/karte/l
 
 ## Baza
 
-Pokrenuti `supabase/migrations/0001_registrations.sql` u Supabase SQL Editoru.
-Organizator u Table Editoru menja `status` u `paid` (`paid_at` se upiše sam) i izvozi CSV.
+Pokrenuti redom u Supabase SQL Editoru: `supabase/migrations/0001_registrations.sql`, pa `0002_lang_and_extras.sql`
+(0002 dopunjuje tabelu napravljenu starijom verzijom 0001; na novoj tabeli ne menja ništa, može se pokretati više puta).
+Organizator menja status na `/karte` (ili u Table Editoru); kad postane `paid`, `paid_at` se upiše sam.
 Brisanje na zahtev (GDPR): obrisati red u Table Editoru.
 
 ## Tok prijave

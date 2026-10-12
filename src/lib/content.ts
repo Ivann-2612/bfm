@@ -4,13 +4,16 @@ import en from "@content/en.json";
 export type Content = typeof sr;
 export const LANGS = ["sr", "en"] as const;
 export type Lang = (typeof LANGS)[number];
-export const DEFAULT_LANG: Lang = "sr";
+/** Language of the site root "/" (the other language lives under its own prefix). */
+export const DEFAULT_LANG: Lang = "en";
+/** The organisers work in Serbian: their emails and the /karte page use this, whatever the site default. */
+export const ORGANIZER_LANG: Lang = "sr";
 
 const all: Record<Lang, Content> = { sr, en };
 export const isLang = (v: unknown): v is Lang => typeof v === "string" && (LANGS as readonly string[]).includes(v);
 export const getContent = (lang: Lang) => all[lang];
 
-/** Serbian lives at "/", every other language under its own prefix. */
+/** The default language lives at "/", every other language under its own prefix. */
 export const homePath = (lang: Lang) => (lang === DEFAULT_LANG ? "/" : `/${lang}`);
 export const privacyPath = (lang: Lang) => (lang === DEFAULT_LANG ? "/privacy" : `/${lang}/privacy`);
 export const otherLang = (lang: Lang): Lang => (lang === "sr" ? "en" : "sr");

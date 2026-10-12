@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import type { Status, Ticket } from "@/lib/server/admin";
 
 // Mirrors STATUS_LABEL in lib/server/admin.ts (that module is server-only).
@@ -24,9 +25,59 @@ const COLUMNS: { key: SortKey | null; label: string }[] = [
   { key: null, label: "Napomena" },
 ];
 
-export function TicketsTable({ tickets }: { tickets: Ticket[] }) {
+export function TicketsTable({
+  tickets: initial,
+  base,
+  demo,
+}: {
+  tickets: Ticket[];
+  /** "/karte/<key>" — the status endpoint lives under it. */
+  base: string;
+  /** Local preview with sample rows: change status in the browser only. */
+  demo: boolean;
+}) {
+  const router = useRouter();
   const [filter, setFilter] = useState<Status | "all">("all");
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "ts", dir: -1 });
+  // Optimistic status changes, dropped once the refreshed server data arrives.
+  const [overrides, setOverrides] = useState<Record<string, Status>>({});
+  const [saving, setSaving] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  useEffect(() => {
+    if (!demo) setOverrides({});
+  }, [initial, demo]);
+
+  const tickets = useMemo(
+    () => initial.map((t) => (overrides[t.id] ? { ...t, status: overrides[t.id] } : t)),
+    [initial, overrides],
+  );
+
+  async function changeStatus(t: Ticket, status: Status) {
+    if (status === t.status) return;
+    setMessage(null);
+    setOverrides((o) => ({ ...o, [t.id]: status }));
+    if (demo) return;
+    setSaving(t.id);
+    try {
+      const res = await fetch(`${base}/status`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: t.id, status }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.message ?? "Nije sačuvano.");
+      setMessage(`${t.name}: ${STATUS_LABEL[status]}`);
+      router.refresh(); // updates the totals above; filter and sort stay as they are
+    } catch (e) {
+      setOverrides((o) => {
+        const { [t.id]: _, ...rest } = o;
+        return rest;
+      });
+      setMessage(`Nije sačuvano (${t.name}): ${(e as Error).message}`);
+    } finally {
+      setSaving(null);
+    }
+  }
 
   const counts = useMemo(() => {
     const c = { all: tickets.length } as Record<Status | "all", number>;
@@ -63,6 +114,10 @@ export function TicketsTable({ tickets }: { tickets: Ticket[] }) {
           </button>
         ))}
       </div>
+
+      <p className="admin__message" role="status" aria-live="polite">
+        {message}
+      </p>
 
       <div className="admin__table-wrap">
         <table className="admin__table">
@@ -107,7 +162,20 @@ export function TicketsTable({ tickets }: { tickets: Ticket[] }) {
                 </td>
                 <td className="admin__nowrap">{t.totalText}</td>
                 <td>
-                  <span className={`admin__status admin__status--${t.status}`}>{STATUS_LABEL[t.status]}</span>
+                  <select
+                    className={`admin__status admin__status--${t.status}`}
+                    value={t.status}
+                    disabled={saving === t.id}
+                    onChange={(e) => changeStatus(t, e.target.value as Status)}
+                    aria-label={`Status: ${t.name}`}
+                  >
+                    {STATUSES.map((st) => (
+                      <option key={st} value={st}>
+                        {STATUS_LABEL[st]}
+                      </option>
+                    ))}
+                  </select>
+                  {saving === t.id && <small>Čuvam…</small>}
                 </td>
                 <td className="admin__notes">{t.notes}</td>
               </tr>

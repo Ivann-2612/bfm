@@ -6,14 +6,14 @@ Kostur je napravljen 2026-10-12 (Next.js 16, App Router, `src/`). Pokretanje, en
 
 - Događaj je **Beogradski festival magije 2027** (27–28. feb, MTS dvorana); tekst i slike preuzeti 2026-10-12 sa
   beogradski-festival-magije.magic-piksi.chatgpt.site. Struktura sekcija ostaje po uzoru na goldencat.eu.
-- Dvojezično: `content/sr.json` (na `/`) i `content/en.json` (na `/en`). Rute su `src/app/[lang]/…`; `next.config.ts`
-  rewrite-uje `/` → `/sr` i redirect-uje `/sr` → `/`. Komponente primaju `lang` i koriste `site(lang)` (sadržaj + formatiranje datuma/novca).
+- Dvojezično: od 2026-10-12 engleski je podrazumevan (`DEFAULT_LANG = "en"`, na `/`), srpski je na `/sr`. Rute su `src/app/[lang]/…`;
+  `next.config.ts` rewrite-uje `/` → `/en` i redirect-uje `/en` → `/`. Organizatorska strana (mejl, `/karte`) koristi `ORGANIZER_LANG = "sr"`. Komponente primaju `lang` i koriste `site(lang)` (sadržaj + formatiranje datuma/novca).
 - Sav tekst, uključujući dugmiće, formu, mejlove, greške i privatnost, je u JSON-u; komponente ne sadrže tekst.
   `content.ts` pri buildu poredi sr/en: ključevi iz `DATA_KEYS` (datumi, cene, id, src…) i dužine nizova moraju biti isti.
 - Cene, paketi (Standard / Dealer), dodaci, Hotel Park, predavači i umetnici Gala šoua su sa zvaničnog flajera
   (snimak ekrana od 2026-10-12). Dodaci (`packages.extras`) važe samo za pakete koji ih navode u `allowExtras`;
   `computePrice` odbacuje ostale, a u bazu ide samo ono što je naplaćeno (`registrations.extras`).
-- Organizator uvek dobija mejl na srpskom; korisnik na jeziku na kom se prijavio (`registrations.lang`).
+- Organizator uvek dobija mejl na srpskom (`ORGANIZER_LANG`); korisnik na jeziku na kom se prijavio (`registrations.lang`).
 - Sekcije sa praznom listom (predavači, žiri, hoteli, partneri, video) se ne renderuju.
 - `src/lib/content.ts` pri buildu proverava da se datumi slažu (zaštita od greške koju ima goldencat.eu).
   Naslovi sa opsegom datuma se grade iz `event.startDate/endDate` (`dateRange()`), ne pišu se ručno.

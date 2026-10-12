@@ -1,18 +1,19 @@
 import type { NextConfig } from "next";
 
-// Serbian is served at "/" (internally /sr); English at /en.
+// English (DEFAULT_LANG in src/lib/content.ts) is served at "/" (internally /en); Serbian at /sr.
+// /en and /en/... redirect to the prefix-less URLs, so there is one address per page.
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   async redirects() {
     return [
-      { source: "/sr", destination: "/", permanent: true },
-      { source: "/sr/:path*", destination: "/:path*", permanent: true },
+      { source: "/en", destination: "/", permanent: true },
+      { source: "/en/:path*", destination: "/:path*", permanent: true },
     ];
   },
   async rewrites() {
     return [
-      { source: "/", destination: "/sr" },
-      { source: "/privacy", destination: "/sr/privacy" },
+      { source: "/", destination: "/en" },
+      { source: "/privacy", destination: "/en/privacy" },
     ];
   },
 };

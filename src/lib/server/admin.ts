@@ -1,6 +1,6 @@
 import "server-only";
 import { timingSafeEqual } from "node:crypto";
-import { getContent, site, DEFAULT_LANG } from "../content";
+import { getContent, site, ORGANIZER_LANG } from "../content";
 import { supabaseAdmin, supabaseMissing } from "./supabase";
 
 const isDev = process.env.NODE_ENV === "development";
@@ -62,8 +62,8 @@ export type Ticket = {
   notes: string;
 };
 
-const c = getContent(DEFAULT_LANG);
-const s = site(DEFAULT_LANG);
+const c = getContent(ORGANIZER_LANG);
+const s = site(ORGANIZER_LANG);
 const packageName = (id: string) => c.packages.items.find((p) => p.id === id)?.name ?? id;
 const extrasText = (extras: Record<string, number> | null) =>
   Object.entries(extras ?? {})

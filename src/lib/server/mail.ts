@@ -1,6 +1,6 @@
 import "server-only";
 import { Resend } from "resend";
-import { fill, isLang, site, DEFAULT_LANG, type Lang } from "../content";
+import { fill, isLang, site, DEFAULT_LANG, ORGANIZER_LANG, type Lang } from "../content";
 import { computePrice, type Quote } from "../pricing";
 
 const esc = (s: string) =>
@@ -83,10 +83,10 @@ export async function notifyOrganizer(
 ) {
   const to = process.env.ORGANIZER_EMAIL;
   if (!to) return;
-  const s = site(DEFAULT_LANG);
+  const s = site(ORGANIZER_LANG);
   const m = s.c.emails.organizer;
   // Same amounts as the visitor's quote (enforced in content.ts), with Serbian labels.
-  const quote = computePrice(p, now, DEFAULT_LANG);
+  const quote = computePrice(p, now, ORGANIZER_LANG);
   const row = (label: string, value: string) =>
     `<tr><td style="padding:3px 16px 3px 0;color:#666">${esc(label)}</td><td>${value}</td></tr>`;
   const received = new Intl.DateTimeFormat(s.c.site.locale, {
@@ -103,7 +103,7 @@ export async function notifyOrganizer(
       ${row(m.language, visitorLang.toUpperCase())}
       ${row(m.received, esc(received))}
     </table>
-    ${quoteTable(DEFAULT_LANG, quote)}
+    ${quoteTable(ORGANIZER_LANG, quote)}
     ${p.notes ? `<p><b>${esc(m.notes)}:</b> ${esc(p.notes)}</p>` : ""}
     <p style="color:#666;font-size:13px">${esc(m.replyHint)}</p>`;
   await send(to, fill(m.subject, { firstName: p.firstName, lastName: p.lastName, total: s.money(quote.total) }), html, p.email);
