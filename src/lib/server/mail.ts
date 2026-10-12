@@ -56,8 +56,9 @@ export async function sendConfirmation(lang: Lang, p: Person, quote: Quote) {
       IBAN: ${esc(pay.iban)}<br>
       SWIFT: ${esc(pay.swift)}<br>
       ${esc(pay.referenceHint)}</p>
-    <p>${esc(m.hold)}</p>`;
-  await send(p.email, fill(m.subject, { event }), html);
+    <p>${esc(fill(m.hold, { contact: c.site.contactEmail }))}</p>`;
+  // Replies go to the festival, not to the sending address.
+  await send(p.email, fill(m.subject, { event }), html, c.site.contactEmail);
 }
 
 // The organiser always gets Serbian, whatever language the visitor used. Without Supabase this
@@ -104,5 +105,5 @@ export async function sendExpiryNotice(row: { first_name: string; email: string;
     <p>${esc(fill(m.greeting, { firstName: row.first_name }))}</p>
     <p>${esc(fill(m.released, { event }))}</p>
     <p>${esc(fill(m.again, { date: s.formatInstant(s.c.packages.earlyBirdUntil) }))}</p>`;
-  await send(row.email, fill(m.subject, { event }), html);
+  await send(row.email, fill(m.subject, { event }), html, s.c.site.contactEmail);
 }

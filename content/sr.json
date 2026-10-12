@@ -6,7 +6,7 @@
     "lang": "sr-Latn",
     "timeZone": "Europe/Belgrade",
     "currency": "EUR",
-    "contactEmail": "info@example.com",
+    "contactEmail": "magic.piksi@gmail.com",
     "organiserLegal": "Pravni naziv organizatora, adresa"
   },
 
@@ -478,7 +478,7 @@
       "paymentTitle": "Uplata",
       "beneficiary": "Primalac",
       "bank": "Banka",
-      "hold": "Mesto vam čuvamo 7 dana. Ako nešto nije u redu, odgovorite na ovaj mejl."
+      "hold": "Mesto vam čuvamo 7 dana. Za sva pitanja odgovorite na ovaj mejl ili pišite na {contact}."
     },
     "organizer": {
       "subject": "Nova prijava: {firstName} {lastName} — {total}",
@@ -513,7 +513,7 @@
       },
       {
         "title": "Ko još ima pristup",
-        "text": "Prijave se čuvaju u bazi kod servisa Supabase, mejlove šaljemo preko servisa Resend, a formu od spama štiti Cloudflare Turnstile. Ovi servisi podatke obrađuju samo po našem nalogu."
+        "text": "Prijavu i potvrdu šaljemo mejlom preko servisa Resend, a prijave čuvamo u našem email sandučetu. Resend podatke obrađuje samo po našem nalogu."
       },
       { "title": "Koliko ih čuvamo", "text": "Do završetka festivala i izmirenja svih obaveza, osim ako zakon ne nalaže duže čuvanje." },
       { "title": "Vaša prava", "text": "Možete da zatražite uvid u svoje podatke, njihovu ispravku ili brisanje. Pišite na {contact} i odgovorićemo u roku od 30 dana." },

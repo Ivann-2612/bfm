@@ -6,7 +6,7 @@
     "lang": "en",
     "timeZone": "Europe/Belgrade",
     "currency": "EUR",
-    "contactEmail": "info@example.com",
+    "contactEmail": "magic.piksi@gmail.com",
     "organiserLegal": "Organiser legal name, address"
   },
 
@@ -478,7 +478,7 @@
       "paymentTitle": "Payment",
       "beneficiary": "Beneficiary",
       "bank": "Bank",
-      "hold": "We hold your place for 7 days. If anything is wrong, reply to this email."
+      "hold": "We hold your place for 7 days. For any questions, reply to this email or write to {contact}."
     },
     "organizer": {
       "subject": "New registration: {firstName} {lastName} — {total}",
@@ -516,7 +516,7 @@
       },
       {
         "title": "Who else has access",
-        "text": "Registrations are stored in a Supabase database, emails are sent through Resend, and Cloudflare Turnstile protects the form from spam. These services process data only on our instructions."
+        "text": "Registrations and confirmations are sent by email through Resend, and we keep registrations in our mailbox. Resend processes data only on our instructions."
       },
       { "title": "How long we keep it", "text": "Until the festival is over and all obligations are settled, unless the law requires us to keep it longer." },
       { "title": "Your rights", "text": "You can ask to see, correct or delete your data. Write to {contact} and we will reply within 30 days." },
