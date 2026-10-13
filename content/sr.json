@@ -104,6 +104,7 @@
     "items": [
       {
         "id": "varijete",
+        "points": [],
         "name": "Magični Varijete",
         "meta": "Velika scena · za sve generacije",
         "text": "Centralni međunarodni Gala šou sa renomiranim umetnicima iz oblasti iluzionizma, varijetea i savremene scenske umetnosti.",
@@ -115,6 +116,7 @@
       },
       {
         "id": "publika",
+        "points": [],
         "name": "Festival za publiku",
         "meta": "Celodnevni program",
         "text": "Predstave za decu i porodice, close-up magija, klovnovi, žongleri, radionice i interaktivni programi.",
@@ -123,6 +125,7 @@
       },
       {
         "id": "takmicenja",
+        "points": ["Close-up magija", "Scenska magija (stage)"],
         "name": "Takmičenja",
         "meta": "Domaći i strani učesnici",
         "text": "Scenska i close-up magija pred međunarodnim stručnim žirijem, uz profesionalne kriterijume ocenjivanja. Pobednike čekaju vredne nagrade.",
@@ -131,13 +134,25 @@
       },
       {
         "id": "strucni",
+        "points": [],
         "name": "Stručni program",
         "meta": "Znanje koje pokreće umetnost",
         "text": "Seminari, predavanja, demonstracije, razmena iskustava i izložba savremene mađioničarske opreme.",
         "photo": { "src": "/images/seminar-1.jpg", "alt": "Seminar za mađioničare" },
         "shows": []
       }
-    ]
+    ],
+    "festival": {
+      "title": "Festivalski program",
+      "items": [
+        "Stručni program za mađioničare",
+        "Seminari i radionice",
+        "Dilerska sala",
+        "Takmičarske sale",
+        "Program za publiku (u foajeu)",
+        "Mađioničarske predstave u manjim salama (oba dana)"
+      ]
+    }
   },
 
   "gala": {
@@ -151,7 +166,7 @@
       { "name": "Maxim Gladstein", "country": "Rusija", "photo": "/images/artists/maxim-gladstein.png", "bio": "" },
       { "name": "Tamia", "country": "Slovenija", "photo": "/images/artists/tamia.png", "bio": "" },
       { "name": "Elastic", "country": "Belgija", "photo": "/images/artists/elastic.png", "bio": "" },
-      { "name": "Françoise Roshe", "country": "Belgija", "photo": "", "bio": "", "hidden": true }
+      { "name": "Françoise Roshe", "country": "Belgija", "photo": "", "bio": "" }
     ]
   },
 
@@ -485,16 +500,24 @@
   "organizers": {
     "kicker": "Zajedno stvaramo magiju",
     "title": "Organizacija festivala",
-    "orgs": [
-      { "role": "Organizator", "name": "Magični krug Srbije", "sub": "Serbia Magic Ring" },
-      { "role": "Organizator", "name": "Čarobni plašt", "sub": "Udruženje mađioničara" },
-      { "role": "Organizator", "name": "Magični svet", "sub": "Udruženje građana" },
-      { "role": "Partner festivala", "name": "MTS dvorana", "sub": "Beograd" }
+    "groups": [
+      {
+        "title": "Organizatori",
+        "items": [
+          { "name": "Magični krug Srbije", "sub": "Serbia Magic Ring" },
+          { "name": "Čarobni plašt", "sub": "Udruženje mađioničara" },
+          { "name": "Magični svet", "sub": "Udruženje građana" }
+        ]
+      },
+      {
+        "title": "Partner festivala",
+        "items": [
+          { "name": "MTS dvorana", "sub": "Beograd" }
+        ]
+      }
     ],
     "people": [
-      { "role": "Direktor festivala", "name": "Dejan Đurđević Piksi" },
-      { "role": "Umetnički direktor", "name": "Igor Trifunov" },
-      { "role": "Koordinatori projekta", "name": "Mihajlo Janković · Filip Đikić" }
+      { "role": "Direktori festivala", "name": "Igor Trifunov · Dejan Đurđević Piksi" }
     ]
   },
 

@@ -16,7 +16,7 @@ export function Hotels({ lang }: LangProps) {
               <li key={r.label}>
                 <span className="hotels__room">
                   {r.label}
-                  {r.note && <small> · {r.note}</small>}
+                  {r.note && <small>{r.note}</small>}
                 </span>
                 <span className="hotels__price">
                   {s.money(r.price)} <small>/ {s.c.ui.perNight}</small>

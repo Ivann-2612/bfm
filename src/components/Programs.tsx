@@ -56,11 +56,29 @@ export function Programs({ lang }: LangProps) {
                   <p className="program__meta">{p.meta}</p>
                   <h3 className="program__name program__name--small">{p.name}</h3>
                   <p>{p.text}</p>
+                  {p.points.length > 0 && (
+                    <ul className="program__points">
+                      {p.points.map((pt) => (
+                        <li key={pt}>{pt}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </li>
             ))}
           </ul>
         </div>
+
+        {programs.festival.items.length > 0 && (
+          <div className="festival-list">
+            <h3 className="festival-list__title">{programs.festival.title}</h3>
+            <ul className="festival-list__items">
+              {programs.festival.items.map((it) => (
+                <li key={it}>{it}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </section>
   );

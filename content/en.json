@@ -104,6 +104,7 @@
     "items": [
       {
         "id": "varijete",
+        "points": [],
         "name": "Gala Show Variete",
         "meta": "Main stage · for all ages",
         "text": "Magični Varijete is the festival's international gala show, with renowned artists from illusion, variety and contemporary stage performance.",
@@ -115,6 +116,7 @@
       },
       {
         "id": "publika",
+        "points": [],
         "name": "Festival for the public",
         "meta": "All-day programme",
         "text": "Shows for children and families, close-up magic, clowns, jugglers, workshops and interactive programmes.",
@@ -123,6 +125,7 @@
       },
       {
         "id": "takmicenja",
+        "points": ["Close-up", "Stage"],
         "name": "Competitions",
         "meta": "Serbian and international entrants",
         "text": "Stage and close-up magic judged by an international jury against professional criteria. Winners receive valuable prizes.",
@@ -131,13 +134,25 @@
       },
       {
         "id": "strucni",
+        "points": [],
         "name": "Professional programme",
         "meta": "Knowledge that moves the art forward",
         "text": "Seminars, lectures, demonstrations, exchange of experience and an exhibition of contemporary magic equipment.",
         "photo": { "src": "/images/seminar-1.jpg", "alt": "Seminar for magicians" },
         "shows": []
       }
-    ]
+    ],
+    "festival": {
+      "title": "Festival programme",
+      "items": [
+        "Professional programme for magicians",
+        "Seminars and workshops",
+        "Dealer room",
+        "Competition halls",
+        "Artist programme for the audience (in the foyer)",
+        "Magic shows in smaller halls (both days)"
+      ]
+    }
   },
 
   "gala": {
@@ -151,7 +166,7 @@
       { "name": "Maxim Gladstein", "country": "Russia", "photo": "/images/artists/maxim-gladstein.png", "bio": "" },
       { "name": "Tamia", "country": "Slovenia", "photo": "/images/artists/tamia.png", "bio": "" },
       { "name": "Elastic", "country": "Belgium", "photo": "/images/artists/elastic.png", "bio": "" },
-      { "name": "Françoise Roshe", "country": "Belgium", "photo": "", "bio": "", "hidden": true }
+      { "name": "Françoise Roshe", "country": "Belgium", "photo": "", "bio": "" }
     ]
   },
 
@@ -485,16 +500,24 @@
   "organizers": {
     "kicker": "Making magic together",
     "title": "Festival organisers",
-    "orgs": [
-      { "role": "Organiser", "name": "Serbia Magic Ring", "sub": "Magični krug Srbije" },
-      { "role": "Organiser", "name": "Magic Cloak", "sub": "Čarobni plašt · Magicians' association" },
-      { "role": "Organiser", "name": "Magic World", "sub": "Magični svet · Citizens' association" },
-      { "role": "Festival partner", "name": "MTS Hall", "sub": "Belgrade" }
+    "groups": [
+      {
+        "title": "Organisers",
+        "items": [
+          { "name": "Serbia Magic Ring", "sub": "" },
+          { "name": "Čarobni plašt", "sub": "Magicians' association" },
+          { "name": "Magični svet", "sub": "Citizens' association" }
+        ]
+      },
+      {
+        "title": "Festival partner",
+        "items": [
+          { "name": "MTS Hall", "sub": "Belgrade" }
+        ]
+      }
     ],
     "people": [
-      { "role": "Festival director", "name": "Dejan Đurđević Piksi" },
-      { "role": "Artistic director", "name": "Igor Trifunov" },
-      { "role": "Project coordinators", "name": "Mihajlo Janković · Filip Đikić" }
+      { "role": "Festival directors", "name": "Igor Trifunov · Dejan Đurđević Piksi" }
     ]
   },
 

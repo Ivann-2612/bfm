@@ -1082,9 +1082,22 @@ html.menu-open .site-header {
 }
 
 /* ---------- Organizers ---------- */
+/* Groups sit side by side, each as wide as its number of names (--n). */
+.organizers__groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 2.5rem;
+}
+.organizers__group {
+  flex: var(--n) 1 calc(var(--n) * 12rem);
+}
+.organizers__group .organizers__role {
+  display: block;
+  margin-bottom: 0.9rem;
+}
 .organizers__orgs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
   border-top: 1px solid var(--line);
 }
 .organizers__orgs li {
@@ -2282,6 +2295,32 @@ select.admin__status option {
   color: var(--gold-pale);
 }
 
+/* ---------- Phone fixes from the responsive check (2026-10-13) ---------- */
+/* Hotel room note: separator dot only when it sits on the same line. */
+.hotels__room small::before {
+  content: " · ";
+}
+@media (max-width: 640px) {
+  .hotels__room small {
+    display: block;
+    margin-top: 0.15rem;
+  }
+  .hotels__room small::before {
+    content: none;
+  }
+  /* Airport name and distance stacked instead of squeezed side by side. */
+  .travel__airports div {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}
+/* Artist bio panel: the photo spans the width on phones, so keep the close button above it. */
+@media (max-width: 699px) {
+  .artist-panel .artist-panel__inner {
+    padding-top: 3.75rem;
+  }
+}
+
 /* ---------- Floating Register button (phones) ---------- */
 .sticky-cta {
   display: none;
@@ -2310,6 +2349,61 @@ select.admin__status option {
     color: var(--ink);
     background: var(--gold-pale);
   }
+}
+
+/* ---------- Programmes: competition categories + flyer's "Festival programme" list ---------- */
+.program__points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+.program__points li {
+  padding: 0.2rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font: 500 0.78rem / 1.3 var(--mono);
+  letter-spacing: 0.04em;
+  color: var(--gold-pale);
+}
+.festival-list {
+  display: grid;
+  gap: 1.25rem 3rem;
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 900px) {
+  .festival-list {
+    grid-template-columns: 16rem 1fr;
+    align-items: start;
+  }
+}
+.festival-list__title {
+  font: italic 400 var(--step-2) / 1.15 var(--display);
+  color: var(--gold);
+}
+.festival-list__items {
+  display: grid;
+  gap: 0.6rem 2rem;
+}
+@media (min-width: 640px) {
+  .festival-list__items {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.festival-list__items li {
+  position: relative;
+  padding-left: 1.2rem;
+  line-height: 1.45;
+}
+.festival-list__items li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  font-size: 0.6rem;
+  color: var(--gold);
 }
 
 /* ---------- Mobile total bar (Registration) ----------
@@ -2359,12 +2453,6 @@ select.admin__status option {
 @media (min-width: 960px) {
   .total-bar {
     display: none;
-  }
-}
-/* Room at the end of the form so the bar never covers the submit button. */
-@media (max-width: 959px) {
-  .register .form {
-    padding-bottom: 5rem;
   }
 }
 
@@ -2664,11 +2752,23 @@ select.admin__status option {
   background: radial-gradient(ellipse 38% 60% at 76% 42%, rgb(233 216 166 / 0.13), transparent 70%),
     radial-gradient(ellipse 22% 34% at 76% 8%, rgb(233 216 166 / 0.08), transparent 70%);
 }
+/* Each edge gets its own curtain and the right one is the left one mirrored (folds counted from
+   the outer edge on both sides), so colour, width and folds match exactly. */
 .hero::after {
-  background: linear-gradient(90deg, rgb(110 22 30 / 0.38), transparent 9%, transparent 91%, rgb(110 22 30 / 0.38)),
-    repeating-linear-gradient(90deg, rgb(0 0 0 / 0.16) 0 14px, transparent 14px 34px);
-  -webkit-mask: linear-gradient(90deg, #000, transparent 9%, transparent 91%, #000);
-  mask: linear-gradient(90deg, #000, transparent 9%, transparent 91%, #000);
+  --curtain: clamp(2.5rem, 9vw, 7rem);
+  --velvet-edge: rgb(110 22 30 / 0.42);
+  --fold: rgb(0 0 0 / 0.16) 0 14px, transparent 14px 34px;
+  background:
+    repeating-linear-gradient(90deg, var(--fold)) left top / var(--curtain) 100% no-repeat,
+    repeating-linear-gradient(270deg, var(--fold)) right top / var(--curtain) 100% no-repeat,
+    linear-gradient(90deg, var(--velvet-edge), transparent) left top / var(--curtain) 100% no-repeat,
+    linear-gradient(270deg, var(--velvet-edge), transparent) right top / var(--curtain) 100% no-repeat;
+  -webkit-mask:
+    linear-gradient(90deg, #000, transparent) left top / var(--curtain) 100% no-repeat,
+    linear-gradient(270deg, #000, transparent) right top / var(--curtain) 100% no-repeat;
+  mask:
+    linear-gradient(90deg, #000, transparent) left top / var(--curtain) 100% no-repeat,
+    linear-gradient(270deg, #000, transparent) right top / var(--curtain) 100% no-repeat;
 }
 .hero__inner {
   position: relative;
