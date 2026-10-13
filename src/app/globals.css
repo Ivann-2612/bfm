@@ -786,6 +786,7 @@ html.menu-open .site-header {
   gap: clamp(1rem, 2.5vw, 2rem);
 }
 .pcard {
+  position: relative;
   display: block;
   width: 100%;
   aspect-ratio: 5 / 7;
@@ -797,10 +798,11 @@ html.menu-open .site-header {
   text-align: left;
   border-radius: var(--radius-card);
 }
+/* Absolutely filled, not height:100%: same iOS Safari issue inside <button> as the artist cards. */
 .pcard__inner {
-  position: relative;
+  position: absolute;
+  inset: 0;
   display: block;
-  height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.7s cubic-bezier(0.3, 0.7, 0.2, 1);
 }
@@ -1432,8 +1434,11 @@ html.menu-open .site-header {
 .artist:nth-child(even):hover .artist__card {
   transform: translateY(-8px) rotate(1.5deg);
 }
+/* Placed by insets, not height:100%: Safari (iOS) cannot resolve a percentage height inside a
+   <button>, which let photos spill out of the card. Insets match the card padding. */
 .artist__photo {
-  height: 100%;
+  position: absolute;
+  inset: 2.1rem 0.5rem;
   border-radius: 4px;
 }
 .artist__index {
@@ -2618,8 +2623,7 @@ select.admin__status option {
 
 /* ---------- Artist cards: click → bio panel ---------- */
 .artist__button {
-  display: grid;
-  gap: 0.2rem;
+  display: block;
   width: 100%;
   padding: 0;
   border: 0;
@@ -2637,6 +2641,14 @@ select.admin__status option {
 }
 .artist__card {
   display: block;
+  overflow: hidden;
+}
+.artist__button .artist__name,
+.artist__button .artist__country {
+  display: block;
+}
+.artist__button .artist__country {
+  margin-top: 0.2rem;
 }
 /* The open card stays lifted with a gold edge, so it's clear whose bio is shown. */
 .artist.is-active .artist__card {
