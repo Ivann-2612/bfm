@@ -162,7 +162,7 @@
     "artists": [
       { "name": "Woody Aragón", "country": "Spain", "code": "es", "photo": "/images/artists/woody-aragon.jpg", "bio": "" },
       { "name": "Den Den", "country": "Japan", "code": "jp", "photo": "/images/artists/den-den.png", "bio": "" },
-      { "name": "Igor Trifunov", "country": "Serbia", "code": "rs", "photo": "/images/artists/igor-trifunov.png", "bio": "" },
+      { "name": "Igor Trifunov", "country": "Serbia", "code": "rs", "photo": "/images/artists/igor-trifunov.png", "bio": "Igor Trifunov is the most successful Serbian magician and illusionist of the new generation. He has won acclaim at many international competitions, including fourth place at the World Championship of Magic in Rimini, the Grand Prix at the Balkan Magic Congress and first place at the magic competition in Baden.\n\nHe created the TV series Ulična Magija (Street Magic), the children’s show Igorov Magični Šou (Igor’s Magic Show), the illusion show Igorov Magični Spektakl (Igor’s Magic Spectacle) and the international spectacle Magični Varijete (Gala Show Variete)." },
       { "name": "Maxim Gladstein", "country": "Russia", "code": "ru", "photo": "/images/artists/maxim-gladstein.png", "bio": "" },
       { "name": "Tamia", "country": "Slovenia", "code": "si", "photo": "/images/artists/tamia.png", "bio": "" },
       { "name": "Elastic", "country": "Belgium", "code": "be", "photo": "/images/artists/elastic.png", "bio": "" },

@@ -162,7 +162,7 @@
     "artists": [
       { "name": "Woody Aragón", "country": "Španija", "code": "es", "photo": "/images/artists/woody-aragon.jpg", "bio": "" },
       { "name": "Den Den", "country": "Japan", "code": "jp", "photo": "/images/artists/den-den.png", "bio": "" },
-      { "name": "Igor Trifunov", "country": "Srbija", "code": "rs", "photo": "/images/artists/igor-trifunov.png", "bio": "" },
+      { "name": "Igor Trifunov", "country": "Srbija", "code": "rs", "photo": "/images/artists/igor-trifunov.png", "bio": "Igor Trifunov je najuspešniji srpski mađioničar i iluzionista novije generacije. Ostvario je uspeh na brojnim svetskim takmičenjima, među kojima su četvrto mesto na svetskom prvenstvu mađioničara u Riminiju, Grand Prix na Balkanskom kongresu mađioničara i prvo mesto na takmičenju mađioničara u Badenu.\n\nAutor je TV serije Ulična Magija, dečije predstave Igorov Magični Šou, iluzionističke predstave Igorov Magični Spektakl i internacionalnog spektakla Magični Varijete." },
       { "name": "Maxim Gladstein", "country": "Rusija", "code": "ru", "photo": "/images/artists/maxim-gladstein.png", "bio": "" },
       { "name": "Tamia", "country": "Slovenija", "code": "si", "photo": "/images/artists/tamia.png", "bio": "" },
       { "name": "Elastic", "country": "Belgija", "code": "be", "photo": "/images/artists/elastic.png", "bio": "" },
