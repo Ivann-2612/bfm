@@ -573,9 +573,11 @@
   },
 
   "cookies": {
-    "text": "Koristimo Google Analytics da vidimo koje delove sajta ljudi čitaju. Učitava se samo ako to dozvolite.",
-    "label": "Saglasnost za analitiku",
-    "accept": "Dozvoli analitiku",
-    "decline": "Ne, hvala"
+    "title": "Ova stranica koristi kolačiće",
+    "text": "Koristimo kolačiće da bismo pratili posećenost i poboljšavali sajt. Možete ih prihvatiti ili odbiti, a sajt radi isto u oba slučaja.",
+    "label": "Kolačići",
+    "accept": "Prihvati",
+    "decline": "Odbij",
+    "more": "Politika privatnosti"
   }
 }

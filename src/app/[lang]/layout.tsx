@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: Omit<Props, "children">): Pro
   };
 }
 
-export const viewport: Viewport = { themeColor: "#0D0B0A" };
+export const viewport: Viewport = { themeColor: "#0C0B0E" };
 
 export default async function RootLayout({ children, params }: Props) {
   const { lang } = await params;
