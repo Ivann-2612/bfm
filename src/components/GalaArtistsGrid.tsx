@@ -7,6 +7,12 @@ import { Photo, SuitMark } from "./ui";
 export type ArtistCard = Artist & { suit: Suit; initial: string };
 type Labels = { photo: string; bioSoon: string; close: string; about: string };
 
+function Flag({ code }: { code?: string }) {
+  if (!code) return null;
+  // eslint-disable-next-line @next/next/no-img-element -- tiny static SVG
+  return <img className="flag" src={`/flags/${code}.svg`} alt="" width={18} height={13} aria-hidden="true" />;
+}
+
 // Playing-card corner: the artist's initial over a suit.
 function Index({ initial, suit, flip = false }: { initial: string; suit: Suit; flip?: boolean }) {
   return (
@@ -79,7 +85,10 @@ export function GalaArtistsGrid({ artists, labels }: { artists: ArtistCard[]; la
                 <Index initial={a.initial} suit={a.suit} flip />
               </span>
               <span className="artist__name">{a.name}</span>
-              <span className="artist__country">{a.country}</span>
+              <span className="artist__country">
+                <Flag code={a.code} />
+                {a.country}
+              </span>
             </button>
           </li>
         ))}
@@ -94,7 +103,8 @@ export function GalaArtistsGrid({ artists, labels }: { artists: ArtistCard[]; la
             <Photo src={current.photo} alt={current.name} label={labels.photo} sizes="(min-width: 700px) 280px, 60vw" className="artist-panel__photo" />
             <div className="artist-panel__text">
               <p className="artist-panel__country">
-                <SuitMark suit={current.suit} /> {current.country}
+                <SuitMark suit={current.suit} /> <Flag code={current.code} />
+                {current.country}
               </p>
               <h3 className="artist-panel__name">{current.name}</h3>
               {current.bio ? (

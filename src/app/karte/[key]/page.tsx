@@ -1,19 +1,30 @@
-import { notFound } from "next/navigation";
-import { getContent, site, ORGANIZER_LANG } from "@/lib/content";
-import { isAdminKey, loadTickets } from "@/lib/server/admin";
-import { TicketsTable } from "@/components/TicketsTable";
+import { notFound } from 'next/navigation';
+import { getContent, site, ORGANIZER_LANG } from '@/lib/content';
+import { isAdminKey, loadTickets } from '@/lib/server/admin';
+import { TicketsTable } from '@/components/TicketsTable';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
-export default async function Tickets({ params }: { params: Promise<{ key: string }> }) {
+export default async function Tickets({
+  params
+}: {
+  params: Promise<{ key: string }>;
+}) {
   const { key } = await params;
   if (!isAdminKey(key)) notFound();
 
   const { event, site: meta } = getContent(ORGANIZER_LANG);
   const { tickets, error, demo } = await loadTickets();
-  const now = new Intl.DateTimeFormat("sr-Latn-RS", { dateStyle: "long", timeStyle: "short", timeZone: meta.timeZone }).format(new Date());
-  const active = tickets.filter((t) => t.status === "pending" || t.status === "paid");
-  const paid = tickets.filter((t) => t.status === "paid");
+  // Time the data was read from the database; changes with every refresh (auto, focus or button).
+  const now = new Intl.DateTimeFormat('sr-Latn-RS', {
+    dateStyle: 'long',
+    timeStyle: 'medium',
+    timeZone: meta.timeZone
+  }).format(new Date());
+  const active = tickets.filter(
+    (t) => t.status === 'pending' || t.status === 'paid'
+  );
+  const paid = tickets.filter((t) => t.status === 'paid');
   const money = site(ORGANIZER_LANG).money;
 
   return (
@@ -24,7 +35,7 @@ export default async function Tickets({ params }: { params: Promise<{ key: strin
             {event.name} {event.year}
           </p>
           <h1 className="section-title">Karte</h1>
-          <p className="admin__asof">Stanje: {now}</p>
+          <p className="admin__asof">Poslednje osvežavanje podataka: {now}</p>
         </div>
         {!demo && tickets.length > 0 && (
           <a className="btn btn--small" href={`/karte/${key}/csv`}>
@@ -36,7 +47,7 @@ export default async function Tickets({ params }: { params: Promise<{ key: strin
       {error && (
         <p className="admin__error">
           {error}
-          {demo && " Prikazani su primer podaci, samo za lokalni pregled."}
+          {demo && ' Prikazani su primer podaci, samo za lokalni pregled.'}
         </p>
       )}
 
@@ -62,13 +73,20 @@ export default async function Tickets({ params }: { params: Promise<{ key: strin
           </dl>
 
           {tickets.length === 0 ? (
-            <p className="admin__empty">Još nema prijava. Kad stigne prva, pojaviće se ovde.</p>
+            <p className="admin__empty">
+              Još nema prijava. Kad stigne prva, pojaviće se ovde.
+            </p>
           ) : (
-            <TicketsTable tickets={tickets} base={`/karte/${key}`} demo={demo} />
+            <TicketsTable
+              tickets={tickets}
+              base={`/karte/${key}`}
+              demo={demo}
+            />
           )}
 
           <p className="admin__hint">
-            Status menjaš u koloni „Status“: izmena se odmah čuva u bazi. Ovu adresu ne prosleđuj: ko je ima, vidi sve prijave.
+            Status menjaš u koloni „Status“: izmena se odmah čuva u bazi. Ovu
+            adresu ne prosleđuj: ko je ima, vidi sve prijave.
           </p>
         </>
       )}

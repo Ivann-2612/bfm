@@ -160,13 +160,13 @@
     "title": "Izvođači Gala šoua",
     "intro": "Umetnici koji nastupaju na velikoj sceni MTS dvorane.",
     "artists": [
-      { "name": "Woody Aragón", "country": "Španija", "photo": "/images/artists/woody-aragon.jpg", "bio": "" },
-      { "name": "Den Den", "country": "Japan", "photo": "/images/artists/den-den.png", "bio": "" },
-      { "name": "Igor Trifunov", "country": "Srbija", "photo": "/images/artists/igor-trifunov.png", "bio": "" },
-      { "name": "Maxim Gladstein", "country": "Rusija", "photo": "/images/artists/maxim-gladstein.png", "bio": "" },
-      { "name": "Tamia", "country": "Slovenija", "photo": "/images/artists/tamia.png", "bio": "" },
-      { "name": "Elastic", "country": "Belgija", "photo": "/images/artists/elastic.png", "bio": "" },
-      { "name": "Françoise Roshe", "country": "Belgija", "photo": "", "bio": "" }
+      { "name": "Woody Aragón", "country": "Španija", "code": "es", "photo": "/images/artists/woody-aragon.jpg", "bio": "" },
+      { "name": "Den Den", "country": "Japan", "code": "jp", "photo": "/images/artists/den-den.png", "bio": "" },
+      { "name": "Igor Trifunov", "country": "Srbija", "code": "rs", "photo": "/images/artists/igor-trifunov.png", "bio": "" },
+      { "name": "Maxim Gladstein", "country": "Rusija", "code": "ru", "photo": "/images/artists/maxim-gladstein.png", "bio": "" },
+      { "name": "Tamia", "country": "Slovenija", "code": "si", "photo": "/images/artists/tamia.png", "bio": "" },
+      { "name": "Elastic", "country": "Belgija", "code": "be", "photo": "/images/artists/elastic.png", "bio": "" },
+      { "name": "Françoise Roshe", "country": "Belgija", "code": "be", "photo": "", "bio": "" }
     ]
   },
 

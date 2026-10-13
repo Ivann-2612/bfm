@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import type { Status, Ticket } from "@/lib/server/admin";
 
@@ -37,6 +37,26 @@ export function TicketsTable({
   demo: boolean;
 }) {
   const router = useRouter();
+  // Fresh data without a page reload: router.refresh() re-renders the server page (new rows and
+  // totals) while filter, sort and scroll position stay. Runs every 30 s while the tab is visible,
+  // when the tab regains focus, and on the "Refresh" button.
+  const [refreshing, startRefresh] = useTransition();
+  const refresh = useCallback(() => {
+    if (demo) return;
+    startRefresh(() => router.refresh());
+  }, [demo, router]);
+  useEffect(() => {
+    if (demo) return;
+    const tick = setInterval(() => {
+      if (document.visibilityState === "visible") refresh();
+    }, 30_000);
+    const onVisible = () => document.visibilityState === "visible" && refresh();
+    document.addEventListener("visibilitychange", onVisible);
+    return () => {
+      clearInterval(tick);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, [demo, refresh]);
   const [filter, setFilter] = useState<Status | "all">("all");
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "ts", dir: -1 });
   // Optimistic status changes, dropped once the refreshed server data arrives.
@@ -101,6 +121,18 @@ export function TicketsTable({
 
   return (
     <>
+      {!demo && (
+        <div className="admin__refresh">
+          <button type="button" className="admin__refresh-btn" onClick={refresh} disabled={refreshing}>
+            <span aria-hidden="true" className={refreshing ? "is-spinning" : ""}>
+              ↻
+            </span>{" "}
+            {refreshing ? "Osvežavam…" : "Osveži"}
+          </button>
+          <span className="admin__refresh-note">Automatski na 30 s i kad se vratiš na ovaj tab</span>
+        </div>
+      )}
+
       <div className="admin__filters" role="group" aria-label="Prikaži po statusu">
         {(["all", ...STATUSES] as const).map((st) => (
           <button

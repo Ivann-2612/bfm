@@ -10,7 +10,7 @@
   --smoke: #9a8f80;
   --line: rgb(200 160 75 / 0.22);
 
-  --display: var(--font-display), "Bodoni 72", Didot, serif;
+  --display: var(--font-display), 'Bodoni 72', Didot, serif;
   --body: var(--font-body), system-ui, sans-serif;
   --mono: var(--font-mono), ui-monospace, monospace;
 
@@ -161,7 +161,9 @@ textarea {
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 .btn:hover {
   background: var(--gold-pale);
@@ -194,7 +196,7 @@ textarea {
   color: var(--gold-pale);
 }
 .link-arrow::after {
-  content: " →";
+  content: ' →';
 }
 
 .photo {
@@ -208,7 +210,11 @@ textarea {
 .photo--empty {
   display: grid;
   place-items: center;
-  background: repeating-linear-gradient(135deg, var(--ink-2) 0 14px, var(--ink-3) 14px 15px);
+  background: repeating-linear-gradient(
+    135deg,
+    var(--ink-2) 0 14px,
+    var(--ink-3) 14px 15px
+  );
 }
 .photo--empty span {
   font: var(--step--1) / 1.3 var(--mono);
@@ -295,7 +301,9 @@ textarea {
   height: 1.5px;
   margin-left: -0.55rem;
   background: var(--gold-pale);
-  transition: transform 0.3s, opacity 0.2s;
+  transition:
+    transform 0.3s,
+    opacity 0.2s;
 }
 .burger span:nth-child(1) {
   top: calc(50% - 5px);
@@ -345,7 +353,7 @@ textarea {
   text-decoration: none;
 }
 .mobile-menu__list a::after {
-  content: "→";
+  content: '→';
   font: 400 1rem var(--mono);
   color: var(--gold);
 }
@@ -409,7 +417,7 @@ html.menu-open .site-header {
   content: none;
 }
 .link-arrow--back::before {
-  content: "← ";
+  content: '← ';
 }
 .legal .section-title {
   margin-top: 2rem;
@@ -498,7 +506,10 @@ html.menu-open .site-header {
   color: var(--bone);
   text-decoration: none;
   /* `translate` (not `transform`) so the hover lift doesn't fight the deal animation. */
-  transition: translate 0.2s, border-color 0.2s, box-shadow 0.2s;
+  transition:
+    translate 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 .hero__card:hover,
 .hero__card:focus-visible {
@@ -834,8 +845,17 @@ html.menu-open .site-header {
   justify-content: center;
   background:
     linear-gradient(var(--ink-2), var(--ink-2)) padding-box,
-    repeating-linear-gradient(45deg, rgb(200 160 75 / 0.35) 0 1px, transparent 1px 10px),
-    repeating-linear-gradient(-45deg, rgb(200 160 75 / 0.35) 0 1px, transparent 1px 10px), var(--ink-3);
+    repeating-linear-gradient(
+      45deg,
+      rgb(200 160 75 / 0.35) 0 1px,
+      transparent 1px 10px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgb(200 160 75 / 0.35) 0 1px,
+      transparent 1px 10px
+    ),
+    var(--ink-3);
   border: 10px solid transparent;
   box-shadow: inset 0 0 0 1px var(--line);
 }
@@ -869,9 +889,11 @@ html.menu-open .site-header {
   cursor: pointer;
   text-align: left;
   color: var(--smoke);
-  transition: color 0.2s, border-color 0.2s;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
 }
-.schedule__tab[aria-selected="true"] {
+.schedule__tab[aria-selected='true'] {
   color: var(--bone);
   border-bottom-color: var(--gold);
 }
@@ -885,7 +907,7 @@ html.menu-open .site-header {
   opacity: 0.45;
   transition: opacity 0.2s;
 }
-.schedule__tab[aria-selected="true"] .schedule__suit {
+.schedule__tab[aria-selected='true'] .schedule__suit {
   opacity: 1;
 }
 .schedule__day {
@@ -1072,7 +1094,12 @@ html.menu-open .site-header {
      the padding gives the gradient room so the last digit isn't cut off. */
   padding: 0.04em 0.14em 0.08em 0.06em;
   color: transparent;
-  background: linear-gradient(180deg, var(--gold-pale) 10%, var(--gold) 55%, #9a7633 100%);
+  background: linear-gradient(
+    180deg,
+    var(--gold-pale) 10%,
+    var(--gold) 55%,
+    #9a7633 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -1141,7 +1168,11 @@ html.menu-open .site-header {
   padding-block: clamp(5rem, 12vw, 9rem);
   border-top: 1px solid var(--line);
   text-align: center;
-  background: radial-gradient(ellipse at 50% 120%, rgb(163 48 59 / 0.28), transparent 60%);
+  background: radial-gradient(
+    ellipse at 50% 120%,
+    rgb(163 48 59 / 0.28),
+    transparent 60%
+  );
 }
 .closing__inner {
   display: grid;
@@ -1264,7 +1295,7 @@ html.menu-open .site-header {
 }
 /* Inline list separated by middots, like a printed programme. */
 .pricelist__includes li:not(:last-child)::after {
-  content: "·";
+  content: '·';
   margin-inline: 0.5rem;
   color: var(--gold);
 }
@@ -1388,7 +1419,10 @@ html.menu-open .site-header {
   background: var(--ink-2);
   border: 1px solid var(--line);
   border-radius: 12px;
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s, box-shadow 0.35s;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.25s,
+    box-shadow 0.35s;
 }
 .artist:hover .artist__card {
   transform: translateY(-8px) rotate(-1.5deg);
@@ -1478,7 +1512,8 @@ html.menu-open .site-header {
   position: absolute;
   /* invert + 180° hue keeps water blue-ish and parks green-ish (plain invert turns them orange);
      sepia then warms everything toward the site's gold. */
-  filter: invert(1) hue-rotate(180deg) brightness(0.82) contrast(1.05) saturate(0.55) sepia(0.32);
+  filter: invert(1) hue-rotate(180deg) brightness(0.82) contrast(1.05)
+    saturate(0.55) sepia(0.32);
 }
 .map__tiles img {
   position: absolute;
@@ -1488,14 +1523,18 @@ html.menu-open .site-header {
 }
 /* Vignette and a soft gold glow on the venue. */
 .map::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   background:
     radial-gradient(circle at 50% 50%, rgb(200 160 75 / 0.18), transparent 22%),
-    radial-gradient(ellipse at 50% 50%, transparent 45%, rgb(13 11 10 / 0.75) 100%);
+    radial-gradient(
+      ellipse at 50% 50%,
+      transparent 45%,
+      rgb(13 11 10 / 0.75) 100%
+    );
 }
 .map__pin {
   position: absolute;
@@ -1524,7 +1563,7 @@ html.menu-open .site-header {
   transform: rotate(45deg);
 }
 .map__pin::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -0.85rem;
   left: calc(50% - 0.35rem);
@@ -1710,8 +1749,8 @@ html.menu-open .site-header {
   outline-offset: 0;
   border-color: var(--gold);
 }
-.field [aria-invalid="true"],
-.check [aria-invalid="true"] {
+.field [aria-invalid='true'],
+.check [aria-invalid='true'] {
   border-color: var(--velvet);
   outline-color: var(--velvet);
 }
@@ -1734,7 +1773,9 @@ html.menu-open .site-header {
   border: 1px solid var(--line);
   border-radius: 8px;
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
 .choice:has(input:checked) {
   border-color: var(--gold);
@@ -1780,10 +1821,16 @@ html.menu-open .site-header {
   background: var(--gold-pale);
   color: var(--ink);
   border-radius: 6px;
-  -webkit-mask: radial-gradient(circle 7px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat,
-    radial-gradient(circle 7px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat;
-  mask: radial-gradient(circle 7px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat,
-    radial-gradient(circle 7px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat;
+  -webkit-mask:
+    radial-gradient(circle 7px at 0 50%, transparent 98%, #000) left / 51% 100%
+      no-repeat,
+    radial-gradient(circle 7px at 100% 50%, transparent 98%, #000) right / 51%
+      100% no-repeat;
+  mask:
+    radial-gradient(circle 7px at 0 50%, transparent 98%, #000) left / 51% 100%
+      no-repeat,
+    radial-gradient(circle 7px at 100% 50%, transparent 98%, #000) right / 51%
+      100% no-repeat;
 }
 .stub .kicker {
   color: #7a5c1c;
@@ -1970,7 +2017,9 @@ html.menu-open .site-header {
   border-radius: 999px;
   cursor: pointer;
   font-size: 0.95rem;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
 .pay__method input {
   accent-color: var(--gold);
@@ -2018,7 +2067,9 @@ html.menu-open .site-header {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 .pay__copy:hover {
   background: var(--gold);
@@ -2096,6 +2147,45 @@ html.menu-open .site-header {
   font-size: var(--step-3);
   color: var(--gold);
 }
+.admin__refresh {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-top: 1.5rem;
+}
+.admin__refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--gold-pale);
+  font: 500 var(--step--1) / 1 var(--mono);
+  cursor: pointer;
+}
+.admin__refresh-btn:hover {
+  background: var(--ink-3);
+}
+.admin__refresh-btn:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+.admin__refresh-btn .is-spinning {
+  display: inline-block;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.admin__refresh-note {
+  font: var(--step--1) / 1.3 var(--mono);
+  color: var(--smoke);
+}
 .admin__filters {
   display: flex;
   flex-wrap: wrap;
@@ -2113,7 +2203,9 @@ html.menu-open .site-header {
   color: var(--bone);
   font-size: 0.92rem;
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
 .admin__filter b {
   min-width: 1.5rem;
@@ -2126,12 +2218,12 @@ html.menu-open .site-header {
 .admin__filter:hover {
   border-color: var(--gold);
 }
-.admin__filter[aria-pressed="true"] {
+.admin__filter[aria-pressed='true'] {
   border-color: var(--gold);
   background: var(--ink-3);
   color: var(--gold-pale);
 }
-.admin__filter--paid[aria-pressed="true"] {
+.admin__filter--paid[aria-pressed='true'] {
   border-color: #5f9e6e;
 }
 .admin__sort {
@@ -2295,10 +2387,21 @@ select.admin__status option {
   color: var(--gold-pale);
 }
 
+/* ---------- Country flags (artists) ---------- */
+.flag {
+  display: inline-block;
+  width: 1.15em;
+  height: auto;
+  margin-right: 0.45em;
+  vertical-align: -0.1em;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.12);
+}
+
 /* ---------- Phone fixes from the responsive check (2026-10-13) ---------- */
 /* Hotel room note: separator dot only when it sits on the same line. */
 .hotels__room small::before {
-  content: " · ";
+  content: ' · ';
 }
 @media (max-width: 640px) {
   .hotels__room small {
@@ -2338,7 +2441,9 @@ select.admin__status option {
     background: var(--gold);
     color: var(--ink);
     border-radius: 999px;
-    box-shadow: 0 10px 28px rgb(0 0 0 / 0.55), 0 0 0 4px rgb(200 160 75 / 0.18);
+    box-shadow:
+      0 10px 28px rgb(0 0 0 / 0.55),
+      0 0 0 4px rgb(200 160 75 / 0.18);
     font: 500 var(--step--1) / 1 var(--mono);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -2398,7 +2503,7 @@ select.admin__status option {
   line-height: 1.45;
 }
 .festival-list__items li::before {
-  content: "◆";
+  content: '◆';
   position: absolute;
   left: 0;
   top: 0.2em;
@@ -2482,13 +2587,15 @@ select.admin__status option {
 .artist.is-active .artist__card {
   transform: translateY(-8px);
   border-color: var(--gold);
-  box-shadow: 0 0 0 1px var(--gold), 0 18px 40px rgb(0 0 0 / 0.55);
+  box-shadow:
+    0 0 0 1px var(--gold),
+    0 18px 40px rgb(0 0 0 / 0.55);
 }
 .artist.is-active .artist__name {
   color: var(--gold);
 }
 .artist-panel {
-  margin-top: 3.5rem;
+  margin-top: 4.5rem;
   scroll-margin: 5.5rem 0 1.5rem;
 }
 .artist-panel[hidden] {
@@ -2510,7 +2617,7 @@ select.admin__status option {
 }
 /* Small diamond where the line leaves the card. */
 .artist-panel__link::before {
-  content: "";
+  content: '';
   position: absolute;
   top: -4px;
   left: -3px;
@@ -2609,18 +2716,39 @@ select.admin__status option {
   text-align: center;
   /* Red stage lights at the edges and faint dust, as on the original. */
   background:
-    radial-gradient(ellipse 22% 70% at 0% 85%, rgb(170 20 30 / 0.55), transparent 70%),
-    radial-gradient(ellipse 22% 70% at 100% 85%, rgb(170 20 30 / 0.55), transparent 70%),
-    radial-gradient(circle at 30% 30%, rgb(255 220 150 / 0.05) 0 1px, transparent 2px) 0 0 / 7cqw 7cqw,
+    radial-gradient(
+      ellipse 22% 70% at 0% 85%,
+      rgb(170 20 30 / 0.55),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 22% 70% at 100% 85%,
+      rgb(170 20 30 / 0.55),
+      transparent 70%
+    ),
+    radial-gradient(
+        circle at 30% 30%,
+        rgb(255 220 150 / 0.05) 0 1px,
+        transparent 2px
+      )
+      0 0 / 7cqw 7cqw,
     #050403;
 }
 .poster__title {
   display: grid;
-  font: 600 10.5cqw / 1 var(--font-poster), var(--display);
+  font:
+    600 10.5cqw / 1 var(--font-poster),
+    var(--display);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: transparent;
-  background: linear-gradient(180deg, #fbe9b0 0%, #e2b85c 40%, #a7741f 62%, #f1d48a 100%);
+  background: linear-gradient(
+    180deg,
+    #fbe9b0 0%,
+    #e2b85c 40%,
+    #a7741f 62%,
+    #f1d48a 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   filter: drop-shadow(0 0.4cqw 0.8cqw rgb(0 0 0 / 0.8));
@@ -2633,7 +2761,9 @@ select.admin__status option {
   align-items: center;
   gap: 3cqw;
   width: 100%;
-  font: 600 5.6cqw / 1 var(--font-poster), var(--display);
+  font:
+    600 5.6cqw / 1 var(--font-poster),
+    var(--display);
   letter-spacing: 0.12em;
   color: #e9c97a;
 }
@@ -2712,7 +2842,9 @@ select.admin__status option {
   color: var(--gold-pale);
   font: 400 1.8rem / 1 var(--display);
   cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
 }
 .lightbox__btn:hover {
   border-color: var(--gold);
@@ -2743,14 +2875,23 @@ select.admin__status option {
 /* A warm stage light falls on the poster; velvet at both edges frames the stage. */
 .hero::before,
 .hero::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 .hero::before {
-  background: radial-gradient(ellipse 38% 60% at 76% 42%, rgb(233 216 166 / 0.13), transparent 70%),
-    radial-gradient(ellipse 22% 34% at 76% 8%, rgb(233 216 166 / 0.08), transparent 70%);
+  background:
+    radial-gradient(
+      ellipse 38% 60% at 76% 42%,
+      rgb(233 216 166 / 0.13),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 22% 34% at 76% 8%,
+      rgb(233 216 166 / 0.08),
+      transparent 70%
+    );
 }
 /* Each edge gets its own curtain and the right one is the left one mirrored (folds counted from
    the outer edge on both sides), so colour, width and folds match exactly. */
@@ -2759,16 +2900,24 @@ select.admin__status option {
   --velvet-edge: rgb(110 22 30 / 0.42);
   --fold: rgb(0 0 0 / 0.16) 0 14px, transparent 14px 34px;
   background:
-    repeating-linear-gradient(90deg, var(--fold)) left top / var(--curtain) 100% no-repeat,
-    repeating-linear-gradient(270deg, var(--fold)) right top / var(--curtain) 100% no-repeat,
-    linear-gradient(90deg, var(--velvet-edge), transparent) left top / var(--curtain) 100% no-repeat,
-    linear-gradient(270deg, var(--velvet-edge), transparent) right top / var(--curtain) 100% no-repeat;
+    repeating-linear-gradient(90deg, var(--fold)) left top / var(--curtain) 100%
+      no-repeat,
+    repeating-linear-gradient(270deg, var(--fold)) right top / var(--curtain)
+      100% no-repeat,
+    linear-gradient(90deg, var(--velvet-edge), transparent) left top /
+      var(--curtain) 100% no-repeat,
+    linear-gradient(270deg, var(--velvet-edge), transparent) right top /
+      var(--curtain) 100% no-repeat;
   -webkit-mask:
-    linear-gradient(90deg, #000, transparent) left top / var(--curtain) 100% no-repeat,
-    linear-gradient(270deg, #000, transparent) right top / var(--curtain) 100% no-repeat;
+    linear-gradient(90deg, #000, transparent) left top / var(--curtain) 100%
+      no-repeat,
+    linear-gradient(270deg, #000, transparent) right top / var(--curtain) 100%
+      no-repeat;
   mask:
-    linear-gradient(90deg, #000, transparent) left top / var(--curtain) 100% no-repeat,
-    linear-gradient(270deg, #000, transparent) right top / var(--curtain) 100% no-repeat;
+    linear-gradient(90deg, #000, transparent) left top / var(--curtain) 100%
+      no-repeat,
+    linear-gradient(270deg, #000, transparent) right top / var(--curtain) 100%
+      no-repeat;
 }
 .hero__inner {
   position: relative;
@@ -2776,16 +2925,22 @@ select.admin__status option {
 }
 @media (max-width: 959px) {
   .hero::before {
-    background: radial-gradient(ellipse 70% 30% at 50% 78%, rgb(233 216 166 / 0.12), transparent 70%);
+    background: radial-gradient(
+      ellipse 70% 30% at 50% 78%,
+      rgb(233 216 166 / 0.12),
+      transparent 70%
+    );
   }
 }
 
 /* ---------- Scroll reveal (see ScrollReveal.tsx) ---------- */
 [data-reveal] {
-  transition: opacity 0.7s ease-out, translate 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition:
+    opacity 0.7s ease-out,
+    translate 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
-[data-reveal="pending"] {
+[data-reveal='pending'] {
   opacity: 0;
   translate: 0 18px;
 }
@@ -2905,7 +3060,7 @@ select.admin__status option {
     flex-wrap: wrap;
     width: auto;
   }
-  .marquee__track li[aria-hidden="true"] {
+  .marquee__track li[aria-hidden='true'] {
     display: none;
   }
 }

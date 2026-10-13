@@ -1,0 +1,2 @@
+Flags from flag-icons (https://github.com/lipis/flag-icons), MIT License, Copyright (c) 2013 Panayiotis Lipiridis.
+rs.svg and es.svg are simplified (no coat of arms) for small sizes.
