@@ -4,18 +4,49 @@ import { computePrice } from "@/lib/pricing";
 import { fieldErrors, registrationSchema } from "@/lib/schema";
 import { supabaseAdmin } from "@/lib/server/supabase";
 import { verifyTurnstile } from "@/lib/server/turnstile";
+import { registerRateLimit } from "@/lib/server/ratelimit";
 import { mailConfigured, notifyOrganizer, sendConfirmation } from "@/lib/server/mail";
 
 const isProd = process.env.NODE_ENV === "production";
+const MAX_BODY = 16_000;
+
+function sameOrigin(req: NextRequest) {
+  const origin = req.headers.get("origin");
+  const host = req.headers.get("x-forwarded-host") ?? req.headers.get("host");
+  if (!origin || !host) return false;
+  try {
+    return new URL(origin).host === host;
+  } catch {
+    return false;
+  }
+}
 
 // A registration is kept in Supabase when it is configured, and is always emailed to the
 // organiser when Resend is configured. With neither, it would vanish, so the request fails.
 export async function POST(req: NextRequest) {
-  const body = await req.json().catch(() => null);
+  // A real registration is about 1–2 KB; anything far bigger isn't from the form.
+  const raw = await req.text().catch(() => "");
+  if (raw.length > MAX_BODY) return NextResponse.json({ message: "Payload too large" }, { status: 413 });
+  let body: Record<string, unknown> | null = null;
+  try {
+    body = JSON.parse(raw);
+  } catch {}
   // Pick the language first so validation messages come back in it.
   const lang = isLang(body?.lang) ? body.lang : DEFAULT_LANG;
   const c = getContent(lang);
   const errors = c.registration.errors;
+
+  // Browsers always send Origin with fetch POSTs; scripts posting from elsewhere usually don't.
+  if (!sameOrigin(req)) return NextResponse.json({ message: errors.spam }, { status: 403 });
+
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
+  const wait = await registerRateLimit(ip);
+  if (wait) {
+    return NextResponse.json(
+      { message: fill(errors.tooMany, { minutes: Math.max(1, Math.ceil(wait / 60)) }) },
+      { status: 429, headers: { "Retry-After": String(wait) } },
+    );
+  }
 
   // Honeypot: a field people never see. Bots that fill every input end up here.
   if (typeof body?.website === "string" && body.website.trim() !== "") {
@@ -28,7 +59,6 @@ export async function POST(req: NextRequest) {
   }
   const data = parsed.data;
 
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
   if (!(await verifyTurnstile(data.turnstileToken, ip))) {
     return NextResponse.json({ message: errors.spam }, { status: 400 });
   }

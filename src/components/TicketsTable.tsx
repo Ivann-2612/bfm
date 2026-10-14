@@ -119,6 +119,35 @@ export function TicketsTable({
   const toggleSort = (key: SortKey) =>
     setSort((s) => (s.key === key ? { key, dir: s.dir === 1 ? -1 : 1 } : { key, dir: key === "ts" || key === "total" ? -1 : 1 }));
 
+  // Phones have no column headers to click, so sorting comes from a select.
+  const MOBILE_SORTS: { id: string; label: string; key: SortKey; dir: 1 | -1 }[] = [
+    { id: "new", label: "Najnovije prvo", key: "ts", dir: -1 },
+    { id: "old", label: "Najstarije prvo", key: "ts", dir: 1 },
+    { id: "name", label: "Ime A–Ž", key: "name", dir: 1 },
+    { id: "total", label: "Iznos, najveći prvo", key: "total", dir: -1 },
+    { id: "status", label: "Po statusu", key: "status", dir: 1 },
+  ];
+  const mobileSort = MOBILE_SORTS.find((m) => m.key === sort.key && m.dir === sort.dir)?.id ?? "";
+
+  const statusSelect = (t: Ticket) => (
+    <>
+      <select
+        className={`admin__status admin__status--${t.status}`}
+        value={t.status}
+        disabled={saving === t.id}
+        onChange={(e) => changeStatus(t, e.target.value as Status)}
+        aria-label={`Status: ${t.name}`}
+      >
+        {STATUSES.map((st) => (
+          <option key={st} value={st}>
+            {STATUS_LABEL[st]}
+          </option>
+        ))}
+      </select>
+      {saving === t.id && <small>Čuvam…</small>}
+    </>
+  );
+
   return (
     <>
       {!demo && (
@@ -193,22 +222,7 @@ export function TicketsTable({
                   {t.extras && <small>{t.extras}</small>}
                 </td>
                 <td className="admin__nowrap">{t.totalText}</td>
-                <td>
-                  <select
-                    className={`admin__status admin__status--${t.status}`}
-                    value={t.status}
-                    disabled={saving === t.id}
-                    onChange={(e) => changeStatus(t, e.target.value as Status)}
-                    aria-label={`Status: ${t.name}`}
-                  >
-                    {STATUSES.map((st) => (
-                      <option key={st} value={st}>
-                        {STATUS_LABEL[st]}
-                      </option>
-                    ))}
-                  </select>
-                  {saving === t.id && <small>Čuvam…</small>}
-                </td>
+                <td>{statusSelect(t)}</td>
                 <td className="admin__notes">{t.notes}</td>
               </tr>
             ))}
@@ -216,6 +230,56 @@ export function TicketsTable({
         </table>
         {rows.length === 0 && <p className="admin__empty admin__empty--inline">Nema prijava sa ovim statusom.</p>}
       </div>
+
+      {/* Phones: one card per registration instead of the wide table (CSS switches between them). */}
+      <div className="admin__mobile-sort">
+        <label>
+          Redosled
+          <select
+            value={mobileSort}
+            onChange={(e) => {
+              const m = MOBILE_SORTS.find((x) => x.id === e.target.value);
+              if (m) setSort({ key: m.key, dir: m.dir });
+            }}
+          >
+            {MOBILE_SORTS.map((m) => (
+              <option key={m.id} value={m.id}>
+                {m.label}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <ul className="admin__cards">
+        {rows.map((t) => (
+          <li key={t.id} className={`admin__card is-${t.status}`}>
+            <div className="admin__card-top">
+              <div>
+                <b className="admin__card-name">{t.name}</b>
+                <small>
+                  {t.received} · {t.lang.toUpperCase()}
+                </small>
+              </div>
+              <div className="admin__card-status">{statusSelect(t)}</div>
+            </div>
+            <div className="admin__card-row">
+              <span>
+                {t.packageName}
+                {t.early && <small>rana prijava</small>}
+                {t.extras && <small>{t.extras}</small>}
+              </span>
+              <b className="admin__card-total">{t.totalText}</b>
+            </div>
+            <div className="admin__card-contact">
+              <a href={`mailto:${t.email}`}>{t.email}</a>
+              {t.phone && <a href={`tel:${t.phone.replace(/\s/g, "")}`}>{t.phone}</a>}
+              <span>{t.country}</span>
+            </div>
+            {t.notes && <p className="admin__card-notes">{t.notes}</p>}
+          </li>
+        ))}
+        {rows.length === 0 && <li className="admin__empty">Nema prijava sa ovim statusom.</li>}
+      </ul>
     </>
   );
 }

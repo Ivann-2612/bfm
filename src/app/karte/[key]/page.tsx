@@ -85,7 +85,7 @@ export default async function Tickets({
           )}
 
           <p className="admin__hint">
-            Status menjaš u koloni „Status“: izmena se odmah čuva u bazi. Ovu
+            Status menjaš u padajućem meniju kod svake prijave: izmena se odmah čuva u bazi. Ovu
             adresu ne prosleđuj: ko je ima, vidi sve prijave.
           </p>
         </>

@@ -468,7 +468,8 @@
       "spam": "The spam check failed. Reload the page and try again.",
       "unavailable": "Registration is temporarily unavailable.",
       "saveFailed": "We could not save your registration. Try again in a minute.",
-      "duplicate": "This email is already registered for {year}. To change it, write to {contact}."
+      "duplicate": "This email is already registered for {year}. To change it, write to {contact}.",
+      "tooMany": "Too many registrations were sent from this network in a row. Try again in {minutes} min."
     },
     "payment": {
       "referenceHint": "Use your full name as the payment reference.",
@@ -556,10 +557,10 @@
 
   "privacy": {
     "title": "Privacy policy",
-    "updated": "Last updated: 12 October 2026.",
+    "updated": "Last updated: 14 October 2026.",
     "sections": [
       { "title": "Who processes your data", "text": "Your data is processed by {organiser}, the organiser of the Belgrade Magic Festival. For any questions, write to {contact}." },
-      { "title": "What we collect", "text": "When you register: first and last name, email, phone if you give it, country, chosen package and add-ons, your notes, and the text and time of your consent." },
+      { "title": "What we collect", "text": "When you register: first and last name, email, phone if you give it, country, chosen package and add-ons, your notes, and the text and time of your consent. To protect the form from abuse, each submission also stores a one-way hash of your IP address (not the address itself) for up to two days." },
       { "title": "Do you have to give us this data", "text": "Your name, email, country and chosen package are needed to process the registration; without them we cannot register you. Phone and notes are optional." },
       { "title": "Why we use it", "text": "To process your registration, send you a summary and payment details, remind you if payment does not arrive, and organise the festival. We do not sell your data or use it for advertising." },
       { "title": "Legal basis", "text": "We process registration data to perform the contract for taking part in the festival, i.e. your registration and fee. The consent you give in the form covers storing your data to process the registration. Google Analytics, if we enable it, is used only with your explicit consent." },

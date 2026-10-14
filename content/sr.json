@@ -468,7 +468,8 @@
       "spam": "Provera protiv spama nije uspela. Osvežite stranicu i pokušajte ponovo.",
       "unavailable": "Prijava trenutno nije dostupna.",
       "saveFailed": "Nismo uspeli da sačuvamo prijavu. Pokušajte ponovo za minut.",
-      "duplicate": "Ovaj email je već prijavljen za {year}. Za izmenu pišite na {contact}."
+      "duplicate": "Ovaj email je već prijavljen za {year}. Za izmenu pišite na {contact}.",
+      "tooMany": "Sa ove mreže je poslato previše prijava zaredom. Pokušajte ponovo za {minutes} min."
     },
     "payment": {
       "referenceHint": "U pozivu na broj upišite svoje ime i prezime.",
@@ -556,10 +557,10 @@
 
   "privacy": {
     "title": "Politika privatnosti",
-    "updated": "Poslednja izmena: 12. oktobar 2026.",
+    "updated": "Poslednja izmena: 14. oktobar 2026.",
     "sections": [
       { "title": "Ko obrađuje vaše podatke", "text": "Podatke obrađuje {organiser}, organizator Beogradskog festivala magije. Za sva pitanja pišite na {contact}." },
-      { "title": "Koje podatke prikupljamo", "text": "Kada se prijavite: ime, prezime, email, telefon ako ga unesete, državu, izabrani paket i dodatke, napomenu, kao i tekst i vreme vaše saglasnosti." },
+      { "title": "Koje podatke prikupljamo", "text": "Kada se prijavite: ime, prezime, email, telefon ako ga unesete, državu, izabrani paket i dodatke, napomenu, kao i tekst i vreme vaše saglasnosti. Radi zaštite od zloupotrebe forme, uz svako slanje čuvamo i jednosmerni otisak (heš) IP adrese (ne samu adresu), najduže dva dana." },
       { "title": "Da li morate da date podatke", "text": "Ime, prezime, email, država i izbor paketa su neophodni za obradu prijave; bez njih prijava nije moguća. Telefon i napomena nisu obavezni." },
       { "title": "Zašto ih koristimo", "text": "Da obradimo prijavu, pošaljemo vam rezime i podatke za uplatu, podsetimo vas ako uplata ne stigne i organizujemo festival. Podatke ne prodajemo i ne koristimo za reklame." },
       { "title": "Pravni osnov", "text": "Podatke iz prijave obrađujemo radi izvršenja ugovora o učešću na festivalu, odnosno vaše prijave i kotizacije. Saglasnost koju dajete u formi odnosi se na čuvanje podataka radi obrade prijave. Google Analytics, ako ga uključimo, koristi se samo uz vaš izričit pristanak." },

@@ -1772,6 +1772,19 @@ html.menu-open .site-header {
   font-size: 0.9rem;
   color: #e0737c;
 }
+/* A field that needs attention: its label and helper text turn a soft red too, not just the input. */
+.field:has(> [aria-invalid='true']) > span,
+.choices:has(> .field__error) > legend,
+.check:has([aria-invalid='true']) > span {
+  color: #e8a0a6;
+}
+.field:has(> [aria-invalid='true']) > span small,
+.choices:has(> .field__error) .choice small {
+  color: #c98288;
+}
+.choices:has(> .field__error) .choice {
+  border-color: rgb(163 48 59 / 0.55);
+}
 .choices {
   gap: 0.6rem;
 }
@@ -2453,6 +2466,161 @@ select.admin__status option {
 .admin__status--pending {
   border-color: var(--gold);
   color: var(--gold-pale);
+}
+
+/* Phones: cards instead of the table. */
+.admin__mobile-sort,
+.admin__cards {
+  display: none;
+}
+@media (max-width: 700px) {
+  .admin {
+    padding-block: 1.5rem 3rem;
+  }
+  .admin__figures {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1.25rem;
+  }
+  .admin__figures div {
+    padding: 0.75rem 0.9rem;
+  }
+  .admin__figures dd {
+    font-size: var(--step-1);
+  }
+  .admin__figures dt {
+    font-size: 0.68rem;
+  }
+  .admin__refresh {
+    margin-top: 1rem;
+  }
+  .admin__refresh-note {
+    flex-basis: 100%;
+    font-size: 0.75rem;
+  }
+  /* Filters scroll sideways in one row instead of wrapping into three. */
+  .admin__filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: 1.25rem calc(-1 * var(--gutter, 1.25rem)) 0;
+    padding: 0 var(--gutter, 1.25rem) 0.25rem;
+    scrollbar-width: none;
+  }
+  .admin__filter {
+    flex: none;
+  }
+  .admin__message {
+    min-height: 0;
+    margin-top: 0.5rem;
+  }
+  .admin__table-wrap {
+    display: none;
+  }
+  .admin__mobile-sort {
+    display: block;
+    margin-top: 0.5rem;
+  }
+  .admin__mobile-sort label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font: var(--step--1) var(--mono);
+    color: var(--smoke);
+  }
+  .admin__mobile-sort select {
+    flex: 1;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--ink-2);
+    color: var(--bone);
+    font: 0.9rem var(--body, inherit);
+  }
+  .admin__cards {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .admin__card {
+    display: grid;
+    gap: 0.7rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--line);
+    border-radius: 8px;
+    background: var(--ink-2);
+  }
+  .admin__card.is-pending {
+    border-left-color: var(--gold);
+  }
+  .admin__card.is-paid {
+    border-left-color: #5f9e6e;
+  }
+  .admin__card.is-expired,
+  .admin__card.is-cancelled {
+    opacity: 0.6;
+  }
+  .admin__card small {
+    display: block;
+    color: var(--smoke);
+    font-size: 0.8rem;
+  }
+  .admin__card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 0.75rem;
+  }
+  .admin__card-name {
+    display: block;
+    font-size: 1.05rem;
+    line-height: 1.25;
+  }
+  .admin__card-status {
+    flex: none;
+    text-align: right;
+  }
+  /* Bigger tap target for the status on a phone. */
+  .admin__card select.admin__status {
+    padding: 0.5rem 1.8rem 0.5rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  .admin__card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.92rem;
+  }
+  .admin__card-total {
+    font: 500 1rem var(--mono);
+    color: var(--gold-pale);
+    white-space: nowrap;
+  }
+  .admin__card-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1rem;
+    font-size: 0.88rem;
+  }
+  .admin__card-contact a {
+    color: var(--gold-pale);
+    overflow-wrap: anywhere;
+  }
+  .admin__card-contact span {
+    color: var(--smoke);
+  }
+  .admin__card-notes {
+    margin: 0;
+    padding: 0.5rem 0.7rem;
+    border-radius: 6px;
+    background: var(--ink-3);
+    color: var(--smoke);
+    font-size: 0.85rem;
+  }
 }
 
 /* ---------- Country flags (artists) ---------- */
