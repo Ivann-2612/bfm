@@ -415,6 +415,10 @@ html.menu-open .site-header {
 @media (max-width: 600px) {
   /* Register lives in the menu and the hero on phones; keep the bar to name + language + menu.
      Instagram moves into the menu too, so the festival name fits. */
+  /* With Instagram hidden, the language button again pushes itself and the burger to the right edge. */
+  .site-header .social-link + .lang-switch {
+    margin-left: auto;
+  }
   .site-header__cta,
   .site-header .social-link,
   .wordmark span {
