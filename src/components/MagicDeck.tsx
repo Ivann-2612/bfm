@@ -15,13 +15,18 @@ const DECK: { rank: string; suit: Suit }[] = [
   { rank: 'JOKER', suit: '♥' },
   { rank: '10', suit: '♠' },
   { rank: 'J', suit: '♥' },
+  { rank: '7', suit: '♦' },
+  { rank: '4', suit: '♠' },
   { rank: 'Q', suit: '♣' },
+  { rank: '2', suit: '♣' },
   { rank: 'K', suit: '♦' },
   { rank: 'A', suit: '♠' },
   { rank: 'K', suit: '♥' },
   { rank: 'Q', suit: '♠' },
+  { rank: '8', suit: '♠' },
   { rank: 'J', suit: '♦' },
-  { rank: '10', suit: '♥' }
+  { rank: '10', suit: '♥' },
+  { rank: 'K', suit: '♠' }
 ];
 const SPREAD = (124 * Math.PI) / 180; // total fan angle
 // The fan leans right (clockwise) so it stays around the poster, away from the title on the left.
@@ -72,8 +77,8 @@ function drawFace() {
   c.height = TEX_H;
   const ctx = c.getContext('2d')!;
   const g = ctx.createLinearGradient(0, 0, TEX_W, TEX_H);
-  g.addColorStop(0, '#f3ead6');
-  g.addColorStop(1, '#dccdaa');
+  g.addColorStop(0, '#efe1c0');
+  g.addColorStop(1, '#d3bd8f');
   // Fill edge to edge: the card geometry rounds the corners, so the texture has no transparent pixels.
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, TEX_W, TEX_H);
@@ -90,8 +95,8 @@ const INK = '#16131a';
 const GOLD = '#c8a04b';
 
 // The joker as in a real deck: "JOKER" spelled down two corners with a star, a jester in the
-// middle (three-pointed cap with bells, smiling face, ruff collar) and the word under him.
-export function drawJoker(font: string) {
+// middle as a full-length figure drawn from JOKER_SVG.
+export function drawJoker(font: string, figure: HTMLImageElement | null) {
   const { c, ctx } = drawFace();
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
@@ -110,117 +115,167 @@ export function drawJoker(font: string) {
   corner();
   ctx.restore();
 
-  // The figure is drawn on a 360×504 grid; centre that grid on the actual card size.
-  ctx.save();
-  ctx.translate((TEX_W - 350) / 2, (TEX_H - 494) / 2);
-  const cx = 180;
-  ctx.lineJoin = 'round';
-  ctx.lineWidth = 3;
-  ctx.strokeStyle = INK;
-
-  // Cap: red, black, red points, each ending in a gold bell.
-  const lobe = (
-    x0: number,
-    x1: number,
-    ctrl: [number, number],
-    tip: [number, number],
-    fill: string
-  ) => {
-    ctx.beginPath();
-    ctx.moveTo(x0, 236);
-    ctx.quadraticCurveTo(ctrl[0], ctrl[1], tip[0], tip[1]);
-    ctx.quadraticCurveTo((x0 + x1) / 2 + (tip[0] - cx) * 0.2, 200, x1, 236);
-    ctx.closePath();
-    ctx.fillStyle = fill;
-    ctx.fill();
-    ctx.stroke();
-  };
-  lobe(112, 168, [92, 178], [66, 150], RED);
-  lobe(252, 192, [268, 178], [294, 150], RED);
-  lobe(148, 212, [160, 150], [cx, 98], INK);
-  for (const [x, y] of [
-    [66, 150],
-    [294, 150],
-    [cx, 98]
-  ] as const) {
-    ctx.beginPath();
-    ctx.arc(x, y, 10, 0, Math.PI * 2);
-    ctx.fillStyle = GOLD;
-    ctx.fill();
-    ctx.stroke();
+  // The full-length jester (see JOKER_SVG), centred between the corner indices.
+  if (figure) {
+    const h = TEX_H - 120;
+    const w = (h * 200) / 320;
+    ctx.drawImage(figure, (TEX_W - w) / 2, 58, w, h);
   }
-  // Band of the cap.
-  roundRect(ctx, 108, 228, 144, 18, 6);
-  ctx.fillStyle = GOLD;
-  ctx.fill();
-  ctx.stroke();
-
-  // Face.
-  ctx.beginPath();
-  ctx.ellipse(cx, 292, 46, 52, 0, 0, Math.PI * 2);
-  ctx.fillStyle = '#f8f1e1';
-  ctx.fill();
-  ctx.stroke();
-  // Laughing eyes, a diamond on each cheek, a wide smile.
-  ctx.lineWidth = 3.5;
-  for (const x of [cx - 18, cx + 18]) {
-    ctx.beginPath();
-    ctx.arc(x, 282, 8, Math.PI * 1.1, Math.PI * 1.9);
-    ctx.stroke();
-  }
-  ctx.fillStyle = RED;
-  for (const x of [cx - 28, cx + 28]) {
-    ctx.beginPath();
-    ctx.moveTo(x, 296);
-    ctx.lineTo(x + 5, 303);
-    ctx.lineTo(x, 310);
-    ctx.lineTo(x - 5, 303);
-    ctx.closePath();
-    ctx.fill();
-  }
-  ctx.strokeStyle = RED;
-  ctx.lineWidth = 4;
-  ctx.beginPath();
-  ctx.arc(cx, 300, 20, Math.PI * 0.15, Math.PI * 0.85);
-  ctx.stroke();
-
-  // Ruff collar: alternating red and black points.
-  ctx.strokeStyle = INK;
-  ctx.lineWidth = 2.5;
-  const points = 8;
-  const left = cx - 72;
-  const step = 144 / points;
-  for (let i = 0; i < points; i++) {
-    ctx.beginPath();
-    ctx.moveTo(left + i * step, 344);
-    ctx.lineTo(left + (i + 0.5) * step, 378);
-    ctx.lineTo(left + (i + 1) * step, 344);
-    ctx.closePath();
-    ctx.fillStyle = i % 2 ? INK : RED;
-    ctx.fill();
-    ctx.stroke();
-  }
-  ctx.beginPath();
-  ctx.ellipse(cx, 344, 74, 7, 0, 0, Math.PI * 2);
-  ctx.fillStyle = GOLD;
-  ctx.fill();
-  ctx.stroke();
-
-  // Name under the figure.
-  ctx.fillStyle = INK;
-  ctx.font = `500 34px ${font}`;
-  if ('letterSpacing' in ctx)
-    (
-      ctx as CanvasRenderingContext2D & { letterSpacing: string }
-    ).letterSpacing = '6px';
-  ctx.fillText('JOKER', cx + 3, 420);
-  ctx.restore();
+  ageCard(ctx, 99, 'paper');
   return c;
 }
 
+// The jester, after the classic full-length joker: three-pointed cap with bells, ruff, a tunic
+// split in two colours with the four suits, two-tone tights and curled shoes, but in the site's
+// velvet, gold and ink, with a magician's face (domino mask, curled moustache) and a wand.
+// viewBox 200 × 320. Loaded as an image once, then painted onto the card canvas.
+const I = '#f4ead2';
+const JOKER_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 320">
+<g stroke="${INK}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M88 212 L84 262 Q83 280 76 288 L90 290 Q96 278 97 262 L99 212 Z" fill="${RED}"/>
+  <path d="M101 212 L103 262 Q104 278 110 290 L124 288 Q117 280 116 262 L112 212 Z" fill="${INK}" stroke="#000"/>
+  <path d="M90 286 L76 286 Q60 288 52 278 Q54 296 76 297 L92 296 Z" fill="${GOLD}"/>
+  <path d="M110 286 L124 286 Q140 288 148 278 Q146 296 124 297 L108 296 Z" fill="${RED}"/>
+  <path d="M100 128 L72 132 Q63 170 72 214 L100 214 Z" fill="${RED}"/>
+  <path d="M100 128 L128 132 Q137 170 128 214 L100 214 Z" fill="${INK}" stroke="#000"/>
+  <path d="M72 214 L79 228 L86 214 L93 228 L100 214 L107 228 L114 214 L121 228 L128 214 Z" fill="${GOLD}"/>
+  <g stroke="none" font-family="Georgia, serif" font-size="19" text-anchor="middle">
+    <text x="86" y="166" fill="${I}">♥</text><text x="114" y="166" fill="${GOLD}">♣</text>
+    <text x="86" y="200" fill="${GOLD}">♦</text><text x="114" y="200" fill="${I}">♠</text>
+  </g>
+  <path d="M74 136 Q50 152 46 188 L60 192 Q63 164 82 152 Z" fill="${GOLD}"/>
+  <path d="M46 188 L50 196 L54 189 L58 197 L61 191 Z" fill="${INK}"/>
+  <circle cx="54" cy="200" r="6" fill="${I}"/>
+  <path d="M126 136 Q152 150 158 124 L147 119 Q142 140 124 150 Z" fill="${RED}"/>
+  <path d="M147 119 L150 112 L153 120 L157 114 L159 124 Z" fill="${GOLD}"/>
+  <line x1="138" y1="142" x2="180" y2="62" stroke-width="5"/>
+  <line x1="176" y1="70" x2="180" y2="62" stroke="${I}" stroke-width="5"/>
+  <line x1="138" y1="142" x2="141" y2="136" stroke="${I}" stroke-width="5"/>
+  <circle cx="153" cy="116" r="6" fill="${I}"/>
+  <g fill="${GOLD}" stroke="none">
+    <path d="M186 50 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z"/>
+    <path d="M170 46 l1.2 3.6 3.6 1.2 -3.6 1.2 -1.2 3.6 -1.2 -3.6 -3.6 -1.2 3.6 -1.2z"/>
+    <path d="M192 72 l1 3 3 1 -3 1 -1 3 -1 -3 -3 -1 3 -1z"/>
+  </g>
+  <path d="M64 128 L71 118 L78 128 L85 117 L92 128 L100 116 L108 128 L115 117 L122 128 L129 118 L136 128 Q100 142 64 128 Z" fill="${GOLD}"/>
+  <ellipse cx="100" cy="100" rx="17" ry="20" fill="${I}"/>
+  <path d="M81 96 Q91 86 100 94 Q109 86 119 96 Q113 105 104 101 Q100 99 96 101 Q87 105 81 96 Z" fill="${INK}" stroke="${GOLD}" stroke-width="1.4"/>
+  <ellipse cx="92" cy="96" rx="3.6" ry="2.2" fill="${I}" stroke="none"/>
+  <ellipse cx="108" cy="96" rx="3.6" ry="2.2" fill="${I}" stroke="none"/>
+  <path d="M100 108 Q92 103 85 108 Q83 113 88 112 Q93 108 100 110 Q107 108 112 112 Q117 113 115 108 Q108 103 100 108 Z" fill="${INK}" stroke="none"/>
+  <path d="M94 114 Q100 118 106 114" fill="none" stroke="${RED}" stroke-width="2.2"/>
+  <path d="M97.5 118 L100 125 L102.5 118 Z" fill="${INK}" stroke="none"/>
+  <path d="M84 86 Q64 56 42 78 Q60 74 76 94 Z" fill="${GOLD}"/>
+  <path d="M86 84 Q88 40 112 32 Q102 50 112 82 Z" fill="${RED}"/>
+  <path d="M110 82 Q134 54 158 74 Q140 72 122 92 Z" fill="${INK}" stroke="#000"/>
+  <path d="M79 92 Q100 78 121 92 L119 98 Q100 87 81 98 Z" fill="${GOLD}"/>
+  <circle cx="42" cy="79" r="5" fill="${GOLD}"/><circle cx="112" cy="32" r="5" fill="${GOLD}"/><circle cx="158" cy="75" r="5" fill="${GOLD}"/>
+  <g stroke="${GOLD}" stroke-width="1.6" fill="none">
+    <path d="M60 302 l4 -8 M70 302 l1 -9 M128 302 l-1 -9 M138 302 l-4 -8"/>
+  </g>
+</g></svg>`;
+
+function loadJokerFigure(): Promise<HTMLImageElement | null> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(JOKER_SVG)}`;
+  });
+}
+
+// Small seeded random, so every card ages the same way on every visit.
+function rng(seed: number) {
+  let s = seed >>> 0;
+  return () => {
+    s = (s + 0x6d2b79f5) >>> 0;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+// Old card stock: fine grain, a few faint stains, darker worn corners and edges. On the backs
+// the print is rubbed lighter along the edge, as on a deck that has been played a lot.
+function ageCard(
+  ctx: CanvasRenderingContext2D,
+  seed: number,
+  kind: 'paper' | 'back'
+) {
+  const rand = rng(seed);
+  ctx.save();
+  roundRect(ctx, 0, 0, TEX_W, TEX_H, 0.075 * TEX_W);
+  ctx.clip();
+  for (let i = 0; i < 2600; i++) {
+    const dark = rand() < 0.6;
+    ctx.fillStyle = dark
+      ? `rgba(70, 48, 20, ${0.03 + rand() * 0.07})`
+      : `rgba(255, 250, 235, ${0.03 + rand() * 0.06})`;
+    ctx.fillRect(
+      rand() * TEX_W,
+      rand() * TEX_H,
+      1 + rand() * 1.5,
+      1 + rand() * 1.5
+    );
+  }
+  for (let i = 0; i < (kind === 'paper' ? 4 : 2); i++) {
+    const x = rand() * TEX_W;
+    const y = rand() * TEX_H;
+    const r = 25 + rand() * 60;
+    const st = ctx.createRadialGradient(x, y, 0, x, y, r);
+    st.addColorStop(
+      0,
+      kind === 'paper' ? 'rgba(130, 90, 35, 0.07)' : 'rgba(0, 0, 0, 0.12)'
+    );
+    st.addColorStop(1, 'rgba(130, 90, 35, 0)');
+    ctx.fillStyle = st;
+    ctx.fillRect(x - r, y - r, r * 2, r * 2);
+  }
+  const v = ctx.createRadialGradient(
+    TEX_W / 2,
+    TEX_H / 2,
+    TEX_H * 0.32,
+    TEX_W / 2,
+    TEX_H / 2,
+    TEX_H * 0.62
+  );
+  v.addColorStop(0, 'rgba(80, 52, 20, 0)');
+  v.addColorStop(
+    1,
+    kind === 'paper' ? 'rgba(80, 52, 20, 0.22)' : 'rgba(0, 0, 0, 0.3)'
+  );
+  ctx.fillStyle = v;
+  ctx.fillRect(0, 0, TEX_W, TEX_H);
+  roundRect(ctx, 3, 3, TEX_W - 6, TEX_H - 6, 0.075 * TEX_W - 2);
+  ctx.strokeStyle =
+    kind === 'paper' ? 'rgba(110, 76, 34, 0.22)' : 'rgba(255, 225, 190, 0.22)';
+  ctx.lineWidth = 6;
+  ctx.stroke();
+  ctx.strokeStyle =
+    kind === 'paper' ? 'rgba(90, 60, 25, 0.1)' : 'rgba(255, 230, 200, 0.08)';
+  ctx.lineWidth = 0.8;
+  for (let i = 0; i < 6; i++) {
+    const x = rand() * TEX_W;
+    const y = rand() * TEX_H;
+    const a = rand() * Math.PI;
+    const l = 20 + rand() * 70;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
 // Ivory face: gold inner frame, rank + suit in two corners, big pip in the middle.
-function drawFront(rank: string, suit: Suit, font: string) {
-  if (rank === 'JOKER') return drawJoker(font);
+function drawFront(
+  rank: string,
+  suit: Suit,
+  font: string,
+  figure: HTMLImageElement | null,
+  seed: number
+) {
+  if (rank === 'JOKER') return drawJoker(font, figure);
   const { c, ctx } = drawFace();
 
   const ink = isRedSuit(suit) ? '#b01e2c' : '#16131a';
@@ -242,6 +297,7 @@ function drawFront(rank: string, suit: Suit, font: string) {
 
   ctx.font = `${rank === 'A' ? 230 : 170}px ${font}`;
   ctx.fillText(suit, TEX_W / 2, TEX_H / 2 + 8);
+  ageCard(ctx, seed, 'paper');
   return c;
 }
 
@@ -286,6 +342,7 @@ function drawBack(font: string) {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('♠', TEX_W / 2, TEX_H / 2 + 4);
+  ageCard(ctx, 7, 'back');
   return c;
 }
 
@@ -304,6 +361,7 @@ export function MagicDeck() {
     (async () => {
       const THREE = await import('three');
       await document.fonts.ready;
+      const figure = await loadJokerFigure();
       if (disposed) return;
 
       let renderer: import('three').WebGLRenderer;
@@ -430,7 +488,9 @@ export function MagicDeck() {
         catcher.geometry
       ];
       const cards = DECK.map(({ rank, suit }, i) => {
-        const frontTex = toTexture(drawFront(rank, suit, font));
+        const frontTex = toTexture(
+          drawFront(rank, suit, font, figure, 11 + i * 17)
+        );
         const frontMat = new THREE.MeshStandardMaterial({
           map: frontTex,
           roughness: 0.5,
@@ -542,7 +602,10 @@ export function MagicDeck() {
         const from = Math.floor(Math.random() * order.length);
         // Two to four places away, in whichever direction fits inside the hand.
         const dist = 2 + Math.floor(Math.random() * 3);
-        const dir = from + dist < order.length && (from - dist < 0 || Math.random() < 0.5) ? 1 : -1;
+        const dir =
+          from + dist < order.length && (from - dist < 0 || Math.random() < 0.5)
+            ? 1
+            : -1;
         const to = Math.min(order.length - 1, Math.max(0, from + dir * dist));
         const [card] = order.splice(from, 1);
         order.splice(to, 0, card);
@@ -553,13 +616,27 @@ export function MagicDeck() {
         moving = card;
         moveStart = t;
       };
+      // Depth in the hand, in card gaps (in a fan the card to the right lies on top).
+      // The moved card goes straight to the depth of its new place, half a gap off to the side
+      // the shifting cards are not on, so it never cuts through them; as it is pushed back in it
+      // settles to its exact place, sliding under the card that will lie on top of it.
+      const depthOf = (c: (typeof cards)[number], t: number) => {
+        if (c !== moving) return c.slot;
+        const p = clamp01((t - moveStart) / MOVE_MS);
+        const travel = c.to + 0.5 * Math.sign(c.to - c.from);
+        const out = easeInOut(clamp01((p - 0.14) / 0.12)); // only once it is almost out of the hand
+        const back = easeInOut(clamp01((p - 0.76) / 0.24));
+        return c.from + (travel - c.from) * out + (c.to - travel) * back;
+      };
       const updateMove = (t: number) => {
         if (!moving) return;
         const p = clamp01((t - moveStart) / MOVE_MS);
         // The others shift while the card is up; the card itself travels in the same window.
-        const shift = easeInOut(clamp01((p - 0.22) / 0.56));
+        const shift = easeInOut(clamp01((p - 0.27) / 0.49));
         for (const c of cards) c.slot = c.from + (c.to - c.from) * shift;
-        moving.lift = easeOutCubic(clamp01(p / 0.22)) * (1 - easeInOut(clamp01((p - 0.78) / 0.22)));
+        moving.lift =
+          easeOutCubic(clamp01(p / 0.2)) *
+          (1 - easeInOut(clamp01((p - 0.76) / 0.24)));
         if (p >= 1) {
           for (const c of cards) c.slot = c.to;
           moving.lift = 0;
@@ -601,16 +678,15 @@ export function MagicDeck() {
             open *
             breathe *
             fold;
-          // A lifted card rides above the whole hand, so it passes over the others.
           c.holder.position.set(
             fit.pivot.x,
             fit.pivot.y - (1 - rise) * 6,
-            fit.pivot.z + c.slot * gap + c.lift * gap * (DECK.length + 2)
+            fit.pivot.z + depthOf(c, t) * gap
           );
           c.holder.rotation.z =
             -angle - (fit.spread === SPREAD ? LEAN : 0) * open * fold;
           // Pulled out along its own length (out of the hand), with a slight tilt as fingers grab it.
-          c.card.position.y = fit.radius + c.lift * fit.size * 0.42;
+          c.card.position.y = fit.radius + c.lift * fit.size * 0.6;
           c.card.position.z = gap * 0.25 * Math.sin(t / 900 + c.index);
           c.card.rotation.z = c.lift * 0.06;
         }
