@@ -1,0 +1,31 @@
+# Weekly check that the site answers, plus a call to the cron route so Supabase sees activity.
+# A backup to the daily Vercel cron (vercel.json). No commits and no redeploys.
+# Needs the repository secret CRON_SECRET (same value as on Vercel).
+# If the check fails, GitHub emails the repository owner.
+name: Keep-alive
+
+on:
+  schedule:
+    - cron: "0 7 * * 1" # Mondays 07:00 UTC
+  workflow_dispatch: # "Run workflow" button for a manual check
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL: ${{ vars.SITE_URL || 'https://bgfm.vercel.app' }}
+    steps:
+      - name: Site responds
+        run: curl --fail --silent --show-error --max-time 30 "$SITE_URL/" -o /dev/null
+
+      - name: Cron route (keeps the database active)
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          if [ -z "$CRON_SECRET" ]; then
+            echo "::warning::CRON_SECRET is not set in the repository secrets; skipping the database call."
+            exit 0
+          fi
+          curl --fail --silent --show-error --max-time 30 \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            "$SITE_URL/api/cron/expire"

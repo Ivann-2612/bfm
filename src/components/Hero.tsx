@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { fill, firstWord, restWords, site } from "@/lib/content";
 import { SuitMark, type LangProps } from "./ui";
+import { MagicDeck } from "./MagicDeck";
 
 export function Hero({ lang }: LangProps) {
   const s = site(lang);
@@ -8,6 +9,7 @@ export function Hero({ lang }: LangProps) {
 
   return (
     <section id="top" className="hero" aria-labelledby="hero-title">
+      <MagicDeck />
       <div className="wrap hero__inner">
         <div className="hero__text">
           <p className="kicker hero__kicker">

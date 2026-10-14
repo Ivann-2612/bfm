@@ -250,7 +250,6 @@ textarea {
 .wordmark span {
   font: 400 var(--step--1) var(--mono);
   color: var(--smoke);
-  margin-left: 0.2rem;
 }
 .site-nav {
   display: flex;
@@ -568,6 +567,7 @@ html.menu-open .site-header {
   transform: rotate(1.5deg);
   box-shadow: 0 30px 80px rgb(0 0 0 / 0.6);
   animation: hang 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  opacity: 0.93;
 }
 .hero__poster img {
   width: 100%;
@@ -1730,13 +1730,21 @@ html.menu-open .site-header {
   text-transform: none;
   letter-spacing: 0;
   font: 400 0.85rem / 1.4 var(--body);
-  color: var(--smoke);
+  /* Quieter than --smoke but still ~4.5:1 on the dark background (readable small text). */
+  color: #857b6c;
+}
+/* Hints inside a label ("optional", "start typing…") keep the label's line height, so
+   fields side by side line up. */
+.field > span small {
+  line-height: inherit;
 }
 .field input,
 .field select,
 .field textarea {
   width: 100%;
-  padding: 0.8rem 0.9rem;
+  padding: 0.6rem 0.8rem;
+  /* Inputs inherit the body's 1.6 line height, which made them tall; keep them compact. */
+  line-height: 1.35;
   background: var(--ink-2);
   border: 1px solid rgb(200 160 75 / 0.35);
   border-radius: 6px;
@@ -1774,7 +1782,7 @@ html.menu-open .site-header {
   display: flex;
   gap: 0.9rem;
   align-items: flex-start;
-  padding: 1rem 1.1rem;
+  padding: 0.75rem 0.95rem;
   border: 1px solid var(--line);
   border-radius: 8px;
   cursor: pointer;
@@ -2804,7 +2812,7 @@ select.admin__status option {
 .poster__title {
   display: grid;
   font:
-    600 10.5cqw / 1 var(--font-poster),
+    600 9cqw / 1 var(--font-poster),
     var(--display);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -2819,6 +2827,16 @@ select.admin__status option {
   -webkit-background-clip: text;
   background-clip: text;
   filter: drop-shadow(0 0.4cqw 0.8cqw rgb(0 0 0 / 0.8));
+}
+/* Each title line stays on one line, also while the poster font is still loading. */
+.poster__title span {
+  white-space: nowrap;
+}
+/* background-clip:text only paints inside the line box; Cinzel capitals rise above a
+   line-height of 1, so give them room or their tops come out blank. */
+.poster__title {
+  padding-top: 0.14em;
+  line-height: 1.05;
 }
 .poster__title span + span {
   margin-top: 1cqw;
@@ -2938,6 +2956,22 @@ select.admin__status option {
   }
 }
 
+/* ---------- Hero: magic deck (MagicDeck.tsx, three.js) ---------- */
+/* Phones/tablets: room above the poster for the tops of the fanned cards. */
+@media (max-width: 959px) {
+  .hero__poster {
+    margin-top: 2.5rem;
+  }
+}
+.magic-deck {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
 /* ---------- Spotlight & curtain (hero) ---------- */
 /* A warm stage light falls on the poster; velvet at both edges frames the stage. */
 .hero::before,
@@ -2962,7 +2996,7 @@ select.admin__status option {
 }
 /* Each edge gets its own curtain and the right one is the left one mirrored (folds counted from
    the outer edge on both sides), so colour, width and folds match exactly. */
-.hero::after {
+/* .hero::after {
   --curtain: clamp(2.5rem, 9vw, 7rem);
   --velvet-edge: rgb(110 22 30 / 0.42);
   --fold: rgb(0 0 0 / 0.16) 0 14px, transparent 14px 34px;
@@ -2985,7 +3019,7 @@ select.admin__status option {
       no-repeat,
     linear-gradient(270deg, #000, transparent) right top / var(--curtain) 100%
       no-repeat;
-}
+} */
 .hero__inner {
   position: relative;
   z-index: 1;
