@@ -256,6 +256,15 @@ textarea {
   gap: 1.75rem;
   margin-left: auto;
 }
+/* Just above the burger breakpoint the bar is full (name, six links, Instagram, language, register). */
+@media (max-width: 1240px) {
+  .site-nav {
+    gap: 1.1rem;
+  }
+  .site-header__inner {
+    gap: 1.1rem;
+  }
+}
 .site-nav a {
   color: var(--bone);
   text-decoration: none;
@@ -265,6 +274,7 @@ textarea {
   color: var(--gold);
 }
 .lang-switch {
+  flex: none;
   display: grid;
   place-items: center;
   width: 2.4rem;
@@ -367,6 +377,14 @@ textarea {
   gap: 1rem;
   font-size: 0.95rem;
 }
+.mobile-menu__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.mobile-menu__social svg {
+  color: var(--gold);
+}
 /* The header's backdrop-filter would trap the fixed panel inside the header; drop it while open. */
 html.menu-open {
   overflow: hidden;
@@ -386,13 +404,19 @@ html.menu-open .site-header {
   .lang-switch {
     margin-left: auto;
   }
+  /* Instagram + language sit together on the right. */
+  .social-link + .lang-switch {
+    margin-left: 0;
+  }
   .burger {
     display: block;
   }
 }
 @media (max-width: 600px) {
-  /* Register lives in the menu and the hero on phones; keep the bar to name + language + menu. */
+  /* Register lives in the menu and the hero on phones; keep the bar to name + language + menu.
+     Instagram moves into the menu too, so the festival name fits. */
   .site-header__cta,
+  .site-header .social-link,
   .wordmark span {
     display: none;
   }
@@ -782,7 +806,7 @@ html.menu-open .site-header {
 .lecturers__grid {
   display: grid;
   /* Capped at 260px so small source photos aren't blown up. */
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 260px));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 245px));
   gap: clamp(1rem, 2.5vw, 2rem);
 }
 .pcard {
@@ -865,6 +889,21 @@ html.menu-open .site-header {
   font-size: 0.95rem;
   line-height: 1.55;
   color: var(--bone);
+  overflow-y: auto;
+  /* Only if a bio is longer than the card: a thin gold bar instead of the browser's white one. */
+  padding-right: 0.35rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(200 160 75 / 0.45) transparent;
+}
+.pcard__bio::-webkit-scrollbar {
+  width: 4px;
+}
+.pcard__bio::-webkit-scrollbar-track {
+  background: transparent;
+}
+.pcard__bio::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: rgb(200 160 75 / 0.45);
 }
 
 /* ---------- Schedule ---------- */
@@ -1148,21 +1187,63 @@ html.menu-open .site-header {
 .organizers__sub {
   color: var(--smoke);
 }
+/* Directors and coordinators: two teams side by side, portraits in a thin gold mat. */
 .organizers__people {
   display: grid;
-  gap: 1.5rem 3rem;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-  margin-top: 3rem;
+  gap: 2.5rem 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  margin-top: 3.5rem;
 }
-.organizers__people dt {
-  font: var(--step--1) var(--mono);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--smoke);
+.organizers__team .organizers__role {
+  display: block;
+  margin-bottom: 1.1rem;
 }
-.organizers__people dd {
-  margin-top: 0.35rem;
-  font: italic 400 var(--step-1) / 1.3 var(--display);
+.organizers__team ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  max-width: 30rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.person__frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: radial-gradient(
+    ellipse at 50% 35%,
+    var(--ink-3),
+    var(--ink-2) 70%
+  );
+}
+.person__frame img {
+  object-fit: cover;
+  object-position: 50% 25%;
+}
+/* Inner hairline, like a passe-partout; sits above the photo. */
+.person__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0.45rem;
+  border: 1px solid rgb(200 160 75 / 0.35);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.person__initials {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font: 400 clamp(2.2rem, 5vw, 3.2rem) / 1 var(--display);
+  letter-spacing: 0.04em;
+  color: rgb(200 160 75 / 0.55);
+}
+.person__name {
+  margin-top: 0.7rem;
+  font: 400 var(--step-1) / 1.25 var(--display);
 }
 
 /* ---------- Closing ---------- */
@@ -1202,42 +1283,70 @@ html.menu-open .site-header {
 }
 
 /* ---------- Jury ---------- */
-.jury__inner {
-  display: grid;
-  gap: 2rem;
-}
-@media (min-width: 900px) {
-  .jury__inner {
-    grid-template-columns: 14rem 1fr;
-    align-items: start;
-  }
-}
+/* Same gold-matted portraits as the organisers, with the bio underneath. */
 .jury__list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-  gap: 2rem 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 3rem 2.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
-.jury__list li {
-  display: grid;
-  gap: 0.25rem;
+.juror .person__frame {
+  max-width: 18rem;
 }
-.jury__photo {
-  width: 5.5rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  margin-bottom: 0.75rem;
+.juror__text {
+  margin-top: 1.1rem;
 }
-.jury__photo.photo--empty span {
-  display: none;
+.juror__name {
+  font: 400 var(--step-2) / 1.15 var(--display);
 }
-.jury__name {
-  font: 400 1.2rem / 1.2 var(--display);
-}
-.jury__role {
-  font: var(--step--1) var(--mono);
+.juror__country {
+  margin-top: 0.3rem;
   color: var(--smoke);
+  font-size: 0.92rem;
+}
+.juror__role {
+  margin-top: 0.6rem;
+  font: 500 var(--step--1) / 1.4 var(--mono);
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  color: var(--gold);
+}
+.juror__bio {
+  margin-top: 0.8rem;
+  max-width: 36ch;
+  color: var(--bone);
+  opacity: 0.85;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+/* Phones: photo beside the name so three bios don't become one very long column of pictures. */
+@media (max-width: 640px) {
+  .juror {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 0 1rem;
+  }
+  .juror__text {
+    display: contents;
+  }
+  .juror .person__frame {
+    grid-row: 1 / span 3;
+  }
+  .juror__name {
+    font-size: var(--step-1);
+    align-self: end;
+  }
+  .juror__name,
+  .juror__country,
+  .juror__role {
+    grid-column: 2;
+  }
+  .juror__bio {
+    grid-column: 1 / -1;
+    max-width: none;
+  }
 }
 
 /* ---------- Packages: theatre price list ---------- */
@@ -1364,6 +1473,98 @@ html.menu-open .site-header {
   margin-top: 1.25rem;
   color: var(--smoke);
   font-size: 0.95rem;
+}
+/* Hotel map: a round "casino chip" of map with a gold rim and notched edge, address beside it. */
+.hotel-map {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 2.25rem 0 0;
+}
+.hotel-map__chip {
+  position: relative;
+  flex: none;
+  width: 10.5rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #1a1612;
+  isolation: isolate;
+  /* Inner gold hairline, then a dashed rim like the edge spots of a chip, then a soft glow. */
+  box-shadow:
+    inset 0 0 0 1px rgb(200 160 75 / 0.5),
+    0 0 0 4px var(--ink),
+    0 0 0 7px rgb(200 160 75 / 0.85),
+    0 12px 30px rgb(0 0 0 / 0.5);
+}
+.hotel-map__chip::after {
+  content: '';
+  position: absolute;
+  inset: 0.55rem;
+  z-index: 2;
+  border: 2px dashed rgb(233 216 166 / 0.35);
+  border-radius: 50%;
+  pointer-events: none;
+}
+/* Warmer and darker than the venue map: the chip reads as an object, not a window. */
+.hotel-map .map__tiles {
+  filter: invert(1) hue-rotate(180deg) brightness(0.7) contrast(1.1)
+    saturate(0.3) sepia(0.6);
+}
+.hotel-map__pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--bone);
+  color: var(--velvet);
+  font-size: 1rem;
+  line-height: 1;
+  box-shadow:
+    0 0 0 5px rgb(163 48 59 / 0.35),
+    0 4px 10px rgb(0 0 0 / 0.5);
+}
+.hotel-map__text {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+.hotel-map__name {
+  font: italic 400 var(--step-1) / 1.2 var(--display);
+  color: var(--bone);
+}
+.hotel-map__address {
+  font: var(--step--1) / 1.4 var(--mono);
+  color: var(--smoke);
+}
+.hotel-map__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin-top: 0.6rem;
+}
+.hotel-map__credit {
+  margin-top: 0.5rem;
+  font: 0.65rem / 1.3 var(--mono);
+  color: var(--smoke);
+  text-decoration: none;
+  opacity: 0.7;
+}
+@media (max-width: 640px) {
+  .hotel-map {
+    gap: 1.1rem;
+    margin-top: 1.75rem;
+  }
+  .hotel-map__chip {
+    width: 8rem;
+  }
 }
 
 /* ---------- Gala artists & form add-ons ---------- */
@@ -1515,7 +1716,7 @@ html.menu-open .site-header {
 }
 .map__tiles {
   position: absolute;
-  /* invert + 180° hue keeps water blue-ish and parks green-ish (plain invert turns them orange);
+  /* invert + 180° hue keeps water blue-ish and ozs green-ish (plain invert turns them orange);
      sepia then warms everything toward the site's gold. */
   filter: invert(1) hue-rotate(180deg) brightness(0.82) contrast(1.05)
     saturate(0.55) sepia(0.32);
@@ -1600,7 +1801,6 @@ html.menu-open .site-header {
   background: rgb(12 11 14 / 0.88);
   backdrop-filter: blur(6px);
   border: 1px solid var(--line);
-  border-left: 2px solid var(--gold);
   border-radius: 8px;
 }
 .map__name {
@@ -1762,6 +1962,83 @@ html.menu-open .site-header {
   outline-offset: 0;
   border-color: var(--gold);
 }
+/* Country combobox: the input plus our own list (the native datalist popup can't be styled). */
+.combo {
+  position: relative;
+}
+.combo input {
+  padding-right: 2.4rem;
+}
+.combo__chevron {
+  position: absolute;
+  right: 0.95rem;
+  top: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 1.5px solid var(--gold);
+  border-bottom: 1.5px solid var(--gold);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.2s;
+  pointer-events: none;
+}
+.combo.is-open .combo__chevron {
+  transform: translateY(-20%) rotate(-135deg);
+}
+.combo.is-open input {
+  border-color: var(--gold);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.combo__list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% - 1px);
+  z-index: 20;
+  max-height: 16rem;
+  margin: 0;
+  padding: 0.35rem;
+  overflow-y: auto;
+  list-style: none;
+  background: var(--ink-3);
+  border: 1px solid var(--gold);
+  border-top-color: var(--line);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.55);
+  scrollbar-width: thin;
+  scrollbar-color: rgb(200 160 75 / 0.45) transparent;
+}
+.combo__list[hidden] {
+  display: none;
+}
+.combo__list li {
+  padding: 0.5rem 0.7rem;
+  border-radius: 5px;
+  color: var(--bone);
+  cursor: pointer;
+}
+.combo__list li.is-active {
+  background: rgb(200 160 75 / 0.16);
+  color: var(--gold-pale);
+}
+/* The region (first six) is separated from the alphabetical rest while nothing is typed. */
+.combo__list.is-full li:nth-child(6) {
+  margin-bottom: 0.35rem;
+  border-bottom: 1px solid var(--line);
+  border-radius: 5px 5px 0 0;
+  padding-bottom: 0.65rem;
+}
+.combo__list mark {
+  background: none;
+  color: var(--gold);
+  font-weight: 600;
+}
+.combo__list .combo__empty {
+  color: var(--smoke);
+  font-size: 0.9rem;
+  cursor: default;
+}
+
 .field [aria-invalid='true'],
 .check [aria-invalid='true'] {
   border-color: var(--velvet);
@@ -1773,12 +2050,14 @@ html.menu-open .site-header {
   color: #e0737c;
 }
 /* A field that needs attention: its label and helper text turn a soft red too, not just the input. */
-.field:has(> [aria-invalid='true']) > span,
+.field:has(> [aria-invalid='true'], > .combo > [aria-invalid='true']) > span,
 .choices:has(> .field__error) > legend,
 .check:has([aria-invalid='true']) > span {
   color: #e8a0a6;
 }
-.field:has(> [aria-invalid='true']) > span small,
+.field:has(> [aria-invalid='true'], > .combo > [aria-invalid='true'])
+  > span
+  small,
 .choices:has(> .field__error) .choice small {
   color: #c98288;
 }
@@ -1963,6 +2242,35 @@ html.menu-open .site-header {
     grid-template-columns: 1.2fr 1fr 1fr;
   }
 }
+.site-footer a {
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.site-footer a:hover {
+  color: var(--gold);
+}
+.site-footer__contact {
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+  justify-items: start;
+}
+.site-footer__when {
+  margin-bottom: 0.3rem;
+  font: 500 var(--step--1) / 1.4 var(--mono);
+  letter-spacing: 0.04em;
+  color: var(--gold-pale);
+}
+.site-footer__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  overflow-wrap: anywhere;
+}
+.site-footer__social svg {
+  flex: none;
+  color: var(--gold);
+}
 .site-footer__tagline {
   margin-top: 0.5rem;
   color: var(--smoke);
@@ -1979,6 +2287,46 @@ html.menu-open .site-header {
   padding-top: 1.5rem;
   border-top: 1px solid var(--line);
   font-size: var(--step--1);
+}
+/* Phones: links as a two-column index instead of a wrapped run of underlined words; room at
+   the bottom so the sticky "Register" button doesn't cover the copyright line. */
+@media (max-width: 640px) {
+  .site-footer {
+    padding-block: 2.75rem 6rem;
+  }
+  .site-footer__inner {
+    gap: 2rem;
+  }
+  .site-footer__inner .wordmark {
+    font-size: 1.35rem;
+  }
+  .site-footer__contact {
+    gap: 0.75rem;
+    padding: 1.1rem 1.15rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgb(255 255 255 / 0.015);
+    justify-self: stretch;
+  }
+  .site-footer__links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1.25rem;
+  }
+  .site-footer__links a {
+    display: block;
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--line);
+    font: 500 0.78rem / 1.3 var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--bone);
+  }
+  .site-footer__legal {
+    padding-top: 1.25rem;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
 }
 
 /* ---------- Cookie banner ---------- */
@@ -2635,18 +2983,12 @@ select.admin__status option {
 }
 
 /* ---------- Phone fixes from the responsive check (2026-10-13) ---------- */
-/* Hotel room note: separator dot only when it sits on the same line. */
-.hotels__room small::before {
-  content: ' · ';
+/* Hotel room note (size, beds) always on its own line under the room name. */
+.hotels__room small {
+  display: block;
+  margin-top: 0.15rem;
 }
 @media (max-width: 640px) {
-  .hotels__room small {
-    display: block;
-    margin-top: 0.15rem;
-  }
-  .hotels__room small::before {
-    content: none;
-  }
   /* Airport name and distance stacked instead of squeezed side by side. */
   .travel__airports div {
     flex-direction: column;
@@ -3279,29 +3621,61 @@ select.admin__status option {
     white-space: nowrap;
   }
 
-  /* Lecturers: a hand of cards you swipe through; the next card peeks in from the edge. */
+  /* Lecturers: a list with photo and text side by side; the flip cards stay for larger screens. */
   .lecturers__grid {
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: min(15rem, 66%);
-    gap: 1rem;
-    margin-inline: calc(var(--gutter) * -1);
-    padding: 0.5rem var(--gutter) 1.25rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: var(--gutter);
-    scrollbar-width: thin;
-    scrollbar-color: var(--line) transparent;
+    display: none;
   }
-  .lecturers__grid > li {
-    scroll-snap-align: start;
+  .lecturers__list {
+    display: grid;
   }
-  .pcard__caption {
-    padding: 0.85rem 1rem 1rem;
+}
+
+/* Lecturers on phones (the list is hidden above 640px). */
+@media (min-width: 641px) {
+  .lecturers__list {
+    display: none;
   }
-  .pcard__bio {
-    overflow-y: auto;
-  }
+}
+.lecturers__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.lecturers__list li {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 1.1rem;
+  align-items: start;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--line);
+}
+.lecturers__list li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.lecturers__thumb {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.lecturers__thumb img {
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+.lecturers__name {
+  font: 400 var(--step-1) / 1.2 var(--display);
+}
+.lecturers__meta {
+  margin-top: 0.25rem;
+  font: var(--step--1) / 1.4 var(--mono);
+  color: var(--gold);
+}
+.lecturers__bio {
+  margin-top: 0.6rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--smoke);
 }
 
 /* ---------- Reduced motion ---------- */

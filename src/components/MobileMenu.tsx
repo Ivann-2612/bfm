@@ -1,16 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { InstagramIcon } from "./ui";
 
 type Link = { label: string; href: string };
 type Props = {
   links: Link[];
   privacy: Link;
+  instagram: Link;
   lang: { href: string; label: string; hrefLang: string };
   labels: { open: string; close: string; sections: string };
 };
 
-export function MobileMenu({ links, privacy, lang, labels }: Props) {
+export function MobileMenu({ links, privacy, instagram, lang, labels }: Props) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -58,6 +60,10 @@ export function MobileMenu({ links, privacy, lang, labels }: Props) {
         <div className="mobile-menu__foot">
           <a href={lang.href} hrefLang={lang.hrefLang} lang={lang.hrefLang} className="link-arrow">
             {lang.label}
+          </a>
+          <a href={instagram.href} target="_blank" rel="noopener" className="mobile-menu__social">
+            <InstagramIcon />
+            {instagram.label}
           </a>
           <a href={privacy.href} onClick={() => setOpen(false)}>
             {privacy.label}

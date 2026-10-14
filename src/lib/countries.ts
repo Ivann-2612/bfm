@@ -13,6 +13,24 @@ const CODES =
 // Serbia and the region first: most registrations come from here.
 const FIRST = ["RS", "BA", "HR", "ME", "MK", "SI"];
 
+/** Name of a country code from our list (anything else, including XK, gives null). */
+export function countryFromCode(code: string | null | undefined, locale: string): string | null {
+  const c = code?.toUpperCase();
+  if (!c || !/^[A-Z]{2}$/.test(c) || !CODES.split(" ").includes(c)) return null;
+  return new Intl.DisplayNames([locale], { type: "region" }).of(c) ?? null;
+}
+
+/** Region from the browser's language settings ("sr-RS" → "RS"); a fallback when the server can't tell. */
+export function browserRegion(): string | null {
+  for (const tag of navigator.languages ?? [navigator.language]) {
+    try {
+      const region = new Intl.Locale(tag).maximize().region;
+      if (region) return region;
+    } catch {}
+  }
+  return null;
+}
+
 /** Country names in the given locale, region first, then alphabetical. Call in the browser only
  *  (ICU data can differ between Node and browsers, which would cause hydration mismatches). */
 export function countryNames(locale: string): string[] {

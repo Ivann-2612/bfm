@@ -1,5 +1,5 @@
 import { getContent } from "@/lib/content";
-import { SectionHead, type LangProps } from "./ui";
+import { Portrait, SectionHead, type LangProps } from "./ui";
 
 export function Organizers({ lang }: LangProps) {
   const o = getContent(lang).organizers;
@@ -23,14 +23,21 @@ export function Organizers({ lang }: LangProps) {
             </section>
           ))}
         </div>
-        <dl className="organizers__people">
+        <div className="organizers__people">
           {o.people.map((p) => (
-            <div key={p.role}>
-              <dt>{p.role}</dt>
-              <dd>{p.name}</dd>
-            </div>
+            <section key={p.role} className="organizers__team">
+              <h3 className="organizers__role">{p.role}</h3>
+              <ul>
+                {p.members.map((m) => (
+                  <li key={m.name} className="person">
+                    <Portrait src={m.photo} alt={m.name} sizes="(max-width: 640px) 45vw, 14rem" />
+                    <p className="person__name">{m.name}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
           ))}
-        </dl>
+        </div>
       </div>
     </section>
   );

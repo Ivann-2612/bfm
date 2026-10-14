@@ -7,7 +7,8 @@ import { fieldErrors, registrationSchema } from "@/lib/schema";
 import { SectionHead, type LangProps } from "./ui";
 import { Turnstile } from "./Turnstile";
 import { PaymentDetails } from "./PaymentDetails";
-import { countryNames } from "@/lib/countries";
+import { browserRegion, countryFromCode, countryNames } from "@/lib/countries";
+import { CountryCombo } from "./CountryCombo";
 
 type Form = {
   firstName: string;
@@ -75,6 +76,24 @@ export function Registration({ lang }: LangProps) {
   // Suggestions for the country field, filled in the browser (see countries.ts for why).
   const [countries, setCountries] = useState<string[]>([]);
   useEffect(() => setCountries(countryNames(s.c.site.locale)), [s.c.site.locale]);
+
+  // Pre-fill the country: Vercel's IP country first, the browser's language region as a fallback.
+  // Only while the field is still empty, so it never overwrites what the visitor typed.
+  useEffect(() => {
+    const locale = s.c.site.locale;
+    let cancelled = false;
+    const fill = (name: string | null) => {
+      if (cancelled || !name) return;
+      setForm((f) => (f.country ? f : { ...f, country: name }));
+    };
+    fetch("/api/geo")
+      .then((r) => (r.ok ? r.json() : { country: null }))
+      .catch(() => ({ country: null }))
+      .then((d: { country: string | null }) => fill(countryFromCode(d.country, locale) ?? countryFromCode(browserRegion(), locale)));
+    return () => {
+      cancelled = true;
+    };
+  }, [s.c.site.locale]);
 
   // The long form is swapped for a short message, so the page shrinks and leaves the visitor
   // scrolled past it (very visible on phones). Bring the message into view and focus it.
@@ -195,21 +214,16 @@ export function Registration({ lang }: LangProps) {
                 <span>
                   {L.country} <small>{L.countryHint}</small>
                 </span>
-                <input
+                <CountryCombo
                   name="country"
-                  list="country-list"
-                  autoComplete="country-name"
                   required
                   maxLength={80}
                   value={form.country}
-                  onChange={(e) => set("country", e.target.value)}
+                  onChange={(v) => set("country", v)}
+                  options={countries}
+                  noMatch={L.countryNoMatch}
                   {...aria("country")}
                 />
-                <datalist id="country-list">
-                  {countries.map((c) => (
-                    <option key={c} value={c} />
-                  ))}
-                </datalist>
                 {err("country")}
               </label>
 

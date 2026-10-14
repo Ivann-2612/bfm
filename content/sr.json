@@ -7,6 +7,7 @@
     "timeZone": "Europe/Belgrade",
     "currency": "EUR",
     "contactEmail": "magic.piksi@gmail.com",
+    "instagram": "https://www.instagram.com/belgrademagicfestival/",
     "organiserLegal": "Pravni naziv organizatora, adresa"
   },
 
@@ -20,7 +21,19 @@
     "endDate": "2027-02-28",
     "tagline": "Magija koja povezuje. Umetnost koja oduševljava.",
     "intro": "Dva festivalska dana vrhunskih iluzija, međunarodnih umetnika, porodičnih programa, takmičenja i stručnih sadržaja.",
-    "poster": { "src": "/images/naslovna.png", "alt": "Magični Varijete 2027 — zvanična naslovna vizuelna prezentacija", "width": 1055, "height": 1491, "translatedTitle": "", "scene": { "src": "/images/naslovna-scena.png", "alt": "Mađioničar na sceni pred punom salom", "width": 1055, "height": 891 } },
+    "poster": {
+      "src": "/images/naslovna.png",
+      "alt": "Magični Varijete 2027 — zvanična naslovna vizuelna prezentacija",
+      "width": 1055,
+      "height": 1491,
+      "translatedTitle": "",
+      "scene": {
+        "src": "/images/naslovna-scena.png",
+        "alt": "Mađioničar na sceni pred punom salom",
+        "width": 1055,
+        "height": 891
+      }
+    },
     "stats": [
       { "value": "2", "label": "festivalska dana" },
       { "value": "7", "label": "održanih izdanja" },
@@ -60,7 +73,9 @@
     "menuClose": "Zatvori meni",
     "bioSoon": "Biografija uskoro.",
     "aboutArtist": "Više o izvođaču",
-    "dayLink": "Program: {date}"
+    "dayLink": "Program: {date}",
+    "instagramLabel": "Festival na Instagramu",
+    "openGoogleMaps": "Google mape"
   },
 
   "nav": [
@@ -93,8 +108,14 @@
       "Beogradski festival magije predstavlja obnovu i razvoj jedne od najznačajnijih mađioničarskih manifestacija u Srbiji.",
       "Nakon sedam uspešno organizovanih izdanja, festival se vraća u savremenom formatu — kao međunarodna manifestacija koja na jednom mestu povezuje vrhunske domaće i strane umetnike, profesionalne mađioničare, mlade talente, porodice i ljubitelje iluzionizma."
     ],
-    "aside": { "title": "Više od predstave", "text": "Mesto susreta umetnosti, znanja i čudesnih trenutaka." },
-    "photo": { "src": "/images/foaje.jpg", "alt": "Brojni posetioci prethodnog izdanja festivala" }
+    "aside": {
+      "title": "Više od predstave",
+      "text": "Mesto susreta umetnosti, znanja i čudesnih trenutaka."
+    },
+    "photo": {
+      "src": "/images/foaje.jpg",
+      "alt": "Brojni posetioci prethodnog izdanja festivala"
+    }
   },
 
   "programs": {
@@ -108,7 +129,10 @@
         "name": "Magični Varijete",
         "meta": "Velika scena · za sve generacije",
         "text": "Centralni međunarodni Gala šou sa renomiranim umetnicima iz oblasti iluzionizma, varijetea i savremene scenske umetnosti.",
-        "photo": { "src": "/images/finale.jpg", "alt": "Učesnici festivala na sceni pred publikom" },
+        "photo": {
+          "src": "/images/finale.jpg",
+          "alt": "Učesnici festivala na sceni pred publikom"
+        },
         "shows": [
           { "date": "2027-02-27", "time": "19:00" },
           { "date": "2027-02-28", "time": "17:00" }
@@ -120,7 +144,10 @@
         "name": "Festival za publiku",
         "meta": "Celodnevni program",
         "text": "Predstave za decu i porodice, close-up magija, klovnovi, žongleri, radionice i interaktivni programi.",
-        "photo": { "src": "/images/deca-scena.jpg", "alt": "Deca sa pažnjom prate mađioničarski nastup" },
+        "photo": {
+          "src": "/images/deca-scena.jpg",
+          "alt": "Deca sa pažnjom prate mađioničarski nastup"
+        },
         "shows": []
       },
       {
@@ -129,7 +156,10 @@
         "name": "Takmičenja",
         "meta": "Domaći i strani učesnici",
         "text": "Scenska i close-up magija pred međunarodnim stručnim žirijem, uz profesionalne kriterijume ocenjivanja. Pobednike čekaju vredne nagrade.",
-        "photo": { "src": "/images/nagrade.jpg", "alt": "Dodela priznanja učesnicima" },
+        "photo": {
+          "src": "/images/nagrade.jpg",
+          "alt": "Dodela priznanja učesnicima"
+        },
         "shows": []
       },
       {
@@ -138,7 +168,10 @@
         "name": "Stručni program",
         "meta": "Znanje koje pokreće umetnost",
         "text": "Seminari, predavanja, demonstracije, razmena iskustava i izložba savremene mađioničarske opreme.",
-        "photo": { "src": "/images/seminar-1.jpg", "alt": "Seminar za mađioničare" },
+        "photo": {
+          "src": "/images/seminar-1.jpg",
+          "alt": "Seminar za mađioničare"
+        },
         "shows": []
       }
     ],
@@ -160,13 +193,55 @@
     "title": "Izvođači Gala šoua",
     "intro": "Umetnici koji nastupaju na velikoj sceni MTS dvorane.",
     "artists": [
-      { "name": "Woody Aragón", "country": "Španija", "code": "es", "photo": "/images/artists/woody-aragon.jpg", "bio": "" },
-      { "name": "Den Den", "country": "Japan", "code": "jp", "photo": "/images/artists/den-den.png", "bio": "" },
-      { "name": "Igor Trifunov", "country": "Srbija", "code": "rs", "photo": "/images/artists/igor-trifunov.png", "bio": "Igor Trifunov je najuspešniji srpski mađioničar i iluzionista novije generacije. Ostvario je uspeh na brojnim svetskim takmičenjima, među kojima su četvrto mesto na svetskom prvenstvu mađioničara u Riminiju, Grand Prix na Balkanskom kongresu mađioničara i prvo mesto na takmičenju mađioničara u Badenu.\n\nAutor je TV serije Ulična Magija, dečije predstave Igorov Magični Šou, iluzionističke predstave Igorov Magični Spektakl i internacionalnog spektakla Magični Varijete." },
-      { "name": "Maxim Gladstein", "country": "Rusija", "code": "ru", "photo": "/images/artists/maxim-gladstein.png", "bio": "" },
-      { "name": "Tamia", "country": "Slovenija", "code": "si", "photo": "/images/artists/tamia.png", "bio": "" },
-      { "name": "Elastic", "country": "Belgija", "code": "be", "photo": "/images/artists/elastic.png", "bio": "" },
-      { "name": "Françoise Roshe", "country": "Belgija", "code": "be", "photo": "", "bio": "" }
+      {
+        "name": "Woody Aragón",
+        "country": "Španija",
+        "code": "es",
+        "photo": "/images/artists/woody-aragon.jpg",
+        "bio": "Španski mađioničar i autor, poznat pre svega po magiji sa kartama. Penn & Teller od 2016. izvode njegov trik „Ritual of Love“ u svom šou u Las Vegasu i u emisiji Fool Us. Njegove ideje prikazane su i u emisiji The Tonight Show Džimija Felona, a „Ritual of Love“ otvara Netflix seriju Death by Magic, u izvođenju Drummonda Money-Couttsa.\n\nNjegova knjiga A Book in English dobila je nagradu Magic Academy Award za najbolju knjigu o magiji (Tannen's, Njujork, 2012), a u knjizi Memorandum opisuje sopstveni memorisani špil. Od 2010. do 2012. vodio je rubriku o magiji Hablemos de magia na radiju Cadena SER."
+      },
+      {
+        "name": "Den Den",
+        "country": "Japan",
+        "code": "jp",
+        "photo": "/images/artists/den-den.jpg",
+        "bio": "Majstor manipulacije iz Japana. Den Den pretvara karte, papir i svakodnevne predmete u preciznu, pažljivo koreografisanu vizuelnu poeziju, oslanjajući se na iskustvo iz tradicionalnog japanskog pozorišta i plesa.\n\nGodine 2014. Akademija magičnih umetnosti proglasila ga je mađioničarem godine, a Društvo američkih mađioničara dodelilo mu je zlatnu medalju časti. Tada je bio tek drugi mađioničar sa tim priznanjem.\n\nNastupao je kao The Manipulator u predstavi The Illusionists – Witness the Impossible na londonskom West Endu, a 2020. otvorio je festival Supermagic u Rimu. Magiju je otkrio sa sedam godina."
+      },
+      {
+        "name": "Igor Trifunov",
+        "country": "Srbija",
+        "code": "rs",
+        "photo": "/images/artists/igor-trifunov.png",
+        "bio": "Igor Trifunov je najuspešniji srpski mađioničar i iluzionista novije generacije. Ostvario je uspeh na brojnim svetskim takmičenjima, među kojima su četvrto mesto na svetskom prvenstvu mađioničara u Riminiju, Grand Prix na Balkanskom kongresu mađioničara i prvo mesto na takmičenju mađioničara u Badenu.\n\nAutor je TV serije Ulična Magija, dečije predstave Igorov Magični Šou, iluzionističke predstave Igorov Magični Spektakl i internacionalnog spektakla Magični Varijete."
+      },
+      {
+        "name": "Maxim Gladstein",
+        "country": "Rusija",
+        "code": "ru",
+        "photo": "/images/artists/maxim-gladstein.png",
+        "bio": "Profesionalni iluzionista i mađioničar iz Rusije koji već dugi niz godina živi i radi u Beogradu. Prepoznatljiv je po elegantnom stilu i atmosferi misterije u kojoj se klasični trikovi spajaju sa savremenim scenskim iluzijama.\n\nDobitnik je nagrada na mađioničarskim takmičenjima u Francuskoj i Kini. Njegov repertoar obuhvata close-up magiju sa kartama, novčićima i sitnim predmetima, velike scenske iluzije sa transformacijama, nestajanjima i mentalizmom, kao i interaktivne programe za odrasle i decu u kojima publika postaje deo trika."
+      },
+      {
+        "name": "Tamia",
+        "country": "Slovenija",
+        "code": "si",
+        "photo": "/images/artists/tamia.png",
+        "bio": "Tamia Dulce Villca Šeme (1998) je slovenačka umetnica na vazdušnoj svili, kaskaderka i cirkuska artistkinja. Pre cirkusa bila je članica slovenačke reprezentacije u ritmičkoj gimnastici, a po zvanju je sportski trener.\n\nU osmoj sezoni emisije Slovenija ima talent (2021) zauzela je drugo mesto u superfinalu, a 2024. pobedila je u hrvatskom Supertalentu: na audiciji je dobila zajedničko zlatno zvono žirija, a u finalu 47,7% glasova publike.\n\nNjene točke spajaju gimnastičku disciplinu, nagle padove sa visine, gipkost i priču. Nastupa i u duetu LaTam_Duo, a kao trenerka radi na razvoju profesionalne cirkuske umetnosti u Sloveniji."
+      },
+      {
+        "name": "Elastic",
+        "country": "Belgija",
+        "code": "be",
+        "photo": "/images/artists/elastic.jpg",
+        "bio": "Stéphane Delvaux, poznat kao Elastic, jedan je od najprepoznatljivijih evropskih majstora fizičke komedije i klovnerije. Njegova točka spaja pantomimu, akrobatiku i neverovatne pokrete tela, negde između cirkusa, komedije i pozorišta, i sve to bez ijedne reči.\n\nNastupao je u francuskoj televizijskoj emisiji Le Plus Grand Cabaret du Monde, a njegov rad je zapažen i na Međunarodnom cirkuskom festivalu u Monte Karlu."
+      },
+      {
+        "name": "Françoise Rochais",
+        "country": "Francuska",
+        "code": "fr",
+        "photo": "/images/artists/francoise-rochais.jpg",
+        "bio": "Françoise Rochais, na sceni poznata kao Francesca, jedna je od najuspešnijih žonglerki na međunarodnoj cirkuskoj sceni i nosilac Ginisovog rekorda.\n\nOsvojila je srebrnu medalju na pariskom festivalu Festival Mondial du Cirque de Demain i zlatnu medalju na konvenciji Međunarodnog udruženja žonglera (IJA) u Las Vegasu.\n\nU Beogradu nastupa sa belgijskim komičarem Elasticom (Stéphane Delvaux): precizno žongliranje, fizička komedija i pozorište u jednoj točki."
+      }
     ]
   },
 
@@ -207,15 +282,50 @@
                 "title": "Festivalski program u foajeu MTS dvorane",
                 "text": "Nastupi close-up mađioničara, klovnova, žonglera i drugih artista, uz neposrednu interakciju sa posetiocima."
               },
-              { "time": "11:00", "title": "Mađioničarsko-žonglerska predstava za decu i porodice FILIPINO", "place": "Sala 6" },
-              { "time": "12:00", "title": "Animacija klovna i close-up mađioničara", "place": "Hol MTS dvorane" },
-              { "time": "12:30", "title": "Mađioničarska predstava za decu i porodice MIHAJLO", "place": "Donja sala" },
-              { "time": "13:30", "title": "Animacija klovna i close-up mađioničara", "place": "Hol MTS dvorane" },
-              { "time": "14:00", "title": "Mađioničarska predstava za decu i porodice", "place": "Sala 6" },
-              { "time": "15:00", "title": "Animacija klovna i close-up mađioničara", "place": "Hol MTS dvorane" },
-              { "time": "15:30", "title": "Magična radionica za decu", "place": "Donja sala" },
-              { "time": "16:00", "title": "Žonglerska radionica za decu", "place": "Sala 6" },
-              { "time": "17:00", "title": "Završetak prvog festivalskog dana i priprema za Magični Varijete" },
+              {
+                "time": "11:00",
+                "title": "Mađioničarsko-žonglerska predstava za decu i porodice FILIPINO",
+                "place": "Sala 6"
+              },
+              {
+                "time": "12:00",
+                "title": "Animacija klovna i close-up mađioničara",
+                "place": "Hol MTS dvorane"
+              },
+              {
+                "time": "12:30",
+                "title": "Mađioničarska predstava za decu i porodice MIHAJLO",
+                "place": "Donja sala"
+              },
+              {
+                "time": "13:30",
+                "title": "Animacija klovna i close-up mađioničara",
+                "place": "Hol MTS dvorane"
+              },
+              {
+                "time": "14:00",
+                "title": "Mađioničarska predstava za decu i porodice",
+                "place": "Sala 6"
+              },
+              {
+                "time": "15:00",
+                "title": "Animacija klovna i close-up mađioničara",
+                "place": "Hol MTS dvorane"
+              },
+              {
+                "time": "15:30",
+                "title": "Magična radionica za decu",
+                "place": "Donja sala"
+              },
+              {
+                "time": "16:00",
+                "title": "Žonglerska radionica za decu",
+                "place": "Sala 6"
+              },
+              {
+                "time": "17:00",
+                "title": "Završetak prvog festivalskog dana i priprema za Magični Varijete"
+              },
               {
                 "time": "19:00",
                 "title": "Međunarodni Gala šou „Magični Varijete“",
@@ -243,12 +353,21 @@
           {
             "title": "Stručni dan i svečano zatvaranje festivala",
             "items": [
-              { "time": "10:00–17:00", "title": "Izložba savremene mađioničarske opreme i rekvizita" },
+              {
+                "time": "10:00–17:00",
+                "title": "Izložba savremene mađioničarske opreme i rekvizita"
+              },
               { "time": "10:30", "title": "Stručni seminar / predavanje" },
-              { "time": "12:00", "title": "Međunarodno takmičenje mađioničara – stage magic" },
+              {
+                "time": "12:00",
+                "title": "Međunarodno takmičenje mađioničara – stage magic"
+              },
               { "time": "13:30", "title": "Pauza" },
               { "time": "14:30", "title": "Stručni seminar / predavanje" },
-              { "time": "15:30", "title": "Stručni seminar, prezentacija ili specijalni program gosta festivala" }
+              {
+                "time": "15:30",
+                "title": "Stručni seminar, prezentacija ili specijalni program gosta festivala"
+              }
             ]
           },
           {
@@ -259,27 +378,66 @@
                 "title": "Festivalski program u foajeu MTS dvorane",
                 "text": "Nastupi close-up mađioničara, klovnova, žonglera i drugih artista, uz neposrednu interakciju sa posetiocima."
               },
-              { "time": "11:00", "title": "Mađioničarsko-žonglerska predstava za decu i porodice FILIPINO", "place": "Sala 6" },
-              { "time": "12:00", "title": "Animacija klovna i close-up mađioničara", "place": "Hol MTS dvorane" },
-              { "time": "12:30", "title": "Mađioničarska predstava za decu i porodice MIHAJLO", "place": "Donja sala" },
-              { "time": "13:30", "title": "Animacija klovna i close-up mađioničara", "place": "Hol MTS dvorane" },
-              { "time": "14:00", "title": "Mađioničarska predstava za decu i porodice", "place": "Sala 6" },
-              { "time": "15:00", "title": "Animacija klovna i close-up mađioničara", "place": "Hol MTS dvorane" },
-              { "time": "15:30", "title": "Magična radionica za decu", "place": "Donja sala" },
-              { "time": "16:00", "title": "Žonglerska radionica za decu", "place": "Sala 6" },
+              {
+                "time": "11:00",
+                "title": "Mađioničarsko-žonglerska predstava za decu i porodice FILIPINO",
+                "place": "Sala 6"
+              },
+              {
+                "time": "12:00",
+                "title": "Animacija klovna i close-up mađioničara",
+                "place": "Hol MTS dvorane"
+              },
+              {
+                "time": "12:30",
+                "title": "Mađioničarska predstava za decu i porodice MIHAJLO",
+                "place": "Donja sala"
+              },
+              {
+                "time": "13:30",
+                "title": "Animacija klovna i close-up mađioničara",
+                "place": "Hol MTS dvorane"
+              },
+              {
+                "time": "14:00",
+                "title": "Mađioničarska predstava za decu i porodice",
+                "place": "Sala 6"
+              },
+              {
+                "time": "15:00",
+                "title": "Animacija klovna i close-up mađioničara",
+                "place": "Hol MTS dvorane"
+              },
+              {
+                "time": "15:30",
+                "title": "Magična radionica za decu",
+                "place": "Donja sala"
+              },
+              {
+                "time": "16:00",
+                "title": "Žonglerska radionica za decu",
+                "place": "Sala 6"
+              },
               {
                 "time": "17:00",
                 "title": "Međunarodni Gala šou „Magični Varijete“",
                 "text": "Drugo izvođenje međunarodnog Gala šoua i završetak festivalskog programa namenjenog širokoj publici.",
                 "highlight": true
               },
-              { "time": "19:00", "title": "Zvanični završetak Beogradskog festivala magije 2027." }
+              {
+                "time": "19:00",
+                "title": "Zvanični završetak Beogradskog festivala magije 2027."
+              }
             ]
           },
           {
             "title": "Večernji deo festivala za sve učesnike",
             "items": [
-              { "time": "", "title": "Gala večera", "text": "Drugo festivalsko veče — gala večera za sve mađioničare sa plaćenom kotizacijom." }
+              {
+                "time": "",
+                "title": "Gala večera",
+                "text": "Drugo festivalsko veče — gala večera za sve mađioničare sa plaćenom kotizacijom."
+              }
             ]
           }
         ]
@@ -302,18 +460,36 @@
     "title": "Galerija festivala",
     "intro": "Atmosfera, susreti i aplauzi sa prethodnih izdanja Beogradskog festivala magije.",
     "items": [
-      { "src": "/images/finale.jpg", "alt": "Finale festivala pred punom dvoranom" },
+      {
+        "src": "/images/finale.jpg",
+        "alt": "Finale festivala pred punom dvoranom"
+      },
       { "src": "/images/nagrade.jpg", "alt": "Dodela priznanja učesnicima" },
       { "src": "/images/publika.jpg", "alt": "Publika svih generacija" },
-      { "src": "/images/deca-scena.jpg", "alt": "Najmlađi posetioci uz samu scenu" },
-      { "src": "/images/magija-za-decu.jpg", "alt": "Magija iz neposredne blizine" },
+      {
+        "src": "/images/deca-scena.jpg",
+        "alt": "Najmlađi posetioci uz samu scenu"
+      },
+      {
+        "src": "/images/magija-za-decu.jpg",
+        "alt": "Magija iz neposredne blizine"
+      },
       { "src": "/images/seminar-1.jpg", "alt": "Seminar za mađioničare" },
-      { "src": "/images/seminar-2.jpg", "alt": "Stručna predavanja i demonstracije" },
+      {
+        "src": "/images/seminar-2.jpg",
+        "alt": "Stručna predavanja i demonstracije"
+      },
       { "src": "/images/izlozba.jpg", "alt": "Izložbeni prostor festivala" },
       { "src": "/images/foaje.jpg", "alt": "Festivalska atmosfera u foajeu" },
       { "src": "/images/mediji.jpg", "alt": "Veliko interesovanje medija" },
-      { "src": "/images/magicna-zurka.jpg", "alt": "Večernje druženje učesnika" },
-      { "src": "/images/publika-seminar.jpg", "alt": "Mađioničarska zajednica na okupu" }
+      {
+        "src": "/images/magicna-zurka.jpg",
+        "alt": "Večernje druženje učesnika"
+      },
+      {
+        "src": "/images/publika-seminar.jpg",
+        "alt": "Mađioničarska zajednica na okupu"
+      }
     ]
   },
 
@@ -333,22 +509,79 @@
     "kicker": "Predavači",
     "title": "Ko predaje ove godine",
     "items": [
-      { "name": "Domenico Dante", "country": "Italija", "specialty": "Prijatelj festivala · predavanje", "photo": "/images/artists/domenico-dante.png", "bio": "Biografija uskoro." },
-      { "name": "Den Den", "country": "Japan", "specialty": "Predavanje · Gala šou", "photo": "/images/artists/den-den.png", "bio": "Biografija uskoro." },
-      { "name": "Woody Aragón", "country": "Španija", "specialty": "Predavanje · Gala šou", "photo": "/images/artists/woody-aragon.jpg", "bio": "Biografija uskoro." }
+      {
+        "name": "Domenico Dante",
+        "country": "Italija",
+        "specialty": "Prijatelj festivala · predavanje",
+        "photo": "/images/artists/domenico-dante.png",
+        "bio": "Predsednik FISM-a od 2012. do 2022, danas počasni predsednik. Profesionalni mađioničar od 1984. i producent više od 120 međunarodnih konvencija."
+      },
+      {
+        "name": "Den Den",
+        "country": "Japan",
+        "specialty": "Predavanje · Gala šou",
+        "photo": "/images/artists/den-den.jpg",
+        "bio": "Majstor manipulacije iz Japana. Mađioničar godine Akademije magičnih umetnosti 2014. i The Manipulator u predstavi The Illusionists na londonskom West Endu."
+      },
+      {
+        "name": "Woody Aragón",
+        "country": "Španija",
+        "specialty": "Predavanje · Gala šou",
+        "photo": "/images/artists/woody-aragon.jpg",
+        "bio": "Autor knjiga A Book in English (Magic Academy Award, 2012) i Memorandum, o sopstvenom memorisanom špilu. Penn & Teller od 2016. izvode njegov „Ritual of Love“ u Las Vegasu."
+      },
+      {
+        "name": "Lee Alex",
+        "country": "Velika Britanija",
+        "specialty": "Predavanje · žiri",
+        "photo": "/images/artists/lee-alex-lecture.jpg",
+        "bio": "Novo predavanje o đavoljoj maramici (Devil's Handkerchief), jednom od najsvestranijih rekvizita u magiji, od prvih zapisa do danas. Prethodno predavanje održao je u više od 75 gradova na četiri kontinenta."
+      }
     ]
   },
 
   "jury": {
+    "kicker": "Takmičenja",
     "title": "Stručni žiri",
-    "items": []
+    "items": [
+      {
+        "name": "Andrea Baioni",
+        "country": "Italija",
+        "code": "it",
+        "role": "Predsednik FISM-a · prijatelj festivala",
+        "photo": "/images/jury/andrea-baioni.jpg",
+        "bio": "Italijanski mađioničar rođen 1963. u Raveni, član Club Magico Italiano od 1977. Prošao je put od predsednika lokalnog kluba do direktora FISM Europe, a u julu 2022. izabran je za međunarodnog predsednika FISM-a, svetske organizacije mađioničarskih društava.\n\nPod uticajem italijanskog iluzioniste Silvana posvetio se komičnoj magiji. Kao predsednik pokrenuo je FISM akademiju u Muzeju magije u Cherascu (Italija), koja povezuje umetničko obrazovanje, univerzitete i istraživanje, sa ciljem da magija uđe na Uneskovu listu nematerijalnog kulturnog nasleđa. Njegovo pravilo: „Study the past, read the present, and design the future.“ Van magije vodi italijansku agenciju za digitalni marketing ab studio."
+      },
+      {
+        "name": "Lee Alex",
+        "country": "Velika Britanija",
+        "code": "gb",
+        "role": "Sudija FISM-a · predavač",
+        "photo": "/images/jury/lee-alex.jpg",
+        "bio": "Rođeni Britanac, Lee Alex je profesionalni mađioničar, predavač i autor originalne magije sa tkaninama. Više od tri decenije nastupa širom sveta kao scenski iluzionista i mađioničar, a radio je i kao konsultant za film, pozorište, televiziju i reklame.\n\nZvanični je sudija FISM-a (Fédération Internationale des Sociétés Magiques) i redovno sedi u žirijima međunarodnih takmičenja. Njegovo predavanje o magiji brzog presvlačenja, „Time for a Change?“, održano je u Magic Circle-u u Londonu, Magic Castle-u u Holivudu, na World Magic Seminar-u u Las Vegasu i u školi „Magic and Mystery School“ Džefa Makbrajda."
+      },
+      {
+        "name": "Dani Belev",
+        "country": "Bugarska",
+        "code": "bg",
+        "role": "Sudija FISM-a · osnivač festivala Golden Cat",
+        "photo": "/images/jury/dani-belev.jpg",
+        "bio": "Bugarski mađioničar i iluzionista iz Gabrova, sa više od dve decenije profesionalnog iskustva. Predsednik je mađioničarskog kluba Quick Hands Project, osnivač i organizator međunarodnog festivala magije „Golden Cat“ u Gabrovu, koji okuplja mađioničare i izvođače iz mnogih zemalja.\n\nDugogodišnjim radom značajno je doprineo razvoju magije i međunarodnoj saradnji u mađioničarskoj zajednici. Godine 2026. postao je prvi Bugarin sa zvanjem sudije FISM-a."
+      }
+    ]
   },
 
   "packages": {
     "kicker": "Kotizacije",
     "title": "Cene",
     "earlyBirdUntil": "2026-12-31T23:59:59+01:00",
-    "labels": { "package": "Paket", "until": "Do", "after": "Posle toga", "earlySuffix": " (rana prijava)", "extras": "Dodaci uz Dealer paket" },
+    "labels": {
+      "package": "Paket",
+      "until": "Do",
+      "after": "Posle toga",
+      "earlySuffix": " (rana prijava)",
+      "extras": "Dodaci uz Dealer paket"
+    },
     "items": [
       {
         "id": "standard",
@@ -384,14 +617,18 @@
 
   "hotels": {
     "kicker": "Smeštaj",
-    "title": "Hotel Park",
-    "intro": "U blizini MTS dvorane, sa posebnim cenama za učesnike festivala.",
+    "title": "Hotel Prag",
+    "intro": "U centru Beograda, na nekoliko minuta hoda od MTS dvorane.",
+    "location": { "name": "Hotel Prag", "address": "Kraljice Natalije 27, Beograd", "lat": 44.8110148, "lng": 20.4597196 },
+    "priceCurrency": "RSD",
     "rooms": [
-      { "label": "Jednokrevetna soba", "note": "", "price": 55 },
-      { "label": "Dvokrevetna soba", "note": "za dve osobe", "price": 60 },
-      { "label": "Trokrevetna soba", "note": "za tri osobe", "price": 75 }
+      { "label": "Ekonomična jednokrevetna soba", "note": "singl krevet", "price": 57, "priceRsd": 6600 },
+      { "label": "Jednokrevetna soba", "note": "francuski ležaj", "price": 62, "priceRsd": 7300 },
+      { "label": "Dvokrevetna soba", "note": "15 m², bračni ili dva odvojena kreveta", "price": 67, "priceRsd": 7900 },
+      { "label": "Superior dvokrevetna soba", "note": "37 m², veliki bračni krevet", "price": 78, "priceRsd": 9200 },
+      { "label": "Porodična soba", "note": "32 m², bračni krevet i dva sofe-kreveta", "price": 105, "priceRsd": 12300 }
     ],
-    "note": "Sve cene uključuju smeštaj i doručak. Kapacitet je ograničen, pa smeštaj nije zagarantovan u svakom trenutku."
+    "note": "Okvirne cene po sobi za jednu noć, sa doručkom, zaokružene. Tačna cena zavisi od datuma i izabrane tarife; boravišna taksa (oko 160 RSD po noći) plaća se posebno."
   },
 
   "travel": {
@@ -399,13 +636,22 @@
     "title": "MTS dvorana na mapi",
     "center": { "lat": 44.81322, "lng": 20.46263 },
     "locations": [
-      { "name": "MTS dvorana", "address": "Dečanska 14, Beograd", "lat": 44.81322, "lng": 20.46263 }
+      {
+        "name": "MTS dvorana",
+        "address": "Dečanska 14, Beograd",
+        "lat": 44.81322,
+        "lng": 20.46263
+      }
     ],
     "transport": {
       "title": "Sa aerodroma",
       "text": "Sa aerodroma do centra grada stiže se taksijem ili autobusom.",
       "airports": [
-        { "name": "Aerodrom Nikola Tesla (BEG)", "distance": "≈ 18 km", "duration": "≈ 25 min kolima" }
+        {
+          "name": "Aerodrom Nikola Tesla (BEG)",
+          "distance": "≈ 18 km",
+          "duration": "≈ 25 min kolima"
+        }
       ]
     }
   },
@@ -422,6 +668,7 @@
       "phone": "Telefon",
       "country": "Država",
       "countryHint": "počnite da kucate i izaberite sa spiska",
+      "countryNoMatch": "Nema na spisku. Upisaćemo kako ste napisali.",
       "package": "Paket",
       "notes": "Napomena",
       "notesHint": "ishrana, pristupačnost, nastup na takmičenju",
@@ -474,26 +721,26 @@
     "payment": {
       "referenceHint": "U pozivu na broj upišite svoje ime i prezime.",
       "methods": [
-      {
-        "id": "rsd",
-        "label": "Uplata iz Srbije (dinari)",
-        "note": "Iznos u dinarima po srednjem kursu NBS na dan uplate.",
-        "fields": [
-          { "label": "Primalac", "copy": "Pravni naziv organizatora" },
-          { "label": "Broj računa", "copy": "000-0000000000000-00" }
-        ]
-      },
-      {
-        "id": "eur",
-        "label": "Uplata iz inostranstva (EUR)",
-        "note": "Troškove banke pošiljaoca snosi uplatilac.",
-        "fields": [
-          { "label": "Primalac", "copy": "Pravni naziv organizatora" },
-          { "label": "IBAN", "copy": "RS35 0000 0000 0000 0000 00" },
-          { "label": "SWIFT / BIC", "copy": "XXXXRSBG" },
-          { "label": "Banka", "copy": "Naziv banke" }
-        ]
-      }
+        {
+          "id": "rsd",
+          "label": "Uplata iz Srbije (dinari)",
+          "note": "Iznos u dinarima po srednjem kursu NBS na dan uplate.",
+          "fields": [
+            { "label": "Primalac", "copy": "Pravni naziv organizatora" },
+            { "label": "Broj računa", "copy": "000-0000000000000-00" }
+          ]
+        },
+        {
+          "id": "eur",
+          "label": "Uplata iz inostranstva (EUR)",
+          "note": "Troškove banke pošiljaoca snosi uplatilac.",
+          "fields": [
+            { "label": "Primalac", "copy": "Pravni naziv organizatora" },
+            { "label": "IBAN", "copy": "RS35 0000 0000 0000 0000 00" },
+            { "label": "SWIFT / BIC", "copy": "XXXXRSBG" },
+            { "label": "Banka", "copy": "Naziv banke" }
+          ]
+        }
       ]
     }
   },
@@ -512,21 +759,37 @@
       },
       {
         "title": "Partner festivala",
-        "items": [
-          { "name": "MTS dvorana", "sub": "Beograd" }
-        ]
+        "items": [{ "name": "MTS dvorana", "sub": "Beograd" }]
       }
     ],
     "people": [
-      { "role": "Direktori festivala", "name": "Igor Trifunov · Dejan Đurđević Piksi" }
+      {
+        "role": "Direktori festivala",
+        "members": [
+          { "name": "Igor Trifunov", "photo": "/images/team/igor-trifunov.jpg" },
+          { "name": "Dejan Đurđević Piksi", "photo": "/images/team/dejan-djurdjevic-piksi.jpg" }
+        ]
+      },
+      {
+        "role": "Koordinatori projekta",
+        "members": [
+          { "name": "Mihajlo Janković", "photo": "/images/team/mihajlo-jankovic.jpg" },
+          { "name": "Filip Đikić Filipino", "photo": "/images/team/filip-djikic.jpg" }
+        ]
+      }
     ]
   },
 
   "partners": [],
 
-  "closing": { "kicker": "Vidimo se u Beogradu", "title": "Verujete li u magiju?" },
+  "closing": {
+    "kicker": "Vidimo se u Beogradu",
+    "title": "Verujete li u magiju?"
+  },
 
-  "footer": { "organiser": "© 2027 Beogradski festival magije. Sva prava zadržana." },
+  "footer": {
+    "organiser": "© 2027 Beogradski festival magije. Sva prava zadržana."
+  },
 
   "emails": {
     "total": "Ukupno",
@@ -559,17 +822,50 @@
     "title": "Politika privatnosti",
     "updated": "Poslednja izmena: 14. oktobar 2026.",
     "sections": [
-      { "title": "Ko obrađuje vaše podatke", "text": "Podatke obrađuje {organiser}, organizator Beogradskog festivala magije. Za sva pitanja pišite na {contact}." },
-      { "title": "Koje podatke prikupljamo", "text": "Kada se prijavite: ime, prezime, email, telefon ako ga unesete, državu, izabrani paket i dodatke, napomenu, kao i tekst i vreme vaše saglasnosti. Radi zaštite od zloupotrebe forme, uz svako slanje čuvamo i jednosmerni otisak (heš) IP adrese (ne samu adresu), najduže dva dana." },
-      { "title": "Da li morate da date podatke", "text": "Ime, prezime, email, država i izbor paketa su neophodni za obradu prijave; bez njih prijava nije moguća. Telefon i napomena nisu obavezni." },
-      { "title": "Zašto ih koristimo", "text": "Da obradimo prijavu, pošaljemo vam rezime i podatke za uplatu, podsetimo vas ako uplata ne stigne i organizujemo festival. Podatke ne prodajemo i ne koristimo za reklame." },
-      { "title": "Pravni osnov", "text": "Podatke iz prijave obrađujemo radi izvršenja ugovora o učešću na festivalu, odnosno vaše prijave i kotizacije. Saglasnost koju dajete u formi odnosi se na čuvanje podataka radi obrade prijave. Google Analytics, ako ga uključimo, koristi se samo uz vaš izričit pristanak." },
-      { "title": "Ko još ima pristup", "text": "Prijave čuvamo u bazi kod servisa Supabase, a prijavu i potvrdu šaljemo mejlom preko servisa Resend. Ovi servisi podatke obrađuju samo po našem nalogu." },
-      { "title": "Prenos podataka u inostranstvo", "text": "Resend je kompanija iz SAD, a Supabase podatke može čuvati na serverima van Srbije. Podaci se prenose na osnovu standardnih ugovornih klauzula koje ovi servisi primenjuju, u skladu sa Zakonom o zaštiti podataka o ličnosti i GDPR-om." },
-      { "title": "Koliko ih čuvamo", "text": "Do završetka festivala i izmirenja svih obaveza, osim ako zakon ne nalaže duže čuvanje." },
-      { "title": "Vaša prava", "text": "Možete da zatražite uvid u svoje podatke, njihovu ispravku ili brisanje. Pišite na {contact} i odgovorićemo u roku od 30 dana." },
-      { "title": "Povlačenje saglasnosti i pritužba", "text": "Saglasnost možete povući u svakom trenutku pisanjem na {contact}; to ne utiče na zakonitost obrade pre povlačenja. Ako smatrate da vaše podatke obrađujemo nezakonito, imate pravo da podnesete pritužbu Povereniku za informacije od javnog značaja i zaštitu podataka o ličnosti (www.poverenik.rs)." },
-      { "title": "Kolačići i spoljni sadržaj", "text": "Google Analytics se učitava samo ako ga dozvolite u obaveštenju o kolačićima. Mapa dolazi sa OpenStreetMap-a. Video sa YouTube-a, ako postoji, učitava se tek kada kliknete na njega." }
+      {
+        "title": "Ko obrađuje vaše podatke",
+        "text": "Podatke obrađuje {organiser}, organizator Beogradskog festivala magije. Za sva pitanja pišite na {contact}."
+      },
+      {
+        "title": "Koje podatke prikupljamo",
+        "text": "Kada se prijavite: ime, prezime, email, telefon ako ga unesete, državu, izabrani paket i dodatke, napomenu, kao i tekst i vreme vaše saglasnosti. Radi zaštite od zloupotrebe forme, uz svako slanje čuvamo i jednosmerni otisak (heš) IP adrese (ne samu adresu), najduže dva dana."
+      },
+      {
+        "title": "Da li morate da date podatke",
+        "text": "Ime, prezime, email, država i izbor paketa su neophodni za obradu prijave; bez njih prijava nije moguća. Telefon i napomena nisu obavezni."
+      },
+      {
+        "title": "Zašto ih koristimo",
+        "text": "Da obradimo prijavu, pošaljemo vam rezime i podatke za uplatu, podsetimo vas ako uplata ne stigne i organizujemo festival. Podatke ne prodajemo i ne koristimo za reklame."
+      },
+      {
+        "title": "Pravni osnov",
+        "text": "Podatke iz prijave obrađujemo radi izvršenja ugovora o učešću na festivalu, odnosno vaše prijave i kotizacije. Saglasnost koju dajete u formi odnosi se na čuvanje podataka radi obrade prijave. Google Analytics, ako ga uključimo, koristi se samo uz vaš izričit pristanak."
+      },
+      {
+        "title": "Ko još ima pristup",
+        "text": "Prijave čuvamo u bazi kod servisa Supabase, a prijavu i potvrdu šaljemo mejlom preko servisa Resend. Ovi servisi podatke obrađuju samo po našem nalogu."
+      },
+      {
+        "title": "Prenos podataka u inostranstvo",
+        "text": "Resend je kompanija iz SAD, a Supabase podatke može čuvati na serverima van Srbije. Podaci se prenose na osnovu standardnih ugovornih klauzula koje ovi servisi primenjuju, u skladu sa Zakonom o zaštiti podataka o ličnosti i GDPR-om."
+      },
+      {
+        "title": "Koliko ih čuvamo",
+        "text": "Do završetka festivala i izmirenja svih obaveza, osim ako zakon ne nalaže duže čuvanje."
+      },
+      {
+        "title": "Vaša prava",
+        "text": "Možete da zatražite uvid u svoje podatke, njihovu ispravku ili brisanje. Pišite na {contact} i odgovorićemo u roku od 30 dana."
+      },
+      {
+        "title": "Povlačenje saglasnosti i pritužba",
+        "text": "Saglasnost možete povući u svakom trenutku pisanjem na {contact}; to ne utiče na zakonitost obrade pre povlačenja. Ako smatrate da vaše podatke obrađujemo nezakonito, imate pravo da podnesete pritužbu Povereniku za informacije od javnog značaja i zaštitu podataka o ličnosti (www.poverenik.rs)."
+      },
+      {
+        "title": "Kolačići i spoljni sadržaj",
+        "text": "Google Analytics se učitava samo ako ga dozvolite u obaveštenju o kolačićima. Mapa dolazi sa OpenStreetMap-a. Video sa YouTube-a, ako postoji, učitava se tek kada kliknete na njega."
+      }
     ]
   },
 

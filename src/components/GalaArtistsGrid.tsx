@@ -2,16 +2,10 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { Artist, Suit } from "@/lib/content";
-import { Photo, SuitMark } from "./ui";
+import { Flag, Photo, SuitMark } from "./ui";
 
 export type ArtistCard = Artist & { suit: Suit; initial: string };
 type Labels = { photo: string; bioSoon: string; close: string; about: string };
-
-function Flag({ code }: { code?: string }) {
-  if (!code) return null;
-  // eslint-disable-next-line @next/next/no-img-element -- tiny static SVG
-  return <img className="flag" src={`/flags/${code}.svg`} alt="" width={18} height={13} aria-hidden="true" />;
-}
 
 // Playing-card corner: the artist's initial over a suit.
 function Index({ initial, suit, flip = false }: { initial: string; suit: Suit; flip?: boolean }) {

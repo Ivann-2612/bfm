@@ -243,7 +243,21 @@ export function MagicDeck() {
       const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting));
       io.observe(hero);
 
-      const start = performance.now();
+      // Phones and tablets: the poster sits below the title, often under the fold, so the cards
+      // wait until it is actually on screen instead of flying in where nobody sees them.
+      const posterEl = hero.querySelector(".hero__poster");
+      let posterSeen = !posterEl || hero.getBoundingClientRect().width >= 960;
+      const pio = new IntersectionObserver(
+        ([e]) => {
+          if (!e.isIntersecting) return;
+          posterSeen = true;
+          pio.disconnect();
+        },
+        { threshold: 0.4 },
+      );
+      if (!posterSeen && posterEl) pio.observe(posterEl);
+
+      let start = -1;
       let nextFlip = 4200;
       let raf = 0;
       let shown = false;
@@ -251,9 +265,13 @@ export function MagicDeck() {
 
       const frame = (now: number) => {
         raf = requestAnimationFrame(frame);
-        if (!visible || document.hidden) return;
+        if (!visible || document.hidden || !posterSeen) return;
+        if (start < 0) start = now;
         const t = now - start;
-        const fold = 1 - 0.85 * clamp01(window.scrollY / Math.max(1, hero.offsetHeight));
+        // Fold as the hero scrolls away; on narrow layouts only once the poster itself starts leaving the top.
+        const pr = fit.spread !== SPREAD ? posterEl?.getBoundingClientRect() : undefined;
+        const gone = pr ? -pr.top / Math.max(1, pr.height) : window.scrollY / Math.max(1, hero.offsetHeight);
+        const fold = 1 - 0.85 * clamp01(gone);
 
         for (const c of cards) {
           const d = Math.abs(c.index - mid);
@@ -299,6 +317,7 @@ export function MagicDeck() {
         cancelAnimationFrame(raf);
         ro.disconnect();
         io.disconnect();
+        pio.disconnect();
         window.removeEventListener("pointermove", onMove);
         for (const d of disposables) d.dispose();
         renderer.dispose();

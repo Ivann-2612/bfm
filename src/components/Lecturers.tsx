@@ -52,6 +52,21 @@ export function Lecturers({ lang }: LangProps) {
             );
           })}
         </ul>
+        {/* Phones: a plain list with the text visible, instead of a sideways strip of cards to flip. */}
+        <ul className="lecturers__list">
+          {lecturers.map((l, i) => (
+            <li key={i}>
+              <Photo src={l.photo} alt={l.name} label={ui.photoPlaceholder} sizes="7rem" className="lecturers__thumb" />
+              <div>
+                <h3 className="lecturers__name">{l.name}</h3>
+                <p className="lecturers__meta">
+                  {l.specialty} · {l.country}
+                </p>
+                <p className="lecturers__bio">{l.bio}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

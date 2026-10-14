@@ -1,5 +1,5 @@
 import { homePath, privacyPath, site } from "@/lib/content";
-import { Wordmark, type LangProps } from "./ui";
+import { InstagramIcon, MailIcon, Wordmark, type LangProps } from "./ui";
 
 export function Footer({ lang }: LangProps) {
   const s = site(lang);
@@ -13,13 +13,18 @@ export function Footer({ lang }: LangProps) {
           <Wordmark lang={lang} as="p" />
           <p className="site-footer__tagline">{event.tagline}</p>
         </div>
-        <div>
-          <p>
+        <div className="site-footer__contact">
+          <p className="site-footer__when">
             {s.dateRange()} · {event.venue}, {event.city}
           </p>
-          <p>
-            <a href={`mailto:${meta.contactEmail}`}>{meta.contactEmail}</a>
-          </p>
+          <a className="site-footer__social" href={`mailto:${meta.contactEmail}`}>
+            <MailIcon />
+            <span>{meta.contactEmail}</span>
+          </a>
+          <a className="site-footer__social" href={meta.instagram} target="_blank" rel="noopener" aria-label={ui.instagramLabel}>
+            <InstagramIcon />
+            <span aria-hidden="true">@{new URL(meta.instagram).pathname.replaceAll("/", "")}</span>
+          </a>
         </div>
         <ul className="site-footer__links">
           {nav.map((l) => (

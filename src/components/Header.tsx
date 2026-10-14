@@ -1,9 +1,9 @@
 import { getContent, homePath, otherLang, privacyPath } from "@/lib/content";
 import { MobileMenu } from "./MobileMenu";
-import { Wordmark, type LangProps } from "./ui";
+import { InstagramIcon, Wordmark, type LangProps } from "./ui";
 
 export function Header({ lang, page = "home" }: LangProps & { page?: "home" | "privacy" }) {
-  const { nav, menu, ui } = getContent(lang);
+  const { nav, menu, ui, site } = getContent(lang);
   const other = otherLang(lang);
   const otherSite = getContent(other).site;
   const home = homePath(lang);
@@ -25,6 +25,9 @@ export function Header({ lang, page = "home" }: LangProps & { page?: "home" | "p
             </a>
           ))}
         </nav>
+        <a href={site.instagram} className="lang-switch social-link" target="_blank" rel="noopener" aria-label={ui.instagramLabel}>
+          <InstagramIcon />
+        </a>
         <a href={switchHref} className="lang-switch" hrefLang={otherSite.lang} lang={otherSite.lang}>
           <span aria-hidden="true">{ui.otherLangShort}</span>
           <span className="visually-hidden">{ui.otherLang}</span>
@@ -35,6 +38,7 @@ export function Header({ lang, page = "home" }: LangProps & { page?: "home" | "p
         <MobileMenu
           links={menu.map((m) => ({ label: m.label, href: `${prefix}${m.href}` }))}
           privacy={{ label: ui.privacy, href: privacyPath(lang) }}
+          instagram={{ label: "Instagram", href: site.instagram }}
           lang={{ href: switchHref, label: ui.otherLang, hrefLang: otherSite.lang }}
           labels={{ open: ui.menuOpen, close: ui.menuClose, sections: ui.sectionsNav }}
         />
