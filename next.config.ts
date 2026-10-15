@@ -1,21 +1,15 @@
 import type { NextConfig } from "next";
 
-// English (DEFAULT_LANG in src/lib/content.ts) is served at "/" (internally /en); Serbian at /sr.
-// /en and /en/... redirect to the prefix-less URLs, so there is one address per page.
+// Static export for AdriaHost: plain files in out/.
+// The public .htaccess handles the old /en and /privacy URL patterns.
 const nextConfig: NextConfig = {
+  output: "export",
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
   poweredByHeader: false,
-  async redirects() {
-    return [
-      { source: "/en", destination: "/", permanent: true },
-      { source: "/en/:path*", destination: "/:path*", permanent: true },
-    ];
-  },
-  async rewrites() {
-    return [
-      { source: "/", destination: "/en" },
-      { source: "/privacy", destination: "/en/privacy" },
-    ];
-  },
+  allowedDevOrigins: ["192.168.1.12", "localhost", "127.0.0.1"],
 };
 
 export default nextConfig;

@@ -1,0 +1,8 @@
+[functions.register]
+verify_jwt = false
+
+[functions.tickets]
+verify_jwt = false
+
+[functions.expire]
+verify_jwt = false

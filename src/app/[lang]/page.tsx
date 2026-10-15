@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
-import { getContent, isLang } from "@/lib/content";
+import { LANGS, getContent, isLang } from "@/lib/content";
 import { Header } from "@/components/Header";
+
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Programs } from "@/components/Programs";
@@ -23,8 +24,16 @@ import { Footer } from "@/components/Footer";
 import { Anthem } from "@/components/Anthem";
 import { StickyCta } from "@/components/StickyCta";
 
+export function generateStaticParams() {
+  return LANGS.map((lang) => ({ lang }));
+}
+
 // Sections whose list in the JSON is empty render nothing.
-export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
   const { lang } = await params;
   if (!isLang(lang)) notFound();
 

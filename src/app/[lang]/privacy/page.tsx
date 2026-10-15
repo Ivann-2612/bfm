@@ -1,10 +1,21 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { LANGS, fill, getContent, homePath, isLang, privacyPath } from "@/lib/content";
+import {
+  LANGS,
+  fill,
+  getContent,
+  homePath,
+  isLang,
+  privacyPath,
+} from "@/lib/content";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 type Props = { params: Promise<{ lang: string }> };
+
+export function generateStaticParams() {
+  return LANGS.map((lang) => ({ lang }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
@@ -14,7 +25,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${c.privacy.title} — ${c.site.title}`,
     alternates: {
       canonical: privacyPath(lang),
-      languages: Object.fromEntries(LANGS.map((l) => [getContent(l).site.lang, privacyPath(l)])),
+      languages: Object.fromEntries(
+        LANGS.map((l) => [getContent(l).site.lang, privacyPath(l)]),
+      ),
     },
   };
 }
@@ -23,7 +36,10 @@ export default async function Privacy({ params }: Props) {
   const { lang } = await params;
   if (!isLang(lang)) notFound();
   const c = getContent(lang);
-  const values = { organiser: c.site.organiserLegal, contact: c.site.contactEmail };
+  const values = {
+    organiser: c.site.organiserLegal,
+    contact: c.site.contactEmail,
+  };
 
   return (
     <>

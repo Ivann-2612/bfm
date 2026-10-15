@@ -1,6 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { DEFAULT_LANG, LANGS, getContent, homePath, isLang } from "@/lib/content";
+import {
+  DEFAULT_LANG,
+  LANGS,
+  getContent,
+  homePath,
+  isLang,
+} from "@/lib/content";
 import { CookieBanner } from "@/components/CookieBanner";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { fontVars } from "../fonts";
@@ -11,20 +17,25 @@ type Props = { children: React.ReactNode; params: Promise<{ lang: string }> };
 export const dynamicParams = false;
 export const generateStaticParams = () => LANGS.map((lang) => ({ lang }));
 
-/** Public address of the site: NEXT_PUBLIC_SITE_URL once there is a custom domain, else the Vercel production URL. */
+/** Public address for previews and canonical URLs, fixed to the AdriaHost domain. */
 function siteUrl() {
-  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
-  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
-  return "http://localhost:3000";
+  return process.env.NEXT_PUBLIC_SITE_URL ?? "https://belgrademagicfestival.rs";
 }
 
-export async function generateMetadata({ params }: Omit<Props, "children">): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: Omit<Props, "children">): Promise<Metadata> {
   const { lang } = await params;
   if (!isLang(lang)) return {};
   const c = getContent(lang);
   // Link previews (WhatsApp, Viber, Facebook…) need absolute URLs. Images: public/og-<lang>.png,
   // regenerated with scripts/make-og.ps1 when the name or dates change.
-  const image = { url: `/og-${lang}.png`, width: 1200, height: 630, alt: c.site.title };
+  const image = {
+    url: `/og-${lang}.png`,
+    width: 1200,
+    height: 630,
+    alt: c.site.title,
+  };
   return {
     metadataBase: new URL(siteUrl()),
     title: c.site.title,
@@ -38,11 +49,18 @@ export async function generateMetadata({ params }: Omit<Props, "children">): Pro
       locale: c.site.locale.replace(/-Latn/, "").replace("-", "_"),
       images: [image],
     },
-    twitter: { card: "summary_large_image", title: c.site.title, description: c.site.description, images: [image.url] },
+    twitter: {
+      card: "summary_large_image",
+      title: c.site.title,
+      description: c.site.description,
+      images: [image.url],
+    },
     alternates: {
       canonical: homePath(lang),
       languages: {
-        ...Object.fromEntries(LANGS.map((l) => [getContent(l).site.lang, homePath(l)])),
+        ...Object.fromEntries(
+          LANGS.map((l) => [getContent(l).site.lang, homePath(l)]),
+        ),
         "x-default": homePath(DEFAULT_LANG),
       },
     },
