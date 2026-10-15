@@ -14,10 +14,12 @@ export function Jury({ lang }: LangProps) {
               <Portrait src={j.photo} alt={j.name} sizes="(max-width: 640px) 40vw, 18rem" />
               <div className="juror__text">
                 <h3 className="juror__name">{j.name}</h3>
-                <p className="juror__country">
-                  <Flag code={j.code} />
-                  {j.country}
-                </p>
+                {j.country && (
+                  <p className="juror__country">
+                    <Flag code={j.code} />
+                    {j.country}
+                  </p>
+                )}
                 <p className="juror__role">{j.role}</p>
                 {j.bio &&
                   j.bio.split("\n\n").map((para) => (

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { fill, firstWord, restWords, site } from "@/lib/content";
 import { SuitMark, type LangProps } from "./ui";
 import { MagicDeck } from "./MagicDeck";
+import { Countdown } from "./Countdown";
 
 export function Hero({ lang }: LangProps) {
   const s = site(lang);
@@ -12,6 +13,14 @@ export function Hero({ lang }: LangProps) {
       <MagicDeck />
       <div className="wrap hero__inner">
         <div className="hero__text">
+          <Countdown
+            startsAt={event.countdown.startsAt}
+            label={event.countdown.label}
+            when={`${s.longDate(event.startDate)}, ${event.countdown.startsAt.slice(11, 16)}`}
+            units={event.countdown.units}
+            done={event.countdown.done}
+          />
+
           <p className="kicker hero__kicker">
             {event.city} · {event.venue} · {event.year}
           </p>

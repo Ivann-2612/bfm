@@ -38,7 +38,18 @@
       { "value": "2", "label": "festival days" },
       { "value": "7", "label": "past editions" },
       { "value": "2012", "label": "first edition" }
-    ]
+    ],
+    "countdown": {
+      "startsAt": "2027-02-27T09:00:00+01:00",
+      "label": "Until the festival opens",
+      "units": [
+        "days",
+        "hours",
+        "min",
+        "sec"
+      ],
+      "done": "The festival has begun. See you at MTS Hall!"
+    }
   },
 
   "ui": {
@@ -134,8 +145,10 @@
           "alt": "Festival performers on stage in front of the audience"
         },
         "shows": [
-          { "date": "2027-02-27", "time": "19:00" },
-          { "date": "2027-02-28", "time": "17:00" }
+          {
+            "date": "2027-02-28",
+            "time": "17:00"
+          }
         ]
       },
       {
@@ -254,94 +267,46 @@
         "date": "2027-02-27",
         "groups": [
           {
-            "title": "Professional programme",
+            "title": "Day one: close-up competition",
             "items": [
               {
                 "time": "09:00",
-                "title": "Registration opens for the professional programme",
-                "text": "Check-in and accreditation for Serbian and international magicians, guests and participants."
+                "title": "Registration"
               },
               {
-                "time": "10:00–18:00",
-                "title": "Exhibition of contemporary magic equipment and props",
-                "text": "Equipment, props, books and other products for professional magicians and fans of illusion, presented and demonstrated."
-              },
-              {
-                "time": "10:30",
-                "title": "International magic competition – close-up",
-                "text": "Competition for Serbian and international magicians in front of an international jury."
-              },
-              { "time": "14:00", "title": "Seminar / lecture" }
-            ]
-          },
-          {
-            "title": "Family programme",
-            "items": [
-              {
-                "time": "11:00–17:00",
-                "title": "Festival programme in the MTS Hall foyer",
-                "text": "Close-up magicians, clowns, jugglers and other artists performing right among the visitors."
+                "time": "09:00–20:00",
+                "title": "Magic Dealers Area",
+                "text": "Dealer room: equipment, props and books for magicians."
               },
               {
                 "time": "11:00",
-                "title": "Magic and juggling show for children and families: FILIPINO",
-                "place": "Hall 6"
+                "title": "Opening ceremony"
+              },
+              {
+                "time": "11:30",
+                "title": "Close-up competition rehearsal"
               },
               {
                 "time": "12:00",
-                "title": "Clown and close-up magician walkabout",
-                "place": "MTS Hall lobby"
+                "title": "Seminar"
               },
               {
-                "time": "12:30",
-                "title": "Magic show for children and families: MIHAJLO",
-                "place": "Lower hall"
-              },
-              {
-                "time": "13:30",
-                "title": "Clown and close-up magician walkabout",
-                "place": "MTS Hall lobby"
-              },
-              {
-                "time": "14:00",
-                "title": "Magic show for children and families",
-                "place": "Hall 6"
-              },
-              {
-                "time": "15:00",
-                "title": "Clown and close-up magician walkabout",
-                "place": "MTS Hall lobby"
-              },
-              {
-                "time": "15:30",
-                "title": "Magic workshop for children",
-                "place": "Lower hall"
-              },
-              {
-                "time": "16:00",
-                "title": "Juggling workshop for children",
-                "place": "Hall 6"
+                "time": "13:00–16:00",
+                "title": "Close-up magic competition",
+                "highlight": true
               },
               {
                 "time": "17:00",
-                "title": "End of the first day; preparations for Gala Show Variete"
+                "title": "Seminar"
               },
               {
                 "time": "19:00",
-                "title": "Gala Show Variete, the international gala show",
-                "text": "First performance of the international gala show, closing the day's public programme.",
-                "highlight": true
-              }
-            ]
-          },
-          {
-            "title": "Evening programme for all participants",
-            "items": [
+                "title": "Seminar"
+              },
               {
                 "time": "21:00",
-                "title": "Magic Party",
-                "place": "Bar Club Lisbon, inside MTS Hall",
-                "text": "The first festival evening, with a welcome drink for all participants."
+                "title": "Cocktail",
+                "place": "Bar Club Lisbon, inside MTS Hall"
               }
             ]
           }
@@ -351,92 +316,33 @@
         "date": "2027-02-28",
         "groups": [
           {
-            "title": "Professional day and closing",
+            "title": "Day two: stage magic and the gala show",
             "items": [
               {
-                "time": "10:00–17:00",
-                "title": "Exhibition of contemporary magic equipment and props"
-              },
-              { "time": "10:30", "title": "Seminar / lecture" },
-              {
-                "time": "12:00",
-                "title": "International magic competition – stage magic"
-              },
-              { "time": "13:30", "title": "Break" },
-              { "time": "14:30", "title": "Seminar / lecture" },
-              {
-                "time": "15:30",
-                "title": "Seminar, presentation or special programme by a festival guest"
-              }
-            ]
-          },
-          {
-            "title": "Family programme",
-            "items": [
-              {
-                "time": "11:00–17:00",
-                "title": "Festival programme in the MTS Hall foyer",
-                "text": "Close-up magicians, clowns, jugglers and other artists performing right among the visitors."
+                "time": "09:00–17:00",
+                "title": "Magic Dealers Area",
+                "text": "Dealer room: equipment, props and books for magicians."
               },
               {
-                "time": "11:00",
-                "title": "Magic and juggling show for children and families: FILIPINO",
-                "place": "Hall 6"
+                "time": "09:00",
+                "title": "Stage competition rehearsal"
               },
               {
-                "time": "12:00",
-                "title": "Clown and close-up magician walkabout",
-                "place": "MTS Hall lobby"
+                "time": "11:00–14:00",
+                "title": "Stage magic competition"
               },
               {
-                "time": "12:30",
-                "title": "Magic show for children and families: MIHAJLO",
-                "place": "Lower hall"
+                "time": "15:00–16:00",
+                "title": "Seminar"
               },
               {
-                "time": "13:30",
-                "title": "Clown and close-up magician walkabout",
-                "place": "MTS Hall lobby"
-              },
-              {
-                "time": "14:00",
-                "title": "Magic show for children and families",
-                "place": "Hall 6"
-              },
-              {
-                "time": "15:00",
-                "title": "Clown and close-up magician walkabout",
-                "place": "MTS Hall lobby"
-              },
-              {
-                "time": "15:30",
-                "title": "Magic workshop for children",
-                "place": "Lower hall"
-              },
-              {
-                "time": "16:00",
-                "title": "Juggling workshop for children",
-                "place": "Hall 6"
-              },
-              {
-                "time": "17:00",
+                "time": "17:00–19:00",
                 "title": "Gala Show Variete, the international gala show",
-                "text": "Second performance of the international gala show, closing the public programme.",
                 "highlight": true
               },
               {
-                "time": "19:00",
-                "title": "Official close of the Belgrade Magic Festival 2027"
-              }
-            ]
-          },
-          {
-            "title": "Evening programme for all participants",
-            "items": [
-              {
-                "time": "",
-                "title": "Gala Dinner",
-                "text": "The second festival evening — a gala dinner for all magicians with a paid registration."
+                "time": "21:00",
+                "title": "Party for all participants"
               }
             ]
           }
@@ -537,6 +443,16 @@
     ]
   },
 
+  "anthem": {
+    "kicker": "Festival anthem",
+    "title": "Belgrade — City of Magic",
+    "text": "The official anthem of the Belgrade Magic Festival. Play it while you look through the programme.",
+    "src": "/audio/belgrade-city-of-magic.mp3",
+    "play": "Play the anthem",
+    "pause": "Pause the anthem",
+    "seek": "Position in the song"
+  },
+
   "jury": {
     "kicker": "Competitions",
     "title": "Competition jury",
@@ -547,7 +463,7 @@
         "code": "it",
         "role": "FISM President · friend of the festival",
         "photo": "/images/jury/andrea-baioni.jpg",
-        "bio": "An Italian magician born in Ravenna in 1963 and a member of the Club Magico Italiano since 1977. He rose from local club president to FISM Europe director, and in July 2022 was elected International President of FISM, the world body of magic societies.\n\nInspired early on by the Italian illusionist Silvan, he specialised in comedy magic. As president he conceived the FISM Academy, based at the Museo della Magia in Cherasco, Italy, which links artistic training, universities and research, with the aim of UNESCO Intangible Cultural Heritage recognition for the art of magic. His rule: “Study the past, read the present, and design the future.” Outside magic, he runs the Italian digital marketing agency ab studio."
+        "bio": "Andrea Baioni joined the Club Magico Italiano in 1977, was teaching magic by 1983 and in 2008 founded the Italian Team of Magic. Since 1986 he has worked as a professional performer, comedian, master of ceremonies and show producer, including corporate events for Ferrari, FIAT, Volvo and Ferrero. He has written hundreds of articles for Italian magic magazines, and from 1998 to 2021 was a member of The Magic Circle in the United Kingdom, reaching the Inner Magic Circle with Gold Star.\n\nA FISM Official Judge since 2009, he was Vice President (2016–2021) and then President (2021–2024) of FISM Europe. Since 2022 he has been President of FISM International, the federation of 116 magic societies in 51 countries that organises the World Championships of Magic. His library holds more than 4,000 books on magic."
       },
       {
         "name": "Lee Alex",
@@ -564,6 +480,14 @@
         "role": "FISM judge · founder of the Golden Cat festival",
         "photo": "/images/jury/dani-belev.jpg",
         "bio": "A Bulgarian magician and illusionist from Gabrovo with more than two decades of professional experience. He is president of the Quick Hands Project Magic Club and founder and organiser of the international magic festival Golden Cat in Gabrovo, which brings together magicians and performers from many countries.\n\nHis long-standing work has contributed significantly to the art of magic and to international collaboration in the magic community. In 2026 he became the first Bulgarian to qualify as a FISM judge."
+      },
+      {
+        "name": "Bojan Barišić",
+        "country": "",
+        "code": "",
+        "role": "Jury member",
+        "photo": "",
+        "bio": ""
       }
     ]
   },

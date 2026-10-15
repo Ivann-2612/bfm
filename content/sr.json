@@ -38,7 +38,18 @@
       { "value": "2", "label": "festivalska dana" },
       { "value": "7", "label": "održanih izdanja" },
       { "value": "2012.", "label": "godina osnivanja" }
-    ]
+    ],
+    "countdown": {
+      "startsAt": "2027-02-27T09:00:00+01:00",
+      "label": "Do početka festivala",
+      "units": [
+        "dana",
+        "sati",
+        "min",
+        "sek"
+      ],
+      "done": "Festival je počeo. Vidimo se u MTS dvorani!"
+    }
   },
 
   "ui": {
@@ -134,8 +145,10 @@
           "alt": "Učesnici festivala na sceni pred publikom"
         },
         "shows": [
-          { "date": "2027-02-27", "time": "19:00" },
-          { "date": "2027-02-28", "time": "17:00" }
+          {
+            "date": "2027-02-28",
+            "time": "17:00"
+          }
         ]
       },
       {
@@ -254,94 +267,46 @@
         "date": "2027-02-27",
         "groups": [
           {
-            "title": "Stručni deo festivala",
+            "title": "Prvi dan: takmičenje u close-up magiji",
             "items": [
               {
                 "time": "09:00",
-                "title": "Otvaranje registracije učesnika stručnog programa",
-                "text": "Prijava i akreditacija domaćih i stranih mađioničara, gostiju i učesnika festivala."
+                "title": "Prijava učesnika"
               },
               {
-                "time": "10:00–18:00",
-                "title": "Izložba savremene mađioničarske opreme i rekvizita",
-                "text": "Predstavljanje i demonstracija opreme, rekvizita, literature i drugih proizvoda namenjenih profesionalnim mađioničarima i ljubiteljima iluzionizma."
-              },
-              {
-                "time": "10:30",
-                "title": "Međunarodno takmičenje mađioničara – close-up",
-                "text": "Takmičarski program namenjen domaćim i stranim mađioničarima pred međunarodnim stručnim žirijem."
-              },
-              { "time": "14:00", "title": "Stručni seminar / predavanje" }
-            ]
-          },
-          {
-            "title": "Porodični deo festivala",
-            "items": [
-              {
-                "time": "11:00–17:00",
-                "title": "Festivalski program u foajeu MTS dvorane",
-                "text": "Nastupi close-up mađioničara, klovnova, žonglera i drugih artista, uz neposrednu interakciju sa posetiocima."
+                "time": "09:00–20:00",
+                "title": "Magic Dealers Area",
+                "text": "Dilerska sala: oprema, rekviziti i literatura za mađioničare."
               },
               {
                 "time": "11:00",
-                "title": "Mađioničarsko-žonglerska predstava za decu i porodice FILIPINO",
-                "place": "Sala 6"
+                "title": "Svečano otvaranje festivala"
+              },
+              {
+                "time": "11:30",
+                "title": "Proba za close-up takmičenje"
               },
               {
                 "time": "12:00",
-                "title": "Animacija klovna i close-up mađioničara",
-                "place": "Hol MTS dvorane"
+                "title": "Seminar"
               },
               {
-                "time": "12:30",
-                "title": "Mađioničarska predstava za decu i porodice MIHAJLO",
-                "place": "Donja sala"
-              },
-              {
-                "time": "13:30",
-                "title": "Animacija klovna i close-up mađioničara",
-                "place": "Hol MTS dvorane"
-              },
-              {
-                "time": "14:00",
-                "title": "Mađioničarska predstava za decu i porodice",
-                "place": "Sala 6"
-              },
-              {
-                "time": "15:00",
-                "title": "Animacija klovna i close-up mađioničara",
-                "place": "Hol MTS dvorane"
-              },
-              {
-                "time": "15:30",
-                "title": "Magična radionica za decu",
-                "place": "Donja sala"
-              },
-              {
-                "time": "16:00",
-                "title": "Žonglerska radionica za decu",
-                "place": "Sala 6"
+                "time": "13:00–16:00",
+                "title": "Takmičenje u close-up magiji",
+                "highlight": true
               },
               {
                 "time": "17:00",
-                "title": "Završetak prvog festivalskog dana i priprema za Magični Varijete"
+                "title": "Seminar"
               },
               {
                 "time": "19:00",
-                "title": "Međunarodni Gala šou „Magični Varijete“",
-                "text": "Prvo izvođenje međunarodnog Gala šoua i završetak festivalskog programa namenjenog širokoj publici.",
-                "highlight": true
-              }
-            ]
-          },
-          {
-            "title": "Večernji deo festivala za sve učesnike",
-            "items": [
+                "title": "Seminar"
+              },
               {
                 "time": "21:00",
-                "title": "Magic Party",
-                "place": "Bar klub „Lisabon“ u objektu MTS dvorane",
-                "text": "Prvo festivalsko veče, uz piće dobrodošlice za sve učesnike."
+                "title": "Koktel",
+                "place": "Bar klub „Lisabon“ u objektu MTS dvorane"
               }
             ]
           }
@@ -351,92 +316,33 @@
         "date": "2027-02-28",
         "groups": [
           {
-            "title": "Stručni dan i svečano zatvaranje festivala",
+            "title": "Drugi dan: scenska magija i Gala šou",
             "items": [
               {
-                "time": "10:00–17:00",
-                "title": "Izložba savremene mađioničarske opreme i rekvizita"
-              },
-              { "time": "10:30", "title": "Stručni seminar / predavanje" },
-              {
-                "time": "12:00",
-                "title": "Međunarodno takmičenje mađioničara – stage magic"
-              },
-              { "time": "13:30", "title": "Pauza" },
-              { "time": "14:30", "title": "Stručni seminar / predavanje" },
-              {
-                "time": "15:30",
-                "title": "Stručni seminar, prezentacija ili specijalni program gosta festivala"
-              }
-            ]
-          },
-          {
-            "title": "Porodični deo festivala",
-            "items": [
-              {
-                "time": "11:00–17:00",
-                "title": "Festivalski program u foajeu MTS dvorane",
-                "text": "Nastupi close-up mađioničara, klovnova, žonglera i drugih artista, uz neposrednu interakciju sa posetiocima."
+                "time": "09:00–17:00",
+                "title": "Magic Dealers Area",
+                "text": "Dilerska sala: oprema, rekviziti i literatura za mađioničare."
               },
               {
-                "time": "11:00",
-                "title": "Mađioničarsko-žonglerska predstava za decu i porodice FILIPINO",
-                "place": "Sala 6"
+                "time": "09:00",
+                "title": "Proba za takmičenje u scenskoj magiji"
               },
               {
-                "time": "12:00",
-                "title": "Animacija klovna i close-up mađioničara",
-                "place": "Hol MTS dvorane"
+                "time": "11:00–14:00",
+                "title": "Takmičenje u scenskoj magiji (stage)"
               },
               {
-                "time": "12:30",
-                "title": "Mađioničarska predstava za decu i porodice MIHAJLO",
-                "place": "Donja sala"
+                "time": "15:00–16:00",
+                "title": "Seminar"
               },
               {
-                "time": "13:30",
-                "title": "Animacija klovna i close-up mađioničara",
-                "place": "Hol MTS dvorane"
-              },
-              {
-                "time": "14:00",
-                "title": "Mađioničarska predstava za decu i porodice",
-                "place": "Sala 6"
-              },
-              {
-                "time": "15:00",
-                "title": "Animacija klovna i close-up mađioničara",
-                "place": "Hol MTS dvorane"
-              },
-              {
-                "time": "15:30",
-                "title": "Magična radionica za decu",
-                "place": "Donja sala"
-              },
-              {
-                "time": "16:00",
-                "title": "Žonglerska radionica za decu",
-                "place": "Sala 6"
-              },
-              {
-                "time": "17:00",
+                "time": "17:00–19:00",
                 "title": "Međunarodni Gala šou „Magični Varijete“",
-                "text": "Drugo izvođenje međunarodnog Gala šoua i završetak festivalskog programa namenjenog širokoj publici.",
                 "highlight": true
               },
               {
-                "time": "19:00",
-                "title": "Zvanični završetak Beogradskog festivala magije 2027."
-              }
-            ]
-          },
-          {
-            "title": "Večernji deo festivala za sve učesnike",
-            "items": [
-              {
-                "time": "",
-                "title": "Gala večera",
-                "text": "Drugo festivalsko veče — gala večera za sve mađioničare sa plaćenom kotizacijom."
+                "time": "21:00",
+                "title": "Žurka za sve učesnike"
               }
             ]
           }
@@ -540,6 +446,16 @@
     ]
   },
 
+  "anthem": {
+    "kicker": "Himna festivala",
+    "title": "Belgrade — City of Magic",
+    "text": "Zvanična himna Beogradskog festivala magije. Pustite je dok listate program.",
+    "src": "/audio/belgrade-city-of-magic.mp3",
+    "play": "Pusti himnu",
+    "pause": "Pauziraj himnu",
+    "seek": "Položaj u pesmi"
+  },
+
   "jury": {
     "kicker": "Takmičenja",
     "title": "Stručni žiri",
@@ -550,7 +466,7 @@
         "code": "it",
         "role": "Predsednik FISM-a · prijatelj festivala",
         "photo": "/images/jury/andrea-baioni.jpg",
-        "bio": "Italijanski mađioničar rođen 1963. u Raveni, član Club Magico Italiano od 1977. Prošao je put od predsednika lokalnog kluba do direktora FISM Europe, a u julu 2022. izabran je za međunarodnog predsednika FISM-a, svetske organizacije mađioničarskih društava.\n\nPod uticajem italijanskog iluzioniste Silvana posvetio se komičnoj magiji. Kao predsednik pokrenuo je FISM akademiju u Muzeju magije u Cherascu (Italija), koja povezuje umetničko obrazovanje, univerzitete i istraživanje, sa ciljem da magija uđe na Uneskovu listu nematerijalnog kulturnog nasleđa. Njegovo pravilo: „Study the past, read the present, and design the future.“ Van magije vodi italijansku agenciju za digitalni marketing ab studio."
+        "bio": "Andrea Baioni je postao član Club Magico Italiano 1977, magiju je predavao već od 1983, a 2008. osnovao je italijanski mađioničarski tim (Italian Team of Magic). Od 1986. radi kao profesionalni izvođač, komičar, voditelj programa i producent predstava, između ostalog na korporativnim događajima za Ferrari, FIAT, Volvo i Ferrero. Objavio je stotine članaka u italijanskim mađioničarskim časopisima, a od 1998. do 2021. bio je član The Magic Circle u Velikoj Britaniji, sa zvanjem Inner Magic Circle with Gold Star.\n\nZvanični je sudija FISM-a od 2009, bio je potpredsednik (2016–2021), a zatim predsednik (2021–2024) FISM Europe. Od 2022. je predsednik FISM International, federacije 116 mađioničarskih društava iz 51 zemlje koja organizuje Svetsko prvenstvo u magiji. Njegova biblioteka broji više od 4.000 knjiga o magiji."
       },
       {
         "name": "Lee Alex",
@@ -567,6 +483,14 @@
         "role": "Sudija FISM-a · osnivač festivala Golden Cat",
         "photo": "/images/jury/dani-belev.jpg",
         "bio": "Bugarski mađioničar i iluzionista iz Gabrova, sa više od dve decenije profesionalnog iskustva. Predsednik je mađioničarskog kluba Quick Hands Project, osnivač i organizator međunarodnog festivala magije „Golden Cat“ u Gabrovu, koji okuplja mađioničare i izvođače iz mnogih zemalja.\n\nDugogodišnjim radom značajno je doprineo razvoju magije i međunarodnoj saradnji u mađioničarskoj zajednici. Godine 2026. postao je prvi Bugarin sa zvanjem sudije FISM-a."
+      },
+      {
+        "name": "Bojan Barišić",
+        "country": "",
+        "code": "",
+        "role": "Član žirija",
+        "photo": "",
+        "bio": ""
       }
     ]
   },

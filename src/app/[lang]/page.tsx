@@ -20,6 +20,7 @@ import { Organizers } from "@/components/Organizers";
 import { Closing } from "@/components/Closing";
 import { Partners } from "@/components/Partners";
 import { Footer } from "@/components/Footer";
+import { Anthem } from "@/components/Anthem";
 import { StickyCta } from "@/components/StickyCta";
 
 // Sections whose list in the JSON is empty render nothing.
@@ -36,12 +37,13 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <Programs lang={lang} />
         <GalaArtists lang={lang} />
         <Lecturers lang={lang} />
+        <Jury lang={lang} />
         <Schedule lang={lang} />
         <Vision lang={lang} />
         <Gallery lang={lang} />
+        <Anthem lang={lang} />
         <Video lang={lang} />
         <History lang={lang} />
-        <Jury lang={lang} />
         <Packages lang={lang} />
         <Hotels lang={lang} />
         <Travel lang={lang} />

@@ -96,7 +96,7 @@ export const site = (lang: Lang) => sites[lang];
 const DATA_KEYS = new Set([
   "date", "startDate", "endDate", "time", "year", "early", "regular", "price", "priceFrom", "max",
   "id", "src", "width", "height", "lat", "lng", "earlyBirdUntil", "youtubeId", "href", "url", "logo",
-  "highlight", "hidden", "allowExtras", "copy", "code", "currency", "timeZone", "contactEmail", "instagram", "iban", "swift",
+  "highlight", "hidden", "allowExtras", "copy", "code", "currency", "timeZone", "contactEmail", "instagram", "startsAt", "iban", "swift",
 ]);
 
 function compare(a: unknown, b: unknown, path: string) {
@@ -135,6 +135,9 @@ function compare(a: unknown, b: unknown, path: string) {
       throw new Error(`${lang}.json: event.year ${event.year} does not match startDate ${event.startDate}`);
     }
     for (const p of s.c.programs.items) for (const show of p.shows) s.dayFor(show.date);
+    if (!event.countdown.startsAt.startsWith(event.startDate)) {
+      throw new Error(`${lang}.json: countdown starts ${event.countdown.startsAt}, festival on ${event.startDate}`);
+    }
     const ids = s.c.packages.items.map((p) => p.id);
     if (new Set(ids).size !== ids.length) throw new Error(`${lang}.json: duplicate package id`);
   }
