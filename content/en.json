@@ -22,13 +22,13 @@
     "tagline": "Magic that connects. Art that amazes.",
     "intro": "Two festival days of world-class illusion, international artists, family shows, competitions and sessions for magicians.",
     "poster": {
-      "src": "/images/naslovna.png",
+      "src": "/images/naslovna.jpg",
       "alt": "Magični Varijete (Gala Show Variete) 2027 — official festival poster",
       "width": 1055,
       "height": 1491,
       "translatedTitle": "Gala Show|Variete",
       "scene": {
-        "src": "/images/naslovna-scena.png",
+        "src": "/images/naslovna-scena.jpg",
         "alt": "A magician on stage in front of a full house",
         "width": 1055,
         "height": 891
@@ -224,21 +224,21 @@
         "name": "Igor Trifunov",
         "country": "Serbia",
         "code": "rs",
-        "photo": "/images/artists/igor-trifunov.png",
+        "photo": "/images/artists/igor-trifunov.jpg",
         "bio": "Igor Trifunov is the most successful Serbian magician and illusionist of the new generation. He has won acclaim at many international competitions, including fourth place at the World Championship of Magic in Rimini, the Grand Prix at the Balkan Magic Congress and first place at the magic competition in Baden.\n\nHe created the TV series Ulična Magija (Street Magic), the children’s show Igorov Magični Šou (Igor’s Magic Show), the illusion show Igorov Magični Spektakl (Igor’s Magic Spectacle) and the international spectacle Magični Varijete (Gala Show Variete)."
       },
       {
         "name": "Maxim Gladstein",
         "country": "Russia",
         "code": "ru",
-        "photo": "/images/artists/maxim-gladstein.png",
+        "photo": "/images/artists/maxim-gladstein.jpg",
         "bio": "A professional illusionist and magician from Russia who has lived and worked in Belgrade for many years. He is known for an elegant style and an air of mystery that joins classic magic with modern stage illusion.\n\nHe has won awards at magic competitions in France and China. His repertoire runs from close-up sleight of hand with cards, coins and small objects, to large stage illusions with transformations, vanishes and mentalism, to interactive shows for adults and children in which the audience becomes part of the trick."
       },
       {
         "name": "Tamia",
         "country": "Slovenia",
         "code": "si",
-        "photo": "/images/artists/tamia.png",
+        "photo": "/images/artists/tamia.jpg",
         "bio": "Tamia Dulce Villca Šeme (born 1998) is a Slovenian aerial silks performer, stuntwoman and circus artist. Before the circus she was a member of the Slovenian national rhythmic gymnastics team, and she is a qualified sports coach.\n\nShe finished second in the super-final of the eighth season of Slovenija ima talent (2021), and in 2024 won the Croatian Supertalent: a group Golden Buzzer at her audition, then 47.7% of the public vote in the final.\n\nHer acts combine gymnastic discipline with dramatic aerial drops, flexibility and storytelling. She also performs in the duo LaTam_Duo and coaches, helping professional circus arts grow in Slovenia."
       },
       {
@@ -416,7 +416,7 @@
         "name": "Domenico Dante",
         "country": "Italy",
         "specialty": "Friend of the festival · lecture",
-        "photo": "/images/artists/domenico-dante.png",
+        "photo": "/images/artists/domenico-dante.jpg",
         "bio": "FISM President from 2012 to 2022, now Honorary President. A professional magician since 1984 and producer of more than 120 international conventions."
       },
       {
@@ -749,7 +749,7 @@
 
   "privacy": {
     "title": "Privacy policy",
-    "updated": "Last updated: 14 October 2026.",
+    "updated": "Last updated: 15 October 2026.",
     "sections": [
       {
         "title": "Who processes your data",
@@ -773,7 +773,7 @@
       },
       {
         "title": "Who else has access",
-        "text": "Registrations are stored in a Supabase database, and registrations and confirmations are sent by email through Resend. These services process data only on our instructions."
+        "text": "The website is hosted by AdriaHost in Serbia. Form data goes straight to a Supabase database, and registrations and confirmations are sent by email through Resend. These services process data only on our instructions."
       },
       {
         "title": "Transfers outside Serbia",

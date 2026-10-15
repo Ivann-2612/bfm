@@ -1,0 +1,43 @@
+# AdriaHost (LiteSpeed) routing for the static export in out/.
+# English is built as /en/ and shown at "/", Serbian lives at /sr/.
+Options -MultiViews -Indexes
+RewriteEngine On
+
+# One address: https, without www.
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://belgrademagicfestival.rs%{REQUEST_URI} [R=301,L]
+
+# Old /en/... addresses go to the prefix-less ones (only what the visitor asked for,
+# not our own internal rewrites below, which would loop).
+RewriteCond %{THE_REQUEST} \s/en(/|\s|\?)
+RewriteRule ^en/?(.*)$ /$1 [R=301,L]
+
+# "/" and "/privacy/" show the English pages.
+RewriteRule ^$ en/ [L]
+RewriteRule ^privacy/?$ en/privacy/ [L]
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_headers.c>
+  # Next's build files have a hash in their name: cache them for a year.
+  <FilesMatch "^.*\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # Photos, icons and the anthem keep their names when replaced: one day.
+  <FilesMatch "\.(png|jpg|jpeg|webp|svg|ico|mp3)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+  # Pages: always check for a new version.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# The organiser's page must never be indexed or cached.
+<If "%{REQUEST_URI} =~ m#^/karte#">
+  Header set X-Robots-Tag "noindex, nofollow"
+  Header set Cache-Control "no-store"
+</If>

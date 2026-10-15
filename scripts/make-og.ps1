@@ -4,7 +4,7 @@
 Add-Type -AssemblyName System.Drawing
 $root = "C:\Users\ivan.nikolic\OneDrive - FINCORE LTD\Desktop\golden"
 $texts = Get-Content "$root\scripts\og-text.json" -Raw -Encoding UTF8 | ConvertFrom-Json
-$scene = [System.Drawing.Image]::FromFile("$root\public\images\naslovna-scena.png")
+$scene = [System.Drawing.Image]::FromFile("$root\public\images\naslovna-scena.jpg")
 
 function Color($hex, $a = 255) {
   $c = [System.Drawing.ColorTranslator]::FromHtml($hex)

@@ -1,28 +1,26 @@
-import "server-only";
-import { Resend } from "resend";
-import { fill, isLang, site, DEFAULT_LANG, ORGANIZER_LANG, type Lang } from "../content";
-import { computePrice, type Quote } from "../pricing";
+// Emails for a new registration (Resend): a summary with payment details to the visitor, in
+// their language, and a notice to the organiser, always in Serbian. Text comes from the JSON
+// (copied into ../_shared by scripts/sync-functions.mjs).
+import { Resend } from "npm:resend@6";
+import { fill, site, ORGANIZER_LANG, type Lang } from "../_shared/content.ts";
+import { computePrice, type Quote } from "../_shared/pricing.ts";
 
 const esc = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
-function resend() {
-  const key = process.env.RESEND_API_KEY;
-  return key ? new Resend(key) : null;
-}
+const env = (k: string) => Deno.env.get(k) ?? "";
 
 /** True when registrations can be emailed to the organiser (key, sender and recipient all set). */
-export const mailConfigured = () =>
-  Boolean(process.env.RESEND_API_KEY && process.env.RESEND_FROM && process.env.ORGANIZER_EMAIL);
+export const mailConfigured = () => Boolean(env("RESEND_API_KEY") && env("RESEND_FROM") && env("ORGANIZER_EMAIL"));
 
-async function send(to: string, subject: string, html: string, replyTo?: string) {
-  const client = resend();
-  const from = process.env.RESEND_FROM;
-  if (!client || !from) {
+async function send(to: string | string[], subject: string, html: string, replyTo?: string) {
+  const key = env("RESEND_API_KEY");
+  const from = env("RESEND_FROM");
+  if (!key || !from) {
     console.info(`[mail:dry-run] to=${to} subject="${subject}"`);
     return;
   }
-  const { error } = await client.emails.send({ from, to, subject, html, replyTo });
+  const { error } = await new Resend(key).emails.send({ from, to, subject, html, replyTo });
   if (error) throw new Error(`Resend: ${error.message}`);
 }
 
@@ -50,11 +48,7 @@ export async function sendConfirmation(lang: Lang, p: Person, quote: Quote) {
   // Same methods and fields as the copy-to-clipboard panel on the success screen.
   const methods = payment.methods
     .map((method) => {
-      const rows = [
-        ...method.fields.map((f) => [f.label, f.copy]),
-        [L.amount, site(lang).money(quote.total)],
-        [L.reference, reference],
-      ]
+      const rows = [...method.fields.map((f) => [f.label, f.copy]), [L.amount, site(lang).money(quote.total)], [L.reference, reference]]
         .map(([k, v]) => `<tr><td style="padding:3px 16px 3px 0;color:#666">${esc(k)}</td><td><b>${esc(v)}</b></td></tr>`)
         .join("");
       return `<p style="margin:16px 0 4px"><b>${esc(method.label)}</b></p>
@@ -74,26 +68,23 @@ export async function sendConfirmation(lang: Lang, p: Person, quote: Quote) {
   await send(p.email, fill(m.subject, { event }), html, c.site.contactEmail);
 }
 
-// The organiser always gets Serbian, whatever language the visitor used. Without Supabase this
-// email is the only record of the registration, so it carries every field.
+// ORGANIZER_EMAIL may list several addresses, separated by commas.
 export async function notifyOrganizer(
   visitorLang: Lang,
   p: Person & { phone: string; country: string; notes: string; packageId: string; extras: Partial<Record<string, number>> },
   now: Date,
 ) {
-  const to = process.env.ORGANIZER_EMAIL;
-  if (!to) return;
+  const to = env("ORGANIZER_EMAIL")
+    .split(",")
+    .map((a) => a.trim())
+    .filter(Boolean);
+  if (to.length === 0) return;
   const s = site(ORGANIZER_LANG);
   const m = s.c.emails.organizer;
   // Same amounts as the visitor's quote (enforced in content.ts), with Serbian labels.
   const quote = computePrice(p, now, ORGANIZER_LANG);
-  const row = (label: string, value: string) =>
-    `<tr><td style="padding:3px 16px 3px 0;color:#666">${esc(label)}</td><td>${value}</td></tr>`;
-  const received = new Intl.DateTimeFormat(s.c.site.locale, {
-    dateStyle: "long",
-    timeStyle: "short",
-    timeZone: s.c.site.timeZone,
-  }).format(now);
+  const row = (label: string, value: string) => `<tr><td style="padding:3px 16px 3px 0;color:#666">${esc(label)}</td><td>${value}</td></tr>`;
+  const received = new Intl.DateTimeFormat(s.c.site.locale, { dateStyle: "long", timeStyle: "short", timeZone: s.c.site.timeZone }).format(now);
   const html = `
     <p style="font-size:18px"><b>${esc(p.firstName)} ${esc(p.lastName)}</b></p>
     <table style="border-collapse:collapse;margin-bottom:16px">
@@ -107,16 +98,4 @@ export async function notifyOrganizer(
     ${p.notes ? `<p><b>${esc(m.notes)}:</b> ${esc(p.notes)}</p>` : ""}
     <p style="color:#666;font-size:13px">${esc(m.replyHint)}</p>`;
   await send(to, fill(m.subject, { firstName: p.firstName, lastName: p.lastName, total: s.money(quote.total) }), html, p.email);
-}
-
-export async function sendExpiryNotice(row: { first_name: string; email: string; lang: string }) {
-  const lang = isLang(row.lang) ? row.lang : DEFAULT_LANG;
-  const s = site(lang);
-  const m = s.c.emails.expiry;
-  const event = eventName(lang);
-  const html = `
-    <p>${esc(fill(m.greeting, { firstName: row.first_name }))}</p>
-    <p>${esc(fill(m.released, { event }))}</p>
-    <p>${esc(fill(m.again, { date: s.formatInstant(s.c.packages.earlyBirdUntil) }))}</p>`;
-  await send(row.email, fill(m.subject, { event }), html, s.c.site.contactEmail);
 }

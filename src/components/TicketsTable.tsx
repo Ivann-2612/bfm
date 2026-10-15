@@ -1,17 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
-import type { Status, Ticket } from "@/lib/server/admin";
-
-// Mirrors STATUS_LABEL in lib/server/admin.ts (that module is server-only).
-const STATUS_LABEL: Record<Status, string> = {
-  pending: "Čeka uplatu",
-  paid: "Plaćeno",
-  expired: "Isteklo",
-  cancelled: "Otkazano",
-};
-const STATUSES = Object.keys(STATUS_LABEL) as Status[];
+import { STATUS_LABEL, STATUSES, type Status, type Ticket } from "@/lib/tickets";
 
 type SortKey = "ts" | "name" | "country" | "packageName" | "total" | "status";
 const COLUMNS: { key: SortKey | null; label: string }[] = [
@@ -27,24 +17,27 @@ const COLUMNS: { key: SortKey | null; label: string }[] = [
 
 export function TicketsTable({
   tickets: initial,
-  base,
+  onReload,
+  onStatus,
   demo,
 }: {
   tickets: Ticket[];
-  /** "/karte/<key>" — the status endpoint lives under it. */
-  base: string;
+  /** Loads the list again (the page keeps it in state, so filter, sort and scroll stay). */
+  onReload: () => Promise<void>;
+  /** Saves one status change; throws with a message when it fails. */
+  onStatus: (id: string, status: Status) => Promise<void>;
   /** Local preview with sample rows: change status in the browser only. */
   demo: boolean;
 }) {
-  const router = useRouter();
-  // Fresh data without a page reload: router.refresh() re-renders the server page (new rows and
-  // totals) while filter, sort and scroll position stay. Runs every 30 s while the tab is visible,
-  // when the tab regains focus, and on the "Refresh" button.
+  // Fresh data without a page reload. Runs every 30 s while the tab is visible, when the tab
+  // regains focus, and on the "Refresh" button.
   const [refreshing, startRefresh] = useTransition();
   const refresh = useCallback(() => {
     if (demo) return;
-    startRefresh(() => router.refresh());
-  }, [demo, router]);
+    startRefresh(async () => {
+      await onReload();
+    });
+  }, [demo, onReload]);
   useEffect(() => {
     if (demo) return;
     const tick = setInterval(() => {
@@ -79,15 +72,9 @@ export function TicketsTable({
     if (demo) return;
     setSaving(t.id);
     try {
-      const res = await fetch(`${base}/status`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: t.id, status }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.message ?? "Nije sačuvano.");
+      await onStatus(t.id, status);
       setMessage(`${t.name}: ${STATUS_LABEL[status]}`);
-      router.refresh(); // updates the totals above; filter and sort stay as they are
+      void onReload(); // updates the totals above; filter and sort stay as they are
     } catch (e) {
       setOverrides((o) => {
         const { [t.id]: _, ...rest } = o;

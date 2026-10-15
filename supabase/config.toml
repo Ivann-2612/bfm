@@ -1,0 +1,10 @@
+# Supabase CLI settings for this project (functions only; the database is managed in the dashboard).
+project_id = "pnpylpzcgoulsivplhip"
+
+# Both functions check access themselves (allowed origin / x-admin-key), so the Supabase JWT check is off:
+# the browser calls them without a Supabase key.
+[functions.register]
+verify_jwt = false
+
+[functions.tickets]
+verify_jwt = false

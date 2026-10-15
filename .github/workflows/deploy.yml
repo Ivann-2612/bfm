@@ -1,0 +1,64 @@
+# Publishes the site to AdriaHost (static files over FTP) and the server functions to Supabase.
+# Runs on every push to main and to adriahost (the branch used to test the move before it is
+# merged), or by hand ("Run workflow"). Vercel is not involved.
+#
+# Repository secrets: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, SUPABASE_ACCESS_TOKEN
+# Repository variables: FTP_DIR, NEXT_PUBLIC_SITE_URL, NEXT_PUBLIC_FUNCTIONS_URL, SUPABASE_PROJECT_REF,
+#                       NEXT_PUBLIC_TURNSTILE_SITE_KEY (optional), NEXT_PUBLIC_GA_ID (optional)
+name: Deploy
+
+on:
+  push:
+    branches: [main, adriahost]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  functions:
+    name: Supabase functions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Copy shared code into supabase/functions/_shared
+        run: node scripts/sync-functions.mjs
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - name: Deploy register and tickets
+        run: supabase functions deploy register tickets --project-ref "${{ vars.SUPABASE_PROJECT_REF }}"
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+
+  site:
+    name: Site to AdriaHost
+    runs-on: ubuntu-latest
+    needs: functions # the new site may call new function code: publish the functions first
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build (static export to out/)
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+          NEXT_PUBLIC_FUNCTIONS_URL: ${{ vars.NEXT_PUBLIC_FUNCTIONS_URL }}
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
+          NEXT_PUBLIC_GA_ID: ${{ vars.NEXT_PUBLIC_GA_ID }}
+      - name: Upload over FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps # if AdriaHost refuses the connection, try: ftp
+          local-dir: ./out/
+          server-dir: ${{ vars.FTP_DIR }}
