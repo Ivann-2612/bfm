@@ -1,4 +1,8 @@
-const ALLOWED = (Deno.env.get("ALLOWED_ORIGINS") ?? "")
+const ALLOWED = (
+  Deno.env.get("ALLOWED_ORIGINS") ??
+  Deno.env.get("allowed_origins") ??
+  ""
+)
   .split(",")
   .map((s) => s.trim())
   .filter(Boolean);

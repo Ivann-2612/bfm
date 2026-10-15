@@ -1,0 +1,809 @@
+{
+  "site": {
+    "title": "Belgrade Magic Festival 2027",
+    "description": "Belgrade Magic Festival, 27–28 February 2027 at MTS Hall — an international gala show, family programme, competitions and sessions for magicians.",
+    "locale": "en-GB",
+    "lang": "en",
+    "timeZone": "Europe/Belgrade",
+    "currency": "EUR",
+    "contactEmail": "magic.piksi@gmail.com",
+    "instagram": "https://www.instagram.com/belgrademagicfestival/",
+    "organiserLegal": "Organiser legal name, address"
+  },
+
+  "event": {
+    "name": "Belgrade Magic Festival",
+    "year": 2027,
+    "city": "Belgrade",
+    "country": "Serbia",
+    "venue": "MTS Hall",
+    "startDate": "2027-02-27",
+    "endDate": "2027-02-28",
+    "tagline": "Magic that connects. Art that amazes.",
+    "intro": "Two festival days of world-class illusion, international artists, family shows, competitions and sessions for magicians.",
+    "poster": {
+      "src": "/images/naslovna.png",
+      "alt": "Magični Varijete (Gala Show Variete) 2027 — official festival poster",
+      "width": 1055,
+      "height": 1491,
+      "translatedTitle": "Gala Show|Variete",
+      "scene": {
+        "src": "/images/naslovna-scena.png",
+        "alt": "A magician on stage in front of a full house",
+        "width": 1055,
+        "height": 891
+      }
+    },
+    "stats": [
+      { "value": "2", "label": "festival days" },
+      { "value": "7", "label": "past editions" },
+      { "value": "2012", "label": "first edition" }
+    ],
+    "countdown": {
+      "startsAt": "2027-02-27T09:00:00+01:00",
+      "label": "Until the festival opens",
+      "units": [
+        "days",
+        "hours",
+        "min",
+        "sec"
+      ],
+      "done": "The festival has begun. See you at MTS Hall!"
+    }
+  },
+
+  "ui": {
+    "skip": "Skip to content",
+    "register": "Register",
+    "seeProgramme": "See the programme",
+    "seePackages": "Tickets and prices",
+    "backToTop": "Back to top",
+    "photoPlaceholder": "Photo",
+    "directions": "Get directions",
+    "openMap": "Open map",
+    "book": "Book",
+    "bookingSoon": "Booking link coming soon",
+    "playVideo": "Play video",
+    "showBio": "Show bio",
+    "hideBio": "Hide bio",
+    "perNight": "night",
+    "from": "from",
+    "otherLang": "Srpski",
+    "otherLangShort": "SR",
+    "sectionsNav": "Sections",
+    "daysNav": "Festival days",
+    "partners": "Partners",
+    "privacy": "Privacy policy",
+    "backToSite": "Back to the festival",
+    "seeArtists": "Meet the artists",
+    "openPhoto": "Enlarge photo",
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "bioSoon": "Bio coming soon.",
+    "aboutArtist": "More about the artist",
+    "dayLink": "Programme for {date}",
+    "instagramLabel": "The festival on Instagram",
+    "openGoogleMaps": "Google Maps"
+  },
+
+  "nav": [
+    { "label": "Festival", "href": "#festival" },
+    { "label": "Programme", "href": "#program" },
+    { "label": "Artists", "href": "#izvodjaci" },
+    { "label": "Lecturers", "href": "#predavaci" },
+    { "label": "Gallery", "href": "#galerija" },
+    { "label": "Organisers", "href": "#organizatori" }
+  ],
+
+  "menu": [
+    { "label": "Festival", "href": "#festival" },
+    { "label": "Programme", "href": "#program" },
+    { "label": "Artists", "href": "#izvodjaci" },
+    { "label": "Lecturers", "href": "#predavaci" },
+    { "label": "Gallery", "href": "#galerija" },
+    { "label": "Prices", "href": "#cene" },
+    { "label": "Accommodation", "href": "#smestaj" },
+    { "label": "Getting here", "href": "#lokacija" },
+    { "label": "Organisers", "href": "#organizatori" },
+    { "label": "Register", "href": "#prijava" }
+  ],
+
+  "about": {
+    "kicker": "About the festival",
+    "title": "A great tradition returns",
+    "lead": "Belgrade is once again the capital of magic.",
+    "paragraphs": [
+      "The Belgrade Magic Festival is the revival of one of the most important magic events in Serbia.",
+      "After seven successful editions, the festival returns in a modern format — an international event that brings together leading Serbian and foreign artists, professional magicians, young talent, families and everyone who loves illusion."
+    ],
+    "aside": {
+      "title": "More than a show",
+      "text": "A meeting place for art, knowledge and moments of wonder."
+    },
+    "photo": {
+      "src": "/images/foaje.jpg",
+      "alt": "Crowds of visitors at a previous edition of the festival"
+    }
+  },
+
+  "programs": {
+    "kicker": "One festival · countless experiences",
+    "title": "For audiences and professionals",
+    "intro": "From spectacle on the big stage to magic happening a few centimetres in front of you.",
+    "items": [
+      {
+        "id": "varijete",
+        "points": [],
+        "name": "Gala Show Variete",
+        "meta": "Main stage · for all ages",
+        "text": "Magični Varijete is the festival's international gala show, with renowned artists from illusion, variety and contemporary stage performance.",
+        "photo": {
+          "src": "/images/finale.jpg",
+          "alt": "Festival performers on stage in front of the audience"
+        },
+        "shows": [
+          {
+            "date": "2027-02-28",
+            "time": "17:00"
+          }
+        ]
+      },
+      {
+        "id": "publika",
+        "points": [],
+        "name": "Festival for the public",
+        "meta": "All-day programme",
+        "text": "Shows for children and families, close-up magic, clowns, jugglers, workshops and interactive programmes.",
+        "photo": {
+          "src": "/images/deca-scena.jpg",
+          "alt": "Children watching a magic performance closely"
+        },
+        "shows": []
+      },
+      {
+        "id": "takmicenja",
+        "points": ["Close-up", "Stage"],
+        "name": "Competitions",
+        "meta": "Serbian and international entrants",
+        "text": "Stage and close-up magic judged by an international jury against professional criteria. Winners receive valuable prizes.",
+        "photo": {
+          "src": "/images/nagrade.jpg",
+          "alt": "Awards presented to participants"
+        },
+        "shows": []
+      },
+      {
+        "id": "strucni",
+        "points": [],
+        "name": "Professional programme",
+        "meta": "Knowledge that moves the art forward",
+        "text": "Seminars, lectures, demonstrations, exchange of experience and an exhibition of contemporary magic equipment.",
+        "photo": {
+          "src": "/images/seminar-1.jpg",
+          "alt": "Seminar for magicians"
+        },
+        "shows": []
+      }
+    ],
+    "festival": {
+      "title": "Festival programme",
+      "items": [
+        "Professional programme for magicians",
+        "Seminars and workshops",
+        "Dealer room",
+        "Competition halls",
+        "Artist programme for the audience (in the foyer)",
+        "Magic shows in smaller halls (both days)"
+      ]
+    }
+  },
+
+  "gala": {
+    "kicker": "Gala Show Variete · MTS Hall",
+    "title": "Gala show artists",
+    "intro": "The artists on the main stage at MTS Hall.",
+    "artists": [
+      {
+        "name": "Woody Aragón",
+        "country": "Spain",
+        "code": "es",
+        "photo": "/images/artists/woody-aragon.jpg",
+        "bio": "Spanish magician and author, best known for his card magic. Penn & Teller have performed his “Ritual of Love” in their Las Vegas show since 2016 and on Fool Us. His creations have also been shown on The Tonight Show Starring Jimmy Fallon, and “Ritual of Love” opens the Netflix series Death by Magic, performed by Drummond Money-Coutts.\n\nHis A Book in English won the Magic Academy Award for best magic book (Tannen's, New York, 2012), and in Memorandum he describes his own memorised deck. From 2010 to 2012 he presented the magic segment Hablemos de magia on Cadena SER radio."
+      },
+      {
+        "name": "Den Den",
+        "country": "Japan",
+        "code": "jp",
+        "photo": "/images/artists/den-den.jpg",
+        "bio": "A master of manipulation from Japan. Den Den turns cards, paper and everyday objects into precise, beautifully choreographed visual poetry, drawing on his experience in traditional Japanese theatre and dance.\n\nIn 2014 he was named Magician of the Year by the Academy of Magical Arts and received the Gold Medal Award of Honour from the Society of American Magicians, at the time only the second magician to receive it.\n\nHe appeared as The Manipulator in The Illusionists – Witness the Impossible in London's West End, and opened Supermagic in Rome in 2020. He discovered magic at the age of seven."
+      },
+      {
+        "name": "Igor Trifunov",
+        "country": "Serbia",
+        "code": "rs",
+        "photo": "/images/artists/igor-trifunov.png",
+        "bio": "Igor Trifunov is the most successful Serbian magician and illusionist of the new generation. He has won acclaim at many international competitions, including fourth place at the World Championship of Magic in Rimini, the Grand Prix at the Balkan Magic Congress and first place at the magic competition in Baden.\n\nHe created the TV series Ulična Magija (Street Magic), the children’s show Igorov Magični Šou (Igor’s Magic Show), the illusion show Igorov Magični Spektakl (Igor’s Magic Spectacle) and the international spectacle Magični Varijete (Gala Show Variete)."
+      },
+      {
+        "name": "Maxim Gladstein",
+        "country": "Russia",
+        "code": "ru",
+        "photo": "/images/artists/maxim-gladstein.png",
+        "bio": "A professional illusionist and magician from Russia who has lived and worked in Belgrade for many years. He is known for an elegant style and an air of mystery that joins classic magic with modern stage illusion.\n\nHe has won awards at magic competitions in France and China. His repertoire runs from close-up sleight of hand with cards, coins and small objects, to large stage illusions with transformations, vanishes and mentalism, to interactive shows for adults and children in which the audience becomes part of the trick."
+      },
+      {
+        "name": "Tamia",
+        "country": "Slovenia",
+        "code": "si",
+        "photo": "/images/artists/tamia.png",
+        "bio": "Tamia Dulce Villca Šeme (born 1998) is a Slovenian aerial silks performer, stuntwoman and circus artist. Before the circus she was a member of the Slovenian national rhythmic gymnastics team, and she is a qualified sports coach.\n\nShe finished second in the super-final of the eighth season of Slovenija ima talent (2021), and in 2024 won the Croatian Supertalent: a group Golden Buzzer at her audition, then 47.7% of the public vote in the final.\n\nHer acts combine gymnastic discipline with dramatic aerial drops, flexibility and storytelling. She also performs in the duo LaTam_Duo and coaches, helping professional circus arts grow in Slovenia."
+      },
+      {
+        "name": "Elastic",
+        "country": "Belgium",
+        "code": "be",
+        "photo": "/images/artists/elastic.jpg",
+        "bio": "Stéphane Delvaux, known as Elastic, is one of Europe's most distinctive masters of physical comedy and clowning. His act mixes mime, acrobatics and improbable body movement, somewhere between circus, comedy and theatre, without a single word.\n\nHe has appeared on the French television show Le Plus Grand Cabaret du Monde, and his work was recognised at the International Circus Festival of Monte-Carlo."
+      },
+      {
+        "name": "Françoise Rochais",
+        "country": "France",
+        "code": "fr",
+        "photo": "/images/artists/francoise-rochais.jpg",
+        "bio": "Françoise Rochais, known on stage as Francesca, is one of the most accomplished jugglers on the international circus scene and a Guinness World Records holder.\n\nShe won a silver medal at the Festival Mondial du Cirque de Demain in Paris and a gold medal at the International Juggling Association convention in Las Vegas.\n\nIn Belgrade she performs with the Belgian comedian Elastic (Stéphane Delvaux): precise juggling, physical comedy and theatre in one act."
+      }
+    ]
+  },
+
+  "schedule": {
+    "kicker": "MTS Hall · Belgrade",
+    "title": "Festival programme",
+    "note": "The programme is provisional. Artists, lecturers and ticket details will be added.",
+    "days": [
+      {
+        "date": "2027-02-27",
+        "groups": [
+          {
+            "title": "Day one: close-up competition",
+            "items": [
+              {
+                "time": "09:00",
+                "title": "Registration"
+              },
+              {
+                "time": "09:00–20:00",
+                "title": "Magic Dealers Area",
+                "text": "Dealer room: equipment, props and books for magicians."
+              },
+              {
+                "time": "11:00",
+                "title": "Opening ceremony"
+              },
+              {
+                "time": "11:30",
+                "title": "Close-up competition rehearsal"
+              },
+              {
+                "time": "12:00",
+                "title": "Seminar"
+              },
+              {
+                "time": "13:00–16:00",
+                "title": "Close-up magic competition",
+                "highlight": true
+              },
+              {
+                "time": "17:00",
+                "title": "Seminar"
+              },
+              {
+                "time": "19:00",
+                "title": "Seminar"
+              },
+              {
+                "time": "21:00",
+                "title": "Cocktail",
+                "place": "Bar Club Lisbon, inside MTS Hall"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "date": "2027-02-28",
+        "groups": [
+          {
+            "title": "Day two: stage magic and the gala show",
+            "items": [
+              {
+                "time": "09:00–17:00",
+                "title": "Magic Dealers Area",
+                "text": "Dealer room: equipment, props and books for magicians."
+              },
+              {
+                "time": "09:00",
+                "title": "Stage competition rehearsal"
+              },
+              {
+                "time": "11:00–14:00",
+                "title": "Stage magic competition"
+              },
+              {
+                "time": "15:00–16:00",
+                "title": "Seminar"
+              },
+              {
+                "time": "17:00–19:00",
+                "title": "Gala Show Variete, the international gala show",
+                "highlight": true
+              },
+              {
+                "time": "21:00",
+                "title": "Party for all participants"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  "vision": {
+    "kicker": "Our vision",
+    "title": "Magic belongs to everyone.",
+    "paragraphs": [
+      "The festival is both a major cultural event for the general public and an international professional gathering of magicians from Serbia and abroad.",
+      "Our long-term goal is for the Belgrade Magic Festival to become a fixture on the European festival calendar — a meeting place for the world's leading magicians and a must-visit for anyone who loves illusion."
+    ],
+    "quote": "Art, education, entertainment and international cooperation in one place."
+  },
+
+  "gallery": {
+    "kicker": "Moments to remember",
+    "title": "Festival gallery",
+    "intro": "Atmosphere, encounters and applause from previous editions of the Belgrade Magic Festival.",
+    "items": [
+      {
+        "src": "/images/finale.jpg",
+        "alt": "Festival finale in front of a full house"
+      },
+      {
+        "src": "/images/nagrade.jpg",
+        "alt": "Awards presented to participants"
+      },
+      { "src": "/images/publika.jpg", "alt": "An audience of all ages" },
+      {
+        "src": "/images/deca-scena.jpg",
+        "alt": "The youngest visitors right by the stage"
+      },
+      { "src": "/images/magija-za-decu.jpg", "alt": "Magic up close" },
+      { "src": "/images/seminar-1.jpg", "alt": "Seminar for magicians" },
+      { "src": "/images/seminar-2.jpg", "alt": "Lectures and demonstrations" },
+      { "src": "/images/izlozba.jpg", "alt": "The festival exhibition area" },
+      { "src": "/images/foaje.jpg", "alt": "Festival atmosphere in the foyer" },
+      { "src": "/images/mediji.jpg", "alt": "Strong media interest" },
+      {
+        "src": "/images/magicna-zurka.jpg",
+        "alt": "Participants' evening get-together"
+      },
+      {
+        "src": "/images/publika-seminar.jpg",
+        "alt": "The magic community together"
+      }
+    ]
+  },
+
+  "history": {
+    "year": "2012",
+    "kicker": "History",
+    "title": "Seven editions. One big story.",
+    "paragraphs": [
+      "The Belgrade Magic Festival was first held in 2012 to promote and develop the art of magic in Serbia.",
+      "Over seven successful editions it has hosted many Serbian artists and international guests from across Europe, and become one of the most important gatherings of magicians in the region."
+    ]
+  },
+
+  "video": { "title": "", "youtubeId": "", "poster": "" },
+
+  "lecturers": {
+    "kicker": "Lecturers",
+    "title": "Who is teaching this year",
+    "items": [
+      {
+        "name": "Domenico Dante",
+        "country": "Italy",
+        "specialty": "Friend of the festival · lecture",
+        "photo": "/images/artists/domenico-dante.png",
+        "bio": "FISM President from 2012 to 2022, now Honorary President. A professional magician since 1984 and producer of more than 120 international conventions."
+      },
+      {
+        "name": "Den Den",
+        "country": "Japan",
+        "specialty": "Lecture · gala show",
+        "photo": "/images/artists/den-den.jpg",
+        "bio": "Master of manipulation from Japan. Magician of the Year of the Academy of Magical Arts in 2014 and The Manipulator in The Illusionists in London’s West End."
+      },
+      {
+        "name": "Woody Aragón",
+        "country": "Spain",
+        "specialty": "Lecture · gala show",
+        "photo": "/images/artists/woody-aragon.jpg",
+        "bio": "Author of A Book in English (Magic Academy Award, 2012) and Memorandum, on his own memorised deck. Penn & Teller have performed his “Ritual of Love” in Las Vegas since 2016."
+      },
+      {
+        "name": "Lee Alex",
+        "country": "United Kingdom",
+        "specialty": "Lecture · jury",
+        "photo": "/images/artists/lee-alex-lecture.jpg",
+        "bio": "A new lecture on the Devil's Handkerchief, one of magic's most versatile props, from its earliest records to today. His previous lecture toured more than 75 cities on four continents."
+      }
+    ]
+  },
+
+  "anthem": {
+    "kicker": "Festival anthem",
+    "title": "Belgrade — City of Magic",
+    "text": "The official anthem of the Belgrade Magic Festival. Play it while you look through the programme.",
+    "src": "/audio/belgrade-city-of-magic.mp3",
+    "play": "Play the anthem",
+    "pause": "Pause the anthem",
+    "seek": "Position in the song"
+  },
+
+  "jury": {
+    "kicker": "Competitions",
+    "title": "Competition jury",
+    "items": [
+      {
+        "name": "Andrea Baioni",
+        "country": "Italy",
+        "code": "it",
+        "role": "FISM President · friend of the festival",
+        "photo": "/images/jury/andrea-baioni.jpg",
+        "bio": "Andrea Baioni joined the Club Magico Italiano in 1977, was teaching magic by 1983 and in 2008 founded the Italian Team of Magic. Since 1986 he has worked as a professional performer, comedian, master of ceremonies and show producer, including corporate events for Ferrari, FIAT, Volvo and Ferrero. He has written hundreds of articles for Italian magic magazines, and from 1998 to 2021 was a member of The Magic Circle in the United Kingdom, reaching the Inner Magic Circle with Gold Star.\n\nA FISM Official Judge since 2009, he was Vice President (2016–2021) and then President (2021–2024) of FISM Europe. Since 2022 he has been President of FISM International, the federation of 116 magic societies in 51 countries that organises the World Championships of Magic. His library holds more than 4,000 books on magic."
+      },
+      {
+        "name": "Lee Alex",
+        "country": "United Kingdom",
+        "code": "gb",
+        "role": "FISM judge · lecturer",
+        "photo": "/images/jury/lee-alex.jpg",
+        "bio": "British-born, Lee Alex is a professional magician, lecturer and creator of original textile magic. For more than three decades he has performed worldwide as a stage illusionist and magician, and consulted for film, stage, television and advertising productions.\n\nLee is an official judge for the Fédération Internationale des Sociétés Magiques (FISM), regularly serving on juries at international competitions. His lecture on quick-change magic, “Time for a Change?”, has been presented at the Magic Circle in London, the Magic Castle in Hollywood, the World Magic Seminar in Las Vegas and Jeff McBride's Magic and Mystery School."
+      },
+      {
+        "name": "Dani Belev",
+        "country": "Bulgaria",
+        "code": "bg",
+        "role": "FISM judge · founder of the Golden Cat festival",
+        "photo": "/images/jury/dani-belev.jpg",
+        "bio": "A Bulgarian magician and illusionist from Gabrovo with more than two decades of professional experience. He is president of the Quick Hands Project Magic Club and founder and organiser of the international magic festival Golden Cat in Gabrovo, which brings together magicians and performers from many countries.\n\nHis long-standing work has contributed significantly to the art of magic and to international collaboration in the magic community. In 2026 he became the first Bulgarian to qualify as a FISM judge."
+      },
+      {
+        "name": "Bojan Barišić",
+        "country": "",
+        "code": "",
+        "role": "Jury member",
+        "photo": "",
+        "bio": ""
+      }
+    ]
+  },
+
+  "packages": {
+    "kicker": "Registration fees",
+    "title": "Prices",
+    "earlyBirdUntil": "2026-12-31T23:59:59+01:00",
+    "labels": {
+      "package": "Package",
+      "until": "Until",
+      "after": "After that",
+      "earlySuffix": " (early bird)",
+      "extras": "Dealer package add-ons"
+    },
+    "items": [
+      {
+        "id": "standard",
+        "name": "Standard package",
+        "summary": "The full congress programme, Magic Party, Gala Dinner and the gala show",
+        "includes": [
+          "Congress programme (all events)",
+          "Lectures",
+          "Competitions",
+          "Festival area access (foyer)",
+          "Magic shows (smaller halls)",
+          "Magic Party and welcome drink",
+          "Gala Dinner",
+          "Gala Show Variete – MTS Hall"
+        ],
+        "price": { "early": 99, "regular": 129 },
+        "allowExtras": []
+      },
+      {
+        "id": "dealer",
+        "name": "Dealer package",
+        "summary": "Everything in the Standard package plus a 2 m dealer table",
+        "includes": [
+          "Everything in the Standard package",
+          "Dealer table (2 m)"
+        ],
+        "price": { "early": 149, "regular": 200 },
+        "allowExtras": ["table", "assistant"]
+      }
+    ],
+    "extras": [
+      {
+        "id": "table",
+        "label": "Additional table (2 m)",
+        "price": 50,
+        "max": 2
+      },
+      { "id": "assistant", "label": "Dealer assistant", "price": 50, "max": 2 }
+    ]
+  },
+
+  "hotels": {
+    "kicker": "Accommodation",
+    "title": "Hotel Prag",
+    "intro": "In the centre of Belgrade, a short walk from MTS Hall.",
+    "location": { "name": "Hotel Prag", "address": "Kraljice Natalije 27, Belgrade", "lat": 44.8110148, "lng": 20.4597196 },
+    "priceCurrency": "EUR",
+    "rooms": [
+      { "label": "Economy single room", "note": "single bed", "price": 57, "priceRsd": 6600 },
+      { "label": "Single room", "note": "double bed", "price": 62, "priceRsd": 7300 },
+      { "label": "Double or twin room", "note": "15 m², double or two single beds", "price": 67, "priceRsd": 7900 },
+      { "label": "Superior double room", "note": "37 m², king-size bed", "price": 78, "priceRsd": 9200 },
+      { "label": "Family room", "note": "32 m², double bed and two sofa beds", "price": 105, "priceRsd": 12300 }
+    ],
+    "note": "Approximate prices per room per night with breakfast, converted from dinars and rounded. The exact price depends on the dates and the rate you book; city tax (about 160 RSD per night) is extra."
+  },
+
+  "travel": {
+    "kicker": "Getting here",
+    "title": "MTS Hall on the map",
+    "center": { "lat": 44.81322, "lng": 20.46263 },
+    "locations": [
+      {
+        "name": "MTS Hall",
+        "address": "Dečanska 14, Belgrade",
+        "lat": 44.81322,
+        "lng": 20.46263
+      }
+    ],
+    "transport": {
+      "title": "From the airport",
+      "text": "From the airport to the city centre you can take a taxi or a bus.",
+      "airports": [
+        {
+          "name": "Belgrade Nikola Tesla Airport (BEG)",
+          "distance": "≈ 18 km",
+          "duration": "≈ 25 min by car"
+        }
+      ]
+    }
+  },
+
+  "registration": {
+    "kicker": "Registration for the professional programme",
+    "title": "Register",
+    "text": "Fill in the form and we will email you a summary with payment details. We hold your place for 7 days.",
+    "consentText": "I agree that the Belgrade Magic Festival stores my details to process this registration. I can ask for them to be deleted at any time.",
+    "labels": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "country": "Country",
+      "countryHint": "start typing and pick from the list",
+      "countryNoMatch": "Not on the list. We'll keep it as you typed it.",
+      "package": "Package",
+      "notes": "Notes",
+      "notesHint": "diet, accessibility, competition entry",
+      "optional": "optional",
+      "submit": "Send registration",
+      "sending": "Sending…",
+      "summary": "Total to pay",
+      "summaryLink": "Details",
+      "total": "Total",
+      "calculating": "Calculating…",
+      "earlyNote": "Early bird price until {date}.",
+      "regularNote": "Regular price.",
+      "paymentNote": "Paid by bank transfer, details by email.",
+      "doneTitle": "Registration received",
+      "doneLead": "All set — your registration has been sent.",
+      "doneSteps": [
+        "Check your email — we have sent you a summary.",
+        "Pay within 7 days. The payment details are below and can be copied.",
+        "Once the payment arrives, your place is confirmed."
+      ],
+      "doneText": "We sent a summary and payment details to {email}. Total to pay: {total}.",
+      "doneHold": "We hold your place for 7 days. If the email does not arrive, check your spam folder or write to {contact}.",
+      "payTitle": "Payment details",
+      "payChoose": "How are you paying?",
+      "amount": "Amount",
+      "reference": "Payment reference",
+      "copyButton": "Copy",
+      "copied": "Copied",
+      "errorFields": "Check the highlighted fields.",
+      "errorNetwork": "Could not reach the server. Check your connection and send the form again.",
+      "extras": "Dealer package add-ons",
+      "none": "None"
+    },
+    "errors": {
+      "firstName": "Enter your first name",
+      "lastName": "Enter your last name",
+      "email": "Enter your email",
+      "emailFormat": "Enter an email like name@example.com",
+      "country": "Enter your country",
+      "package": "Choose a package",
+      "notesLength": "Notes can be up to 1000 characters",
+      "consent": "We need your consent to process the registration",
+      "invalid": "Check this field",
+      "spam": "The spam check failed. Reload the page and try again.",
+      "unavailable": "Registration is temporarily unavailable.",
+      "saveFailed": "We could not save your registration. Try again in a minute.",
+      "duplicate": "This email is already registered for {year}. To change it, write to {contact}.",
+      "tooMany": "Too many registrations were sent from this network in a row. Try again in {minutes} min."
+    },
+    "payment": {
+      "referenceHint": "Use your full name as the payment reference.",
+      "methods": [
+        {
+          "id": "rsd",
+          "label": "From Serbia (dinars)",
+          "note": "Amount in dinars at the National Bank of Serbia middle rate on the day of payment.",
+          "fields": [
+            { "label": "Beneficiary", "copy": "Pravni naziv organizatora" },
+            { "label": "Account number", "copy": "000-0000000000000-00" }
+          ]
+        },
+        {
+          "id": "eur",
+          "label": "From abroad (EUR)",
+          "note": "Sender's bank charges are paid by the sender.",
+          "fields": [
+            { "label": "Beneficiary", "copy": "Pravni naziv organizatora" },
+            { "label": "IBAN", "copy": "RS35 0000 0000 0000 0000 00" },
+            { "label": "SWIFT / BIC", "copy": "XXXXRSBG" },
+            { "label": "Bank", "copy": "Naziv banke" }
+          ]
+        }
+      ]
+    }
+  },
+
+  "organizers": {
+    "kicker": "Making magic together",
+    "title": "Festival organisers",
+    "groups": [
+      {
+        "title": "Organisers",
+        "items": [
+          { "name": "Serbia Magic Ring", "sub": "" },
+          { "name": "Čarobni plašt", "sub": "Magicians' association" },
+          { "name": "Magični svet", "sub": "Citizens' association" }
+        ]
+      },
+      {
+        "title": "Festival partner",
+        "items": [{ "name": "MTS Hall", "sub": "Belgrade" }]
+      }
+    ],
+    "people": [
+      {
+        "role": "Festival directors",
+        "members": [
+          { "name": "Igor Trifunov", "photo": "/images/team/igor-trifunov.jpg" },
+          { "name": "Dejan Đurđević Piksi", "photo": "/images/team/dejan-djurdjevic-piksi.jpg" }
+        ]
+      },
+      {
+        "role": "Project coordinators",
+        "members": [
+          { "name": "Mihajlo Janković", "photo": "/images/team/mihajlo-jankovic.jpg" },
+          { "name": "Filip Đikić Filipino", "photo": "/images/team/filip-djikic.jpg" }
+        ]
+      }
+    ]
+  },
+
+  "partners": [],
+
+  "closing": {
+    "kicker": "See you in Belgrade",
+    "title": "Do you believe in magic?"
+  },
+
+  "footer": {
+    "organiser": "© 2027 Belgrade Magic Festival. All rights reserved."
+  },
+
+  "emails": {
+    "total": "Total",
+    "confirmation": {
+      "subject": "{event}: your registration",
+      "greeting": "Hello {firstName},",
+      "intro": "We have received your registration for {event}. Here is what you booked:",
+      "paymentTitle": "Payment",
+      "hold": "We hold your place for 7 days. For any questions, reply to this email or write to {contact}."
+    },
+    "organizer": {
+      "subject": "New registration: {firstName} {lastName} — {total}",
+      "notes": "Notes",
+      "email": "Email",
+      "phone": "Phone",
+      "country": "Country",
+      "language": "Registration language",
+      "received": "Received",
+      "replyHint": "Replying to this email writes directly to the participant."
+    },
+    "expiry": {
+      "subject": "{event}: registration expired",
+      "greeting": "Hello {firstName},",
+      "released": "We did not receive payment for your {event} registration within 7 days, so we have released your place.",
+      "again": "Early bird prices are valid until {date}. If you still want to come, register again on the website or reply to this email."
+    }
+  },
+
+  "privacy": {
+    "title": "Privacy policy",
+    "updated": "Last updated: 14 October 2026.",
+    "sections": [
+      {
+        "title": "Who processes your data",
+        "text": "Your data is processed by {organiser}, the organiser of the Belgrade Magic Festival. For any questions, write to {contact}."
+      },
+      {
+        "title": "What we collect",
+        "text": "When you register: first and last name, email, phone if you give it, country, chosen package and add-ons, your notes, and the text and time of your consent. To protect the form from abuse, each submission also stores a one-way hash of your IP address (not the address itself) for up to two days."
+      },
+      {
+        "title": "Do you have to give us this data",
+        "text": "Your name, email, country and chosen package are needed to process the registration; without them we cannot register you. Phone and notes are optional."
+      },
+      {
+        "title": "Why we use it",
+        "text": "To process your registration, send you a summary and payment details, remind you if payment does not arrive, and organise the festival. We do not sell your data or use it for advertising."
+      },
+      {
+        "title": "Legal basis",
+        "text": "We process registration data to perform the contract for taking part in the festival, i.e. your registration and fee. The consent you give in the form covers storing your data to process the registration. Google Analytics, if we enable it, is used only with your explicit consent."
+      },
+      {
+        "title": "Who else has access",
+        "text": "Registrations are stored in a Supabase database, and registrations and confirmations are sent by email through Resend. These services process data only on our instructions."
+      },
+      {
+        "title": "Transfers outside Serbia",
+        "text": "Resend is a US company, and Supabase may store data on servers outside Serbia. Transfers rely on the standard contractual clauses these services apply, in line with the Serbian Law on Personal Data Protection and the GDPR."
+      },
+      {
+        "title": "How long we keep it",
+        "text": "Until the festival is over and all obligations are settled, unless the law requires us to keep it longer."
+      },
+      {
+        "title": "Your rights",
+        "text": "You can ask to see, correct or delete your data. Write to {contact} and we will reply within 30 days."
+      },
+      {
+        "title": "Withdrawing consent and complaints",
+        "text": "You can withdraw your consent at any time by writing to {contact}; this does not affect processing before the withdrawal. If you believe we process your data unlawfully, you have the right to lodge a complaint with the Serbian Commissioner for Information of Public Importance and Personal Data Protection (www.poverenik.rs)."
+      },
+      {
+        "title": "Cookies and external content",
+        "text": "Google Analytics loads only if you allow it in the cookie notice. The map comes from OpenStreetMap. A YouTube video, if there is one, loads only when you click it."
+      }
+    ]
+  },
+
+  "cookies": {
+    "title": "This website uses cookies",
+    "text": "We use cookies to measure traffic and improve the site. You can accept or reject them, and the site works the same either way.",
+    "label": "Cookies",
+    "accept": "Accept",
+    "decline": "Reject",
+    "more": "Privacy policy"
+  }
+}
