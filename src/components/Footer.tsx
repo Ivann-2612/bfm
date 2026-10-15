@@ -1,5 +1,6 @@
-import { homePath, privacyPath, site } from "@/lib/content";
-import { InstagramIcon, MailIcon, Wordmark, type LangProps } from "./ui";
+import Image from 'next/image';
+import { homePath, privacyPath, site } from '@/lib/content';
+import { InstagramIcon, MailIcon, Wordmark, type LangProps } from './ui';
 
 export function Footer({ lang }: LangProps) {
   const s = site(lang);
@@ -12,18 +13,36 @@ export function Footer({ lang }: LangProps) {
         <div>
           <Wordmark lang={lang} as="p" />
           <p className="site-footer__tagline">{event.tagline}</p>
+          <ul className="site-footer__badges">
+            {footer.badges.map((b) => (
+              <li key={b.src}>
+                <Image src={b.src} alt={b.alt} title={b.alt} width={40} height={40} />
+              </li>
+            ))}
+          </ul>
         </div>
         <div className="site-footer__contact">
           <p className="site-footer__when">
             {s.dateRange()} · {event.venue}, {event.city}
           </p>
-          <a className="site-footer__social" href={`mailto:${meta.contactEmail}`}>
+          <a
+            className="site-footer__social"
+            href={`mailto:${meta.contactEmail}`}
+          >
             <MailIcon />
             <span>{meta.contactEmail}</span>
           </a>
-          <a className="site-footer__social" href={meta.instagram} target="_blank" rel="noopener" aria-label={ui.instagramLabel}>
+          <a
+            className="site-footer__social"
+            href={meta.instagram}
+            target="_blank"
+            rel="noopener"
+            aria-label={ui.instagramLabel}
+          >
             <InstagramIcon />
-            <span aria-hidden="true">@{new URL(meta.instagram).pathname.replaceAll("/", "")}</span>
+            <span aria-hidden="true">
+              @{new URL(meta.instagram).pathname.replaceAll('/', '')}
+            </span>
           </a>
         </div>
         <ul className="site-footer__links">

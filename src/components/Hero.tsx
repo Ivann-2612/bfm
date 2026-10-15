@@ -34,7 +34,7 @@ export function Hero({ lang }: LangProps) {
 
           <p className="hero__dates">
             <span className="visually-hidden">{s.dateRange()}</span>
-            {/* Each card opens that day's tab in the schedule (Schedule listens for #tab-<date>). */}
+            {/* Each card jumps to that day's column in the schedule (#tab-<date>). */}
             <span className="hero__deal">
               {s.days.map((d, i) => (
                 <a
@@ -75,8 +75,8 @@ export function Hero({ lang }: LangProps) {
         </div>
 
         {event.poster.translatedTitle ? (
-          // The poster lettering is baked into the image (in Serbian), so other languages show the
-          // text-free stage crop with the title and slogan set as real, translated text.
+          // The poster lettering is baked into the image; a language whose poster text doesn't match can
+          // set translatedTitle to show the text-free stage crop with the title and slogan as real text.
           <figure className="hero__poster">
             <div className="poster" role="img" aria-label={`${event.poster.translatedTitle.replace("|", " ")} ${event.year} — ${event.tagline}`}>
               <div className="poster__top" aria-hidden="true">

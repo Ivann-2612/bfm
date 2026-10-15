@@ -1,80 +1,24 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
 import { site, type ScheduleItem } from "@/lib/content";
 import { SectionHead, SuitMark, type LangProps } from "./ui";
 
+// Both days side by side (stacked on phones), so the whole programme is always in view.
 export function Schedule({ lang }: LangProps) {
   const s = site(lang);
-  const { schedule, ui } = s.c;
-  const days = s.days;
-  const [active, setActive] = useState(0);
-  const tabs = useRef<(HTMLButtonElement | null)[]>([]);
-
-  // Links like #tab-2027-02-28 (the date cards in the hero) open that day's tab:
-  // on page load from the URL, and on every click (the hash may already be the same).
-  useEffect(() => {
-    const open = (hash: string) => {
-      const i = days.findIndex((d) => `#tab-${d.date}` === hash);
-      if (i >= 0) setActive(i);
-    };
-    open(window.location.hash);
-    const onClick = (e: MouseEvent) => {
-      const link = (e.target as Element | null)?.closest?.('a[href^="#tab-"]');
-      if (link) open(link.getAttribute("href")!);
-    };
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
-  }, [days]);
-
-  function onKey(e: React.KeyboardEvent, i: number) {
-    const dir = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
-    if (!dir) return;
-    const next = (i + dir + days.length) % days.length;
-    setActive(next);
-    tabs.current[next]?.focus();
-  }
+  const { schedule } = s.c;
 
   return (
     <section id="program" className="section schedule" aria-labelledby="schedule-title">
       <div className="wrap">
         <SectionHead id="schedule-title" kicker={schedule.kicker} title={schedule.title} intro={s.dateRange()} />
-        <div role="tablist" aria-label={ui.daysNav} className="schedule__tabs" style={{ "--n": days.length } as React.CSSProperties}>
-          {days.map((d, i) => (
-            <button
-              key={d.date}
-              ref={(el) => {
-                tabs.current[i] = el;
-              }}
-              role="tab"
-              id={`tab-${d.date}`}
-              aria-controls={`panel-${d.date}`}
-              aria-selected={active === i}
-              tabIndex={active === i ? 0 : -1}
-              className="schedule__tab"
-              onClick={() => setActive(i)}
-              onKeyDown={(e) => onKey(e, i)}
-            >
-              <SuitMark suit={d.suit} className="schedule__suit" />
-              <span className="schedule__day">{s.shortWeekday(d.date)}</span>
-              <span className="schedule__num">{s.longDate(d.date)}</span>
-            </button>
-          ))}
-        </div>
-
-        {days.map((d, i) => (
-          <div
-            key={d.date}
-            role="tabpanel"
-            id={`panel-${d.date}`}
-            aria-labelledby={`tab-${d.date}`}
-            hidden={active !== i}
-            className="schedule__panel"
-          >
-            <h3 className="visually-hidden">
-              {s.weekday(d.date)}, {s.longDate(d.date)}
-            </h3>
-            <div className="schedule__groups">
+        <div className="schedule__days" style={{ "--n": s.days.length } as React.CSSProperties}>
+          {s.days.map((d) => (
+            // id: the date cards in the hero link here (#tab-<date>).
+            <article key={d.date} id={`tab-${d.date}`} className="schedule__col" aria-labelledby={`day-${d.date}`}>
+              <h3 id={`day-${d.date}`} className="schedule__head">
+                <SuitMark suit={d.suit} className="schedule__suit" />
+                <span className="schedule__day">{s.weekday(d.date)}</span>
+                <span className="schedule__num">{s.longDate(d.date)}</span>
+              </h3>
               {d.groups.map((g) => (
                 <section key={g.title} className="schedule__group">
                   <h4 className="schedule__group-title">{g.title}</h4>
@@ -92,9 +36,9 @@ export function Schedule({ lang }: LangProps) {
                   </ol>
                 </section>
               ))}
-            </div>
-          </div>
-        ))}
+            </article>
+          ))}
+        </div>
         <p className="schedule__note">{schedule.note}</p>
       </div>
     </section>

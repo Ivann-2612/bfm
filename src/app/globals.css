@@ -617,7 +617,9 @@ html.menu-open .site-header {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 7px;
-  background: linear-gradient(180deg, rgb(255 255 255 / 0.035), rgb(255 255 255 / 0)) , var(--ink-2);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.035), rgb(255 255 255 / 0)),
+    var(--ink-2);
 }
 /* A hairline across the middle, like a split-flap card. */
 .countdown__card::after {
@@ -717,7 +719,9 @@ html.menu-open .site-header {
   padding: 0.4rem 0.5rem;
   border: 1px solid rgb(200 160 75 / 0.55);
   border-radius: 8px;
-  background: linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0)), var(--ink-2);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0)),
+    var(--ink-2);
   box-shadow:
     inset 0 0 0 3px var(--ink-2),
     inset 0 0 0 4px rgb(200 160 75 / 0.18),
@@ -1116,73 +1120,50 @@ html.menu-open .site-header {
 .schedule {
   background: var(--ink-2);
 }
-.schedule__tabs {
+/* Both days side by side, each under its own suit; stacked on phones. */
+.schedule__days {
   display: grid;
-  grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr));
-  max-width: 40rem;
-  border-bottom: 1px solid var(--line);
+  gap: 3.5rem 4rem;
+  align-items: start;
 }
-.schedule__tab {
+@media (min-width: 760px) {
+  .schedule__days {
+    grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr));
+  }
+}
+.schedule__col {
+  scroll-margin-top: 5rem;
+}
+.schedule__head {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
   column-gap: 0.9rem;
   align-items: center;
-  padding: 1.1rem 0.75rem 1.1rem 0;
-  background: none;
-  border: 0;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  cursor: pointer;
-  text-align: left;
-  color: var(--smoke);
-  transition:
-    color 0.2s,
-    border-color 0.2s;
-}
-.schedule__tab[aria-selected='true'] {
-  color: var(--bone);
-  border-bottom-color: var(--gold);
-}
-.schedule__tab:hover {
-  color: var(--bone);
+  padding-bottom: 1rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--line);
+  font-weight: 400;
 }
 .schedule__suit {
   grid-row: span 2;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.2rem, 4vw, 3rem);
   line-height: 1;
-  opacity: 0.45;
-  transition: opacity 0.2s;
-}
-.schedule__tab[aria-selected='true'] .schedule__suit {
-  opacity: 1;
 }
 .schedule__day {
   font: var(--step--1) var(--mono);
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  color: var(--smoke);
 }
 .schedule__num {
   font: 400 var(--step-2) / 1 var(--display);
 }
-.schedule__groups {
-  display: grid;
-  gap: 3rem 4rem;
+.schedule__group + .schedule__group {
   margin-top: 2.5rem;
 }
-@media (min-width: 960px) {
-  .schedule__groups {
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-  }
-  /* The family programme is the long list; let it run down the right column. */
-  .schedule__group:nth-child(2) {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-  }
-}
 .schedule__group-title {
-  font: italic 400 var(--step-2) / 1.2 var(--display);
+  font: italic 400 var(--step-1) / 1.25 var(--display);
   color: var(--gold-pale);
   padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--gold);
@@ -1486,6 +1467,96 @@ html.menu-open .site-header {
   align-items: center;
   gap: 1.5rem 2rem;
   margin-top: 1.5rem;
+}
+
+/* ---------- FISM contest ---------- */
+/* The two logos have white grounds, so they sit on small white plates like competition badges. */
+.contest {
+  background: var(--ink-3);
+}
+.contest__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+@media (min-width: 900px) {
+  .contest__grid {
+    grid-template-columns: 1fr 1.15fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contest__head {
+    position: sticky;
+    top: 6rem;
+  }
+}
+.contest__logos {
+  display: flex;
+  gap: 0.9rem;
+}
+.contest__logos img {
+  width: clamp(5.5rem, 12vw, 7rem);
+  height: auto;
+  padding: 0.35rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow:
+    0 0 0 1px var(--line),
+    0 10px 30px rgb(0 0 0 / 0.35);
+}
+.contest__badge {
+  margin-top: 1.4rem;
+  font: 600 var(--step-0) / 1 var(--mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.contest__body p {
+  line-height: 1.65;
+}
+.contest__body p + p,
+.contest__body .contest__jury + p {
+  margin-top: 1rem;
+}
+.contest__jury {
+  margin-block: 2rem;
+  padding: 1.4rem 1.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+}
+.contest__jury h3 {
+  font: 500 var(--step--1) / 1.2 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.contest__jury ul {
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.6rem;
+}
+.contest__jury a {
+  font: 400 var(--step-1) / 1.3 var(--display);
+  color: var(--bone);
+  text-decoration: none;
+}
+.contest__jury a:hover {
+  color: var(--gold-pale);
+}
+.contest__body .contest__sign {
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.2rem;
+}
+.contest__sign b {
+  font: 400 var(--step-1) / 1.2 var(--display);
+}
+.contest__sign span {
+  color: var(--smoke);
 }
 
 /* ---------- Jury ---------- */
@@ -2473,9 +2544,16 @@ html.menu-open .site-header {
   height: 3.6rem;
   border: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, var(--gold-pale), var(--gold) 70%);
+  background: radial-gradient(
+    circle at 35% 30%,
+    var(--gold-pale),
+    var(--gold) 70%
+  );
   color: var(--ink);
-  box-shadow: 0 0 0 4px var(--ink), 0 0 0 5px rgb(200 160 75 / 0.6), 0 8px 22px rgb(0 0 0 / 0.5);
+  box-shadow:
+    0 0 0 4px var(--ink),
+    0 0 0 5px rgb(200 160 75 / 0.6),
+    0 8px 22px rgb(0 0 0 / 0.5);
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -2519,10 +2597,18 @@ html.menu-open .site-header {
 .anthem__player.is-playing .anthem__eq i {
   animation: eq 0.9s ease-in-out infinite alternate;
 }
-.anthem__eq i:nth-child(2) { animation-delay: -0.3s; }
-.anthem__eq i:nth-child(3) { animation-delay: -0.6s; }
-.anthem__eq i:nth-child(4) { animation-delay: -0.15s; }
-.anthem__eq i:nth-child(5) { animation-delay: -0.45s; }
+.anthem__eq i:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.anthem__eq i:nth-child(3) {
+  animation-delay: -0.6s;
+}
+.anthem__eq i:nth-child(4) {
+  animation-delay: -0.15s;
+}
+.anthem__eq i:nth-child(5) {
+  animation-delay: -0.45s;
+}
 @keyframes eq {
   to {
     height: 100%;
@@ -2542,12 +2628,20 @@ html.menu-open .site-header {
 .anthem__seek::-webkit-slider-runnable-track {
   height: 3px;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--gold) var(--pct, 0%), rgb(200 160 75 / 0.22) var(--pct, 0%));
+  background: linear-gradient(
+    90deg,
+    var(--gold) var(--pct, 0%),
+    rgb(200 160 75 / 0.22) var(--pct, 0%)
+  );
 }
 .anthem__seek::-moz-range-track {
   height: 3px;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--gold) var(--pct, 0%), rgb(200 160 75 / 0.22) var(--pct, 0%));
+  background: linear-gradient(
+    90deg,
+    var(--gold) var(--pct, 0%),
+    rgb(200 160 75 / 0.22) var(--pct, 0%)
+  );
 }
 .anthem__seek::-webkit-slider-thumb {
   appearance: none;
@@ -2654,6 +2748,28 @@ html.menu-open .site-header {
   flex-wrap: wrap;
   gap: 0.6rem 1.5rem;
   align-content: start;
+}
+.site-footer__badges {
+  margin: 1.2rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+.site-footer__badges li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--step--1);
+  color: var(--smoke);
+}
+.site-footer__badges img {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 2px;
+  background: #fff;
+  border-radius: 6px;
 }
 .site-footer__legal {
   grid-column: 1 / -1;

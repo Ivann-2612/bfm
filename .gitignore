@@ -13,3 +13,4 @@ supabase/functions/_shared/*.ts
 CLAUDE.md
 .claude/
 SPISAK-ZA-ZAMENU.md
+scripts/google-form/BelgradeMagicFestivalForm.gs

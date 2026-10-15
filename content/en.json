@@ -21,11 +21,11 @@
     "tagline": "Magic that connects. Art that amazes.",
     "intro": "Two festival days of world-class illusion, international artists, family shows, competitions and sessions for magicians.",
     "poster": {
-      "src": "/images/naslovna.png",
-      "alt": "Magični Varijete (Gala Show Variete) 2027 — official festival poster",
-      "width": 1055,
-      "height": 1491,
-      "translatedTitle": "Gala Show|Variete",
+      "src": "/images/plakat.jpg",
+      "alt": "Belgrade Magic Festival 2027, 27–28 February, MTS Hall, Belgrade — official festival poster",
+      "width": 1272,
+      "height": 1801,
+      "translatedTitle": "",
       "scene": {
         "src": "/images/naslovna-scena.png",
         "alt": "A magician on stage in front of a full house",
@@ -97,24 +97,24 @@
   },
   "nav": [
     {
-      "label": "Festival",
-      "href": "#festival"
-    },
-    {
       "label": "Programme",
       "href": "#program"
     },
     {
-      "label": "Artists",
-      "href": "#izvodjaci"
+      "label": "Contest",
+      "href": "#takmicenje"
     },
     {
       "label": "Lecturers",
       "href": "#predavaci"
     },
     {
-      "label": "Gallery",
-      "href": "#galerija"
+      "label": "Artists",
+      "href": "#izvodjaci"
+    },
+    {
+      "label": "Festival",
+      "href": "#festival"
     },
     {
       "label": "Organisers",
@@ -123,28 +123,36 @@
   ],
   "menu": [
     {
-      "label": "Festival",
-      "href": "#festival"
-    },
-    {
       "label": "Programme",
       "href": "#program"
     },
     {
-      "label": "Artists",
-      "href": "#izvodjaci"
+      "label": "Contest",
+      "href": "#takmicenje"
+    },
+    {
+      "label": "Jury",
+      "href": "#ziri"
     },
     {
       "label": "Lecturers",
       "href": "#predavaci"
     },
     {
-      "label": "Gallery",
-      "href": "#galerija"
+      "label": "Artists",
+      "href": "#izvodjaci"
     },
     {
       "label": "Prices",
       "href": "#cene"
+    },
+    {
+      "label": "Festival",
+      "href": "#festival"
+    },
+    {
+      "label": "Gallery",
+      "href": "#galerija"
     },
     {
       "label": "Accommodation",
@@ -155,12 +163,12 @@
       "href": "#lokacija"
     },
     {
-      "label": "Organisers",
-      "href": "#organizatori"
-    },
-    {
       "label": "Register",
       "href": "#prijava"
+    },
+    {
+      "label": "Organisers",
+      "href": "#organizatori"
     }
   ],
   "about": {
@@ -524,9 +532,37 @@
     "pause": "Pause the anthem",
     "seek": "Position in the song"
   },
+  "contest": {
+    "badge": "FISM Qualified",
+    "title": "FISM Qualified Contest",
+    "lead": "An official FISM-qualified competition at Belgrade Magic Festival 2027",
+    "paragraphs": [
+      "Belgrade Magic Festival 2027 is proud to host an official FISM-Qualified Contest, bringing an internationally recognised competition format to Belgrade and creating a platform for magicians to showcase their artistry, creativity and technical excellence.",
+      "The competition will be evaluated by an international jury of distinguished figures in the world of magic, bringing together extensive experience, professional knowledge and a deep understanding of the art of illusion."
+    ],
+    "juryTitle": "International jury",
+    "closing": [
+      "The competition will follow the applicable FISM contest rules and judging standards, providing competitors with a professional framework for the evaluation of their performances.",
+      "Belgrade Magic Festival 2027 is committed to supporting the development of magic as an art form, encouraging artistic excellence and strengthening connections within the international magic community."
+    ],
+    "logos": [
+      {
+        "src": "/images/logos/fism-qualified-contest.jpg",
+        "alt": "FISM Qualified Contest",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "src": "/images/logos/magicni-krug-srbije.jpg",
+        "alt": "Serbia Magic Ring (Magični krug Srbije)",
+        "width": 1024,
+        "height": 1024
+      }
+    ]
+  },
   "jury": {
     "kicker": "Competitions",
-    "title": "Competition jury",
+    "title": "International jury",
     "items": [
       {
         "name": "Domenico Dante",
@@ -545,20 +581,20 @@
         "bio": "Andrea Baioni joined the Club Magico Italiano in 1977, was teaching magic by 1983 and in 2008 founded the Italian Team of Magic. Since 1986 he has worked as a professional performer, comedian, master of ceremonies and show producer, including corporate events for Ferrari, FIAT, Volvo and Ferrero. He has written hundreds of articles for Italian magic magazines, and from 1998 to 2021 was a member of The Magic Circle in the United Kingdom, reaching the Inner Magic Circle with Gold Star.\n\nA FISM Official Judge since 2009, he was Vice President (2016–2021) and then President (2021–2024) of FISM Europe. Since 2022 he has been President of FISM International, the federation of 116 magic societies in 51 countries that organises the World Championships of Magic. His library holds more than 4,000 books on magic."
       },
       {
-        "name": "Lee Alex",
-        "country": "United Kingdom",
-        "code": "gb",
-        "role": "FISM judge · lecturer",
-        "photo": "/images/jury/lee-alex.jpg",
-        "bio": "British-born, Lee Alex is a professional magician, lecturer and creator of original textile magic. For more than three decades he has performed worldwide as a stage illusionist and magician, and consulted for film, stage, television and advertising productions.\n\nLee is an official judge for the Fédération Internationale des Sociétés Magiques (FISM), regularly serving on juries at international competitions. His lecture on quick-change magic, “Time for a Change?”, has been presented at the Magic Circle in London, the Magic Castle in Hollywood, the World Magic Seminar in Las Vegas and Jeff McBride's Magic and Mystery School."
-      },
-      {
         "name": "Dani Belev",
         "country": "Bulgaria",
         "code": "bg",
         "role": "FISM judge · founder of the Golden Cat festival",
         "photo": "/images/jury/dani-belev.jpg",
         "bio": "A Bulgarian magician and illusionist from Gabrovo with more than two decades of professional experience. He is president of the Quick Hands Project Magic Club and founder and organiser of the international magic festival Golden Cat in Gabrovo, which brings together magicians and performers from many countries.\n\nHis long-standing work has contributed significantly to the art of magic and to international collaboration in the magic community. In 2026 he became the first Bulgarian to qualify as a FISM judge."
+      },
+      {
+        "name": "Lee Alex",
+        "country": "United Kingdom",
+        "code": "gb",
+        "role": "FISM judge · lecturer",
+        "photo": "/images/jury/lee-alex.jpg",
+        "bio": "British-born, Lee Alex is a professional magician, lecturer and creator of original textile magic. For more than three decades he has performed worldwide as a stage illusionist and magician, and consulted for film, stage, television and advertising productions.\n\nLee is an official judge for the Fédération Internationale des Sociétés Magiques (FISM), regularly serving on juries at international competitions. His lecture on quick-change magic, “Time for a Change?”, has been presented at the Magic Circle in London, the Magic Castle in Hollywood, the World Magic Seminar in Las Vegas and Jeff McBride's Magic and Mystery School."
       },
       {
         "name": "Bojan Barišić",
@@ -879,7 +915,17 @@
     "title": "Do you believe in magic?"
   },
   "footer": {
-    "organiser": "© 2027 Belgrade Magic Festival. All rights reserved."
+    "organiser": "© 2027 Belgrade Magic Festival. All rights reserved.",
+    "badges": [
+      {
+        "src": "/images/logos/fism-qualified-contest.jpg",
+        "alt": "FISM Qualified Contest"
+      },
+      {
+        "src": "/images/logos/magicni-krug-srbije.jpg",
+        "alt": "Serbia Magic Ring"
+      }
+    ]
   },
   "emails": {
     "total": "Total",

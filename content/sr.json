@@ -21,10 +21,10 @@
     "tagline": "Magija koja povezuje. Umetnost koja oduševljava.",
     "intro": "Dva festivalska dana vrhunskih iluzija, međunarodnih umetnika, porodičnih programa, takmičenja i stručnih sadržaja.",
     "poster": {
-      "src": "/images/naslovna.png",
-      "alt": "Magični Varijete 2027 — zvanična naslovna vizuelna prezentacija",
-      "width": 1055,
-      "height": 1491,
+      "src": "/images/plakat.jpg",
+      "alt": "Beogradski festival magije 2027, 27–28. februar, MTS dvorana, Beograd — zvanični plakat festivala",
+      "width": 1272,
+      "height": 1801,
       "translatedTitle": "",
       "scene": {
         "src": "/images/naslovna-scena.png",
@@ -97,24 +97,24 @@
   },
   "nav": [
     {
-      "label": "Festival",
-      "href": "#festival"
-    },
-    {
       "label": "Program",
       "href": "#program"
     },
     {
-      "label": "Izvođači",
-      "href": "#izvodjaci"
+      "label": "Takmičenje",
+      "href": "#takmicenje"
     },
     {
       "label": "Predavači",
       "href": "#predavaci"
     },
     {
-      "label": "Galerija",
-      "href": "#galerija"
+      "label": "Izvođači",
+      "href": "#izvodjaci"
+    },
+    {
+      "label": "Festival",
+      "href": "#festival"
     },
     {
       "label": "Organizatori",
@@ -123,28 +123,36 @@
   ],
   "menu": [
     {
-      "label": "Festival",
-      "href": "#festival"
-    },
-    {
       "label": "Program",
       "href": "#program"
     },
     {
-      "label": "Izvođači",
-      "href": "#izvodjaci"
+      "label": "Takmičenje",
+      "href": "#takmicenje"
+    },
+    {
+      "label": "Žiri",
+      "href": "#ziri"
     },
     {
       "label": "Predavači",
       "href": "#predavaci"
     },
     {
-      "label": "Galerija",
-      "href": "#galerija"
+      "label": "Izvođači",
+      "href": "#izvodjaci"
     },
     {
       "label": "Cene",
       "href": "#cene"
+    },
+    {
+      "label": "Festival",
+      "href": "#festival"
+    },
+    {
+      "label": "Galerija",
+      "href": "#galerija"
     },
     {
       "label": "Smeštaj",
@@ -155,12 +163,12 @@
       "href": "#lokacija"
     },
     {
-      "label": "Organizatori",
-      "href": "#organizatori"
-    },
-    {
       "label": "Prijava",
       "href": "#prijava"
+    },
+    {
+      "label": "Organizatori",
+      "href": "#organizatori"
     }
   ],
   "about": {
@@ -524,9 +532,37 @@
     "pause": "Pauziraj himnu",
     "seek": "Položaj u pesmi"
   },
+  "contest": {
+    "badge": "FISM Qualified",
+    "title": "FISM Qualified Contest",
+    "lead": "Zvanično FISM kvalifikovano takmičenje na Beogradskom festivalu magije 2027",
+    "paragraphs": [
+      "Beogradski festival magije 2027 s ponosom je domaćin zvaničnog FISM Qualified takmičenja. U Beograd dolazi međunarodno priznat format takmičenja, a mađioničari dobijaju priliku da pokažu svoju umetnost, kreativnost i tehničko umeće.",
+      "Nastupe ocenjuje međunarodni žiri uglednih imena iz sveta magije, koji donose bogato iskustvo, stručno znanje i duboko razumevanje umetnosti iluzije."
+    ],
+    "juryTitle": "Međunarodni žiri",
+    "closing": [
+      "Takmičenje se odvija po važećim pravilima i kriterijumima ocenjivanja FISM-a, što takmičarima daje profesionalan okvir za ocenu njihovih nastupa.",
+      "Beogradski festival magije 2027 posvećen je razvoju magije kao umetnosti, podsticanju umetničke izvrsnosti i jačanju veza u međunarodnoj mađioničarskoj zajednici."
+    ],
+    "logos": [
+      {
+        "src": "/images/logos/fism-qualified-contest.jpg",
+        "alt": "FISM Qualified Contest",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "src": "/images/logos/magicni-krug-srbije.jpg",
+        "alt": "Magični krug Srbije (Serbia Magic Ring)",
+        "width": 1024,
+        "height": 1024
+      }
+    ]
+  },
   "jury": {
     "kicker": "Takmičenja",
-    "title": "Stručni žiri",
+    "title": "Međunarodni žiri",
     "items": [
       {
         "name": "Domenico Dante",
@@ -545,20 +581,20 @@
         "bio": "Andrea Baioni je postao član Club Magico Italiano 1977, magiju je predavao već od 1983, a 2008. osnovao je italijanski mađioničarski tim (Italian Team of Magic). Od 1986. radi kao profesionalni izvođač, komičar, voditelj programa i producent predstava, između ostalog na korporativnim događajima za Ferrari, FIAT, Volvo i Ferrero. Objavio je stotine članaka u italijanskim mađioničarskim časopisima, a od 1998. do 2021. bio je član The Magic Circle u Velikoj Britaniji, sa zvanjem Inner Magic Circle with Gold Star.\n\nZvanični je sudija FISM-a od 2009, bio je potpredsednik (2016–2021), a zatim predsednik (2021–2024) FISM Europe. Od 2022. je predsednik FISM International, federacije 116 mađioničarskih društava iz 51 zemlje koja organizuje Svetsko prvenstvo u magiji. Njegova biblioteka broji više od 4.000 knjiga o magiji."
       },
       {
-        "name": "Lee Alex",
-        "country": "Velika Britanija",
-        "code": "gb",
-        "role": "Sudija FISM-a · predavač",
-        "photo": "/images/jury/lee-alex.jpg",
-        "bio": "Rođeni Britanac, Lee Alex je profesionalni mađioničar, predavač i autor originalne magije sa tkaninama. Više od tri decenije nastupa širom sveta kao scenski iluzionista i mađioničar, a radio je i kao konsultant za film, pozorište, televiziju i reklame.\n\nZvanični je sudija FISM-a (Fédération Internationale des Sociétés Magiques) i redovno sedi u žirijima međunarodnih takmičenja. Njegovo predavanje o magiji brzog presvlačenja, „Time for a Change?“, održano je u Magic Circle-u u Londonu, Magic Castle-u u Holivudu, na World Magic Seminar-u u Las Vegasu i u školi „Magic and Mystery School“ Džefa Makbrajda."
-      },
-      {
         "name": "Dani Belev",
         "country": "Bugarska",
         "code": "bg",
         "role": "Sudija FISM-a · osnivač festivala Golden Cat",
         "photo": "/images/jury/dani-belev.jpg",
         "bio": "Bugarski mađioničar i iluzionista iz Gabrova, sa više od dve decenije profesionalnog iskustva. Predsednik je mađioničarskog kluba Quick Hands Project, osnivač i organizator međunarodnog festivala magije „Golden Cat“ u Gabrovu, koji okuplja mađioničare i izvođače iz mnogih zemalja.\n\nDugogodišnjim radom značajno je doprineo razvoju magije i međunarodnoj saradnji u mađioničarskoj zajednici. Godine 2026. postao je prvi Bugarin sa zvanjem sudije FISM-a."
+      },
+      {
+        "name": "Lee Alex",
+        "country": "Velika Britanija",
+        "code": "gb",
+        "role": "Sudija FISM-a · predavač",
+        "photo": "/images/jury/lee-alex.jpg",
+        "bio": "Rođeni Britanac, Lee Alex je profesionalni mađioničar, predavač i autor originalne magije sa tkaninama. Više od tri decenije nastupa širom sveta kao scenski iluzionista i mađioničar, a radio je i kao konsultant za film, pozorište, televiziju i reklame.\n\nZvanični je sudija FISM-a (Fédération Internationale des Sociétés Magiques) i redovno sedi u žirijima međunarodnih takmičenja. Njegovo predavanje o magiji brzog presvlačenja, „Time for a Change?“, održano je u Magic Circle-u u Londonu, Magic Castle-u u Holivudu, na World Magic Seminar-u u Las Vegasu i u školi „Magic and Mystery School“ Džefa Makbrajda."
       },
       {
         "name": "Bojan Barišić",
@@ -879,7 +915,17 @@
     "title": "Verujete li u magiju?"
   },
   "footer": {
-    "organiser": "© 2027 Beogradski festival magije. Sva prava zadržana."
+    "organiser": "© 2027 Beogradski festival magije. Sva prava zadržana.",
+    "badges": [
+      {
+        "src": "/images/logos/fism-qualified-contest.jpg",
+        "alt": "FISM Qualified Contest"
+      },
+      {
+        "src": "/images/logos/magicni-krug-srbije.jpg",
+        "alt": "Magični krug Srbije"
+      }
+    ]
   },
   "emails": {
     "total": "Ukupno",
