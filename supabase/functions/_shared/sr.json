@@ -6,7 +6,7 @@
     "lang": "sr-Latn",
     "timeZone": "Europe/Belgrade",
     "currency": "EUR",
-    "contactEmail": "magic.piksi@gmail.com",
+    "contactEmail": "serbiamagicring@gmail.com",
     "instagram": "https://www.instagram.com/belgrademagicfestival/",
     "organiserLegal": "Pravni naziv organizatora, adresa"
   },
@@ -42,12 +42,7 @@
     "countdown": {
       "startsAt": "2027-02-27T09:00:00+01:00",
       "label": "Do početka festivala",
-      "units": [
-        "dana",
-        "sati",
-        "min",
-        "sek"
-      ],
+      "units": ["dana", "sati", "min", "sek"],
       "done": "Festival je počeo. Vidimo se u MTS dvorani!"
     }
   },
@@ -543,14 +538,44 @@
     "kicker": "Smeštaj",
     "title": "Hotel Prag",
     "intro": "U centru Beograda, na nekoliko minuta hoda od MTS dvorane.",
-    "location": { "name": "Hotel Prag", "address": "Kraljice Natalije 27, Beograd", "lat": 44.8110148, "lng": 20.4597196 },
+    "location": {
+      "name": "Hotel Prag",
+      "address": "Kraljice Natalije 27, Beograd",
+      "lat": 44.8110148,
+      "lng": 20.4597196
+    },
     "priceCurrency": "RSD",
     "rooms": [
-      { "label": "Ekonomična jednokrevetna soba", "note": "singl krevet", "price": 57, "priceRsd": 6600 },
-      { "label": "Jednokrevetna soba", "note": "francuski ležaj", "price": 62, "priceRsd": 7300 },
-      { "label": "Dvokrevetna soba", "note": "15 m², bračni ili dva odvojena kreveta", "price": 67, "priceRsd": 7900 },
-      { "label": "Superior dvokrevetna soba", "note": "37 m², veliki bračni krevet", "price": 78, "priceRsd": 9200 },
-      { "label": "Porodična soba", "note": "32 m², bračni krevet i dva sofe-kreveta", "price": 105, "priceRsd": 12300 }
+      {
+        "label": "Ekonomična jednokrevetna soba",
+        "note": "singl krevet",
+        "price": 57,
+        "priceRsd": 6600
+      },
+      {
+        "label": "Jednokrevetna soba",
+        "note": "francuski ležaj",
+        "price": 62,
+        "priceRsd": 7300
+      },
+      {
+        "label": "Dvokrevetna soba",
+        "note": "15 m², bračni ili dva odvojena kreveta",
+        "price": 67,
+        "priceRsd": 7900
+      },
+      {
+        "label": "Superior dvokrevetna soba",
+        "note": "37 m², veliki bračni krevet",
+        "price": 78,
+        "priceRsd": 9200
+      },
+      {
+        "label": "Porodična soba",
+        "note": "32 m², bračni krevet i dva sofe-kreveta",
+        "price": 105,
+        "priceRsd": 12300
+      }
     ],
     "note": "Okvirne cene po sobi za jednu noć, sa doručkom, zaokružene. Tačna cena zavisi od datuma i izabrane tarife; boravišna taksa (oko 160 RSD po noći) plaća se posebno."
   },
@@ -690,15 +715,27 @@
       {
         "role": "Direktori festivala",
         "members": [
-          { "name": "Igor Trifunov", "photo": "/images/team/igor-trifunov.jpg" },
-          { "name": "Dejan Đurđević Piksi", "photo": "/images/team/dejan-djurdjevic-piksi.jpg" }
+          {
+            "name": "Igor Trifunov",
+            "photo": "/images/team/igor-trifunov.jpg"
+          },
+          {
+            "name": "Dejan Đurđević Piksi",
+            "photo": "/images/team/dejan-djurdjevic-piksi.jpg"
+          }
         ]
       },
       {
         "role": "Koordinatori projekta",
         "members": [
-          { "name": "Mihajlo Janković", "photo": "/images/team/mihajlo-jankovic.jpg" },
-          { "name": "Filip Đikić Filipino", "photo": "/images/team/filip-djikic.jpg" }
+          {
+            "name": "Mihajlo Janković",
+            "photo": "/images/team/mihajlo-jankovic.jpg"
+          },
+          {
+            "name": "Filip Đikić Filipino",
+            "photo": "/images/team/filip-djikic.jpg"
+          }
         ]
       }
     ]

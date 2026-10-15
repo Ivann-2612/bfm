@@ -6,7 +6,7 @@
     "lang": "en",
     "timeZone": "Europe/Belgrade",
     "currency": "EUR",
-    "contactEmail": "magic.piksi@gmail.com",
+    "contactEmail": "serbiamagicring@gmail.com",
     "instagram": "https://www.instagram.com/belgrademagicfestival/",
     "organiserLegal": "Organiser legal name, address"
   },
@@ -42,12 +42,7 @@
     "countdown": {
       "startsAt": "2027-02-27T09:00:00+01:00",
       "label": "Until the festival opens",
-      "units": [
-        "days",
-        "hours",
-        "min",
-        "sec"
-      ],
+      "units": ["days", "hours", "min", "sec"],
       "done": "The festival has begun. See you at MTS Hall!"
     }
   },
@@ -548,14 +543,44 @@
     "kicker": "Accommodation",
     "title": "Hotel Prag",
     "intro": "In the centre of Belgrade, a short walk from MTS Hall.",
-    "location": { "name": "Hotel Prag", "address": "Kraljice Natalije 27, Belgrade", "lat": 44.8110148, "lng": 20.4597196 },
+    "location": {
+      "name": "Hotel Prag",
+      "address": "Kraljice Natalije 27, Belgrade",
+      "lat": 44.8110148,
+      "lng": 20.4597196
+    },
     "priceCurrency": "EUR",
     "rooms": [
-      { "label": "Economy single room", "note": "single bed", "price": 57, "priceRsd": 6600 },
-      { "label": "Single room", "note": "double bed", "price": 62, "priceRsd": 7300 },
-      { "label": "Double or twin room", "note": "15 m², double or two single beds", "price": 67, "priceRsd": 7900 },
-      { "label": "Superior double room", "note": "37 m², king-size bed", "price": 78, "priceRsd": 9200 },
-      { "label": "Family room", "note": "32 m², double bed and two sofa beds", "price": 105, "priceRsd": 12300 }
+      {
+        "label": "Economy single room",
+        "note": "single bed",
+        "price": 57,
+        "priceRsd": 6600
+      },
+      {
+        "label": "Single room",
+        "note": "double bed",
+        "price": 62,
+        "priceRsd": 7300
+      },
+      {
+        "label": "Double or twin room",
+        "note": "15 m², double or two single beds",
+        "price": 67,
+        "priceRsd": 7900
+      },
+      {
+        "label": "Superior double room",
+        "note": "37 m², king-size bed",
+        "price": 78,
+        "priceRsd": 9200
+      },
+      {
+        "label": "Family room",
+        "note": "32 m², double bed and two sofa beds",
+        "price": 105,
+        "priceRsd": 12300
+      }
     ],
     "note": "Approximate prices per room per night with breakfast, converted from dinars and rounded. The exact price depends on the dates and the rate you book; city tax (about 160 RSD per night) is extra."
   },
@@ -695,15 +720,27 @@
       {
         "role": "Festival directors",
         "members": [
-          { "name": "Igor Trifunov", "photo": "/images/team/igor-trifunov.jpg" },
-          { "name": "Dejan Đurđević Piksi", "photo": "/images/team/dejan-djurdjevic-piksi.jpg" }
+          {
+            "name": "Igor Trifunov",
+            "photo": "/images/team/igor-trifunov.jpg"
+          },
+          {
+            "name": "Dejan Đurđević Piksi",
+            "photo": "/images/team/dejan-djurdjevic-piksi.jpg"
+          }
         ]
       },
       {
         "role": "Project coordinators",
         "members": [
-          { "name": "Mihajlo Janković", "photo": "/images/team/mihajlo-jankovic.jpg" },
-          { "name": "Filip Đikić Filipino", "photo": "/images/team/filip-djikic.jpg" }
+          {
+            "name": "Mihajlo Janković",
+            "photo": "/images/team/mihajlo-jankovic.jpg"
+          },
+          {
+            "name": "Filip Đikić Filipino",
+            "photo": "/images/team/filip-djikic.jpg"
+          }
         ]
       }
     ]

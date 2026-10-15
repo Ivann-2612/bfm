@@ -6,11 +6,10 @@
     "lang": "sr-Latn",
     "timeZone": "Europe/Belgrade",
     "currency": "EUR",
-    "contactEmail": "magic.piksi@gmail.com",
+    "contactEmail": "serbiamagicring@gmail.com",
     "instagram": "https://www.instagram.com/belgrademagicfestival/",
     "organiserLegal": "Pravni naziv organizatora, adresa"
   },
-
   "event": {
     "name": "Beogradski festival magije",
     "year": 2027,
@@ -35,9 +34,18 @@
       }
     },
     "stats": [
-      { "value": "2", "label": "festivalska dana" },
-      { "value": "7", "label": "održanih izdanja" },
-      { "value": "2012.", "label": "godina osnivanja" }
+      {
+        "value": "2",
+        "label": "festivalska dana"
+      },
+      {
+        "value": "7",
+        "label": "održanih izdanja"
+      },
+      {
+        "value": "2012.",
+        "label": "godina osnivanja"
+      }
     ],
     "countdown": {
       "startsAt": "2027-02-27T09:00:00+01:00",
@@ -51,7 +59,6 @@
       "done": "Festival je počeo. Vidimo se u MTS dvorani!"
     }
   },
-
   "ui": {
     "skip": "Preskoči na sadržaj",
     "register": "Prijava",
@@ -88,29 +95,74 @@
     "instagramLabel": "Festival na Instagramu",
     "openGoogleMaps": "Google mape"
   },
-
   "nav": [
-    { "label": "Festival", "href": "#festival" },
-    { "label": "Program", "href": "#program" },
-    { "label": "Izvođači", "href": "#izvodjaci" },
-    { "label": "Predavači", "href": "#predavaci" },
-    { "label": "Galerija", "href": "#galerija" },
-    { "label": "Organizatori", "href": "#organizatori" }
+    {
+      "label": "Festival",
+      "href": "#festival"
+    },
+    {
+      "label": "Program",
+      "href": "#program"
+    },
+    {
+      "label": "Izvođači",
+      "href": "#izvodjaci"
+    },
+    {
+      "label": "Predavači",
+      "href": "#predavaci"
+    },
+    {
+      "label": "Galerija",
+      "href": "#galerija"
+    },
+    {
+      "label": "Organizatori",
+      "href": "#organizatori"
+    }
   ],
-
   "menu": [
-    { "label": "Festival", "href": "#festival" },
-    { "label": "Program", "href": "#program" },
-    { "label": "Izvođači", "href": "#izvodjaci" },
-    { "label": "Predavači", "href": "#predavaci" },
-    { "label": "Galerija", "href": "#galerija" },
-    { "label": "Cene", "href": "#cene" },
-    { "label": "Smeštaj", "href": "#smestaj" },
-    { "label": "Lokacija", "href": "#lokacija" },
-    { "label": "Organizatori", "href": "#organizatori" },
-    { "label": "Prijava", "href": "#prijava" }
+    {
+      "label": "Festival",
+      "href": "#festival"
+    },
+    {
+      "label": "Program",
+      "href": "#program"
+    },
+    {
+      "label": "Izvođači",
+      "href": "#izvodjaci"
+    },
+    {
+      "label": "Predavači",
+      "href": "#predavaci"
+    },
+    {
+      "label": "Galerija",
+      "href": "#galerija"
+    },
+    {
+      "label": "Cene",
+      "href": "#cene"
+    },
+    {
+      "label": "Smeštaj",
+      "href": "#smestaj"
+    },
+    {
+      "label": "Lokacija",
+      "href": "#lokacija"
+    },
+    {
+      "label": "Organizatori",
+      "href": "#organizatori"
+    },
+    {
+      "label": "Prijava",
+      "href": "#prijava"
+    }
   ],
-
   "about": {
     "kicker": "O festivalu",
     "title": "Povratak velike tradicije",
@@ -128,7 +180,6 @@
       "alt": "Brojni posetioci prethodnog izdanja festivala"
     }
   },
-
   "programs": {
     "kicker": "Jedan festival · bezbroj doživljaja",
     "title": "Program za publiku i profesionalce",
@@ -165,7 +216,10 @@
       },
       {
         "id": "takmicenja",
-        "points": ["Close-up magija", "Scenska magija (stage)"],
+        "points": [
+          "Close-up magija",
+          "Scenska magija (stage)"
+        ],
         "name": "Takmičenja",
         "meta": "Domaći i strani učesnici",
         "text": "Scenska i close-up magija pred međunarodnim stručnim žirijem, uz profesionalne kriterijume ocenjivanja. Pobednike čekaju vredne nagrade.",
@@ -200,11 +254,11 @@
       ]
     }
   },
-
   "gala": {
     "kicker": "Magični Varijete · MTS dvorana",
     "title": "Izvođači Gala šoua",
     "intro": "Umetnici koji nastupaju na velikoj sceni MTS dvorane.",
+    "hint": "Kliknite na fotografiju da vidite biografiju izvođača.",
     "artists": [
       {
         "name": "Woody Aragón",
@@ -257,7 +311,6 @@
       }
     ]
   },
-
   "schedule": {
     "kicker": "MTS dvorana · Beograd",
     "title": "Program festivala",
@@ -350,7 +403,6 @@
       }
     ]
   },
-
   "vision": {
     "kicker": "Vizija festivala",
     "title": "Magija pripada svima.",
@@ -360,7 +412,6 @@
     ],
     "quote": "Umetnost, obrazovanje, zabava i međunarodna saradnja na jednom mestu."
   },
-
   "gallery": {
     "kicker": "Trenuci koji se pamte",
     "title": "Galerija festivala",
@@ -370,8 +421,14 @@
         "src": "/images/finale.jpg",
         "alt": "Finale festivala pred punom dvoranom"
       },
-      { "src": "/images/nagrade.jpg", "alt": "Dodela priznanja učesnicima" },
-      { "src": "/images/publika.jpg", "alt": "Publika svih generacija" },
+      {
+        "src": "/images/nagrade.jpg",
+        "alt": "Dodela priznanja učesnicima"
+      },
+      {
+        "src": "/images/publika.jpg",
+        "alt": "Publika svih generacija"
+      },
       {
         "src": "/images/deca-scena.jpg",
         "alt": "Najmlađi posetioci uz samu scenu"
@@ -380,14 +437,26 @@
         "src": "/images/magija-za-decu.jpg",
         "alt": "Magija iz neposredne blizine"
       },
-      { "src": "/images/seminar-1.jpg", "alt": "Seminar za mađioničare" },
+      {
+        "src": "/images/seminar-1.jpg",
+        "alt": "Seminar za mađioničare"
+      },
       {
         "src": "/images/seminar-2.jpg",
         "alt": "Stručna predavanja i demonstracije"
       },
-      { "src": "/images/izlozba.jpg", "alt": "Izložbeni prostor festivala" },
-      { "src": "/images/foaje.jpg", "alt": "Festivalska atmosfera u foajeu" },
-      { "src": "/images/mediji.jpg", "alt": "Veliko interesovanje medija" },
+      {
+        "src": "/images/izlozba.jpg",
+        "alt": "Izložbeni prostor festivala"
+      },
+      {
+        "src": "/images/foaje.jpg",
+        "alt": "Festivalska atmosfera u foajeu"
+      },
+      {
+        "src": "/images/mediji.jpg",
+        "alt": "Veliko interesovanje medija"
+      },
       {
         "src": "/images/magicna-zurka.jpg",
         "alt": "Večernje druženje učesnika"
@@ -398,7 +467,6 @@
       }
     ]
   },
-
   "history": {
     "year": "2012",
     "kicker": "Istorijat",
@@ -408,9 +476,11 @@
       "Tokom sedam uspešnih izdanja ugostio je brojne domaće umetnike i međunarodne goste iz više evropskih zemalja i postao jedno od najznačajnijih okupljanja mađioničara u regionu."
     ]
   },
-
-  "video": { "title": "", "youtubeId": "", "poster": "" },
-
+  "video": {
+    "title": "",
+    "youtubeId": "",
+    "poster": ""
+  },
   "lecturers": {
     "kicker": "Predavači",
     "title": "Ko predaje ove godine",
@@ -420,32 +490,31 @@
         "country": "Italija",
         "specialty": "Prijatelj festivala · predavanje",
         "photo": "/images/artists/domenico-dante.png",
-        "bio": "Predsednik FISM-a od 2012. do 2022, danas počasni predsednik. Profesionalni mađioničar od 1984. i producent više od 120 međunarodnih konvencija."
+        "bio": ""
       },
       {
         "name": "Den Den",
         "country": "Japan",
         "specialty": "Predavanje · Gala šou",
         "photo": "/images/artists/den-den.jpg",
-        "bio": "Majstor manipulacije iz Japana. Mađioničar godine Akademije magičnih umetnosti 2014. i The Manipulator u predstavi The Illusionists na londonskom West Endu."
+        "bio": ""
       },
       {
         "name": "Woody Aragón",
         "country": "Španija",
         "specialty": "Predavanje · Gala šou",
         "photo": "/images/artists/woody-aragon.jpg",
-        "bio": "Autor knjiga A Book in English (Magic Academy Award, 2012) i Memorandum, o sopstvenom memorisanom špilu. Penn & Teller od 2016. izvode njegov „Ritual of Love“ u Las Vegasu."
+        "bio": ""
       },
       {
         "name": "Lee Alex",
         "country": "Velika Britanija",
         "specialty": "Predavanje · žiri",
         "photo": "/images/artists/lee-alex-lecture.jpg",
-        "bio": "Novo predavanje o đavoljoj maramici (Devil's Handkerchief), jednom od najsvestranijih rekvizita u magiji, od prvih zapisa do danas. Prethodno predavanje održao je u više od 75 gradova na četiri kontinenta."
+        "bio": ""
       }
     ]
   },
-
   "anthem": {
     "kicker": "Himna festivala",
     "title": "Belgrade — City of Magic",
@@ -455,11 +524,18 @@
     "pause": "Pauziraj himnu",
     "seek": "Položaj u pesmi"
   },
-
   "jury": {
     "kicker": "Takmičenja",
     "title": "Stručni žiri",
     "items": [
+      {
+        "name": "Domenico Dante",
+        "country": "Italija",
+        "code": "it",
+        "role": "Počasni predsednik FISM-a · predavač",
+        "bio": "Italijanski mađioničar i trgovac mađioničarskom opremom od 1984, posle petnaest godina rada kao menadžer i direktor bolnice. Bio je predsednik Club Magico Italiano od 1990. do 2015, a danas je njegov doživotni počasni predsednik; član je Inner Magic Circle sa zlatnom zvezdom, doživotni član Magic Castle-a u Holivudu i dobitnik nagrade Murray Award (Blekpul, 2008).\n\nKvalifikovani je član žirija FISM-a od 1991. Bio je predsednik FISM International od 2012. do 2022, a danas je njegov počasni predsednik. Producent je ili organizator više od 120 međunarodnih konvencija. Njegov moto: „Promoting Magic as an Art“.",
+        "photo": "/images/artists/domenico-dante.png"
+      },
       {
         "name": "Andrea Baioni",
         "country": "Italija",
@@ -488,13 +564,12 @@
         "name": "Bojan Barišić",
         "country": "",
         "code": "",
-        "role": "Član žirija",
-        "photo": "",
-        "bio": ""
+        "role": "Član žirija · kreator BB Magic",
+        "photo": "/images/jury/bojan-barisic-2.jpg",
+        "bio": "Bojan Barišić je kreator i izumitelj mađioničarskih rekvizita, poznat po ekskluzivnim scenskim rekvizitima koje pravi pod brendom BB Magic. Njegove kreacije traže vrhunski profesionalni mađioničari širom sveta, a izrađuju se u ograničenom broju zbog složene konstrukcije i posebnih delova.\n\nMeđu njima su Thin Air, scenski rekvizit koji je razvijao pet godina, za upečatljivo pojavljivanje karata dok su vrhovi prstiju potpuno vidljivi; Double Production, kojim se iz obe prazne ruke istovremeno pojave lepeze karata, marame ili novčanice; BB Vanishing Cane 3.0, savremena verzija klasičnog štapa koji se pojavljuje, uz preporuku legendarnog Fantasia; i Final Night, njegovo rešenje klasičnog trika Bank Nite, uz potpuno čiste ruke."
       }
     ]
   },
-
   "packages": {
     "kicker": "Kotizacije",
     "title": "Cene",
@@ -521,44 +596,97 @@
           "Gala večera",
           "Gala šou Magični Varijete – MTS dvorana"
         ],
-        "price": { "early": 99, "regular": 129 },
+        "price": {
+          "early": 99,
+          "regular": 129
+        },
         "allowExtras": []
       },
       {
         "id": "dealer",
         "name": "Dealer paket",
         "summary": "Sve iz Standard paketa i dilerski sto od 2 m",
-        "includes": ["Sve iz Standard paketa", "Dilerski sto (2 m)"],
-        "price": { "early": 149, "regular": 200 },
-        "allowExtras": ["table", "assistant"]
+        "includes": [
+          "Sve iz Standard paketa",
+          "Dilerski sto (2 m)"
+        ],
+        "price": {
+          "early": 149,
+          "regular": 200
+        },
+        "allowExtras": [
+          "table",
+          "assistant"
+        ]
       }
     ],
     "extras": [
-      { "id": "table", "label": "Dodatni sto (2 m)", "price": 50, "max": 2 },
-      { "id": "assistant", "label": "Asistent dilera", "price": 50, "max": 2 }
+      {
+        "id": "table",
+        "label": "Dodatni sto (2 m)",
+        "price": 50,
+        "max": 2
+      },
+      {
+        "id": "assistant",
+        "label": "Asistent dilera",
+        "price": 50,
+        "max": 2
+      }
     ]
   },
-
   "hotels": {
     "kicker": "Smeštaj",
     "title": "Hotel Prag",
     "intro": "U centru Beograda, na nekoliko minuta hoda od MTS dvorane.",
-    "location": { "name": "Hotel Prag", "address": "Kraljice Natalije 27, Beograd", "lat": 44.8110148, "lng": 20.4597196 },
+    "location": {
+      "name": "Hotel Prag",
+      "address": "Kraljice Natalije 27, Beograd",
+      "lat": 44.8110148,
+      "lng": 20.4597196
+    },
     "priceCurrency": "RSD",
     "rooms": [
-      { "label": "Ekonomična jednokrevetna soba", "note": "singl krevet", "price": 57, "priceRsd": 6600 },
-      { "label": "Jednokrevetna soba", "note": "francuski ležaj", "price": 62, "priceRsd": 7300 },
-      { "label": "Dvokrevetna soba", "note": "15 m², bračni ili dva odvojena kreveta", "price": 67, "priceRsd": 7900 },
-      { "label": "Superior dvokrevetna soba", "note": "37 m², veliki bračni krevet", "price": 78, "priceRsd": 9200 },
-      { "label": "Porodična soba", "note": "32 m², bračni krevet i dva sofe-kreveta", "price": 105, "priceRsd": 12300 }
+      {
+        "label": "Ekonomična jednokrevetna soba",
+        "note": "singl krevet",
+        "price": 57,
+        "priceRsd": 6600
+      },
+      {
+        "label": "Jednokrevetna soba",
+        "note": "francuski ležaj",
+        "price": 62,
+        "priceRsd": 7300
+      },
+      {
+        "label": "Dvokrevetna soba",
+        "note": "15 m², bračni ili dva odvojena kreveta",
+        "price": 67,
+        "priceRsd": 7900
+      },
+      {
+        "label": "Superior dvokrevetna soba",
+        "note": "37 m², veliki bračni krevet",
+        "price": 78,
+        "priceRsd": 9200
+      },
+      {
+        "label": "Porodična soba",
+        "note": "32 m², bračni krevet i dva sofe-kreveta",
+        "price": 105,
+        "priceRsd": 12300
+      }
     ],
     "note": "Okvirne cene po sobi za jednu noć, sa doručkom, zaokružene. Tačna cena zavisi od datuma i izabrane tarife; boravišna taksa (oko 160 RSD po noći) plaća se posebno."
   },
-
   "travel": {
     "kicker": "Kako do nas",
     "title": "MTS dvorana na mapi",
-    "center": { "lat": 44.81322, "lng": 20.46263 },
+    "center": {
+      "lat": 44.81322,
+      "lng": 20.46263
+    },
     "locations": [
       {
         "name": "MTS dvorana",
@@ -579,7 +707,6 @@
       ]
     }
   },
-
   "registration": {
     "kicker": "Prijava za stručni program",
     "title": "Prijavite se",
@@ -650,8 +777,14 @@
           "label": "Uplata iz Srbije (dinari)",
           "note": "Iznos u dinarima po srednjem kursu NBS na dan uplate.",
           "fields": [
-            { "label": "Primalac", "copy": "Pravni naziv organizatora" },
-            { "label": "Broj računa", "copy": "000-0000000000000-00" }
+            {
+              "label": "Primalac",
+              "copy": "Pravni naziv organizatora"
+            },
+            {
+              "label": "Broj računa",
+              "copy": "000-0000000000000-00"
+            }
           ]
         },
         {
@@ -659,16 +792,27 @@
           "label": "Uplata iz inostranstva (EUR)",
           "note": "Troškove banke pošiljaoca snosi uplatilac.",
           "fields": [
-            { "label": "Primalac", "copy": "Pravni naziv organizatora" },
-            { "label": "IBAN", "copy": "RS35 0000 0000 0000 0000 00" },
-            { "label": "SWIFT / BIC", "copy": "XXXXRSBG" },
-            { "label": "Banka", "copy": "Naziv banke" }
+            {
+              "label": "Primalac",
+              "copy": "Pravni naziv organizatora"
+            },
+            {
+              "label": "IBAN",
+              "copy": "RS35 0000 0000 0000 0000 00"
+            },
+            {
+              "label": "SWIFT / BIC",
+              "copy": "XXXXRSBG"
+            },
+            {
+              "label": "Banka",
+              "copy": "Naziv banke"
+            }
           ]
         }
       ]
     }
   },
-
   "organizers": {
     "kicker": "Zajedno stvaramo magiju",
     "title": "Organizacija festivala",
@@ -676,45 +820,67 @@
       {
         "title": "Organizatori",
         "items": [
-          { "name": "Magični krug Srbije", "sub": "Serbia Magic Ring" },
-          { "name": "Čarobni plašt", "sub": "Udruženje mađioničara" },
-          { "name": "Magični svet", "sub": "Udruženje građana" }
+          {
+            "name": "Magični krug Srbije",
+            "sub": "Serbia Magic Ring"
+          },
+          {
+            "name": "Čarobni plašt",
+            "sub": "Udruženje mađioničara"
+          },
+          {
+            "name": "Magični svet",
+            "sub": "Udruženje građana"
+          }
         ]
       },
       {
         "title": "Partner festivala",
-        "items": [{ "name": "MTS dvorana", "sub": "Beograd" }]
+        "items": [
+          {
+            "name": "MTS dvorana",
+            "sub": "Beograd"
+          }
+        ]
       }
     ],
     "people": [
       {
         "role": "Direktori festivala",
         "members": [
-          { "name": "Igor Trifunov", "photo": "/images/team/igor-trifunov.jpg" },
-          { "name": "Dejan Đurđević Piksi", "photo": "/images/team/dejan-djurdjevic-piksi.jpg" }
+          {
+            "name": "Igor Trifunov",
+            "photo": "/images/team/igor-trifunov.jpg"
+          },
+          {
+            "name": "Dejan Đurđević Piksi",
+            "photo": "/images/team/dejan-djurdjevic-piksi.jpg"
+          }
         ]
       },
       {
         "role": "Koordinatori projekta",
         "members": [
-          { "name": "Mihajlo Janković", "photo": "/images/team/mihajlo-jankovic.jpg" },
-          { "name": "Filip Đikić Filipino", "photo": "/images/team/filip-djikic.jpg" }
+          {
+            "name": "Mihajlo Janković",
+            "photo": "/images/team/mihajlo-jankovic.jpg"
+          },
+          {
+            "name": "Filip Đikić Filipino",
+            "photo": "/images/team/filip-djikic.jpg"
+          }
         ]
       }
     ]
   },
-
   "partners": [],
-
   "closing": {
     "kicker": "Vidimo se u Beogradu",
     "title": "Verujete li u magiju?"
   },
-
   "footer": {
     "organiser": "© 2027 Beogradski festival magije. Sva prava zadržana."
   },
-
   "emails": {
     "total": "Ukupno",
     "confirmation": {
@@ -741,7 +907,6 @@
       "again": "Cene rane prijave važe do {date}. Ako i dalje želite da dođete, prijavite se ponovo na sajtu ili odgovorite na ovaj mejl."
     }
   },
-
   "privacy": {
     "title": "Politika privatnosti",
     "updated": "Poslednja izmena: 14. oktobar 2026.",
@@ -792,7 +957,6 @@
       }
     ]
   },
-
   "cookies": {
     "title": "Ova stranica koristi kolačiće",
     "text": "Koristimo kolačiće da bismo pratili posećenost i poboljšavali sajt. Možete ih prihvatiti ili odbiti, a sajt radi isto u oba slučaja.",

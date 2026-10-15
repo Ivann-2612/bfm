@@ -35,11 +35,18 @@ export function Countdown({
   const [hanging, setHanging] = useState(false);
   const own = useRef<HTMLDivElement>(null);
 
+  // Each update is scheduled for the moment the remaining time crosses a whole second, so the
+  // seconds change evenly, exactly once a second (a plain setInterval drifts and sometimes
+  // changes twice in quick succession, which looks like the clock is running fast).
   useEffect(() => {
-    const tick = () => setLeft(target - Date.now());
+    let id = 0;
+    const tick = () => {
+      const ms = target - Date.now();
+      setLeft(ms);
+      if (ms > 0) id = window.setTimeout(tick, (ms % 1000) + 15);
+    };
     tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
+    return () => clearTimeout(id);
   }, [target]);
 
   // Hang under the header only after the hero countdown has scrolled up out of view

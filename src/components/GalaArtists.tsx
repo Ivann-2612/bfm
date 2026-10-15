@@ -31,6 +31,9 @@ export function GalaArtists({ lang }: LangProps) {
             </ul>
           )}
         </div>
+        <p className="artists__hint">
+          <span aria-hidden="true">♠</span> {gala.hint}
+        </p>
         <GalaArtistsGrid
           artists={artists}
           labels={{ photo: ui.photoPlaceholder, bioSoon: ui.bioSoon, close: ui.close, about: ui.aboutArtist }}

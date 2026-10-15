@@ -44,9 +44,9 @@ export default async function Home({
         <Hero lang={lang} />
         <About lang={lang} />
         <Programs lang={lang} />
+        <Jury lang={lang} />
         <GalaArtists lang={lang} />
         <Lecturers lang={lang} />
-        <Jury lang={lang} />
         <Schedule lang={lang} />
         <Vision lang={lang} />
         <Gallery lang={lang} />

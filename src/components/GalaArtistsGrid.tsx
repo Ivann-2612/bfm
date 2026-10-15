@@ -20,8 +20,8 @@ function Index({ initial, suit, flip = false }: { initial: string; suit: Suit; f
 // The first card starts open; clicking a card opens its panel below the grid with a larger photo and the bio
 // (bio text comes from "bio" in the JSON; empty shows the "coming soon" line).
 export function GalaArtistsGrid({ artists, labels }: { artists: ArtistCard[]; labels: Labels }) {
-  // The first artist starts open, so the section never looks empty.
-  const [open, setOpen] = useState<number | null>(artists.length > 0 ? 0 : null);
+  // All cards start closed; a hint above the grid says to click a photo for the bio.
+  const [open, setOpen] = useState<number | null>(null);
   // Scroll to the panel only after a click, never on page load.
   const clicked = useRef(false);
   const panel = useRef<HTMLDivElement>(null);

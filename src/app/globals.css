@@ -1024,6 +1024,10 @@ html.menu-open .site-header {
   text-align: left;
   border-radius: var(--radius-card);
 }
+/* Lecturer cards without a back: nothing to click. */
+.pcard--static {
+  cursor: default;
+}
 /* Absolutely filled, not height:100%: same iOS Safari issue inside <button> as the artist cards. */
 .pcard__inner {
   position: absolute;
@@ -4075,4 +4079,16 @@ select.admin__status option {
   .marquee__track li[aria-hidden='true'] {
     display: none;
   }
+}
+
+/* Gala artists: small hint above the cards (all bios start closed). */
+.artists__hint {
+  margin: 0 0 1rem;
+  font: 500 var(--step--1) / 1.4 var(--mono);
+  letter-spacing: 0.04em;
+  color: var(--smoke);
+}
+.artists__hint span {
+  color: var(--gold);
+  margin-right: 0.35rem;
 }

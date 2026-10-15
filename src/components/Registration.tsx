@@ -83,27 +83,11 @@ export function Registration({ lang }: LangProps) {
     [s.c.site.locale],
   );
 
-  // Pre-fill the country: Vercel's IP country first, the browser's language region as a fallback.
-  // Only while the field is still empty, so it never overwrites what the visitor typed.
+  // Pre-fill the country from the browser's language region ("sr-RS" → Srbija), only while the
+  // field is still empty, so it never overwrites what the visitor typed.
   useEffect(() => {
-    const locale = s.c.site.locale;
-    let cancelled = false;
-    const fill = (name: string | null) => {
-      if (cancelled || !name) return;
-      setForm((f) => (f.country ? f : { ...f, country: name }));
-    };
-    fetch("/api/geo")
-      .then((r) => (r.ok ? r.json() : { country: null }))
-      .catch(() => ({ country: null }))
-      .then((d: { country: string | null }) =>
-        fill(
-          countryFromCode(d.country, locale) ??
-            countryFromCode(browserRegion(), locale),
-        ),
-      );
-    return () => {
-      cancelled = true;
-    };
+    const name = countryFromCode(browserRegion(), s.c.site.locale);
+    if (name) setForm((f) => (f.country ? f : { ...f, country: name }));
   }, [s.c.site.locale]);
 
   // The long form is swapped for a short message, so the page shrinks and leaves the visitor
