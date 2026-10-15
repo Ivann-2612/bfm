@@ -1,0 +1,4210 @@
+/* ---------- Tokens ---------- */
+:root {
+  --ink: #101010;
+  --ink-2: #15131a;
+  --ink-3: #1e1b24;
+  --velvet: #a3303b;
+  --gold: #c8a04b;
+  --gold-pale: #e9d8a6;
+  --bone: #eee7d8;
+  --smoke: #9a8f80;
+  --line: rgb(200 160 75 / 0.22);
+
+  --display: var(--font-display), 'Bodoni 72', Didot, serif;
+  --body: var(--font-body), system-ui, sans-serif;
+  --mono: var(--font-mono), ui-monospace, monospace;
+
+  --step--1: 0.8125rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.3rem;
+  --step-2: clamp(1.6rem, 2.6vw, 2.1rem);
+  --step-3: clamp(2.2rem, 4.5vw, 3.6rem);
+  --step-hero: clamp(3.4rem, 9.5vw, 8.2rem);
+
+  --wrap: 1180px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --section: clamp(4.5rem, 10vw, 8rem);
+  --radius-card: 14px;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+}
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--bone);
+  font: 400 var(--step-0) / 1.6 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+}
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: var(--gold-pale);
+  text-underline-offset: 0.2em;
+}
+a:hover {
+  color: var(--gold);
+}
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.muted {
+  color: var(--smoke);
+}
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  background: var(--gold);
+  color: var(--ink);
+  padding: 0.5rem 1rem;
+  z-index: 100;
+}
+.skip:focus {
+  top: 1rem;
+}
+
+/* ---------- Shared pieces ---------- */
+.kicker {
+  font: 500 var(--step--1) / 1.2 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.section {
+  padding-block: var(--section);
+  position: relative;
+}
+.section-head {
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+.section-title {
+  font: 400 var(--step-3) / 1.05 var(--display);
+  letter-spacing: -0.01em;
+  margin-top: 0.6rem;
+  max-width: 18ch;
+}
+
+.suit {
+  color: var(--bone);
+  font-family: var(--display);
+}
+.suit--red {
+  color: var(--velvet);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.6rem;
+  background: var(--gold);
+  color: var(--ink);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  font: 500 var(--step--1) / 1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.btn:hover {
+  background: var(--gold-pale);
+  color: var(--ink);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.btn--small {
+  padding: 0.6rem 1.1rem;
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--gold-pale);
+}
+.btn--ghost:hover {
+  background: var(--ink-3);
+  color: var(--gold-pale);
+}
+.btn--wide {
+  width: 100%;
+  padding-block: 1.1rem;
+}
+.link-arrow {
+  font: 500 var(--step--1) / 1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--gold-pale);
+}
+.link-arrow::after {
+  content: ' →';
+}
+
+.photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink-3);
+}
+.photo img {
+  object-fit: cover;
+}
+.photo--empty {
+  display: grid;
+  place-items: center;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--ink-2) 0 14px,
+    var(--ink-3) 14px 15px
+  );
+}
+.photo--empty span {
+  font: var(--step--1) / 1.3 var(--mono);
+  color: var(--smoke);
+  padding: 0.5rem;
+  text-align: center;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgb(12 11 14 / 0.86);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: 4rem;
+}
+.wordmark {
+  font: 400 1.35rem / 1 var(--display);
+  color: var(--bone);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.wordmark i {
+  color: var(--gold);
+}
+.wordmark span {
+  font: 400 var(--step--1) var(--mono);
+  color: var(--smoke);
+}
+.site-nav {
+  display: flex;
+  gap: 1.75rem;
+  margin-left: auto;
+}
+/* Just above the burger breakpoint the bar is full (name, six links, Instagram, language, register). */
+@media (max-width: 1240px) {
+  .site-nav {
+    gap: 1.1rem;
+  }
+  .site-header__inner {
+    gap: 1.1rem;
+  }
+}
+.site-nav a {
+  color: var(--bone);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.site-nav a:hover {
+  color: var(--gold);
+}
+.lang-switch {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font: 500 var(--step--1) / 1 var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--gold-pale);
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.lang-switch:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+/* ---------- Mobile menu ---------- */
+.burger {
+  display: none;
+  position: relative;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+.burger span {
+  position: absolute;
+  left: 50%;
+  width: 1.1rem;
+  height: 1.5px;
+  margin-left: -0.55rem;
+  background: var(--gold-pale);
+  transition:
+    transform 0.3s,
+    opacity 0.2s;
+}
+.burger span:nth-child(1) {
+  top: calc(50% - 5px);
+}
+.burger span:nth-child(2) {
+  top: 50%;
+}
+.burger span:nth-child(3) {
+  top: calc(50% + 5px);
+}
+.burger.is-open span:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
+}
+.burger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.burger.is-open span:nth-child(3) {
+  transform: translateY(-5px) rotate(-45deg);
+}
+.mobile-menu {
+  position: fixed;
+  inset: 4rem 0 0;
+  z-index: 49;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.5rem var(--gutter) 2rem;
+  overflow-y: auto;
+  background: var(--ink);
+}
+.mobile-menu[hidden] {
+  display: none;
+}
+.mobile-menu__list li {
+  border-bottom: 1px solid var(--line);
+  animation: rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 35ms);
+}
+.mobile-menu__list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.85rem 0;
+  font: 400 clamp(1.5rem, 6vw, 2rem) / 1.1 var(--display);
+  color: var(--bone);
+  text-decoration: none;
+}
+.mobile-menu__list a::after {
+  content: '→';
+  font: 400 1rem var(--mono);
+  color: var(--gold);
+}
+.mobile-menu__list a:hover,
+.mobile-menu__list a:focus-visible {
+  color: var(--gold);
+}
+.mobile-menu__foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+.mobile-menu__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.mobile-menu__social svg {
+  color: var(--gold);
+}
+/* The header's backdrop-filter would trap the fixed panel inside the header; drop it while open. */
+html.menu-open {
+  overflow: hidden;
+}
+html.menu-open .site-header {
+  backdrop-filter: none;
+  background: var(--ink);
+}
+
+@media (max-width: 1080px) {
+  .site-nav {
+    display: none;
+  }
+  .site-header__inner {
+    gap: 0.75rem;
+  }
+  .lang-switch {
+    margin-left: auto;
+  }
+  /* Instagram + language sit together on the right. */
+  .social-link + .lang-switch {
+    margin-left: 0;
+  }
+  .burger {
+    display: block;
+  }
+}
+@media (max-width: 600px) {
+  /* Register lives in the menu and the hero on phones; keep the bar to name + language + menu.
+     Instagram moves into the menu too, so the festival name fits. */
+  /* With Instagram hidden, the language button again pushes itself and the burger to the right edge. */
+  .site-header .social-link + .lang-switch {
+    margin-left: auto;
+  }
+  .site-header__cta,
+  .site-header .social-link,
+  .wordmark span {
+    display: none;
+  }
+  .wordmark {
+    font-size: 1.1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+@media (min-width: 1081px) {
+  .mobile-menu {
+    display: none;
+  }
+}
+
+/* ---------- Legal page ---------- */
+.legal__wrap {
+  max-width: 46rem;
+}
+.link-arrow--back::after {
+  content: none;
+}
+.link-arrow--back::before {
+  content: '← ';
+}
+.legal .section-title {
+  margin-top: 2rem;
+  max-width: none;
+}
+.legal__updated {
+  margin-top: 0.75rem;
+  font: var(--step--1) var(--mono);
+  color: var(--smoke);
+}
+.legal__section {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.legal__section h2 {
+  font: italic 400 var(--step-1) / 1.3 var(--display);
+  color: var(--gold-pale);
+  margin-bottom: 0.6rem;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(3rem, 9vh, 6rem) clamp(4rem, 9vh, 6rem);
+  border-bottom: 1px solid var(--line);
+}
+.hero__inner {
+  display: grid;
+  gap: 3.5rem;
+  align-items: center;
+}
+@media (min-width: 960px) {
+  .hero__inner {
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 4rem;
+  }
+}
+.hero__title {
+  font: 400 var(--step-hero) / 0.9 var(--display);
+  letter-spacing: -0.025em;
+  margin-top: 1.5rem;
+}
+.hero__line {
+  display: block;
+}
+.hero__line--a {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero__line--b {
+  padding-left: 0.6em;
+}
+.hero__tagline {
+  margin-top: 1.5rem;
+  font: italic 400 var(--step-1) / 1.35 var(--display);
+  color: var(--gold-pale);
+}
+.hero__dates {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+}
+.hero__deal {
+  display: flex;
+  gap: 0.5rem;
+}
+/* Each day is a small card: suit + date, dealt in on load. */
+.hero__card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 3.4rem;
+  height: 4.6rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--ink-2);
+  font: 400 1.5rem / 1 var(--display);
+  gap: 0.3rem;
+  animation: deal 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(0.35s + var(--i) * 0.12s);
+  color: var(--bone);
+  text-decoration: none;
+  /* `translate` (not `transform`) so the hover lift doesn't fight the deal animation. */
+  transition:
+    translate 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.hero__card:hover,
+.hero__card:focus-visible {
+  translate: 0 -4px;
+  border-color: var(--gold);
+  color: var(--bone);
+  box-shadow: 0 8px 18px rgb(0 0 0 / 0.45);
+}
+.hero__card .suit {
+  font-size: 1.1rem;
+}
+.hero__month {
+  font: italic 400 var(--step-2) / 1 var(--display);
+}
+.hero__intro {
+  margin-top: 1.5rem;
+  max-width: 46ch;
+  color: var(--smoke);
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 2rem;
+  margin-top: 2.25rem;
+}
+.hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0;
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  font: var(--step--1) / 1.2 var(--mono);
+  color: var(--smoke);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.hero__stats li {
+  padding-inline: 1.25rem;
+  border-left: 1px solid var(--line);
+}
+.hero__stats li:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+.hero__stats b {
+  color: var(--gold-pale);
+  font-weight: 500;
+}
+/* Countdown to the opening: four small dark cards in the style of the date cards above,
+   each marked with a suit; a number slides in when it changes. */
+.countdown {
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
+  max-width: 30rem;
+}
+.countdown__label {
+  font: 500 var(--step--1) / 1.4 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+.countdown__label span {
+  color: var(--smoke);
+}
+.countdown__cards {
+  display: flex;
+  gap: 0.55rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.countdown__card {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  min-width: 4.3rem;
+  /* Room at the top for the suit, so it never touches a three-digit number. */
+  padding: 0.95rem 0.8rem 0.5rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.035), rgb(255 255 255 / 0)),
+    var(--ink-2);
+}
+/* A hairline across the middle, like a split-flap card. */
+.countdown__card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 52%;
+  border-top: 1px solid rgb(0 0 0 / 0.35);
+  pointer-events: none;
+}
+.countdown__suit {
+  position: absolute;
+  top: 0.3rem;
+  left: 0.4rem;
+  font-size: 0.62rem;
+  opacity: 0.8;
+}
+.countdown__num {
+  font: 400 1.65rem / 1.05 var(--display);
+  font-variant-numeric: tabular-nums;
+  color: var(--gold-pale);
+  animation: tick 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.countdown__unit {
+  margin-top: 0.2rem;
+  font: 500 0.62rem / 1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--smoke);
+}
+.countdown--done {
+  font: italic 400 var(--step-1) / 1.3 var(--display);
+  color: var(--gold-pale);
+}
+@keyframes tick {
+  from {
+    transform: translateY(-35%);
+    opacity: 0;
+  }
+}
+/* Desktop: the same countdown hanging under the navigation once the hero one is out of view.
+   Two gold cords come out from under the header; the plaque drops and swings into place. */
+.countdown-hang {
+  display: none;
+}
+@media (min-width: 960px) {
+  .countdown-hang {
+    display: block;
+    position: fixed;
+    top: calc(4rem + 1px);
+    right: max(var(--gutter), calc((100vw - var(--wrap)) / 2 + var(--gutter)));
+    z-index: 49; /* under the header, so the cords seem to come out of it */
+    padding-top: 1.6rem;
+    transform: translateY(calc(-100% - 6px));
+    transform-origin: 50% 0;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform 0.35s cubic-bezier(0.5, 0, 0.75, 0),
+      opacity 0.35s;
+  }
+  .countdown-hang.is-shown {
+    transform: none;
+    opacity: 1;
+    animation: hang-swing 1.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}
+.countdown-hang__cord {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 1.6rem;
+  background: linear-gradient(var(--gold), rgb(200 160 75 / 0.55));
+}
+.countdown-hang__cord::after {
+  /* the small ring where the cord meets the plaque */
+  content: '';
+  position: absolute;
+  left: -2px;
+  bottom: -3px;
+  width: 5px;
+  height: 5px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: var(--ink);
+}
+.countdown-hang__cord--l {
+  left: 18%;
+}
+.countdown-hang__cord--r {
+  right: 18%;
+}
+.countdown-hang__plaque {
+  display: flex;
+  gap: 0.15rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid rgb(200 160 75 / 0.55);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0)),
+    var(--ink-2);
+  box-shadow:
+    inset 0 0 0 3px var(--ink-2),
+    inset 0 0 0 4px rgb(200 160 75 / 0.18),
+    0 14px 30px rgb(0 0 0 / 0.55);
+}
+.countdown-hang__cell {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  min-width: 3.1rem;
+  padding: 0.6rem 0.45rem 0.2rem;
+}
+.countdown-hang__cell + .countdown-hang__cell {
+  border-left: 1px solid var(--line);
+}
+.countdown-hang__suit {
+  position: absolute;
+  top: 0.1rem;
+  left: 0.3rem;
+  font-size: 0.5rem;
+}
+.countdown-hang__cell b {
+  font: 400 1.15rem / 1 var(--display);
+  font-variant-numeric: tabular-nums;
+  color: var(--gold-pale);
+}
+.countdown-hang__cell small {
+  margin-top: 0.2rem;
+  font: 500 0.5rem / 1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--smoke);
+}
+@keyframes hang-swing {
+  0% {
+    transform: translateY(calc(-100% - 6px)) rotate(0);
+  }
+  45% {
+    transform: translateY(0) rotate(4deg);
+  }
+  65% {
+    transform: rotate(-2.5deg);
+  }
+  82% {
+    transform: rotate(1.2deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .countdown__cards {
+    gap: 0.4rem;
+  }
+  .countdown__card {
+    flex: 1;
+    min-width: 0;
+    padding: 0.85rem 0.3rem 0.45rem;
+  }
+  .countdown__num {
+    font-size: 1.4rem;
+  }
+}
+
+/* The festival's own poster, hung like a framed bill. */
+.hero__poster {
+  justify-self: center;
+  width: min(100%, 26rem);
+  padding: 0.6rem;
+  border: 1px solid var(--line);
+  background: var(--ink-2);
+  transform: rotate(1.5deg);
+  box-shadow: 0 30px 80px rgb(0 0 0 / 0.6);
+  animation: hang 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+  opacity: 0.93;
+}
+.hero__poster img {
+  width: 100%;
+  height: auto;
+}
+.hero__kicker,
+.hero__line,
+.hero__tagline,
+.hero__intro,
+.hero__actions {
+  animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.hero__line--b {
+  animation-delay: 0.1s;
+}
+.hero__tagline {
+  animation-delay: 0.2s;
+}
+.hero__intro {
+  animation-delay: 0.7s;
+}
+.hero__actions {
+  animation-delay: 0.8s;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.4em);
+  }
+}
+@keyframes deal {
+  from {
+    opacity: 0;
+    transform: translate(-1.5rem, -0.75rem) rotate(-14deg);
+  }
+}
+@keyframes hang {
+  from {
+    opacity: 0;
+    transform: rotate(4deg) translateY(1.5rem);
+  }
+}
+
+/* ---------- About ---------- */
+.about {
+  background: var(--ink-2);
+}
+.about__grid {
+  display: grid;
+  gap: 3rem;
+}
+@media (min-width: 900px) {
+  .about__grid {
+    grid-template-columns: 1fr 1.1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+}
+.about__text p {
+  margin-top: 1.25rem;
+  max-width: 60ch;
+}
+.about__text .about__lead {
+  font: italic 400 var(--step-2) / 1.25 var(--display);
+  color: var(--gold-pale);
+  margin-top: 1.5rem;
+}
+.about__photo {
+  aspect-ratio: 3 / 2;
+}
+.about__aside figcaption {
+  display: grid;
+  gap: 0.35rem;
+  margin: -2.5rem 0 0 auto;
+  position: relative;
+  width: min(85%, 24rem);
+  background: var(--ink);
+  border-left: 2px solid var(--gold);
+  padding: 1.25rem 1.5rem;
+}
+.about__aside figcaption b {
+  font: 500 var(--step--1) var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+}
+.about__aside figcaption span {
+  font: italic 400 var(--step-1) / 1.35 var(--display);
+}
+
+/* ---------- Programs ---------- */
+.section-intro {
+  margin-top: 1rem;
+  max-width: 52ch;
+  color: var(--smoke);
+  font-size: var(--step-1);
+  line-height: 1.45;
+}
+.programs__grid {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+}
+@media (min-width: 900px) {
+  .programs__grid {
+    grid-template-columns: 1.3fr 1fr;
+    align-items: start;
+  }
+}
+.program__photo {
+  aspect-ratio: 4 / 3;
+}
+.program__body {
+  margin-top: 1.5rem;
+  max-width: 54ch;
+}
+.program__meta {
+  font: var(--step--1) / 1.3 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.program__name {
+  font: italic 400 var(--step-3) / 1 var(--display);
+  margin: 0.6rem 0 0.9rem;
+}
+.program__name--small {
+  font-size: var(--step-2);
+  margin: 0.35rem 0 0.5rem;
+}
+.program__shows {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.program__shows li {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr auto;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.program__shows .suit {
+  font-size: 1.3rem;
+}
+.program__shows b {
+  font: 500 var(--step-1) var(--mono);
+  color: var(--gold-pale);
+}
+.programs__rest {
+  display: grid;
+  gap: 2rem;
+}
+.program--row {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 1.25rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+.program--row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.program--row p:last-child {
+  color: var(--smoke);
+  font-size: 0.97rem;
+}
+.program__thumb {
+  aspect-ratio: 1;
+}
+@media (min-width: 900px) {
+  .programs__rest {
+    padding-top: 0.5rem;
+  }
+}
+
+/* ---------- Video ---------- */
+.video__frame {
+  margin-top: 1.25rem;
+  aspect-ratio: 16 / 9;
+  background: var(--ink-3);
+}
+.video__frame iframe,
+.video__play {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video__play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: var(--ink-3) center / cover no-repeat;
+  cursor: pointer;
+  font: 500 var(--step--1) var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.video__icon {
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 1.4rem;
+}
+
+/* ---------- Lecturers: playing cards ---------- */
+.lecturers__grid {
+  display: grid;
+  /* Capped at 260px so small source photos aren't blown up. */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 245px));
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+.pcard {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 7;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  perspective: 1200px;
+  text-align: left;
+  border-radius: var(--radius-card);
+}
+/* Lecturer cards without a back: nothing to click. */
+.pcard--static {
+  cursor: default;
+}
+/* Absolutely filled, not height:100%: same iOS Safari issue inside <button> as the artist cards. */
+.pcard__inner {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+.pcard.is-flipped .pcard__inner {
+  transform: rotateY(180deg);
+}
+.pcard__face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+.pcard__front {
+  background: var(--ink-2);
+}
+.pcard__photo {
+  flex: 1;
+}
+.pcard__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 1rem 1.1rem 1.1rem;
+}
+.pcard__name {
+  font: 400 1.35rem / 1.15 var(--display);
+  color: var(--bone);
+}
+.pcard__meta {
+  font: var(--step--1) var(--mono);
+  color: var(--smoke);
+}
+/* Card back: gold lattice, like the reverse of a deck. */
+.pcard__back {
+  transform: rotateY(180deg);
+  padding: 1.5rem;
+  gap: 1rem;
+  justify-content: center;
+  background:
+    linear-gradient(var(--ink-2), var(--ink-2)) padding-box,
+    repeating-linear-gradient(
+      45deg,
+      rgb(200 160 75 / 0.35) 0 1px,
+      transparent 1px 10px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgb(200 160 75 / 0.35) 0 1px,
+      transparent 1px 10px
+    ),
+    var(--ink-3);
+  border: 10px solid transparent;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.pcard__bio {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--bone);
+  overflow-y: auto;
+  /* Only if a bio is longer than the card: a thin gold bar instead of the browser's white one. */
+  padding-right: 0.35rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(200 160 75 / 0.45) transparent;
+}
+.pcard__bio::-webkit-scrollbar {
+  width: 4px;
+}
+.pcard__bio::-webkit-scrollbar-track {
+  background: transparent;
+}
+.pcard__bio::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: rgb(200 160 75 / 0.45);
+}
+
+/* ---------- Schedule ---------- */
+.schedule {
+  background: var(--ink-2);
+}
+/* Both days side by side, each under its own suit; stacked on phones. */
+.schedule__days {
+  display: grid;
+  gap: 3.5rem 4rem;
+  align-items: start;
+}
+@media (min-width: 760px) {
+  .schedule__days {
+    grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr));
+  }
+}
+.schedule__col {
+  scroll-margin-top: 5rem;
+}
+.schedule__head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 0.9rem;
+  align-items: center;
+  padding-bottom: 1rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--line);
+  font-weight: 400;
+}
+.schedule__suit {
+  grid-row: span 2;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  line-height: 1;
+}
+.schedule__day {
+  font: var(--step--1) var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--smoke);
+}
+.schedule__num {
+  font: 400 var(--step-2) / 1 var(--display);
+}
+.schedule__group + .schedule__group {
+  margin-top: 2.5rem;
+}
+.schedule__group-title {
+  font: italic 400 var(--step-1) / 1.25 var(--display);
+  color: var(--gold-pale);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--gold);
+}
+.schedule__list li {
+  display: grid;
+  grid-template-columns: 6.75rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.schedule__time {
+  font: 0.95rem var(--mono);
+  color: var(--gold-pale);
+}
+.schedule__title {
+  display: block;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+.schedule__place {
+  display: block;
+  margin-top: 0.2rem;
+  font: var(--step--1) var(--mono);
+  color: var(--smoke);
+}
+.schedule__text {
+  margin-top: 0.35rem;
+  font-size: 0.93rem;
+  color: var(--smoke);
+  max-width: 52ch;
+}
+.schedule__list .is-highlight .schedule__title {
+  font: italic 400 var(--step-1) / 1.25 var(--display);
+  color: var(--gold);
+}
+.schedule__note {
+  margin-top: 2.5rem;
+  font-size: 0.93rem;
+  color: var(--smoke);
+}
+@media (max-width: 600px) {
+  .schedule__list li {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}
+
+/* ---------- Vision ---------- */
+.vision__grid {
+  display: grid;
+  gap: 2rem;
+}
+@media (min-width: 900px) {
+  .vision__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: end;
+  }
+}
+.vision__title {
+  margin-top: 0.75rem;
+  font: italic 400 clamp(2.8rem, 7vw, 5.6rem) / 0.95 var(--display);
+  color: var(--gold);
+  letter-spacing: -0.02em;
+}
+.vision__text p + p {
+  margin-top: 1rem;
+}
+.vision__quote {
+  margin-top: 2rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--velvet);
+  font: 400 var(--step-1) / 1.4 var(--display);
+}
+
+/* ---------- Gallery ---------- */
+.gallery {
+  border-top: 1px solid var(--line);
+}
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 900px) {
+  .gallery__grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: dense;
+    gap: 1.25rem;
+  }
+  /* Rhythm repeats every six photos: one wide, one tall, four regular. */
+  .gallery__item--0 {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .gallery__item--3 {
+    grid-row: span 2;
+  }
+}
+.gallery__item figure {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.gallery__img {
+  position: relative;
+  display: block;
+  width: 100%;
+  flex: 1;
+  min-height: 11rem;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: var(--ink-3);
+  cursor: zoom-in;
+}
+.gallery__img img {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.gallery__item:hover .gallery__img img {
+  transform: scale(1.03);
+}
+.gallery__item figcaption {
+  padding-top: 0.6rem;
+  font: var(--step--1) / 1.35 var(--mono);
+  color: var(--smoke);
+}
+
+/* ---------- History ---------- */
+.history {
+  background: var(--ink-2);
+  overflow: hidden;
+}
+.history__grid {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .history__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+/* Solid glyphs with a gold fade, not text-stroke: the variable font's overlapping
+   contours show up as stray inner lines and jagged edges when only outlined. */
+.history__year {
+  justify-self: start;
+  max-width: 100%;
+  font: italic 400 clamp(5rem, 14vw, 12.5rem) / 0.9 var(--display);
+  letter-spacing: -0.02em;
+  /* Italic glyphs overhang their box and background-clip only paints inside it:
+     the padding gives the gradient room so the last digit isn't cut off. */
+  padding: 0.04em 0.14em 0.08em 0.06em;
+  color: transparent;
+  background: linear-gradient(
+    180deg,
+    var(--gold-pale) 10%,
+    var(--gold) 55%,
+    #9a7633 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.history__p {
+  margin-top: 1.1rem;
+  max-width: 56ch;
+}
+
+/* ---------- Organizers ---------- */
+/* Groups sit side by side, each as wide as its number of names (--n). */
+.organizers__groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 2.5rem;
+}
+.organizers__group {
+  flex: var(--n) 1 calc(var(--n) * 12rem);
+}
+.organizers__group .organizers__role {
+  display: block;
+  margin-bottom: 0.9rem;
+}
+.organizers__orgs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  border-top: 1px solid var(--line);
+}
+.organizers__orgs li {
+  display: grid;
+  gap: 0.3rem;
+  align-content: start;
+  padding: 1.5rem 1.5rem 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.organizers__role {
+  font: 500 var(--step--1) var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+}
+.organizers__name {
+  font: 400 var(--step-2) / 1.1 var(--display);
+}
+.organizers__sub {
+  color: var(--smoke);
+}
+/* Directors and coordinators: two teams side by side, portraits in a thin gold mat. */
+.organizers__people {
+  display: grid;
+  gap: 2.5rem 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  margin-top: 3.5rem;
+}
+.organizers__team .organizers__role {
+  display: block;
+  margin-bottom: 1.1rem;
+}
+.organizers__team ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  max-width: 30rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.person__frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: radial-gradient(
+    ellipse at 50% 35%,
+    var(--ink-3),
+    var(--ink-2) 70%
+  );
+}
+.person__frame img {
+  object-fit: cover;
+  object-position: 50% 25%;
+}
+/* Inner hairline, like a passe-partout; sits above the photo. */
+.person__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0.45rem;
+  border: 1px solid rgb(200 160 75 / 0.35);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.person__initials {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font: 400 clamp(2.2rem, 5vw, 3.2rem) / 1 var(--display);
+  letter-spacing: 0.04em;
+  color: rgb(200 160 75 / 0.55);
+}
+.person__name {
+  margin-top: 0.7rem;
+  font: 400 var(--step-1) / 1.25 var(--display);
+}
+
+/* ---------- Closing ---------- */
+.closing {
+  padding-block: clamp(5rem, 12vw, 9rem);
+  border-top: 1px solid var(--line);
+  text-align: center;
+  background: radial-gradient(
+    ellipse at 50% 120%,
+    rgb(163 48 59 / 0.28),
+    transparent 60%
+  );
+}
+.closing__inner {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+}
+.closing__title {
+  font: italic 400 clamp(2.8rem, 8vw, 6.5rem) / 1 var(--display);
+  color: var(--gold);
+  letter-spacing: -0.02em;
+}
+.closing__when {
+  font: var(--step--1) var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--smoke);
+}
+.closing__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem 2rem;
+  margin-top: 1.5rem;
+}
+
+/* ---------- FISM contest ---------- */
+/* The two logos have white grounds, so they sit on small white plates like competition badges. */
+.contest {
+  background: var(--ink-3);
+}
+.contest__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+@media (min-width: 900px) {
+  .contest__grid {
+    grid-template-columns: 1fr 1.15fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contest__head {
+    position: sticky;
+    top: 6rem;
+  }
+}
+.contest__logos {
+  display: flex;
+  gap: 0.9rem;
+}
+.contest__logos img {
+  width: clamp(5.5rem, 12vw, 7rem);
+  height: auto;
+  padding: 0.35rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow:
+    0 0 0 1px var(--line),
+    0 10px 30px rgb(0 0 0 / 0.35);
+}
+.contest__badge {
+  margin-top: 1.4rem;
+  font: 600 var(--step-0) / 1 var(--mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.contest__body p {
+  line-height: 1.65;
+}
+.contest__body p + p,
+.contest__body .contest__jury + p {
+  margin-top: 1rem;
+}
+.contest__jury {
+  margin-block: 2rem;
+  padding: 1.4rem 1.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+}
+.contest__jury h3 {
+  font: 500 var(--step--1) / 1.2 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.contest__jury ul {
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.6rem;
+}
+.contest__jury a {
+  font: 400 var(--step-1) / 1.3 var(--display);
+  color: var(--bone);
+  text-decoration: none;
+}
+.contest__jury a:hover {
+  color: var(--gold-pale);
+}
+.contest__body .contest__sign {
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.2rem;
+}
+.contest__sign b {
+  font: 400 var(--step-1) / 1.2 var(--display);
+}
+.contest__sign span {
+  color: var(--smoke);
+}
+
+/* ---------- Jury ---------- */
+/* Same gold-matted portraits as the organisers, with the bio underneath. */
+.jury__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 3rem 2.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.juror .person__frame {
+  max-width: 18rem;
+}
+.juror__text {
+  margin-top: 1.1rem;
+}
+.juror__name {
+  font: 400 var(--step-2) / 1.15 var(--display);
+}
+.juror__country {
+  margin-top: 0.3rem;
+  color: var(--smoke);
+  font-size: 0.92rem;
+}
+.juror__role {
+  margin-top: 0.6rem;
+  font: 500 var(--step--1) / 1.4 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+.juror__bio {
+  margin-top: 0.8rem;
+  max-width: 36ch;
+  color: var(--bone);
+  opacity: 0.85;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+/* Phones: photo beside the name so three bios don't become one very long column of pictures. */
+@media (max-width: 640px) {
+  .juror {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 0 1rem;
+  }
+  .juror__text {
+    display: contents;
+  }
+  .juror .person__frame {
+    grid-row: 1 / span 3;
+  }
+  .juror__name {
+    font-size: var(--step-1);
+    align-self: end;
+  }
+  .juror__name,
+  .juror__country,
+  .juror__role {
+    grid-column: 2;
+  }
+  .juror__bio {
+    grid-column: 1 / -1;
+    max-width: none;
+  }
+}
+
+/* ---------- Packages: theatre price list ---------- */
+.packages {
+  border-block: 1px solid var(--line);
+}
+.packages__wrap {
+  max-width: 920px;
+}
+.pricelist {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2.5rem;
+}
+.pricelist thead th {
+  font: 500 var(--step--1) / 1.3 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--smoke);
+  text-align: right;
+  padding: 0 0 1rem 1.5rem;
+  white-space: nowrap;
+}
+.pricelist thead th:nth-child(2) {
+  color: var(--gold);
+}
+.pricelist tbody th {
+  text-align: left;
+  font-weight: 400;
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--line);
+}
+.pricelist td {
+  text-align: right;
+  vertical-align: top;
+  padding: 1.4rem 0 1.4rem 1.5rem;
+  border-top: 1px solid var(--line);
+  font: 400 var(--step-1) / 1.2 var(--mono);
+  white-space: nowrap;
+  color: var(--smoke);
+}
+.pricelist td.pricelist__early {
+  color: var(--gold-pale);
+}
+.pricelist__name {
+  display: block;
+  font: 400 var(--step-2) / 1.1 var(--display);
+}
+.pricelist__includes {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0;
+  max-width: 48ch;
+  color: var(--smoke);
+  font-size: 0.93rem;
+}
+/* Inline list separated by middots, like a printed programme. */
+.pricelist__includes li:not(:last-child)::after {
+  content: '·';
+  margin-inline: 0.5rem;
+  color: var(--gold);
+}
+.pricelist__extras .pricelist__group {
+  padding-bottom: 0.5rem;
+  font: 500 var(--step--1) / 1.3 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+.pricelist__extras .pricelist__name {
+  font-size: var(--step-1);
+  font-style: italic;
+}
+.pricelist__extras td {
+  font-size: var(--step-0);
+}
+@media (max-width: 600px) {
+  .pricelist thead th,
+  .pricelist td {
+    padding-left: 0.75rem;
+  }
+  .pricelist td {
+    font-size: var(--step-0);
+  }
+}
+
+/* ---------- Hotels ---------- */
+.hotels__grid {
+  display: grid;
+  gap: 1rem 4rem;
+}
+@media (min-width: 900px) {
+  .hotels__grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+.hotels__rooms li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.hotels__rooms li:first-child {
+  border-top: 1px solid var(--line);
+}
+.hotels__room {
+  font: 400 var(--step-1) / 1.2 var(--display);
+}
+.hotels__room small,
+.hotels__price small {
+  font: 400 0.9rem var(--body);
+  color: var(--smoke);
+}
+.hotels__price {
+  font: 400 var(--step-1) var(--mono);
+  color: var(--gold-pale);
+  white-space: nowrap;
+}
+.hotels__note {
+  margin-top: 1.25rem;
+  color: var(--smoke);
+  font-size: 0.95rem;
+}
+/* Hotel map: a round "casino chip" of map with a gold rim and notched edge, address beside it. */
+.hotel-map {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 2.25rem 0 0;
+}
+.hotel-map__chip {
+  position: relative;
+  flex: none;
+  width: 10.5rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #1a1612;
+  isolation: isolate;
+  /* Inner gold hairline, then a dashed rim like the edge spots of a chip, then a soft glow. */
+  box-shadow:
+    inset 0 0 0 1px rgb(200 160 75 / 0.5),
+    0 0 0 4px var(--ink),
+    0 0 0 7px rgb(200 160 75 / 0.85),
+    0 12px 30px rgb(0 0 0 / 0.5);
+}
+.hotel-map__chip::after {
+  content: '';
+  position: absolute;
+  inset: 0.55rem;
+  z-index: 2;
+  border: 2px dashed rgb(233 216 166 / 0.35);
+  border-radius: 50%;
+  pointer-events: none;
+}
+/* Warmer and darker than the venue map: the chip reads as an object, not a window. */
+.hotel-map .map__tiles {
+  filter: invert(1) hue-rotate(180deg) brightness(0.7) contrast(1.1)
+    saturate(0.3) sepia(0.6);
+}
+.hotel-map__pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--bone);
+  color: var(--velvet);
+  font-size: 1rem;
+  line-height: 1;
+  box-shadow:
+    0 0 0 5px rgb(163 48 59 / 0.35),
+    0 4px 10px rgb(0 0 0 / 0.5);
+}
+.hotel-map__text {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+.hotel-map__name {
+  font: italic 400 var(--step-1) / 1.2 var(--display);
+  color: var(--bone);
+}
+.hotel-map__address {
+  font: var(--step--1) / 1.4 var(--mono);
+  color: var(--smoke);
+}
+.hotel-map__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin-top: 0.6rem;
+}
+.hotel-map__credit {
+  margin-top: 0.5rem;
+  font: 0.65rem / 1.3 var(--mono);
+  color: var(--smoke);
+  text-decoration: none;
+  opacity: 0.7;
+}
+@media (max-width: 640px) {
+  .hotel-map {
+    gap: 1.1rem;
+    margin-top: 1.75rem;
+  }
+  .hotel-map__chip {
+    width: 8rem;
+  }
+}
+
+/* ---------- Gala artists & form add-ons ---------- */
+.program__more {
+  display: inline-block;
+  margin-top: 1.5rem;
+}
+.artists__head {
+  display: grid;
+  gap: 1rem 3rem;
+  align-items: end;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+.artists__head .section-head {
+  margin-bottom: 0;
+}
+@media (min-width: 900px) {
+  .artists__head {
+    grid-template-columns: 1fr auto;
+  }
+}
+.artists__shows li {
+  display: grid;
+  grid-template-columns: 1.5rem auto auto;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.artists__shows .suit {
+  font-size: 1.25rem;
+}
+.artists__shows b {
+  font: 500 var(--step-0) var(--mono);
+  color: var(--gold-pale);
+}
+/* Small cards on purpose: several source photos are only 200–400 px wide, so cards stay
+   near that size (7 in a row on desktop, 2 on phones) instead of upscaling them into blur. */
+.artists__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  gap: 1.75rem clamp(0.75rem, 2vw, 1.25rem);
+}
+/* Artist cards as playing cards: initial + suit in two corners, photo in between.
+   On hover the card lifts and tilts, alternating direction like a fanned hand. */
+.artist {
+  display: grid;
+  gap: 0.2rem;
+}
+.artist__card {
+  position: relative;
+  aspect-ratio: 5 / 7;
+  padding: 2.1rem 0.5rem;
+  margin-bottom: 0.75rem;
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.25s,
+    box-shadow 0.35s;
+}
+.artist:hover .artist__card {
+  transform: translateY(-8px) rotate(-1.5deg);
+  border-color: var(--gold);
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.55);
+}
+.artist:nth-child(even):hover .artist__card {
+  transform: translateY(-8px) rotate(1.5deg);
+}
+/* Placed by insets, not height:100%: Safari (iOS) cannot resolve a percentage height inside a
+   <button>, which let photos spill out of the card. Insets match the card padding. */
+.artist__photo {
+  position: absolute;
+  inset: 2.1rem 0.5rem;
+  border-radius: 4px;
+}
+.artist__index {
+  position: absolute;
+  top: 0.35rem;
+  left: 0.55rem;
+  display: grid;
+  justify-items: center;
+  font: 400 1rem / 1 var(--display);
+  color: var(--bone);
+}
+.artist__index .suit {
+  font-size: 0.8rem;
+}
+.artist__index--flip {
+  top: auto;
+  left: auto;
+  bottom: 0.35rem;
+  right: 0.55rem;
+  transform: rotate(180deg);
+}
+.artist__name {
+  font: 400 1.1rem / 1.2 var(--display);
+}
+.artist__country {
+  font: var(--step--1) var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--smoke);
+}
+.extras {
+  padding: 1.25rem 1.25rem 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.extras legend {
+  padding-inline: 0.4rem;
+}
+
+/* ---------- Travel ---------- */
+.travel {
+  background: var(--ink-2);
+}
+.travel__grid {
+  display: grid;
+  gap: 3rem;
+}
+@media (min-width: 900px) {
+  .travel__grid {
+    grid-template-columns: 1.4fr 1fr;
+    gap: 4rem;
+  }
+}
+/* Static map (MapTiles.tsx): OSM tiles restyled to a warm night look. The venue is the
+   centre of the frame, which is where the pin's tip sits. */
+.map {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #1a1612;
+  isolation: isolate;
+}
+@media (max-width: 640px) {
+  .map {
+    aspect-ratio: 4 / 5;
+  }
+}
+.map__viewport {
+  position: absolute;
+  inset: 0;
+}
+.map__tiles {
+  position: absolute;
+  /* invert + 180° hue keeps water blue-ish and ozs green-ish (plain invert turns them orange);
+     sepia then warms everything toward the site's gold. */
+  filter: invert(1) hue-rotate(180deg) brightness(0.82) contrast(1.05)
+    saturate(0.55) sepia(0.32);
+}
+.map__tiles img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  user-select: none;
+}
+/* Vignette and a soft gold glow on the venue. */
+.map::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, rgb(200 160 75 / 0.18), transparent 22%),
+    radial-gradient(
+      ellipse at 50% 50%,
+      transparent 45%,
+      rgb(12 11 14 / 0.75) 100%
+    );
+}
+.map__pin {
+  position: absolute;
+  left: 50%;
+  /* The rotated head's corner reaches ~0.5rem below its box: lift it so the tip is the centre. */
+  top: calc(50% - 0.5rem);
+  z-index: 2;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+  filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.6));
+}
+.map__pin-head {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: linear-gradient(135deg, var(--gold-pale), var(--gold));
+  border: 2px solid var(--ink);
+  color: var(--velvet);
+  font-size: 1.15rem;
+  line-height: 1;
+}
+.map__pin-head span {
+  transform: rotate(45deg);
+}
+.map__pin::after {
+  content: '';
+  position: absolute;
+  bottom: -0.85rem;
+  left: calc(50% - 0.35rem);
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: rgb(200 160 75 / 0.7);
+  animation: ping 2.2s ease-out infinite;
+}
+@keyframes ping {
+  from {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  to {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+.map__card {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 3;
+  display: grid;
+  gap: 0.2rem;
+  max-width: calc(100% - 2rem);
+  padding: 1rem 1.15rem 1.1rem;
+  background: rgb(12 11 14 / 0.88);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.map__name {
+  font: 400 var(--step-1) / 1.2 var(--display);
+  color: var(--bone);
+}
+.map__address {
+  font: var(--step--1) / 1.4 var(--mono);
+  color: var(--smoke);
+}
+.map__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-top: 0.75rem;
+}
+.map__credit {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.4rem;
+  z-index: 3;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  background: rgb(12 11 14 / 0.6);
+  font: 0.65rem / 1.3 var(--mono);
+  color: var(--smoke);
+  text-decoration: none;
+}
+.map__credit:hover {
+  color: var(--gold-pale);
+}
+@media (max-width: 640px) {
+  /* Keep the credit clear of the card on narrow frames. */
+  .map__credit {
+    top: 0.4rem;
+    bottom: auto;
+  }
+}
+.travel__transport h3 {
+  font: italic 400 var(--step-2) / 1.2 var(--display);
+  margin-bottom: 1rem;
+}
+.travel__airports {
+  margin: 2rem 0;
+}
+.travel__airports div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.travel__airports dd {
+  font: var(--step--1) var(--mono);
+  color: var(--smoke);
+}
+.travel__transfer {
+  border-left: 2px solid var(--gold);
+  padding-left: 1.25rem;
+}
+
+/* ---------- Registration ---------- */
+.register {
+  overflow: hidden;
+}
+.register__ghost {
+  position: absolute;
+  left: -0.18em;
+  top: 3rem;
+  font: 400 clamp(18rem, 40vw, 34rem) / 1 var(--display);
+  color: rgb(163 48 59 / 0.1);
+  pointer-events: none;
+  user-select: none;
+}
+.register .wrap {
+  position: relative;
+}
+.register__grid {
+  display: grid;
+  gap: 3rem;
+}
+@media (min-width: 960px) {
+  .register__grid {
+    grid-template-columns: 1fr 22rem;
+    gap: 4rem;
+    align-items: start;
+  }
+}
+.form {
+  display: grid;
+  gap: 1.5rem;
+}
+.form__intro {
+  max-width: 56ch;
+  color: var(--smoke);
+}
+.form__row {
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 640px) {
+  .form__row {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+.field {
+  display: grid;
+  gap: 0.45rem;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.field > span,
+.field legend {
+  font: 500 var(--step--1) / 1.3 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold-pale);
+  padding: 0;
+}
+.field small,
+.check small,
+.field__hint {
+  text-transform: none;
+  letter-spacing: 0;
+  font: 400 0.85rem / 1.4 var(--body);
+  /* Quieter than --smoke but still ~4.5:1 on the dark background (readable small text). */
+  color: #857b6c;
+}
+/* Hints inside a label ("optional", "start typing…") keep the label's line height, so
+   fields side by side line up. */
+.field > span small {
+  line-height: inherit;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  /* Inputs inherit the body's 1.6 line height, which made them tall; keep them compact. */
+  line-height: 1.35;
+  background: var(--ink-2);
+  border: 1px solid rgb(200 160 75 / 0.35);
+  border-radius: 6px;
+  transition: border-color 0.2s;
+}
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: var(--gold);
+}
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 0;
+  border-color: var(--gold);
+}
+/* Country combobox: the input plus our own list (the native datalist popup can't be styled). */
+.combo {
+  position: relative;
+}
+.combo input {
+  padding-right: 2.4rem;
+}
+.combo__chevron {
+  position: absolute;
+  right: 0.95rem;
+  top: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 1.5px solid var(--gold);
+  border-bottom: 1.5px solid var(--gold);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.2s;
+  pointer-events: none;
+}
+.combo.is-open .combo__chevron {
+  transform: translateY(-20%) rotate(-135deg);
+}
+.combo.is-open input {
+  border-color: var(--gold);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.combo__list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% - 1px);
+  z-index: 20;
+  max-height: 16rem;
+  margin: 0;
+  padding: 0.35rem;
+  overflow-y: auto;
+  list-style: none;
+  background: var(--ink-3);
+  border: 1px solid var(--gold);
+  border-top-color: var(--line);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.55);
+  scrollbar-width: thin;
+  scrollbar-color: rgb(200 160 75 / 0.45) transparent;
+}
+.combo__list[hidden] {
+  display: none;
+}
+.combo__list li {
+  padding: 0.5rem 0.7rem;
+  border-radius: 5px;
+  color: var(--bone);
+  cursor: pointer;
+}
+.combo__list li.is-active {
+  background: rgb(200 160 75 / 0.16);
+  color: var(--gold-pale);
+}
+/* The region (first six) is separated from the alphabetical rest while nothing is typed. */
+.combo__list.is-full li:nth-child(6) {
+  margin-bottom: 0.35rem;
+  border-bottom: 1px solid var(--line);
+  border-radius: 5px 5px 0 0;
+  padding-bottom: 0.65rem;
+}
+.combo__list mark {
+  background: none;
+  color: var(--gold);
+  font-weight: 600;
+}
+.combo__list .combo__empty {
+  color: var(--smoke);
+  font-size: 0.9rem;
+  cursor: default;
+}
+
+.field [aria-invalid='true'],
+.check [aria-invalid='true'] {
+  border-color: var(--velvet);
+  outline-color: var(--velvet);
+}
+.field__error,
+.form > .field__error {
+  font-size: 0.9rem;
+  color: #e0737c;
+}
+/* A field that needs attention: its label and helper text turn a soft red too, not just the input. */
+.field:has(> [aria-invalid='true'], > .combo > [aria-invalid='true']) > span,
+.choices:has(> .field__error) > legend,
+.check:has([aria-invalid='true']) > span {
+  color: #e8a0a6;
+}
+.field:has(> [aria-invalid='true'], > .combo > [aria-invalid='true'])
+  > span
+  small,
+.choices:has(> .field__error) .choice small {
+  color: #c98288;
+}
+.choices:has(> .field__error) .choice {
+  border-color: rgb(163 48 59 / 0.55);
+}
+.choices {
+  gap: 0.6rem;
+}
+.choices legend {
+  margin-bottom: 0.6rem;
+}
+.choice {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  padding: 0.75rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.choice:has(input:checked) {
+  border-color: var(--gold);
+  background: var(--ink-2);
+}
+.choice__label {
+  display: grid;
+  gap: 0.15rem;
+}
+.choice__label b {
+  font: 400 1.25rem / 1.2 var(--display);
+}
+.choice input,
+.check input {
+  accent-color: var(--gold);
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.3rem;
+  flex: none;
+}
+.check {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  cursor: pointer;
+}
+@media (min-width: 640px) {
+  .form__row .check {
+    margin-top: 1.9rem;
+  }
+}
+.form__error {
+  padding: 0.9rem 1rem;
+  border-left: 2px solid var(--velvet);
+  background: rgb(163 48 59 / 0.12);
+}
+
+/* Price summary styled as a ticket stub with a perforated edge. */
+.stub {
+  position: sticky;
+  top: 5.5rem;
+  padding: 1.75rem 1.75rem 1.5rem;
+  background: var(--gold-pale);
+  color: var(--ink);
+  border-radius: 6px;
+  -webkit-mask:
+    radial-gradient(circle 7px at 0 50%, transparent 98%, #000) left / 51% 100%
+      no-repeat,
+    radial-gradient(circle 7px at 100% 50%, transparent 98%, #000) right / 51%
+      100% no-repeat;
+  mask:
+    radial-gradient(circle 7px at 0 50%, transparent 98%, #000) left / 51% 100%
+      no-repeat,
+    radial-gradient(circle 7px at 100% 50%, transparent 98%, #000) right / 51%
+      100% no-repeat;
+}
+.stub .kicker {
+  color: #7a5c1c;
+}
+.stub__lines {
+  margin-top: 1.25rem;
+}
+.stub__lines li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed rgb(12 11 14 / 0.25);
+  font-size: 0.95rem;
+}
+.stub__lines li span:last-child {
+  font-family: var(--mono);
+  white-space: nowrap;
+}
+.stub__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 1rem;
+}
+.stub__total b {
+  font: 400 2.6rem / 1 var(--display);
+}
+.stub__note {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #4a3f30;
+}
+.register__done {
+  max-width: 40rem;
+  padding: 2rem;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  background: var(--ink-2);
+}
+.register__done h3 {
+  font: italic 400 var(--step-2) / 1.2 var(--display);
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.register__done p + p {
+  margin-top: 0.75rem;
+}
+
+/* ---------- Partners marquee ---------- */
+.partners {
+  padding-block: 3rem 4rem;
+  border-top: 1px solid var(--line);
+}
+.marquee {
+  overflow: hidden;
+  margin-top: 1.5rem;
+  mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+.marquee__track li {
+  display: flex;
+  align-items: center;
+  padding-inline: 2.5rem;
+  font: italic 400 var(--step-2) / 1 var(--display);
+  color: var(--smoke);
+}
+.marquee__track li a {
+  color: inherit;
+  text-decoration: none;
+}
+.marquee__track img {
+  height: 3.5rem;
+  width: auto;
+  filter: grayscale(1) brightness(1.6);
+  opacity: 0.8;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Festival anthem ---------- */
+.anthem {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+.anthem__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.75rem 4rem;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .anthem__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  }
+}
+.anthem__heading {
+  margin-top: 0.4rem;
+  font: italic 400 var(--step-3) / 1.1 var(--display);
+}
+.anthem__text {
+  margin-top: 0.8rem;
+  max-width: 40ch;
+  color: var(--smoke);
+}
+.anthem__player {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.1rem 1.3rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.02);
+}
+.anthem__play {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 3.6rem;
+  height: 3.6rem;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    var(--gold-pale),
+    var(--gold) 70%
+  );
+  color: var(--ink);
+  box-shadow:
+    0 0 0 4px var(--ink),
+    0 0 0 5px rgb(200 160 75 / 0.6),
+    0 8px 22px rgb(0 0 0 / 0.5);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.anthem__play:hover {
+  transform: scale(1.05);
+}
+.anthem__play:focus-visible {
+  outline: 2px solid var(--gold-pale);
+  outline-offset: 6px;
+}
+.anthem__body {
+  flex: 1;
+  min-width: 0;
+}
+.anthem__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.anthem__title {
+  font: 400 var(--step-1) / 1.2 var(--display);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* Five bars that dance only while the song plays. */
+.anthem__eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 1rem;
+}
+.anthem__eq i {
+  width: 3px;
+  height: 25%;
+  border-radius: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+.anthem__player.is-playing .anthem__eq i {
+  animation: eq 0.9s ease-in-out infinite alternate;
+}
+.anthem__eq i:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.anthem__eq i:nth-child(3) {
+  animation-delay: -0.6s;
+}
+.anthem__eq i:nth-child(4) {
+  animation-delay: -0.15s;
+}
+.anthem__eq i:nth-child(5) {
+  animation-delay: -0.45s;
+}
+@keyframes eq {
+  to {
+    height: 100%;
+    opacity: 1;
+  }
+}
+/* Progress: a thin gold line that fills up; the thumb shows on hover and focus. */
+.anthem__seek {
+  display: block;
+  width: 100%;
+  height: 1.1rem;
+  margin: 0.5rem 0 0;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+}
+.anthem__seek::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--gold) var(--pct, 0%),
+    rgb(200 160 75 / 0.22) var(--pct, 0%)
+  );
+}
+.anthem__seek::-moz-range-track {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--gold) var(--pct, 0%),
+    rgb(200 160 75 / 0.22) var(--pct, 0%)
+  );
+}
+.anthem__seek::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: -4.5px;
+  border-radius: 50%;
+  background: var(--gold-pale);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.anthem__seek::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--gold-pale);
+  opacity: 0;
+}
+.anthem__seek:hover::-webkit-slider-thumb,
+.anthem__seek:focus-visible::-webkit-slider-thumb {
+  opacity: 1;
+}
+.anthem__seek:hover::-moz-range-thumb,
+.anthem__seek:focus-visible::-moz-range-thumb {
+  opacity: 1;
+}
+.anthem__seek:disabled {
+  cursor: default;
+}
+.anthem__time {
+  display: flex;
+  justify-content: space-between;
+  font: var(--step--1) / 1.2 var(--mono);
+  color: var(--smoke);
+}
+@media (max-width: 640px) {
+  .anthem__player {
+    gap: 0.9rem;
+    padding: 0.9rem 1rem;
+    border-radius: 18px;
+  }
+  .anthem__play {
+    width: 3.1rem;
+    height: 3.1rem;
+  }
+  .anthem__title {
+    white-space: normal;
+  }
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding-block: 3.5rem;
+  border-top: 1px solid var(--line);
+  background: var(--ink-2);
+  font-size: 0.95rem;
+}
+.site-footer__inner {
+  display: grid;
+  gap: 1.75rem;
+}
+@media (min-width: 900px) {
+  .site-footer__inner {
+    grid-template-columns: 1.2fr 1fr 1fr;
+  }
+}
+.site-footer a {
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.site-footer a:hover {
+  color: var(--gold);
+}
+.site-footer__contact {
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+  justify-items: start;
+}
+.site-footer__when {
+  margin-bottom: 0.3rem;
+  font: 500 var(--step--1) / 1.4 var(--mono);
+  letter-spacing: 0.04em;
+  color: var(--gold-pale);
+}
+.site-footer__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  overflow-wrap: anywhere;
+}
+.site-footer__social svg {
+  flex: none;
+  color: var(--gold);
+}
+.site-footer__tagline {
+  margin-top: 0.5rem;
+  color: var(--smoke);
+  font-style: italic;
+}
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+  align-content: start;
+}
+.site-footer__badges {
+  margin: 1.2rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+.site-footer__badges li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--step--1);
+  color: var(--smoke);
+}
+.site-footer__badges img {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 2px;
+  background: #fff;
+  border-radius: 6px;
+}
+.site-footer__legal {
+  grid-column: 1 / -1;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--step--1);
+}
+/* Phones: links as a two-column index instead of a wrapped run of underlined words; room at
+   the bottom so the sticky "Register" button doesn't cover the copyright line. */
+@media (max-width: 640px) {
+  .site-footer {
+    padding-block: 2.75rem 6rem;
+  }
+  .site-footer__inner {
+    gap: 2rem;
+  }
+  .site-footer__inner .wordmark {
+    font-size: 1.35rem;
+  }
+  .site-footer__contact {
+    gap: 0.75rem;
+    padding: 1.1rem 1.15rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgb(255 255 255 / 0.015);
+    justify-self: stretch;
+  }
+  .site-footer__links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1.25rem;
+  }
+  .site-footer__links a {
+    display: block;
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--line);
+    font: 500 0.78rem / 1.3 var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--bone);
+  }
+  .site-footer__legal {
+    padding-top: 1.25rem;
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+}
+
+/* ---------- Cookie banner ---------- */
+.cookie {
+  position: fixed;
+  z-index: 60;
+  left: 1rem;
+  bottom: 1rem;
+  max-width: 26rem;
+  padding: 1.25rem;
+  background: var(--ink-3);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 40px rgb(0 0 0 / 0.5);
+}
+html.cookie-open .sticky-cta,
+html.cookie-open .total-bar {
+  display: none;
+}
+@media (max-width: 600px) {
+  .cookie {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    max-width: none;
+  }
+}
+/* Shatter (CookieBanner): the banner breaks into a grid of pieces that fly out from the
+   centre, spin and drop. Each piece shows its own slice of a static copy of the banner. */
+.shatter {
+  position: fixed;
+  z-index: 70;
+  pointer-events: none;
+}
+.shatter__piece {
+  position: absolute;
+  overflow: hidden;
+  animation: shatter-fly 0.95s cubic-bezier(0.3, 0.1, 0.6, 1) forwards;
+}
+.cookie.cookie--slice {
+  position: absolute;
+  right: auto;
+  bottom: auto;
+  max-width: none;
+  margin: 0;
+  box-shadow: none;
+  animation: none;
+}
+@keyframes shatter-fly {
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+  10% {
+    transform: translate(calc(var(--tx) * 0.04), calc(var(--ty) * 0.02));
+    filter: brightness(1.25);
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(0.85);
+    opacity: 0;
+  }
+}
+.cookie__title {
+  margin-bottom: 0.35rem;
+  font: 400 var(--step-1) / 1.2 var(--display);
+  color: var(--bone);
+}
+.cookie__actions .btn {
+  flex: 1;
+}
+.cookie__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ---------- Payment details (success screen) ---------- */
+.pay {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.pay__title {
+  font: 500 var(--step--1) / 1.3 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+}
+.pay__methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  border: 0;
+}
+.pay__methods legend {
+  margin-bottom: 0.6rem;
+  color: var(--smoke);
+  font-size: 0.95rem;
+}
+.pay__method {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.pay__method input {
+  accent-color: var(--gold);
+}
+.pay__method.is-active {
+  border-color: var(--gold);
+  background: var(--ink-3);
+}
+.pay__rows {
+  margin-top: 1.25rem;
+}
+.pay__row {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--line);
+}
+.pay__row dt {
+  font: var(--step--1) / 1.3 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--smoke);
+}
+.pay__row dd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.pay__value {
+  font: 500 1.05rem / 1.35 var(--mono);
+  color: var(--bone);
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+.pay__copy {
+  flex: none;
+  min-width: 6.5rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--gold-pale);
+  font: 500 var(--step--1) / 1 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.pay__copy:hover {
+  background: var(--gold);
+  color: var(--ink);
+}
+.pay__note {
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+  color: var(--smoke);
+}
+.register__done {
+  max-width: 44rem;
+  /* Lands below the sticky header when scrolled into view. */
+  scroll-margin-top: 5.5rem;
+}
+.register__done:focus {
+  outline: none;
+}
+.done__badge {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 1.25rem;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--ink);
+  font: 700 1.6rem / 1 var(--body);
+  box-shadow: 0 0 0 6px rgb(200 160 75 / 0.18);
+  animation: badge-pop 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+@keyframes badge-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+.done__lead {
+  font: italic 400 var(--step-1) / 1.35 var(--display);
+  color: var(--gold-pale);
+  margin-bottom: 0.75rem;
+}
+.done__steps {
+  counter-reset: step;
+  margin: 1.25rem 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.done__steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+.done__steps li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  font: 500 0.8rem / 1 var(--mono);
+  color: var(--gold);
+}
+
+/* ---------- Organiser page (/karte/<key>) ---------- */
+.admin__asof {
+  margin-top: 0.5rem;
+  font: var(--step--1) var(--mono);
+  color: var(--smoke);
+}
+.admin__figure--lead dd {
+  font-size: var(--step-3);
+  color: var(--gold);
+}
+.admin__refresh {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-top: 1.5rem;
+}
+.admin__refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--gold-pale);
+  font: 500 var(--step--1) / 1 var(--mono);
+  cursor: pointer;
+}
+.admin__refresh-btn:hover {
+  background: var(--ink-3);
+}
+.admin__refresh-btn:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+.admin__refresh-btn .is-spinning {
+  display: inline-block;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.admin__refresh-note {
+  font: var(--step--1) / 1.3 var(--mono);
+  color: var(--smoke);
+}
+.admin__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.admin__filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--bone);
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.admin__filter b {
+  min-width: 1.5rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  background: var(--ink-3);
+  font: 500 0.78rem / 1.3 var(--mono);
+  text-align: center;
+}
+.admin__filter:hover {
+  border-color: var(--gold);
+}
+.admin__filter[aria-pressed='true'] {
+  border-color: var(--gold);
+  background: var(--ink-3);
+  color: var(--gold-pale);
+}
+.admin__filter--paid[aria-pressed='true'] {
+  border-color: #5f9e6e;
+}
+.admin__sort {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.admin__sort span {
+  color: var(--smoke);
+}
+.admin__table th[aria-sort] .admin__sort span {
+  color: var(--gold-pale);
+}
+.admin__empty--inline {
+  padding: 1rem;
+  margin: 0;
+}
+.admin__status--expired,
+.admin__status--cancelled {
+  color: var(--smoke);
+}
+/* The status pill is a <select>: same look, plus a small caret. */
+select.admin__status {
+  appearance: none;
+  padding: 0.3rem 1.6rem 0.3rem 0.65rem;
+  background: var(--ink-2)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%239a8f80' stroke-width='1.5'/%3E%3C/svg%3E")
+    no-repeat right 0.55rem center;
+  cursor: pointer;
+}
+select.admin__status:hover {
+  border-color: var(--gold);
+}
+select.admin__status:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+select.admin__status option {
+  background: var(--ink-2);
+  color: var(--bone);
+}
+.admin__message {
+  min-height: 1.4em;
+  margin-top: 1rem;
+  font: var(--step--1) / 1.4 var(--mono);
+  color: var(--gold-pale);
+}
+.admin {
+  max-width: 1400px;
+  padding-block: 3rem 5rem;
+}
+.admin__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem 2rem;
+}
+.admin__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1px;
+  margin-top: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--line);
+}
+.admin__figures div {
+  padding: 1rem 1.25rem;
+  background: var(--ink-2);
+}
+.admin__figures dt {
+  font: var(--step--1) / 1.3 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--smoke);
+}
+.admin__figures dd {
+  margin-top: 0.35rem;
+  font: 400 var(--step-2) / 1.1 var(--display);
+  color: var(--gold-pale);
+}
+.admin__packages,
+.admin__hint,
+.admin__empty {
+  margin-top: 1rem;
+  color: var(--smoke);
+  font-size: 0.95rem;
+}
+.admin__error {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border-left: 2px solid var(--velvet);
+  background: rgb(163 48 59 / 0.12);
+}
+.admin__table-wrap {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.admin__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.admin__table th {
+  position: sticky;
+  top: 0;
+  padding: 0.75rem 0.9rem;
+  background: var(--ink-3);
+  font: 500 var(--step--1) / 1.3 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  text-align: left;
+  white-space: nowrap;
+}
+.admin__table td {
+  padding: 0.75rem 0.9rem;
+  border-top: 1px solid var(--line);
+  vertical-align: top;
+}
+.admin__table td small {
+  display: block;
+  color: var(--smoke);
+  font-size: 0.8rem;
+}
+.admin__table tr.is-expired td,
+.admin__table tr.is-cancelled td {
+  opacity: 0.5;
+}
+.admin__nowrap {
+  white-space: nowrap;
+}
+.admin__notes {
+  min-width: 14rem;
+  color: var(--smoke);
+}
+.admin__status {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font: 500 0.75rem / 1.2 var(--mono);
+  white-space: nowrap;
+}
+.admin__status--paid {
+  border-color: #5f9e6e;
+  color: #9fd3ab;
+}
+.admin__status--pending {
+  border-color: var(--gold);
+  color: var(--gold-pale);
+}
+
+/* Phones: cards instead of the table. */
+.admin__mobile-sort,
+.admin__cards {
+  display: none;
+}
+@media (max-width: 700px) {
+  .admin {
+    padding-block: 1.5rem 3rem;
+  }
+  .admin__figures {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1.25rem;
+  }
+  .admin__figures div {
+    padding: 0.75rem 0.9rem;
+  }
+  .admin__figures dd {
+    font-size: var(--step-1);
+  }
+  .admin__figures dt {
+    font-size: 0.68rem;
+  }
+  .admin__refresh {
+    margin-top: 1rem;
+  }
+  .admin__refresh-note {
+    flex-basis: 100%;
+    font-size: 0.75rem;
+  }
+  /* Filters scroll sideways in one row instead of wrapping into three. */
+  .admin__filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: 1.25rem calc(-1 * var(--gutter, 1.25rem)) 0;
+    padding: 0 var(--gutter, 1.25rem) 0.25rem;
+    scrollbar-width: none;
+  }
+  .admin__filter {
+    flex: none;
+  }
+  .admin__message {
+    min-height: 0;
+    margin-top: 0.5rem;
+  }
+  .admin__table-wrap {
+    display: none;
+  }
+  .admin__mobile-sort {
+    display: block;
+    margin-top: 0.5rem;
+  }
+  .admin__mobile-sort label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font: var(--step--1) var(--mono);
+    color: var(--smoke);
+  }
+  .admin__mobile-sort select {
+    flex: 1;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--ink-2);
+    color: var(--bone);
+    font: 0.9rem var(--body, inherit);
+  }
+  .admin__cards {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .admin__card {
+    display: grid;
+    gap: 0.7rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--line);
+    border-radius: 8px;
+    background: var(--ink-2);
+  }
+  .admin__card.is-pending {
+    border-left-color: var(--gold);
+  }
+  .admin__card.is-paid {
+    border-left-color: #5f9e6e;
+  }
+  .admin__card.is-expired,
+  .admin__card.is-cancelled {
+    opacity: 0.6;
+  }
+  .admin__card small {
+    display: block;
+    color: var(--smoke);
+    font-size: 0.8rem;
+  }
+  .admin__card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 0.75rem;
+  }
+  .admin__card-name {
+    display: block;
+    font-size: 1.05rem;
+    line-height: 1.25;
+  }
+  .admin__card-status {
+    flex: none;
+    text-align: right;
+  }
+  /* Bigger tap target for the status on a phone. */
+  .admin__card select.admin__status {
+    padding: 0.5rem 1.8rem 0.5rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  .admin__card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.92rem;
+  }
+  .admin__card-total {
+    font: 500 1rem var(--mono);
+    color: var(--gold-pale);
+    white-space: nowrap;
+  }
+  .admin__card-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1rem;
+    font-size: 0.88rem;
+  }
+  .admin__card-contact a {
+    color: var(--gold-pale);
+    overflow-wrap: anywhere;
+  }
+  .admin__card-contact span {
+    color: var(--smoke);
+  }
+  .admin__card-notes {
+    margin: 0;
+    padding: 0.5rem 0.7rem;
+    border-radius: 6px;
+    background: var(--ink-3);
+    color: var(--smoke);
+    font-size: 0.85rem;
+  }
+}
+
+/* ---------- Country flags (artists) ---------- */
+.flag {
+  display: inline-block;
+  width: 1.15em;
+  height: auto;
+  margin-right: 0.45em;
+  vertical-align: -0.1em;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.12);
+}
+
+/* ---------- Phone fixes from the responsive check (2026-10-13) ---------- */
+/* Hotel room note (size, beds) always on its own line under the room name. */
+.hotels__room small {
+  display: block;
+  margin-top: 0.15rem;
+}
+@media (max-width: 640px) {
+  /* Airport name and distance stacked instead of squeezed side by side. */
+  .travel__airports div {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}
+/* Artist bio panel: the photo spans the width on phones, so keep the close button above it. */
+@media (max-width: 699px) {
+  .artist-panel .artist-panel__inner {
+    padding-top: 3.75rem;
+  }
+}
+
+/* ---------- Floating Register button (phones) ---------- */
+.sticky-cta {
+  display: none;
+}
+@media (max-width: 600px) {
+  .sticky-cta {
+    position: fixed;
+    left: 50%;
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+    z-index: 40;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.9rem 1.8rem;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--ink);
+    border-radius: 999px;
+    box-shadow:
+      0 10px 28px rgb(0 0 0 / 0.55),
+      0 0 0 4px rgb(200 160 75 / 0.18);
+    font: 500 var(--step--1) / 1 var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    animation: rise 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .sticky-cta:hover {
+    color: var(--ink);
+    background: var(--gold-pale);
+  }
+}
+
+/* ---------- Programmes: competition categories + flyer's "Festival programme" list ---------- */
+.program__points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+.program__points li {
+  padding: 0.2rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font: 500 0.78rem / 1.3 var(--mono);
+  letter-spacing: 0.04em;
+  color: var(--gold-pale);
+}
+.festival-list {
+  display: grid;
+  gap: 1.25rem 3rem;
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 900px) {
+  .festival-list {
+    grid-template-columns: 16rem 1fr;
+    align-items: start;
+  }
+}
+.festival-list__title {
+  font: italic 400 var(--step-2) / 1.15 var(--display);
+  color: var(--gold);
+}
+.festival-list__items {
+  display: grid;
+  gap: 0.6rem 2rem;
+}
+@media (min-width: 640px) {
+  .festival-list__items {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.festival-list__items li {
+  position: relative;
+  padding-left: 1.2rem;
+  line-height: 1.45;
+}
+.festival-list__items li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  font-size: 0.6rem;
+  color: var(--gold);
+}
+
+/* ---------- Mobile total bar (Registration) ----------
+   Shown while the form is on screen and the price summary isn't; desktop has the summary beside the form. */
+.total-bar {
+  position: fixed;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: calc(0.75rem + env(safe-area-inset-bottom));
+  z-index: 40;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.7rem 0.8rem 0.7rem 1.1rem;
+  background: var(--gold-pale);
+  color: var(--ink);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgb(0 0 0 / 0.55);
+  animation: rise 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.total-bar__text {
+  display: grid;
+  line-height: 1.2;
+}
+.total-bar__text small {
+  font: 500 0.72rem / 1.3 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b5426;
+}
+.total-bar__text b {
+  font: 400 1.5rem / 1 var(--display);
+}
+.total-bar__link {
+  flex: none;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid rgb(12 11 14 / 0.35);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font: 500 var(--step--1) / 1 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+@media (min-width: 960px) {
+  .total-bar {
+    display: none;
+  }
+}
+
+/* ---------- Artist cards: click → bio panel ---------- */
+.artist__button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.artist__button:focus-visible {
+  outline: none;
+}
+.artist__button:focus-visible .artist__card {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.artist__card {
+  display: block;
+  overflow: hidden;
+}
+.artist__button .artist__name,
+.artist__button .artist__country {
+  display: block;
+}
+.artist__button .artist__country {
+  margin-top: 0.2rem;
+}
+/* The open card stays lifted with a gold edge, so it's clear whose bio is shown. */
+.artist.is-active .artist__card {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow:
+    0 0 0 1px var(--gold),
+    0 18px 40px rgb(0 0 0 / 0.55);
+}
+.artist.is-active .artist__name {
+  color: var(--gold);
+}
+.artist-panel {
+  margin-top: 5.5rem;
+  scroll-margin: 5.5rem 0 1.5rem;
+}
+.artist-panel[hidden] {
+  display: none;
+}
+/* Gold line from the open card down to the panel (position set in GalaArtistsGrid). */
+.artist-panel {
+  position: relative;
+}
+.artist-panel__link {
+  position: absolute;
+  bottom: 100%;
+  width: 2px;
+  margin-left: -1px;
+  background: linear-gradient(180deg, rgb(200 160 75 / 0.2), var(--gold));
+  transform-origin: top;
+  animation: link-grow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  pointer-events: none;
+}
+/* Small diamond where the line leaves the card. */
+.artist-panel__link::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+@keyframes link-grow {
+  from {
+    transform: scaleY(0);
+  }
+}
+.artist-panel__inner {
+  position: relative;
+  display: grid;
+  gap: 1.5rem 2.5rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  animation: rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@media (min-width: 700px) {
+  .artist-panel__inner {
+    grid-template-columns: minmax(12rem, 17.5rem) 1fr;
+    align-items: start;
+  }
+}
+.artist-panel__photo {
+  aspect-ratio: 4 / 5;
+  max-width: 17.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+}
+.artist-panel__country {
+  font: var(--step--1) / 1.3 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--smoke);
+}
+.artist-panel__name {
+  margin: 0.4rem 0 1rem;
+  font: italic 400 var(--step-3) / 1.05 var(--display);
+  color: var(--bone);
+}
+.artist-panel__text p + p {
+  margin-top: 0.9rem;
+}
+.artist-panel__text p:not(.artist-panel__country) {
+  max-width: 62ch;
+}
+.artist-panel__soon {
+  color: var(--smoke);
+  font-style: italic;
+}
+.artist-panel__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: none;
+  color: var(--gold-pale);
+  font: 400 1.5rem / 1 var(--display);
+  cursor: pointer;
+}
+.artist-panel__close:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ---------- Translated poster (Hero, non-Serbian) ----------
+   Same proportions as the original poster: the top 600/1491 is the title band (set as text),
+   the rest is the text-free stage crop. Sizes use container units so it scales with the poster. */
+.poster {
+  container-type: inline-size;
+  display: grid;
+  grid-template-rows: 600fr 891fr;
+  aspect-ratio: 1055 / 1491;
+  overflow: hidden;
+  background: #050403;
+}
+.poster__top {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2.4cqw;
+  padding: 0 6cqw 3cqw;
+  text-align: center;
+  /* Red stage lights at the edges and faint dust, as on the original. */
+  background:
+    radial-gradient(
+      ellipse 22% 70% at 0% 85%,
+      rgb(170 20 30 / 0.55),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 22% 70% at 100% 85%,
+      rgb(170 20 30 / 0.55),
+      transparent 70%
+    ),
+    radial-gradient(
+        circle at 30% 30%,
+        rgb(255 220 150 / 0.05) 0 1px,
+        transparent 2px
+      )
+      0 0 / 7cqw 7cqw,
+    #050403;
+}
+.poster__title {
+  display: grid;
+  font:
+    600 9cqw / 1 var(--font-poster),
+    var(--display);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: transparent;
+  background: linear-gradient(
+    180deg,
+    #fbe9b0 0%,
+    #e2b85c 40%,
+    #a7741f 62%,
+    #f1d48a 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0.4cqw 0.8cqw rgb(0 0 0 / 0.8));
+}
+/* Each title line stays on one line, also while the poster font is still loading. */
+.poster__title span {
+  white-space: nowrap;
+}
+/* background-clip:text only paints inside the line box; Cinzel capitals rise above a
+   line-height of 1, so give them room or their tops come out blank. */
+.poster__title {
+  padding-top: 0.14em;
+  line-height: 1.05;
+}
+.poster__title span + span {
+  margin-top: 1cqw;
+}
+.poster__year {
+  display: flex;
+  align-items: center;
+  gap: 3cqw;
+  width: 100%;
+  font:
+    600 5.6cqw / 1 var(--font-poster),
+    var(--display);
+  letter-spacing: 0.12em;
+  color: #e9c97a;
+}
+.poster__year span {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c8a04b 70%, #fff3c4);
+}
+.poster__year span:last-child {
+  background: linear-gradient(270deg, transparent, #c8a04b 70%, #fff3c4);
+}
+.poster__tagline {
+  font: 500 2.5cqw / 1.3 var(--body);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #efe2bf;
+}
+.poster__scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: clamp(1rem, 4vw, 3rem) clamp(3.5rem, 8vw, 6rem);
+  border: 0;
+  background: transparent;
+  color: var(--bone);
+}
+.lightbox::backdrop {
+  background: rgb(8 6 5 / 0.94);
+}
+.lightbox[open] {
+  display: grid;
+  animation: lightbox-in 0.25s ease-out;
+}
+.lightbox__figure {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 1rem;
+  height: 100%;
+}
+.lightbox__img {
+  position: relative;
+}
+.lightbox__img img {
+  object-fit: contain;
+}
+.lightbox figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font: var(--step--1) / 1.4 var(--mono);
+  color: var(--smoke);
+}
+.lightbox__count {
+  color: var(--gold-pale);
+}
+.lightbox__btn {
+  position: fixed;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: rgb(12 11 14 / 0.7);
+  color: var(--gold-pale);
+  font: 400 1.8rem / 1 var(--display);
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+.lightbox__btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.lightbox__close {
+  top: 1rem;
+  right: 1rem;
+}
+.lightbox__prev,
+.lightbox__next {
+  top: 50%;
+  translate: 0 -50%;
+}
+.lightbox__prev {
+  left: 1rem;
+}
+.lightbox__next {
+  right: 1rem;
+}
+@keyframes lightbox-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ---------- Hero: magic deck (MagicDeck.tsx, three.js) ---------- */
+/* Phones/tablets: room above the poster for the tops of the fanned cards. */
+@media (max-width: 959px) {
+  .hero__poster {
+    margin-top: 2.5rem;
+  }
+}
+.magic-deck {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ---------- Spotlight & curtain (hero) ---------- */
+/* A warm stage light falls on the poster; velvet at both edges frames the stage. */
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero::before {
+  background:
+    radial-gradient(
+      ellipse 38% 60% at 76% 42%,
+      rgb(233 216 166 / 0.13),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 22% 34% at 76% 8%,
+      rgb(233 216 166 / 0.08),
+      transparent 70%
+    );
+}
+/* Each edge gets its own curtain and the right one is the left one mirrored (folds counted from
+   the outer edge on both sides), so colour, width and folds match exactly. */
+/* .hero::after {
+  --curtain: clamp(2.5rem, 9vw, 7rem);
+  --velvet-edge: rgb(110 22 30 / 0.42);
+  --fold: rgb(0 0 0 / 0.16) 0 14px, transparent 14px 34px;
+  background:
+    repeating-linear-gradient(90deg, var(--fold)) left top / var(--curtain) 100%
+      no-repeat,
+    repeating-linear-gradient(270deg, var(--fold)) right top / var(--curtain)
+      100% no-repeat,
+    linear-gradient(90deg, var(--velvet-edge), transparent) left top /
+      var(--curtain) 100% no-repeat,
+    linear-gradient(270deg, var(--velvet-edge), transparent) right top /
+      var(--curtain) 100% no-repeat;
+  -webkit-mask:
+    linear-gradient(90deg, #000, transparent) left top / var(--curtain) 100%
+      no-repeat,
+    linear-gradient(270deg, #000, transparent) right top / var(--curtain) 100%
+      no-repeat;
+  mask:
+    linear-gradient(90deg, #000, transparent) left top / var(--curtain) 100%
+      no-repeat,
+    linear-gradient(270deg, #000, transparent) right top / var(--curtain) 100%
+      no-repeat;
+} */
+.hero__inner {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 959px) {
+  .hero::before {
+    background: radial-gradient(
+      ellipse 70% 30% at 50% 78%,
+      rgb(233 216 166 / 0.12),
+      transparent 70%
+    );
+  }
+}
+
+/* ---------- Scroll reveal (see ScrollReveal.tsx) ---------- */
+[data-reveal] {
+  transition:
+    opacity 0.7s ease-out,
+    translate 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal='pending'] {
+  opacity: 0;
+  translate: 0 18px;
+}
+
+/* ---------- Phones: price list & lecturers ---------- */
+@media (max-width: 640px) {
+  /* Price list: stack each package; prices get their column header from data-label. */
+  .pricelist thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .pricelist,
+  .pricelist tbody,
+  .pricelist tr,
+  .pricelist th,
+  .pricelist td {
+    display: block;
+  }
+  .pricelist tbody tr {
+    padding: 1.4rem 0 1rem;
+    border-top: 1px solid var(--line);
+  }
+  .pricelist tbody th,
+  .pricelist td {
+    padding: 0;
+    border-top: 0;
+  }
+  .pricelist__includes {
+    max-width: none;
+    margin-bottom: 1rem;
+  }
+  .pricelist td[data-label] {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.55rem 0;
+    border-top: 1px dashed var(--line);
+    font-size: var(--step-1);
+    text-align: right;
+  }
+  .pricelist td[data-label]::before {
+    content: attr(data-label);
+    font: 500 var(--step--1) / 1.3 var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-align: left;
+    color: var(--smoke);
+  }
+  .pricelist td.pricelist__early::before {
+    color: var(--gold);
+  }
+  .pricelist__extras tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .pricelist__extras tr:first-child {
+    display: block;
+    padding-bottom: 0;
+  }
+  .pricelist__extras td {
+    white-space: nowrap;
+  }
+
+  /* Lecturers: a list with photo and text side by side; the flip cards stay for larger screens. */
+  .lecturers__grid {
+    display: none;
+  }
+  .lecturers__list {
+    display: grid;
+  }
+}
+
+/* Lecturers on phones (the list is hidden above 640px). */
+@media (min-width: 641px) {
+  .lecturers__list {
+    display: none;
+  }
+}
+.lecturers__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.lecturers__list li {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 1.1rem;
+  align-items: start;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--line);
+}
+.lecturers__list li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.lecturers__thumb {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.lecturers__thumb img {
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+.lecturers__name {
+  font: 400 var(--step-1) / 1.2 var(--display);
+}
+.lecturers__meta {
+  margin-top: 0.25rem;
+  font: var(--step--1) / 1.4 var(--mono);
+  color: var(--gold);
+}
+.lecturers__bio {
+  margin-top: 0.6rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--smoke);
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+  .pcard__inner {
+    transform: none !important;
+  }
+  .pcard__back {
+    transform: none;
+    opacity: 0;
+  }
+  .pcard.is-flipped .pcard__back {
+    opacity: 1;
+  }
+  .marquee__track {
+    flex-wrap: wrap;
+    width: auto;
+  }
+  .marquee__track li[aria-hidden='true'] {
+    display: none;
+  }
+}
+
+/* Gala artists: small hint above the cards (all bios start closed). */
+.artists__hint {
+  margin: 0 0 1rem;
+  font: 500 var(--step--1) / 1.4 var(--mono);
+  letter-spacing: 0.04em;
+  color: var(--smoke);
+}
+.artists__hint span {
+  color: var(--gold);
+  margin-right: 0.35rem;
+}

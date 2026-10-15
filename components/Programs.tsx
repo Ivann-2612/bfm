@@ -1,0 +1,85 @@
+import { site } from "@/lib/content";
+import { Photo, SectionHead, SuitMark, type LangProps } from "./ui";
+
+export function Programs({ lang }: LangProps) {
+  const s = site(lang);
+  const { programs, ui } = s.c;
+  const [lead, ...rest] = programs.items;
+
+  return (
+    <section className="section programs" aria-labelledby="programs-title">
+      <div className="wrap">
+        <SectionHead id="programs-title" kicker={programs.kicker} title={programs.title} intro={programs.intro} />
+        <div className="programs__grid">
+          <article className="program program--lead">
+            <Photo
+              src={lead.photo.src}
+              alt={lead.photo.alt}
+              label={ui.photoPlaceholder}
+              sizes="(min-width: 900px) 58vw, 100vw"
+              className="program__photo"
+            />
+            <div className="program__body">
+              <p className="program__meta">{lead.meta}</p>
+              <h3 className="program__name">{lead.name}</h3>
+              <p>{lead.text}</p>
+              {lead.shows.length > 0 && (
+                <ul className="program__shows">
+                  {lead.shows.map((show) => (
+                    <li key={show.date}>
+                      <SuitMark suit={s.dayFor(show.date).suit} />
+                      <span>
+                        {s.shortWeekday(show.date)}, {s.longDate(show.date)}
+                      </span>
+                      <b>{show.time}</b>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <a href="#izvodjaci" className="link-arrow program__more">
+                {ui.seeArtists}
+              </a>
+            </div>
+          </article>
+
+          <ul className="programs__rest">
+            {rest.map((p) => (
+              <li key={p.id} className="program program--row">
+                <Photo
+                  src={p.photo.src}
+                  alt={p.photo.alt}
+                  label={ui.photoPlaceholder}
+                  sizes="(min-width: 900px) 14vw, 30vw"
+                  className="program__thumb"
+                />
+                <div>
+                  <p className="program__meta">{p.meta}</p>
+                  <h3 className="program__name program__name--small">{p.name}</h3>
+                  <p>{p.text}</p>
+                  {p.points.length > 0 && (
+                    <ul className="program__points">
+                      {p.points.map((pt) => (
+                        <li key={pt}>{pt}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {programs.festival.items.length > 0 && (
+          <div className="festival-list">
+            <h3 className="festival-list__title">{programs.festival.title}</h3>
+            <ul className="festival-list__items">
+              {programs.festival.items.map((it) => (
+                <li key={it}>{it}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
