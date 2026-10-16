@@ -2,7 +2,7 @@ name: Keep-alive
 
 on:
   schedule:
-    - cron: "0 7 * * 1" # Mondays 07:00 UTC
+    - cron: "0 7 * * 1"
   workflow_dispatch:
 
 jobs:
@@ -15,14 +15,5 @@ jobs:
       - name: Site responds
         run: curl --fail --silent --show-error --max-time 30 "$SITE_URL/" -o /dev/null
 
-      - name: Expire function (keeps the DB warm)
-        env:
-          CRON_SECRET: ${{ secrets.CRON_SECRET }}
-        run: |
-          if [ -z "$CRON_SECRET" ]; then
-            echo "::warning::CRON_SECRET is not set; skipping the function call."
-            exit 0
-          fi
-          curl --fail --silent --show-error --max-time 30 \
-            -H "Authorization: Bearer $CRON_SECRET" \
-            "$FUNCTION_URL/expire"
+      - name: Database responds
+        run: curl --fail --silent --show-error --max-time 30 "$FUNCTION_URL/tickets?ping=1"

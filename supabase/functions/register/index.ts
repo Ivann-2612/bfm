@@ -1,92 +1,85 @@
-import { createClient } from "npm:@supabase/supabase-js@2";
-import { DEFAULT_LANG, getContent, isLang } from "../_shared/content.ts";
+import { DEFAULT_LANG, fill, getContent, isLang } from "../_shared/content.ts";
 import { computePrice } from "../_shared/pricing.ts";
 import { fieldErrors, registrationSchema } from "../_shared/schema.ts";
-import { notifyOrganizer, sendConfirmation } from "../_shared/mail.ts";
-import { allowedOrigin, clientIp, json } from "../_shared/http.ts";
+import { db } from "../_lib/db.ts";
+import { allowedOrigin, clientIp, cors, json } from "../_lib/http.ts";
+import { notifyOrganizer, sendConfirmation } from "../_lib/mail.ts";
+import { rateLimit } from "../_lib/ratelimit.ts";
+import { verifyTurnstile } from "../_lib/turnstile.ts";
 
-const db = createClient(
-  Deno.env.get("SUPABASE_URL")!,
-  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
-  { auth: { persistSession: false } },
-);
-
-async function rateLimit(ip: string | null) {
-  if (!ip) return 0;
-  return 0;
-}
+const MAX_BODY = 16_000;
 
 Deno.serve(async (req) => {
-  if (req.method === "OPTIONS") {
-    return new Response(null, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "content-type",
-      },
-    });
-  }
+  if (req.method === "OPTIONS") return new Response(null, { headers: cors(req) });
+  if (req.method !== "POST") return json(req, { message: "Method not allowed" }, 405);
 
-  if (req.method !== "POST")
-    return json(req, { message: "Method not allowed" }, 405);
-
-  const raw = await req.text();
-  if (raw.length > 16_000)
-    return json(req, { message: "Payload too large" }, 413);
-
+  const raw = await req.text().catch(() => "");
+  if (raw.length > MAX_BODY) return json(req, { message: "Payload too large" }, 413);
   let body: Record<string, unknown> | null = null;
   try {
     body = JSON.parse(raw);
   } catch {
     body = null;
   }
-
-  const lang = isLang(body?.lang) ? body!.lang : DEFAULT_LANG;
+  const asked = body?.lang;
+  const lang = isLang(asked) ? asked : DEFAULT_LANG;
   const c = getContent(lang);
   const errors = c.registration.errors;
 
   if (!allowedOrigin(req)) return json(req, { message: errors.spam }, 403);
 
-  const wait = await rateLimit(clientIp(req));
-  if (wait > 0) {
-    return json(req, { message: errors.tooMany }, 429, {
+  const ip = clientIp(req);
+  const wait = await rateLimit(ip);
+  if (wait) {
+    return json(req, { message: fill(errors.tooMany, { minutes: Math.max(1, Math.ceil(wait / 60)) }) }, 429, {
       "Retry-After": String(wait),
     });
   }
 
-  if (typeof body?.website === "string" && body.website.trim() !== "") {
-    return json(req, { message: errors.spam }, 400);
-  }
+  if (typeof body?.website === "string" && body.website.trim() !== "") return json(req, { message: errors.spam }, 400);
 
   const parsed = registrationSchema(lang).safeParse(body);
-  if (!parsed.success) {
-    return json(req, { errors: fieldErrors(parsed.error) }, 400);
-  }
-
+  if (!parsed.success) return json(req, { errors: fieldErrors(parsed.error) }, 400);
   const data = parsed.data;
-  const quote = computePrice(data, new Date(), lang);
 
-  const { data: inserted, error } = await db
+  if (!(await verifyTurnstile(data.turnstileToken, ip))) return json(req, { message: errors.spam }, 400);
+
+  const now = new Date();
+  const quote = computePrice(data, now, lang);
+
+  const { data: row, error } = await db
     .from("registrations")
     .insert({
-      ...data,
-      total: quote.total,
-      status: "pending",
+      event_year: c.event.year,
+      lang,
+      first_name: data.firstName,
+      last_name: data.lastName,
+      email: data.email,
+      phone: data.phone || null,
+      country: data.country,
+      package_id: data.packageId,
+      extras: quote.extras,
+      notes: data.notes || null,
+      price_tier: quote.tier,
+      price_lines: quote.lines,
+      total_eur: quote.total,
+      consent_text: c.registration.consentText,
+      consent_at: now.toISOString(),
     })
-    .select()
+    .select("id")
     .single();
 
   if (error) {
-    if (error.code === "23505")
-      return json(req, { message: c.registration.errors.duplicate }, 409);
-    console.error("register.insert", error);
-    return json(req, { message: c.registration.errors.server }, 500);
+    if (error.code === "23505") {
+      return json(req, { errors: { email: fill(errors.duplicate, { year: c.event.year, contact: c.site.contactEmail }) } }, 409);
+    }
+    console.error(`register: insert failed [${error.code}] ${error.message}${error.hint ? ` (${error.hint})` : ""}`);
+    return json(req, { message: errors.saveFailed }, 500);
   }
 
-  await Promise.allSettled([
-    notifyOrganizer(lang, inserted, new Date()),
-    sendConfirmation(lang, inserted, quote),
-  ]);
+  const [organizer, confirmation] = await Promise.allSettled([notifyOrganizer(lang, data, now), sendConfirmation(lang, data, quote)]);
+  if (organizer.status === "rejected") console.error("register: organizer mail failed", organizer.reason);
+  if (confirmation.status === "rejected") console.error("register: confirmation mail failed", confirmation.reason);
 
-  return json(req, { ok: true, id: inserted.id, total: quote.total }, 201);
+  return json(req, { ok: true, id: row.id, total: quote.total }, 201);
 });

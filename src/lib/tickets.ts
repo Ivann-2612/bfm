@@ -1,18 +1,4 @@
-import "server-only";
-import { timingSafeEqual } from "node:crypto";
-import { getContent, site, ORGANIZER_LANG } from "../content";
-import { supabaseAdmin, supabaseMissing } from "./supabase";
-
-const isDev = process.env.NODE_ENV === "development";
-export const DEV_KEY = "lokalno";
-
-export function isAdminKey(key: string) {
-  const expected = process.env.ADMIN_KEY || (isDev ? DEV_KEY : "");
-  if (!expected || (!isDev && expected.length < 16)) return false;
-  const a = Buffer.from(key);
-  const b = Buffer.from(expected);
-  return a.length === b.length && timingSafeEqual(a, b);
-}
+import { getContent, site, ORGANIZER_LANG } from "./content";
 
 export type Status = "pending" | "paid" | "expired" | "cancelled";
 export const STATUSES: Status[] = ["pending", "paid", "expired", "cancelled"];
@@ -23,7 +9,10 @@ export const STATUS_LABEL: Record<Status, string> = {
   cancelled: "Otkazano",
 };
 
-type DbRow = {
+export const TICKET_COLUMNS =
+  "id, created_at, lang, first_name, last_name, email, phone, country, package_id, extras, notes, price_tier, total_eur, status";
+
+export type DbRow = {
   id: string;
   created_at: string;
   lang: string;
@@ -67,7 +56,7 @@ const extrasText = (extras: Record<string, number> | null) =>
     .join(", ");
 const dateFmt = new Intl.DateTimeFormat("sr-Latn-RS", { dateStyle: "medium", timeStyle: "short", timeZone: c.site.timeZone });
 
-function toTicket(r: DbRow): Ticket {
+export function toTicket(r: DbRow): Ticket {
   return {
     id: r.id,
     ts: new Date(r.created_at).getTime(),
@@ -87,30 +76,21 @@ function toTicket(r: DbRow): Ticket {
   };
 }
 
-export async function loadTickets(): Promise<{ tickets: Ticket[]; error: string | null; demo: boolean }> {
-  const db = supabaseAdmin();
-  const fail = (error: string) =>
-    isDev ? { tickets: DEMO.map(toTicket), error, demo: true } : { tickets: [], error, demo: false };
-
-  if (!db) {
-    return fail(
-      `Baza (Supabase) nije povezana. Na Vercel-u nedostaje: ${supabaseMissing().join(", ")}. Posle dodavanja uradi Redeploy.`,
-    );
-  }
-  try {
-    const { data, error } = await db
-      .from("registrations")
-      .select("id, created_at, lang, first_name, last_name, email, phone, country, package_id, extras, notes, price_tier, total_eur, status")
-      .eq("event_year", c.event.year)
-      .order("created_at", { ascending: false });
-    if (error) return fail(`Greška pri čitanju baze: ${error.message}`);
-    return { tickets: ((data ?? []) as DbRow[]).map(toTicket), error: null, demo: false };
-  } catch (e) {
-    return fail(`Baza nije dostupna: ${(e as Error).message}`);
-  }
+const cell = (v: unknown) => {
+  const str = String(v ?? "");
+  return /[;"\n\r]/.test(str) ? `"${str.replace(/"/g, '""')}"` : str;
+};
+export function ticketsCsv(tickets: Ticket[]) {
+  const header = ["Primljeno", "Ime i prezime", "Email", "Telefon", "Država", "Jezik", "Paket", "Dodaci", "Cena", "Iznos EUR", "Status", "Napomena"];
+  const lines = tickets.map((t) =>
+    [t.received, t.name, t.email, t.phone, t.country, t.lang, t.packageName, t.extras, t.early ? "rana prijava" : "redovna", t.total, STATUS_LABEL[t.status], t.notes]
+      .map(cell)
+      .join(";"),
+  );
+  return "﻿" + [header.join(";"), ...lines].join("\r\n");
 }
 
-const DEMO: DbRow[] = [
+export const DEMO_ROWS: DbRow[] = [
   { id: "d1", created_at: "2026-10-12T14:05:00Z", lang: "sr", first_name: "Marko", last_name: "Petrović", email: "marko@example.com", phone: "+381 64 111 222", country: "Srbija", package_id: "standard", extras: {}, notes: "", price_tier: "early", total_eur: 99, status: "paid" },
   { id: "d2", created_at: "2026-10-11T09:30:00Z", lang: "en", first_name: "Anna", last_name: "Novak", email: "anna@example.com", phone: null, country: "Slovenia", package_id: "dealer", extras: { table: 1 }, notes: "Need a power socket", price_tier: "early", total_eur: 199, status: "pending" },
   { id: "d3", created_at: "2026-10-03T18:12:00Z", lang: "sr", first_name: "Jelena", last_name: "Ilić", email: "jelena@example.com", phone: "+381 63 333 444", country: "Srbija", package_id: "standard", extras: {}, notes: "", price_tier: "early", total_eur: 99, status: "expired" },

@@ -1,12 +1,9 @@
-import { json } from "../_shared/http.ts";
+import { json, safeEqual } from "../_lib/http.ts";
 
 Deno.serve(async (req) => {
+  const secret = Deno.env.get("CRON_SECRET") ?? "";
   const auth = req.headers.get("authorization") ?? "";
-  const expected = `Bearer ${Deno.env.get("CRON_SECRET") ?? ""}`;
-  if (
-    auth !== expected &&
-    auth !== `Bearer ${Deno.env.get("CRON_SECRET") ?? ""}`
-  ) {
+  if (secret.length < 16 || !(await safeEqual(auth, `Bearer ${secret}`))) {
     return json(req, { message: "Unauthorized" }, 401);
   }
 

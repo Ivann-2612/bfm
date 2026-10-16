@@ -1332,6 +1332,11 @@ html.menu-open .site-header {
 }
 .organizers__group {
   flex: var(--n) 1 calc(var(--n) * 12rem);
+  display: flex;
+  flex-direction: column;
+}
+.organizers__group .organizers__orgs {
+  flex: 1;
 }
 .organizers__group .organizers__role {
   display: block;

@@ -1,16 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
-import type { Status, Ticket } from "@/lib/server/admin";
-
-const STATUS_LABEL: Record<Status, string> = {
-  pending: "Čeka uplatu",
-  paid: "Plaćeno",
-  expired: "Isteklo",
-  cancelled: "Otkazano",
-};
-const STATUSES = Object.keys(STATUS_LABEL) as Status[];
+import { STATUS_LABEL, STATUSES, type Status, type Ticket } from "@/lib/tickets";
 
 type SortKey = "ts" | "name" | "country" | "packageName" | "total" | "status";
 const COLUMNS: { key: SortKey | null; label: string }[] = [
@@ -26,19 +17,22 @@ const COLUMNS: { key: SortKey | null; label: string }[] = [
 
 export function TicketsTable({
   tickets: initial,
-  base,
+  onReload,
+  onStatus,
   demo,
 }: {
   tickets: Ticket[];
-  base: string;
+  onReload: () => Promise<void>;
+  onStatus: (id: string, status: Status) => Promise<void>;
   demo: boolean;
 }) {
-  const router = useRouter();
   const [refreshing, startRefresh] = useTransition();
   const refresh = useCallback(() => {
     if (demo) return;
-    startRefresh(() => router.refresh());
-  }, [demo, router]);
+    startRefresh(async () => {
+      await onReload();
+    });
+  }, [demo, onReload]);
   useEffect(() => {
     if (demo) return;
     const tick = setInterval(() => {
@@ -72,15 +66,9 @@ export function TicketsTable({
     if (demo) return;
     setSaving(t.id);
     try {
-      const res = await fetch(`${base}/status`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: t.id, status }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.message ?? "Nije sačuvano.");
+      await onStatus(t.id, status);
       setMessage(`${t.name}: ${STATUS_LABEL[status]}`);
-      router.refresh();
+      void onReload();
     } catch (e) {
       setOverrides((o) => {
         const { [t.id]: _, ...rest } = o;
