@@ -29,7 +29,6 @@ export function generateStaticParams() {
   return LANGS.map((lang) => ({ lang }));
 }
 
-// Sections whose list in the JSON is empty render nothing.
 export default async function Home({
   params,
 }: {
@@ -43,7 +42,6 @@ export default async function Home({
       <Header lang={lang} />
       <main id="main">
         <Hero lang={lang} />
-        {/* Most important first: schedule, the contest and its jury, seminars, then the gala show. */}
         <Schedule lang={lang} />
         <Contest lang={lang} />
         <Jury lang={lang} />
@@ -52,7 +50,6 @@ export default async function Home({
         <Packages lang={lang} />
         <About lang={lang} />
         <Programs lang={lang} />
-        {/* Hidden for now, at the organisers' request (2026-10-15). */}
         {/* <Vision lang={lang} /> */}
         <Gallery lang={lang} />
         <Anthem lang={lang} />
@@ -62,7 +59,6 @@ export default async function Home({
         <Travel lang={lang} />
         <Registration lang={lang} />
         <Organizers lang={lang} />
-        {/* Hidden for now, at the organisers' request (2026-10-15). */}
         {/* <Closing lang={lang} /> */}
         <Partners lang={lang} />
       </main>

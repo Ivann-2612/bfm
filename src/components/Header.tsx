@@ -7,7 +7,6 @@ export function Header({ lang, page = "home" }: LangProps & { page?: "home" | "p
   const other = otherLang(lang);
   const otherSite = getContent(other).site;
   const home = homePath(lang);
-  // On the privacy page, section links point back to the home page.
   const prefix = page === "home" ? "" : home;
   const switchHref = page === "home" ? homePath(other) : privacyPath(other);
 

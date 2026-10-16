@@ -5,11 +5,6 @@ import { createPortal } from "react-dom";
 import { SuitMark } from "./ui";
 import type { Suit } from "@/lib/content";
 
-// Time left until the festival opens, as four small cards (days ♠, hours ♥, minutes ♣, seconds ♦).
-// Computed only in the browser (the server can't know "now" for the visitor: no hydration
-// mismatch); until then the cards show dashes.
-// On desktop, once the hero's countdown scrolls away, a small plaque with the same numbers
-// drops in under the navigation, hanging from it on two cords, and swings into place.
 const SUITS: Suit[] = ["spades", "hearts", "clubs", "diamonds"];
 
 function parts(ms: number) {
@@ -35,9 +30,6 @@ export function Countdown({
   const [hanging, setHanging] = useState(false);
   const own = useRef<HTMLDivElement>(null);
 
-  // Each update is scheduled for the moment the remaining time crosses a whole second, so the
-  // seconds change evenly, exactly once a second (a plain setInterval drifts and sometimes
-  // changes twice in quick succession, which looks like the clock is running fast).
   useEffect(() => {
     let id = 0;
     const tick = () => {
@@ -49,8 +41,6 @@ export function Countdown({
     return () => clearTimeout(id);
   }, [target]);
 
-  // Hang under the header only after the hero countdown has scrolled up out of view
-  // (not while it is still below the fold).
   useEffect(() => {
     const el = own.current;
     if (!el) return;
@@ -77,7 +67,6 @@ export function Countdown({
         {units.map((unit, i) => (
           <li key={unit} className="countdown__card">
             <SuitMark suit={SUITS[i]} className="countdown__suit" />
-            {/* A new key per value replays the small slide-in when the number changes. */}
             <b key={text(i)} className="countdown__num">
               {text(i)}
             </b>

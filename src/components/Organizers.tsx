@@ -7,7 +7,6 @@ export function Organizers({ lang }: LangProps) {
     <section id="organizatori" className="section organizers" aria-labelledby="organizers-title">
       <div className="wrap">
         <SectionHead id="organizers-title" kicker={o.kicker} title={o.title} />
-        {/* One heading per role ("Organisers", "Festival partner") instead of repeating it on every name. */}
         <div className="organizers__groups">
           {o.groups.map((g) => (
             <section key={g.title} className="organizers__group" style={{ "--n": g.items.length } as React.CSSProperties}>

@@ -7,7 +7,6 @@ import { Flag, Photo, SuitMark } from "./ui";
 export type ArtistCard = Artist & { suit: Suit; initial: string };
 type Labels = { photo: string; bioSoon: string; close: string; about: string };
 
-// Playing-card corner: the artist's initial over a suit.
 function Index({ initial, suit, flip = false }: { initial: string; suit: Suit; flip?: boolean }) {
   return (
     <span className={`artist__index ${flip ? "artist__index--flip" : ""}`} aria-hidden="true">
@@ -17,16 +16,11 @@ function Index({ initial, suit, flip = false }: { initial: string; suit: Suit; f
   );
 }
 
-// The first card starts open; clicking a card opens its panel below the grid with a larger photo and the bio
-// (bio text comes from "bio" in the JSON; empty shows the "coming soon" line).
 export function GalaArtistsGrid({ artists, labels }: { artists: ArtistCard[]; labels: Labels }) {
-  // All cards start closed; a hint above the grid says to click a photo for the bio.
   const [open, setOpen] = useState<number | null>(null);
-  // Scroll to the panel only after a click, never on page load.
   const clicked = useRef(false);
   const panel = useRef<HTMLDivElement>(null);
   const items = useRef<(HTMLLIElement | null)[]>([]);
-  // Connector from the open card down to the panel: x = card centre, height = gap to the panel.
   const [link, setLink] = useState<{ x: number; h: number } | null>(null);
   const current = open === null ? null : artists[open];
 
@@ -36,7 +30,6 @@ export function GalaArtistsGrid({ artists, labels }: { artists: ArtistCard[]; la
       if (!li || !panel.current) return setLink(null);
       const p = panel.current.getBoundingClientRect();
       const r = li.getBoundingClientRect();
-      // Only when no row of cards sits between the open card and the panel (phones wrap into rows).
       const cardsBelow = items.current.some((el) => el && el.getBoundingClientRect().top > r.top + 4);
       setLink(cardsBelow ? null : { x: r.left + r.width / 2 - p.left, h: p.top - r.bottom });
     }

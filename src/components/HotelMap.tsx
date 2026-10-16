@@ -2,8 +2,6 @@ import { MapTiles } from "./MapTiles";
 
 type Place = { name: string; address: string; lat: number; lng: number };
 
-// The hotel's map is a round "casino chip": a small circle of map with a gold rim and a heart pin,
-// and the address beside it. Deliberately unlike the venue's big rectangular map.
 export function HotelMap({
   place,
   googleHref,

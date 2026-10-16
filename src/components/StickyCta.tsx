@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-// Phones only (see CSS): the header has no Register button there, so once the hero's own
-// button has scrolled away, a floating one takes over, until the form itself is on screen.
 export function StickyCta({ label }: { label: string }) {
   const [heroVisible, setHeroVisible] = useState(true);
   const [formVisible, setFormVisible] = useState(false);

@@ -1,5 +1,3 @@
-# Weekly site probe and a direct call to the Supabase expire function.
-# This replaces the old Vercel cron route and keeps the project alive.
 name: Keep-alive
 
 on:

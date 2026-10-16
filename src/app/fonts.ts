@@ -9,7 +9,6 @@ export const display = Bodoni_Moda({
 export const body = Instrument_Sans({ subsets: ["latin", "latin-ext"], variable: "--font-body", display: "swap" });
 export const mono = IBM_Plex_Mono({ subsets: ["latin", "latin-ext"], weight: ["400", "500"], variable: "--font-mono", display: "swap" });
 
-// Only for the translated title on the poster (matches its engraved Roman capitals).
 export const poster = Cinzel({ subsets: ["latin", "latin-ext"], weight: ["600"], variable: "--font-poster", display: "swap", preload: false });
 
 export const fontVars = `${display.variable} ${body.variable} ${mono.variable} ${poster.variable}`;

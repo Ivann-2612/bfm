@@ -4,7 +4,6 @@ import { useCallback, useEffect, useMemo, useState, useTransition } from "react"
 import { useRouter } from "next/navigation";
 import type { Status, Ticket } from "@/lib/server/admin";
 
-// Mirrors STATUS_LABEL in lib/server/admin.ts (that module is server-only).
 const STATUS_LABEL: Record<Status, string> = {
   pending: "Čeka uplatu",
   paid: "Plaćeno",
@@ -31,15 +30,10 @@ export function TicketsTable({
   demo,
 }: {
   tickets: Ticket[];
-  /** "/karte/<key>" — the status endpoint lives under it. */
   base: string;
-  /** Local preview with sample rows: change status in the browser only. */
   demo: boolean;
 }) {
   const router = useRouter();
-  // Fresh data without a page reload: router.refresh() re-renders the server page (new rows and
-  // totals) while filter, sort and scroll position stay. Runs every 30 s while the tab is visible,
-  // when the tab regains focus, and on the "Refresh" button.
   const [refreshing, startRefresh] = useTransition();
   const refresh = useCallback(() => {
     if (demo) return;
@@ -59,7 +53,6 @@ export function TicketsTable({
   }, [demo, refresh]);
   const [filter, setFilter] = useState<Status | "all">("all");
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "ts", dir: -1 });
-  // Optimistic status changes, dropped once the refreshed server data arrives.
   const [overrides, setOverrides] = useState<Record<string, Status>>({});
   const [saving, setSaving] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -87,7 +80,7 @@ export function TicketsTable({
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.message ?? "Nije sačuvano.");
       setMessage(`${t.name}: ${STATUS_LABEL[status]}`);
-      router.refresh(); // updates the totals above; filter and sort stay as they are
+      router.refresh();
     } catch (e) {
       setOverrides((o) => {
         const { [t.id]: _, ...rest } = o;
@@ -119,7 +112,6 @@ export function TicketsTable({
   const toggleSort = (key: SortKey) =>
     setSort((s) => (s.key === key ? { key, dir: s.dir === 1 ? -1 : 1 } : { key, dir: key === "ts" || key === "total" ? -1 : 1 }));
 
-  // Phones have no column headers to click, so sorting comes from a select.
   const MOBILE_SORTS: { id: string; label: string; key: SortKey; dir: 1 | -1 }[] = [
     { id: "new", label: "Najnovije prvo", key: "ts", dir: -1 },
     { id: "old", label: "Najstarije prvo", key: "ts", dir: 1 },
@@ -231,7 +223,6 @@ export function TicketsTable({
         {rows.length === 0 && <p className="admin__empty admin__empty--inline">Nema prijava sa ovim statusom.</p>}
       </div>
 
-      {/* Phones: one card per registration instead of the wide table (CSS switches between them). */}
       <div className="admin__mobile-sort">
         <label>
           Redosled

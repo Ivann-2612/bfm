@@ -6,7 +6,6 @@ import Image from "next/image";
 type Item = { src: string; alt: string };
 type Labels = { open: string; close: string; prev: string; next: string };
 
-// Native <dialog> gives focus trapping, Esc to close and a backdrop for free.
 export function GalleryGrid({ items, labels }: { items: Item[]; labels: Labels }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState<number | null>(null);

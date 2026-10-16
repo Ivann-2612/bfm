@@ -4,7 +4,6 @@ import { useState } from "react";
 import { getContent } from "@/lib/content";
 import type { LangProps } from "./ui";
 
-// Click-to-load: YouTube is not contacted until the visitor presses play.
 export function Video({ lang }: LangProps) {
   const { video, ui } = getContent(lang);
   const [playing, setPlaying] = useState(false);

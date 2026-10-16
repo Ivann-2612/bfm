@@ -8,7 +8,6 @@ function build(lang: Lang) {
   const e = c.registration.errors;
   const packageIds = c.packages.items.map((p) => p.id);
   const extraIds = c.packages.extras.map((x) => x.id) as [string, ...string[]];
-  // Per-add-on limits and package rules are applied in computePrice; this only rejects nonsense.
   const maxExtra = Math.max(...c.packages.extras.map((x) => x.max));
   const required = (error: string) => z.string({ error }).trim().min(1, { error });
 
@@ -35,8 +34,6 @@ function build(lang: Lang) {
   });
 }
 
-// Shared by the form (client-side check) and /api/register (authoritative check);
-// messages come from the visitor's language.
 export function registrationSchema(lang: Lang) {
   let s = cache.get(lang);
   if (!s) cache.set(lang, (s = build(lang)));

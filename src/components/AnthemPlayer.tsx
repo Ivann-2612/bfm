@@ -2,9 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// A small player in the site's style: gold play button, seekable progress line, elapsed and
-// total time, and five equaliser bars that move only while the song plays. The file is not
-// downloaded until someone presses play (preload="none").
 const fmt = (s: number) => {
   if (!Number.isFinite(s)) return "–:––";
   const m = Math.floor(s / 60);

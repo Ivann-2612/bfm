@@ -4,11 +4,8 @@ import { getContent, site, ORGANIZER_LANG } from "../content";
 import { supabaseAdmin, supabaseMissing } from "./supabase";
 
 const isDev = process.env.NODE_ENV === "development";
-/** Used only on `npm run dev` when ADMIN_KEY isn't set, so the page can be opened locally. */
 export const DEV_KEY = "lokalno";
 
-// The organiser's page lives at /karte/<ADMIN_KEY>: no login, the long random key in the URL
-// is the password. In production, without ADMIN_KEY the page does not exist at all.
 export function isAdminKey(key: string) {
   const expected = process.env.ADMIN_KEY || (isDev ? DEV_KEY : "");
   if (!expected || (!isDev && expected.length < 16)) return false;
@@ -43,7 +40,6 @@ type DbRow = {
   status: Status;
 };
 
-/** Everything pre-formatted on the server so the client table renders identical text (no hydration drift). */
 export type Ticket = {
   id: string;
   ts: number;
@@ -94,7 +90,6 @@ function toTicket(r: DbRow): Ticket {
 export async function loadTickets(): Promise<{ tickets: Ticket[]; error: string | null; demo: boolean }> {
   const db = supabaseAdmin();
   const fail = (error: string) =>
-    // Locally the office proxy blocks Supabase: show sample rows so the page can still be reviewed.
     isDev ? { tickets: DEMO.map(toTicket), error, demo: true } : { tickets: [], error, demo: false };
 
   if (!db) {
@@ -115,7 +110,6 @@ export async function loadTickets(): Promise<{ tickets: Ticket[]; error: string 
   }
 }
 
-// Sample data for local preview only (never used in production).
 const DEMO: DbRow[] = [
   { id: "d1", created_at: "2026-10-12T14:05:00Z", lang: "sr", first_name: "Marko", last_name: "Petrović", email: "marko@example.com", phone: "+381 64 111 222", country: "Srbija", package_id: "standard", extras: {}, notes: "", price_tier: "early", total_eur: 99, status: "paid" },
   { id: "d2", created_at: "2026-10-11T09:30:00Z", lang: "en", first_name: "Anna", last_name: "Novak", email: "anna@example.com", phone: null, country: "Slovenia", package_id: "dealer", extras: { table: 1 }, notes: "Need a power socket", price_tier: "early", total_eur: 199, status: "pending" },

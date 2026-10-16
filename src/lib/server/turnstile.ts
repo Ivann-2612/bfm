@@ -1,7 +1,5 @@
 import "server-only";
 
-// With no Turnstile keys configured, the form's honeypot field (checked in /api/register)
-// is the only bot filter. Add TURNSTILE_SECRET_KEY + NEXT_PUBLIC_TURNSTILE_SITE_KEY to enable it.
 export async function verifyTurnstile(token: string | undefined, ip: string | null): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY;
   if (!secret) return true;

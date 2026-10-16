@@ -13,8 +13,6 @@ const db = createClient(
 
 async function rateLimit(ip: string | null) {
   if (!ip) return 0;
-  // Keep the production implementation aligned with the project rate-limit logic.
-  // Full details live in src/lib/server/ratelimit.ts; this scaffold keeps the route contract valid.
   return 0;
 }
 

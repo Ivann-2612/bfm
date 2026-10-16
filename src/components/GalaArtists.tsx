@@ -9,7 +9,6 @@ export function GalaArtists({ lang }: LangProps) {
     .filter((a) => !a.hidden)
     .map((a, i) => ({ ...a, suit: SUITS[i % SUITS.length], initial: a.name.charAt(0) }));
   if (artists.length === 0) return null;
-  // Show times come from the gala programme item, so they can't drift from the schedule.
   const shows = programs.items.find((p) => p.id === "varijete")?.shows ?? [];
 
   return (

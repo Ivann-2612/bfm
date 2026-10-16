@@ -16,11 +16,6 @@ const TARGETS = [
   ".closing__inner",
 ].join(",");
 
-// Schedule groups are left out on purpose: inactive tabs are hidden, so they would never
-// intersect and would stay invisible after switching tabs.
-// Fades sections in once as they scroll into view. Uses a data attribute (never className)
-// so React re-renders of client components can't wipe it. Without JS, or with reduced
-// motion, nothing is hidden.
 export function ScrollReveal() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -36,7 +31,6 @@ export function ScrollReveal() {
       { rootMargin: "0px 0px -8% 0px" },
     );
     for (const el of els) {
-      // Stagger siblings in the same row a little.
       const i = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
       el.style.setProperty("--reveal-delay", `${(i % 6) * 70}ms`);
       el.dataset.reveal = "pending";

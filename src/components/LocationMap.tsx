@@ -2,7 +2,6 @@ import { MapTiles } from "./MapTiles";
 
 type Place = { name: string; address: string; lat: number; lng: number };
 
-/** Styled OSM map with a pin and a card: "Get directions" (Google Maps) plus a second map link. */
 export function LocationMap({
   place,
   openHref,

@@ -1,7 +1,5 @@
 import type { NextConfig } from "next";
 
-// Static export for AdriaHost: plain files in out/.
-// The public .htaccess handles the old /en and /privacy URL patterns.
 const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,

@@ -1,11 +1,8 @@
-// A static map built from OpenStreetMap tiles, positioned so the given point sits exactly at
-// the centre of the frame (where the pin is drawn). No map library, no iframe, no controls
-// that look clickable but aren't. Colours are restyled in CSS (.map__tiles).
 
 const ZOOM = 17;
 const TILE = 256;
-const COLS = 5; // ±2 tiles around the centre: enough for frames up to ~1000px wide
-const ROWS = 3; // ±1 tile: enough for frames up to ~500px tall
+const COLS = 5;
+const ROWS = 3;
 
 function project(lat: number, lng: number, z: number) {
   const n = 2 ** z;
@@ -19,7 +16,6 @@ export function MapTiles({ lat, lng }: { lat: number; lng: number }) {
   const { x, y } = project(lat, lng, ZOOM);
   const tx = Math.floor(x);
   const ty = Math.floor(y);
-  // Pixel offset of the point inside its own tile.
   const px = (x - tx) * TILE;
   const py = (y - ty) * TILE;
   const halfC = Math.floor(COLS / 2);

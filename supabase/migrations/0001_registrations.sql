@@ -1,5 +1,3 @@
--- Registrations for the convention. Written only by the server (secret key),
--- so RLS is on with no policies: the publishable key can neither read nor write.
 
 create table if not exists public.registrations (
   id            uuid primary key default gen_random_uuid(),
@@ -26,7 +24,6 @@ create table if not exists public.registrations (
   paid_at       timestamptz,
   expired_at    timestamptz,
 
-  -- GDPR: what the person agreed to, and when.
   consent_text  text        not null,
   consent_at    timestamptz not null,
 
@@ -38,7 +35,6 @@ create index if not exists registrations_pending_idx
 
 alter table public.registrations enable row level security;
 
--- Set paid_at automatically when the organiser flips status to 'paid' in the dashboard.
 create or replace function public.registrations_set_paid_at()
 returns trigger language plpgsql as $$
 begin

@@ -256,7 +256,6 @@ textarea {
   gap: 1.75rem;
   margin-left: auto;
 }
-/* Just above the burger breakpoint the bar is full (name, six links, Instagram, language, register). */
 @media (max-width: 1240px) {
   .site-nav {
     gap: 1.1rem;
@@ -385,7 +384,6 @@ textarea {
 .mobile-menu__social svg {
   color: var(--gold);
 }
-/* The header's backdrop-filter would trap the fixed panel inside the header; drop it while open. */
 html.menu-open {
   overflow: hidden;
 }
@@ -404,7 +402,6 @@ html.menu-open .site-header {
   .lang-switch {
     margin-left: auto;
   }
-  /* Instagram + language sit together on the right. */
   .social-link + .lang-switch {
     margin-left: 0;
   }
@@ -413,9 +410,6 @@ html.menu-open .site-header {
   }
 }
 @media (max-width: 600px) {
-  /* Register lives in the menu and the hero on phones; keep the bar to name + language + menu.
-     Instagram moves into the menu too, so the festival name fits. */
-  /* With Instagram hidden, the language button again pushes itself and the burger to the right edge. */
   .site-header .social-link + .lang-switch {
     margin-left: auto;
   }
@@ -515,7 +509,6 @@ html.menu-open .site-header {
   display: flex;
   gap: 0.5rem;
 }
-/* Each day is a small card: suit + date, dealt in on load. */
 .hero__card {
   display: inline-flex;
   flex-direction: column;
@@ -532,7 +525,6 @@ html.menu-open .site-header {
   animation-delay: calc(0.35s + var(--i) * 0.12s);
   color: var(--bone);
   text-decoration: none;
-  /* `translate` (not `transform`) so the hover lift doesn't fight the deal animation. */
   transition:
     translate 0.2s,
     border-color 0.2s,
@@ -585,10 +577,8 @@ html.menu-open .site-header {
   color: var(--gold-pale);
   font-weight: 500;
 }
-/* Countdown to the opening: four small dark cards in the style of the date cards above,
-   each marked with a suit; a number slides in when it changes. */
 .countdown {
-  margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
+  margin-bottom: clamp(1.75rem, 3.5vw, 3.5rem);
   max-width: 30rem;
 }
 .countdown__label {
@@ -612,16 +602,22 @@ html.menu-open .site-header {
   display: grid;
   justify-items: center;
   min-width: 4.3rem;
-  /* Room at the top for the suit, so it never touches a three-digit number. */
   padding: 0.95rem 0.8rem 0.5rem;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid rgb(200 160 75 / 0.7);
   border-radius: 7px;
   background:
-    linear-gradient(180deg, rgb(255 255 255 / 0.035), rgb(255 255 255 / 0)),
-    var(--ink-2);
+    radial-gradient(
+      120% 90% at 50% 0%,
+      rgb(255 255 255 / 0.1),
+      rgb(255 255 255 / 0) 60%
+    ),
+    linear-gradient(180deg, #6b1d26, #3d0f15);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 0.45);
 }
-/* A hairline across the middle, like a split-flap card. */
+.countdown__card .suit--red {
+  color: #f08a8f;
+}
 .countdown__card::after {
   content: '';
   position: absolute;
@@ -649,7 +645,7 @@ html.menu-open .site-header {
   font: 500 0.62rem / 1 var(--mono);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--smoke);
+  color: rgb(233 216 166 / 0.7);
 }
 .countdown--done {
   font: italic 400 var(--step-1) / 1.3 var(--display);
@@ -661,8 +657,6 @@ html.menu-open .site-header {
     opacity: 0;
   }
 }
-/* Desktop: the same countdown hanging under the navigation once the hero one is out of view.
-   Two gold cords come out from under the header; the plaque drops and swings into place. */
 .countdown-hang {
   display: none;
 }
@@ -672,7 +666,7 @@ html.menu-open .site-header {
     position: fixed;
     top: calc(4rem + 1px);
     right: max(var(--gutter), calc((100vw - var(--wrap)) / 2 + var(--gutter)));
-    z-index: 49; /* under the header, so the cords seem to come out of it */
+    z-index: 49;
     padding-top: 1.6rem;
     transform: translateY(calc(-100% - 6px));
     transform-origin: 50% 0;
@@ -696,7 +690,6 @@ html.menu-open .site-header {
   background: linear-gradient(var(--gold), rgb(200 160 75 / 0.55));
 }
 .countdown-hang__cord::after {
-  /* the small ring where the cord meets the plaque */
   content: '';
   position: absolute;
   left: -2px;
@@ -717,15 +710,22 @@ html.menu-open .site-header {
   display: flex;
   gap: 0.15rem;
   padding: 0.4rem 0.5rem;
-  border: 1px solid rgb(200 160 75 / 0.55);
+  border: 1px solid rgb(200 160 75 / 0.8);
   border-radius: 8px;
   background:
-    linear-gradient(180deg, rgb(255 255 255 / 0.04), rgb(255 255 255 / 0)),
-    var(--ink-2);
+    radial-gradient(
+      120% 90% at 50% 0%,
+      rgb(255 255 255 / 0.1),
+      rgb(255 255 255 / 0) 60%
+    ),
+    linear-gradient(180deg, #6b1d26, #3d0f15);
   box-shadow:
-    inset 0 0 0 3px var(--ink-2),
-    inset 0 0 0 4px rgb(200 160 75 / 0.18),
-    0 14px 30px rgb(0 0 0 / 0.55);
+    inset 0 0 0 3px #4a121a,
+    inset 0 0 0 4px rgb(200 160 75 / 0.4),
+    0 14px 30px rgb(0 0 0 / 0.6);
+}
+.countdown-hang__plaque .suit--red {
+  color: #f08a8f;
 }
 .countdown-hang__cell {
   position: relative;
@@ -735,7 +735,7 @@ html.menu-open .site-header {
   padding: 0.6rem 0.45rem 0.2rem;
 }
 .countdown-hang__cell + .countdown-hang__cell {
-  border-left: 1px solid var(--line);
+  border-left: 1px solid rgb(200 160 75 / 0.35);
 }
 .countdown-hang__suit {
   position: absolute;
@@ -753,7 +753,7 @@ html.menu-open .site-header {
   font: 500 0.5rem / 1 var(--mono);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--smoke);
+  color: rgb(233 216 166 / 0.7);
 }
 @keyframes hang-swing {
   0% {
@@ -787,7 +787,6 @@ html.menu-open .site-header {
   }
 }
 
-/* The festival's own poster, hung like a framed bill. */
 .hero__poster {
   justify-self: center;
   width: min(100%, 26rem);
@@ -1008,10 +1007,9 @@ html.menu-open .site-header {
   font-size: 1.4rem;
 }
 
-/* ---------- Lecturers: playing cards ---------- */
+/* ---------- Lecturers ---------- */
 .lecturers__grid {
   display: grid;
-  /* Capped at 260px so small source photos aren't blown up. */
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 245px));
   gap: clamp(1rem, 2.5vw, 2rem);
 }
@@ -1028,11 +1026,9 @@ html.menu-open .site-header {
   text-align: left;
   border-radius: var(--radius-card);
 }
-/* Lecturer cards without a back: nothing to click. */
 .pcard--static {
   cursor: default;
 }
-/* Absolutely filled, not height:100%: same iOS Safari issue inside <button> as the artist cards. */
 .pcard__inner {
   position: absolute;
   inset: 0;
@@ -1073,7 +1069,6 @@ html.menu-open .site-header {
   font: var(--step--1) var(--mono);
   color: var(--smoke);
 }
-/* Card back: gold lattice, like the reverse of a deck. */
 .pcard__back {
   transform: rotateY(180deg);
   padding: 1.5rem;
@@ -1100,7 +1095,6 @@ html.menu-open .site-header {
   line-height: 1.55;
   color: var(--bone);
   overflow-y: auto;
-  /* Only if a bio is longer than the card: a thin gold bar instead of the browser's white one. */
   padding-right: 0.35rem;
   scrollbar-width: thin;
   scrollbar-color: rgb(200 160 75 / 0.45) transparent;
@@ -1120,7 +1114,6 @@ html.menu-open .site-header {
 .schedule {
   background: var(--ink-2);
 }
-/* Both days side by side, each under its own suit; stacked on phones. */
 .schedule__days {
   display: grid;
   gap: 3.5rem 4rem;
@@ -1256,7 +1249,6 @@ html.menu-open .site-header {
     grid-auto-flow: dense;
     gap: 1.25rem;
   }
-  /* Rhythm repeats every six photos: one wide, one tall, four regular. */
   .gallery__item--0 {
     grid-column: span 2;
     grid-row: span 2;
@@ -1311,15 +1303,11 @@ html.menu-open .site-header {
     gap: 4rem;
   }
 }
-/* Solid glyphs with a gold fade, not text-stroke: the variable font's overlapping
-   contours show up as stray inner lines and jagged edges when only outlined. */
 .history__year {
   justify-self: start;
   max-width: 100%;
   font: italic 400 clamp(5rem, 14vw, 12.5rem) / 0.9 var(--display);
   letter-spacing: -0.02em;
-  /* Italic glyphs overhang their box and background-clip only paints inside it:
-     the padding gives the gradient room so the last digit isn't cut off. */
   padding: 0.04em 0.14em 0.08em 0.06em;
   color: transparent;
   background: linear-gradient(
@@ -1337,7 +1325,6 @@ html.menu-open .site-header {
 }
 
 /* ---------- Organizers ---------- */
-/* Groups sit side by side, each as wide as its number of names (--n). */
 .organizers__groups {
   display: flex;
   flex-wrap: wrap;
@@ -1374,7 +1361,6 @@ html.menu-open .site-header {
 .organizers__sub {
   color: var(--smoke);
 }
-/* Directors and coordinators: two teams side by side, portraits in a thin gold mat. */
 .organizers__people {
   display: grid;
   gap: 2.5rem 3rem;
@@ -1410,7 +1396,6 @@ html.menu-open .site-header {
   object-fit: cover;
   object-position: 50% 25%;
 }
-/* Inner hairline, like a passe-partout; sits above the photo. */
 .person__frame::after {
   content: '';
   position: absolute;
@@ -1470,7 +1455,6 @@ html.menu-open .site-header {
 }
 
 /* ---------- FISM contest ---------- */
-/* The two logos have white grounds, so they sit on small white plates like competition badges. */
 .contest {
   background: var(--ink-3);
 }
@@ -1560,7 +1544,6 @@ html.menu-open .site-header {
 }
 
 /* ---------- Jury ---------- */
-/* Same gold-matted portraits as the organisers, with the bio underneath. */
 .jury__list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
@@ -1610,7 +1593,6 @@ html.menu-open .site-header {
 .juror__more[open] summary {
   display: none;
 }
-/* Phones: photo beside the name so three bios don't become one very long column of pictures. */
 @media (max-width: 640px) {
   .juror {
     display: grid;
@@ -1639,7 +1621,7 @@ html.menu-open .site-header {
   }
 }
 
-/* ---------- Packages: theatre price list ---------- */
+/* ---------- Packages ---------- */
 .packages {
   border-block: 1px solid var(--line);
 }
@@ -1694,7 +1676,6 @@ html.menu-open .site-header {
   color: var(--smoke);
   font-size: 0.93rem;
 }
-/* Inline list separated by middots, like a printed programme. */
 .pricelist__includes li:not(:last-child)::after {
   content: '·';
   margin-inline: 0.5rem;
@@ -1764,7 +1745,6 @@ html.menu-open .site-header {
   color: var(--smoke);
   font-size: 0.95rem;
 }
-/* Hotel map: a round "casino chip" of map with a gold rim and notched edge, address beside it. */
 .hotel-map {
   display: flex;
   align-items: center;
@@ -1780,7 +1760,6 @@ html.menu-open .site-header {
   border-radius: 50%;
   background: #1a1612;
   isolation: isolate;
-  /* Inner gold hairline, then a dashed rim like the edge spots of a chip, then a soft glow. */
   box-shadow:
     inset 0 0 0 1px rgb(200 160 75 / 0.5),
     0 0 0 4px var(--ink),
@@ -1796,7 +1775,6 @@ html.menu-open .site-header {
   border-radius: 50%;
   pointer-events: none;
 }
-/* Warmer and darker than the venue map: the chip reads as an object, not a window. */
 .hotel-map .map__tiles {
   filter: invert(1) hue-rotate(180deg) brightness(0.7) contrast(1.1)
     saturate(0.3) sepia(0.6);
@@ -1891,15 +1869,11 @@ html.menu-open .site-header {
   font: 500 var(--step-0) var(--mono);
   color: var(--gold-pale);
 }
-/* Small cards on purpose: several source photos are only 200–400 px wide, so cards stay
-   near that size (7 in a row on desktop, 2 on phones) instead of upscaling them into blur. */
 .artists__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
   gap: 1.75rem clamp(0.75rem, 2vw, 1.25rem);
 }
-/* Artist cards as playing cards: initial + suit in two corners, photo in between.
-   On hover the card lifts and tilts, alternating direction like a fanned hand. */
 .artist {
   display: grid;
   gap: 0.2rem;
@@ -1925,8 +1899,6 @@ html.menu-open .site-header {
 .artist:nth-child(even):hover .artist__card {
   transform: translateY(-8px) rotate(1.5deg);
 }
-/* Placed by insets, not height:100%: Safari (iOS) cannot resolve a percentage height inside a
-   <button>, which let photos spill out of the card. Insets match the card padding. */
 .artist__photo {
   position: absolute;
   inset: 2.1rem 0.5rem;
@@ -1983,8 +1955,6 @@ html.menu-open .site-header {
     gap: 4rem;
   }
 }
-/* Static map (MapTiles.tsx): OSM tiles restyled to a warm night look. The venue is the
-   centre of the frame, which is where the pin's tip sits. */
 .map {
   position: relative;
   margin: 0;
@@ -2006,8 +1976,6 @@ html.menu-open .site-header {
 }
 .map__tiles {
   position: absolute;
-  /* invert + 180° hue keeps water blue-ish and ozs green-ish (plain invert turns them orange);
-     sepia then warms everything toward the site's gold. */
   filter: invert(1) hue-rotate(180deg) brightness(0.82) contrast(1.05)
     saturate(0.55) sepia(0.32);
 }
@@ -2017,7 +1985,6 @@ html.menu-open .site-header {
   max-width: none;
   user-select: none;
 }
-/* Vignette and a soft gold glow on the venue. */
 .map::after {
   content: '';
   position: absolute;
@@ -2035,7 +2002,6 @@ html.menu-open .site-header {
 .map__pin {
   position: absolute;
   left: 50%;
-  /* The rotated head's corner reaches ~0.5rem below its box: lift it so the tip is the centre. */
   top: calc(50% - 0.5rem);
   z-index: 2;
   transform: translate(-50%, -100%);
@@ -2124,7 +2090,6 @@ html.menu-open .site-header {
   color: var(--gold-pale);
 }
 @media (max-width: 640px) {
-  /* Keep the credit clear of the card on narrow frames. */
   .map__credit {
     top: 0.4rem;
     bottom: auto;
@@ -2220,11 +2185,8 @@ html.menu-open .site-header {
   text-transform: none;
   letter-spacing: 0;
   font: 400 0.85rem / 1.4 var(--body);
-  /* Quieter than --smoke but still ~4.5:1 on the dark background (readable small text). */
   color: #857b6c;
 }
-/* Hints inside a label ("optional", "start typing…") keep the label's line height, so
-   fields side by side line up. */
 .field > span small {
   line-height: inherit;
 }
@@ -2233,7 +2195,6 @@ html.menu-open .site-header {
 .field textarea {
   width: 100%;
   padding: 0.6rem 0.8rem;
-  /* Inputs inherit the body's 1.6 line height, which made them tall; keep them compact. */
   line-height: 1.35;
   background: var(--ink-2);
   border: 1px solid rgb(200 160 75 / 0.35);
@@ -2252,7 +2213,6 @@ html.menu-open .site-header {
   outline-offset: 0;
   border-color: var(--gold);
 }
-/* Country combobox: the input plus our own list (the native datalist popup can't be styled). */
 .combo {
   position: relative;
 }
@@ -2311,7 +2271,6 @@ html.menu-open .site-header {
   background: rgb(200 160 75 / 0.16);
   color: var(--gold-pale);
 }
-/* The region (first six) is separated from the alphabetical rest while nothing is typed. */
 .combo__list.is-full li:nth-child(6) {
   margin-bottom: 0.35rem;
   border-bottom: 1px solid var(--line);
@@ -2339,7 +2298,6 @@ html.menu-open .site-header {
   font-size: 0.9rem;
   color: #e0737c;
 }
-/* A field that needs attention: its label and helper text turn a soft red too, not just the input. */
 .field:has(> [aria-invalid='true'], > .combo > [aria-invalid='true']) > span,
 .choices:has(> .field__error) > legend,
 .check:has([aria-invalid='true']) > span {
@@ -2408,7 +2366,6 @@ html.menu-open .site-header {
   background: rgb(163 48 59 / 0.12);
 }
 
-/* Price summary styled as a ticket stub with a perforated edge. */
 .stub {
   position: sticky;
   top: 5.5rem;
@@ -2593,7 +2550,6 @@ html.menu-open .site-header {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* Five bars that dance only while the song plays. */
 .anthem__eq {
   display: inline-flex;
   align-items: flex-end;
@@ -2628,7 +2584,6 @@ html.menu-open .site-header {
     opacity: 1;
   }
 }
-/* Progress: a thin gold line that fills up; the thumb shows on hover and focus. */
 .anthem__seek {
   display: block;
   width: 100%;
@@ -2790,8 +2745,6 @@ html.menu-open .site-header {
   border-top: 1px solid var(--line);
   font-size: var(--step--1);
 }
-/* Phones: links as a two-column index instead of a wrapped run of underlined words; room at
-   the bottom so the sticky "Register" button doesn't cover the copyright line. */
 @media (max-width: 640px) {
   .site-footer {
     padding-block: 2.75rem 6rem;
@@ -2857,8 +2810,6 @@ html.cookie-open .total-bar {
     max-width: none;
   }
 }
-/* Shatter (CookieBanner): the banner breaks into a grid of pieces that fly out from the
-   centre, spin and drop. Each piece shows its own slice of a static copy of the banner. */
 .shatter {
   position: fixed;
   z-index: 70;
@@ -3013,7 +2964,6 @@ html.cookie-open .total-bar {
 }
 .register__done {
   max-width: 44rem;
-  /* Lands below the sticky header when scrolled into view. */
   scroll-margin-top: 5.5rem;
 }
 .register__done:focus {
@@ -3182,7 +3132,6 @@ html.cookie-open .total-bar {
 .admin__status--cancelled {
   color: var(--smoke);
 }
-/* The status pill is a <select>: same look, plus a small caret. */
 select.admin__status {
   appearance: none;
   padding: 0.3rem 1.6rem 0.3rem 0.65rem;
@@ -3318,7 +3267,6 @@ select.admin__status option {
   color: var(--gold-pale);
 }
 
-/* Phones: cards instead of the table. */
 .admin__mobile-sort,
 .admin__cards {
   display: none;
@@ -3347,7 +3295,6 @@ select.admin__status option {
     flex-basis: 100%;
     font-size: 0.75rem;
   }
-  /* Filters scroll sideways in one row instead of wrapping into three. */
   .admin__filters {
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -3431,7 +3378,6 @@ select.admin__status option {
     flex: none;
     text-align: right;
   }
-  /* Bigger tap target for the status on a phone. */
   .admin__card select.admin__status {
     padding: 0.5rem 1.8rem 0.5rem 0.8rem;
     font-size: 0.85rem;
@@ -3484,20 +3430,17 @@ select.admin__status option {
   box-shadow: 0 0 0 1px rgb(255 255 255 / 0.12);
 }
 
-/* ---------- Phone fixes from the responsive check (2026-10-13) ---------- */
-/* Hotel room note (size, beds) always on its own line under the room name. */
+/* ---------- Phone fixes ---------- */
 .hotels__room small {
   display: block;
   margin-top: 0.15rem;
 }
 @media (max-width: 640px) {
-  /* Airport name and distance stacked instead of squeezed side by side. */
   .travel__airports div {
     flex-direction: column;
     gap: 0.2rem;
   }
 }
-/* Artist bio panel: the photo spans the width on phones, so keep the close button above it. */
 @media (max-width: 699px) {
   .artist-panel .artist-panel__inner {
     padding-top: 3.75rem;
@@ -3536,7 +3479,7 @@ select.admin__status option {
   }
 }
 
-/* ---------- Programmes: competition categories + flyer's "Festival programme" list ---------- */
+/* ---------- Programmes ---------- */
 .program__points {
   display: flex;
   flex-wrap: wrap;
@@ -3591,8 +3534,6 @@ select.admin__status option {
   color: var(--gold);
 }
 
-/* ---------- Mobile total bar (Registration) ----------
-   Shown while the form is on screen and the price summary isn't; desktop has the summary beside the form. */
 .total-bar {
   position: fixed;
   left: 0.75rem;
@@ -3641,7 +3582,7 @@ select.admin__status option {
   }
 }
 
-/* ---------- Artist cards: click → bio panel ---------- */
+/* ---------- Artist cards ---------- */
 .artist__button {
   display: block;
   width: 100%;
@@ -3670,7 +3611,6 @@ select.admin__status option {
 .artist__button .artist__country {
   margin-top: 0.2rem;
 }
-/* The open card stays lifted with a gold edge, so it's clear whose bio is shown. */
 .artist.is-active .artist__card {
   transform: translateY(-8px);
   border-color: var(--gold);
@@ -3688,7 +3628,6 @@ select.admin__status option {
 .artist-panel[hidden] {
   display: none;
 }
-/* Gold line from the open card down to the panel (position set in GalaArtistsGrid). */
 .artist-panel {
   position: relative;
 }
@@ -3702,7 +3641,6 @@ select.admin__status option {
   animation: link-grow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   pointer-events: none;
 }
-/* Small diamond where the line leaves the card. */
 .artist-panel__link::before {
   content: '';
   position: absolute;
@@ -3781,9 +3719,6 @@ select.admin__status option {
   color: var(--gold);
 }
 
-/* ---------- Translated poster (Hero, non-Serbian) ----------
-   Same proportions as the original poster: the top 600/1491 is the title band (set as text),
-   the rest is the text-free stage crop. Sizes use container units so it scales with the poster. */
 .poster {
   container-type: inline-size;
   display: grid;
@@ -3801,7 +3736,6 @@ select.admin__status option {
   gap: 2.4cqw;
   padding: 0 6cqw 3cqw;
   text-align: center;
-  /* Red stage lights at the edges and faint dust, as on the original. */
   background:
     radial-gradient(
       ellipse 22% 70% at 0% 85%,
@@ -3840,12 +3774,9 @@ select.admin__status option {
   background-clip: text;
   filter: drop-shadow(0 0.4cqw 0.8cqw rgb(0 0 0 / 0.8));
 }
-/* Each title line stays on one line, also while the poster font is still loading. */
 .poster__title span {
   white-space: nowrap;
 }
-/* background-clip:text only paints inside the line box; Cinzel capitals rise above a
-   line-height of 1, so give them room or their tops come out blank. */
 .poster__title {
   padding-top: 0.14em;
   line-height: 1.05;
@@ -3968,8 +3899,7 @@ select.admin__status option {
   }
 }
 
-/* ---------- Hero: magic deck (MagicDeck.tsx, three.js) ---------- */
-/* Phones/tablets: room above the poster for the tops of the fanned cards. */
+/* ---------- Hero ---------- */
 @media (max-width: 959px) {
   .hero__poster {
     margin-top: 2.5rem;
@@ -3985,7 +3915,6 @@ select.admin__status option {
 }
 
 /* ---------- Spotlight & curtain (hero) ---------- */
-/* A warm stage light falls on the poster; velvet at both edges frames the stage. */
 .hero::before,
 .hero::after {
   content: '';
@@ -4006,32 +3935,6 @@ select.admin__status option {
       transparent 70%
     );
 }
-/* Each edge gets its own curtain and the right one is the left one mirrored (folds counted from
-   the outer edge on both sides), so colour, width and folds match exactly. */
-/* .hero::after {
-  --curtain: clamp(2.5rem, 9vw, 7rem);
-  --velvet-edge: rgb(110 22 30 / 0.42);
-  --fold: rgb(0 0 0 / 0.16) 0 14px, transparent 14px 34px;
-  background:
-    repeating-linear-gradient(90deg, var(--fold)) left top / var(--curtain) 100%
-      no-repeat,
-    repeating-linear-gradient(270deg, var(--fold)) right top / var(--curtain)
-      100% no-repeat,
-    linear-gradient(90deg, var(--velvet-edge), transparent) left top /
-      var(--curtain) 100% no-repeat,
-    linear-gradient(270deg, var(--velvet-edge), transparent) right top /
-      var(--curtain) 100% no-repeat;
-  -webkit-mask:
-    linear-gradient(90deg, #000, transparent) left top / var(--curtain) 100%
-      no-repeat,
-    linear-gradient(270deg, #000, transparent) right top / var(--curtain) 100%
-      no-repeat;
-  mask:
-    linear-gradient(90deg, #000, transparent) left top / var(--curtain) 100%
-      no-repeat,
-    linear-gradient(270deg, #000, transparent) right top / var(--curtain) 100%
-      no-repeat;
-} */
 .hero__inner {
   position: relative;
   z-index: 1;
@@ -4046,7 +3949,7 @@ select.admin__status option {
   }
 }
 
-/* ---------- Scroll reveal (see ScrollReveal.tsx) ---------- */
+/* ---------- Scroll reveal ---------- */
 [data-reveal] {
   transition:
     opacity 0.7s ease-out,
@@ -4058,9 +3961,8 @@ select.admin__status option {
   translate: 0 18px;
 }
 
-/* ---------- Phones: price list & lecturers ---------- */
+/* ---------- Phones ---------- */
 @media (max-width: 640px) {
-  /* Price list: stack each package; prices get their column header from data-label. */
   .pricelist thead {
     position: absolute;
     width: 1px;
@@ -4123,7 +4025,6 @@ select.admin__status option {
     white-space: nowrap;
   }
 
-  /* Lecturers: a list with photo and text side by side; the flip cards stay for larger screens. */
   .lecturers__grid {
     display: none;
   }
@@ -4132,7 +4033,6 @@ select.admin__status option {
   }
 }
 
-/* Lecturers on phones (the list is hidden above 640px). */
 @media (min-width: 641px) {
   .lecturers__list {
     display: none;
@@ -4210,7 +4110,6 @@ select.admin__status option {
   }
 }
 
-/* Gala artists: small hint above the cards (all bios start closed). */
 .artists__hint {
   margin: 0 0 1rem;
   font: 500 var(--step--1) / 1.4 var(--mono);

@@ -2,12 +2,6 @@
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 
-// Country field with our own suggestion list. The browser's <datalist> popup can't be styled
-// (white box, "Manage addresses…" in Chrome), so this is an ARIA combobox: type to filter,
-// arrows + Enter to pick, Escape to close. Any text is still accepted (the list only helps).
-
-// One folded character per source character, so match positions map back onto the name:
-// "Č" → "c", "Ö" → "o". Lets "srb", "Srb" and "šrb" all find "Srbija".
 const fold = (s: string) =>
   Array.from(s, (ch) => ch.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase()[0] ?? ch).join("");
 
@@ -24,7 +18,6 @@ export function CountryCombo({ value, onChange, options, noMatch, ...inputProps 
   const [active, setActive] = useState(-1);
   const listRef = useRef<HTMLUListElement>(null);
 
-  // Names that start with the query first, then names that contain it.
   const matches = useMemo(() => {
     const q = fold(value.trim());
     if (!q) return options.map((name) => ({ name, at: -1 }));
@@ -58,7 +51,7 @@ export function CountryCombo({ value, onChange, options, noMatch, ...inputProps 
       const step = e.key === "ArrowDown" ? 1 : -1;
       setActive((i) => (i + step + matches.length) % matches.length);
     } else if (e.key === "Enter" && open && active >= 0) {
-      e.preventDefault(); // pick the country instead of submitting the form
+      e.preventDefault();
       pick(matches[active].name);
     } else if (e.key === "Escape" && open) {
       e.preventDefault();
@@ -66,7 +59,6 @@ export function CountryCombo({ value, onChange, options, noMatch, ...inputProps 
     }
   };
 
-  // An exact match needs no list (e.g. right after picking, or a fully typed name).
   const exact = matches.length === 1 && matches[0].name.toLowerCase() === value.trim().toLowerCase();
   const show = open && !exact && options.length > 0;
 
@@ -87,7 +79,6 @@ export function CountryCombo({ value, onChange, options, noMatch, ...inputProps 
         }}
         onFocus={(e) => {
           setOpen(true);
-          // A pre-filled or picked country is selected, so typing simply replaces it.
           if (exact) e.currentTarget.select();
         }}
         onClick={() => setOpen(true)}
@@ -101,7 +92,6 @@ export function CountryCombo({ value, onChange, options, noMatch, ...inputProps 
         role="listbox"
         className={`combo__list ${qLen === 0 ? "is-full" : ""}`}
         hidden={!show}
-        // Keep focus in the input while clicking an option (otherwise blur closes the list first).
         onMouseDown={(e) => e.preventDefault()}
       >
         {matches.map((m, i) => (
@@ -113,7 +103,7 @@ export function CountryCombo({ value, onChange, options, noMatch, ...inputProps 
             className={i === active ? "is-active" : ""}
             onMouseEnter={() => setActive(i)}
             onClick={(e) => {
-              e.preventDefault(); // the field is a <label>: don't let it re-click the input
+              e.preventDefault();
               pick(m.name);
             }}
           >

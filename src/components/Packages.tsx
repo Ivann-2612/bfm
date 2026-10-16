@@ -1,7 +1,6 @@
 import { site } from "@/lib/content";
 import { SectionHead, type LangProps } from "./ui";
 
-// Both prices are always shown, so the static page never depends on "today".
 export function Packages({ lang }: LangProps) {
   const s = site(lang);
   const p = s.c.packages;

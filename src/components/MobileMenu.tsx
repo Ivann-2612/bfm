@@ -20,7 +20,6 @@ export function MobileMenu({ links, privacy, instagram, lang, labels }: Props) {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     const close = () => setOpen(false);
     document.addEventListener("keydown", onKey);
-    // Closing on resize avoids a stuck open panel when the desktop nav takes over.
     window.addEventListener("resize", close);
     document.documentElement.classList.add("menu-open");
     return () => {

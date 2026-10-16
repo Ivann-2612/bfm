@@ -1,8 +1,6 @@
 import { site } from "@/lib/content";
 import { Photo, SectionHead, type LangProps } from "./ui";
 
-// Lecturers as playing cards: photo, name, what they do and where they come from. No bios here
-// (the artists' bios are in the gala section, so they aren't repeated).
 export function Lecturers({ lang }: LangProps) {
   const { c, lecturers } = site(lang);
   if (lecturers.length === 0) return null;
@@ -31,7 +29,6 @@ export function Lecturers({ lang }: LangProps) {
             </li>
           ))}
         </ul>
-        {/* Phones: a plain list instead of a sideways strip of cards. */}
         <ul className="lecturers__list">
           {lecturers.map((l, i) => (
             <li key={i}>

@@ -9,7 +9,6 @@ type Choice = "granted" | "denied" | null;
 const KEY = "analytics-consent";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
-// Shatter: the banner is cut into a COLS x ROWS grid; each piece flies away from the centre.
 const COLS = 6;
 const ROWS = 4;
 const SHATTER_MS = 1000;
@@ -17,12 +16,8 @@ const SHATTER_MS = 1000;
 type Rect = { left: number; top: number; width: number; height: number };
 
 export function CookieBanner({ lang }: LangProps) {
-  // undefined = not read yet; rendering nothing until mount avoids a hydration mismatch.
   const [choice, setChoice] = useState<Choice | undefined>(undefined);
-  // Local preview only (npm run dev): add ?cookies to the URL to always show the banner,
-  // even without a GA ID or after a choice was saved. Nothing is stored in this mode.
   const [preview, setPreview] = useState(false);
-  // Banner position at the moment of the click, while the pieces fly.
   const [shatter, setShatter] = useState<Rect | null>(null);
   const box = useRef<HTMLDivElement>(null);
 
@@ -33,7 +28,6 @@ export function CookieBanner({ lang }: LangProps) {
     setChoice(saved === "granted" || saved === "denied" ? saved : null);
   }, []);
 
-  // While the banner is open, other bottom-fixed bits (phone Register button, total bar) step aside.
   const open = choice === null && (Boolean(GA_ID) || preview);
   useEffect(() => {
     document.documentElement.classList.toggle("cookie-open", open);
@@ -75,7 +69,6 @@ export function CookieBanner({ lang }: LangProps) {
       <p>
         {c.text} <a href={privacyPath(lang)} tabIndex={interactive ? undefined : -1}>{c.more}</a>
       </p>
-      {/* Same style for both buttons: refusing must be as easy as accepting. */}
       <div className="cookie__actions">
         <button type="button" className="btn btn--small" tabIndex={interactive ? undefined : -1} onClick={interactive ? () => decide("granted") : undefined}>
           {c.accept}
@@ -94,7 +87,6 @@ export function CookieBanner({ lang }: LangProps) {
       </div>
 
       {shatter && (
-        // Each piece is a window onto a static copy of the banner, offset to show its own slice.
         <div className="shatter" style={{ left: shatter.left, top: shatter.top, width: shatter.width, height: shatter.height }} aria-hidden="true">
           {Array.from({ length: COLS * ROWS }, (_, i) => {
             const col = i % COLS;
@@ -103,7 +95,6 @@ export function CookieBanner({ lang }: LangProps) {
             const h = shatter.height / ROWS;
             const x = col * w;
             const y = row * h;
-            // Direction from the banner centre, plus a little gravity; small fixed jitter per piece.
             const dx = x + w / 2 - shatter.width / 2;
             const dy = y + h / 2 - shatter.height / 2;
             const jitter = ((i * 37) % 11) - 5;

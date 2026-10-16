@@ -5,7 +5,6 @@ import { getContent, type Lang } from "@/lib/content";
 
 type Row = { label: string; display: string; copy: string };
 
-// navigator.clipboard needs a secure context; fall back to a hidden textarea otherwise.
 async function copyText(text: string) {
   try {
     await navigator.clipboard.writeText(text);
@@ -31,7 +30,6 @@ export function PaymentDetails({
   reference,
 }: {
   lang: Lang;
-  /** Plain number for the clipboard (banking apps reject "99 €"). */
   amount: number;
   amountDisplay: string;
   reference: string;

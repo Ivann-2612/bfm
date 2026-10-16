@@ -50,12 +50,9 @@ export function Registration({ lang }: LangProps) {
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [token, setToken] = useState("");
   const [resetKey, setResetKey] = useState(0);
-  // Early bird depends on today's date, so it is decided only in the browser after mount.
   const [now, setNow] = useState<Date | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const stubRef = useRef<HTMLElement>(null);
-  // Phones: the price summary sits below the long form, so a slim bar keeps the total in view
-  // while the form is on screen and the summary itself is not.
   const [formInView, setFormInView] = useState(false);
   const [stubInView, setStubInView] = useState(false);
   useEffect(() => {
@@ -76,22 +73,17 @@ export function Registration({ lang }: LangProps) {
   const doneRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setNow(new Date()), []);
-  // Suggestions for the country field, filled in the browser (see countries.ts for why).
   const [countries, setCountries] = useState<string[]>([]);
   useEffect(
     () => setCountries(countryNames(s.c.site.locale)),
     [s.c.site.locale],
   );
 
-  // Pre-fill the country from the browser's language region ("sr-RS" → Srbija), only while the
-  // field is still empty, so it never overwrites what the visitor typed.
   useEffect(() => {
     const name = countryFromCode(browserRegion(), s.c.site.locale);
     if (name) setForm((f) => (f.country ? f : { ...f, country: name }));
   }, [s.c.site.locale]);
 
-  // The long form is swapped for a short message, so the page shrinks and leaves the visitor
-  // scrolled past it (very visible on phones). Bring the message into view and focus it.
   useEffect(() => {
     if (status.kind !== "done" || !doneRef.current) return;
     const reduce = window.matchMedia(
@@ -385,7 +377,6 @@ export function Registration({ lang }: LangProps) {
               </label>
               {err("consent")}
 
-              {/* Honeypot: hidden from people and screen readers; bots that fill every field get rejected. */}
               <div className="hp" aria-hidden="true">
                 <label>
                   Website

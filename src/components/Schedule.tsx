@@ -1,7 +1,6 @@
 import { site, type ScheduleItem } from "@/lib/content";
 import { SectionHead, SuitMark, type LangProps } from "./ui";
 
-// Both days side by side (stacked on phones), so the whole programme is always in view.
 export function Schedule({ lang }: LangProps) {
   const s = site(lang);
   const { schedule } = s.c;
@@ -12,7 +11,6 @@ export function Schedule({ lang }: LangProps) {
         <SectionHead id="schedule-title" kicker={schedule.kicker} title={schedule.title} intro={s.dateRange()} />
         <div className="schedule__days" style={{ "--n": s.days.length } as React.CSSProperties}>
           {s.days.map((d) => (
-            // id: the date cards in the hero link here (#tab-<date>).
             <article key={d.date} id={`tab-${d.date}`} className="schedule__col" aria-labelledby={`day-${d.date}`}>
               <h3 id={`day-${d.date}`} className="schedule__head">
                 <SuitMark suit={d.suit} className="schedule__suit" />

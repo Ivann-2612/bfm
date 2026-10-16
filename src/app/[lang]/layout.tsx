@@ -17,7 +17,6 @@ type Props = { children: React.ReactNode; params: Promise<{ lang: string }> };
 export const dynamicParams = false;
 export const generateStaticParams = () => LANGS.map((lang) => ({ lang }));
 
-/** Public address for previews and canonical URLs, fixed to the AdriaHost domain. */
 function siteUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL ?? "https://belgrademagicfestival.rs";
 }
@@ -28,8 +27,6 @@ export async function generateMetadata({
   const { lang } = await params;
   if (!isLang(lang)) return {};
   const c = getContent(lang);
-  // Link previews (WhatsApp, Viber, Facebook…) need absolute URLs. Images: public/og-<lang>.png,
-  // regenerated with scripts/make-og.ps1 when the name or dates change.
   const image = {
     url: `/og-${lang}.png`,
     width: 1200,

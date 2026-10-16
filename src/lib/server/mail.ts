@@ -11,7 +11,6 @@ function resend() {
   return key ? new Resend(key) : null;
 }
 
-/** True when registrations can be emailed to the organiser (key, sender and recipient all set). */
 export const mailConfigured = () =>
   Boolean(process.env.RESEND_API_KEY && process.env.RESEND_FROM && process.env.ORGANIZER_EMAIL);
 
@@ -47,7 +46,6 @@ export async function sendConfirmation(lang: Lang, p: Person, quote: Quote) {
   const { payment, labels: L } = c.registration;
   const event = eventName(lang);
   const reference = `${p.firstName} ${p.lastName}`;
-  // Same methods and fields as the copy-to-clipboard panel on the success screen.
   const methods = payment.methods
     .map((method) => {
       const rows = [
@@ -70,12 +68,9 @@ export async function sendConfirmation(lang: Lang, p: Person, quote: Quote) {
     ${methods}
     <p>${esc(payment.referenceHint)}</p>
     <p>${esc(fill(m.hold, { contact: c.site.contactEmail }))}</p>`;
-  // Replies go to the festival, not to the sending address.
   await send(p.email, fill(m.subject, { event }), html, c.site.contactEmail);
 }
 
-// The organiser always gets Serbian, whatever language the visitor used. Without Supabase this
-// email is the only record of the registration, so it carries every field.
 export async function notifyOrganizer(
   visitorLang: Lang,
   p: Person & { phone: string; country: string; notes: string; packageId: string; extras: Partial<Record<string, number>> },
@@ -85,7 +80,6 @@ export async function notifyOrganizer(
   if (!to) return;
   const s = site(ORGANIZER_LANG);
   const m = s.c.emails.organizer;
-  // Same amounts as the visitor's quote (enforced in content.ts), with Serbian labels.
   const quote = computePrice(p, now, ORGANIZER_LANG);
   const row = (label: string, value: string) =>
     `<tr><td style="padding:3px 16px 3px 0;color:#666">${esc(label)}</td><td>${value}</td></tr>`;

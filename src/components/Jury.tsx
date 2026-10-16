@@ -31,7 +31,6 @@ export function Jury({ lang }: LangProps) {
   );
 }
 
-// First paragraph always visible; the rest folds away so long bios don't stretch the grid.
 function Bio({ text, more }: { text: string; more: string }) {
   const [first, ...rest] = text.split("\n\n");
   return (

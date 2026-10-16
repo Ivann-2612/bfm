@@ -2,15 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
-// "Magic deck": a real 3D deck (three.js) behind the hero poster. On load the cards fly up
-// into a stack and fan out around the poster; then the fan breathes, now and then a card is
-// moved to another place in the hand (as when sorting cards), the whole deck leans towards
-// the mouse, and it folds as the hero scrolls away.
-// three.js is loaded only here, after the page; with reduced motion or no WebGL nothing
-// starts and the hero simply has no cards.
-
 type Suit = '♠' | '♥' | '♣' | '♦';
-// rank "JOKER" draws the joker face (drawJoker); its suit is ignored.
 const DECK: { rank: string; suit: Suit }[] = [
   { rank: 'JOKER', suit: '♥' },
   { rank: '10', suit: '♠' },
@@ -28,10 +20,8 @@ const DECK: { rank: string; suit: Suit }[] = [
   { rank: '10', suit: '♥' },
   { rank: 'K', suit: '♠' }
 ];
-const SPREAD = (124 * Math.PI) / 180; // total fan angle
-// The fan leans right (clockwise) so it stays around the poster, away from the title on the left.
+const SPREAD = (124 * Math.PI) / 180;
 const LEAN = (18 * Math.PI) / 180;
-// Card thickness as a share of its width: a little thicker than real card stock so the edge reads.
 const CARD_DEPTH = 0.025;
 const TEX_W = 350;
 const TEX_H = 494;
@@ -61,8 +51,6 @@ function roundRect(
   ctx.closePath();
 }
 
-// A thin darker line right at the card's edge (same corner radius as the geometry), like the
-// cut edge of a printed card; it keeps overlapping cards apart.
 function outline(ctx: CanvasRenderingContext2D, color: string) {
   roundRect(ctx, 1.5, 1.5, TEX_W - 3, TEX_H - 3, 0.075 * TEX_W);
   ctx.strokeStyle = color;
@@ -70,7 +58,6 @@ function outline(ctx: CanvasRenderingContext2D, color: string) {
   ctx.stroke();
 }
 
-// Ivory card stock with the edge line and gold inner frame; shared by every face.
 function drawFace() {
   const c = document.createElement('canvas');
   c.width = TEX_W;
@@ -79,7 +66,6 @@ function drawFace() {
   const g = ctx.createLinearGradient(0, 0, TEX_W, TEX_H);
   g.addColorStop(0, '#efe1c0');
   g.addColorStop(1, '#d3bd8f');
-  // Fill edge to edge: the card geometry rounds the corners, so the texture has no transparent pixels.
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, TEX_W, TEX_H);
   outline(ctx, 'rgba(90, 68, 36, 0.45)');
@@ -94,8 +80,6 @@ const RED = '#b01e2c';
 const INK = '#16131a';
 const GOLD = '#c8a04b';
 
-// The joker as in a real deck: "JOKER" spelled down two corners with a star, a jester in the
-// middle as a full-length figure drawn from JOKER_SVG.
 export function drawJoker(font: string, figure: HTMLImageElement | null) {
   const { c, ctx } = drawFace();
   ctx.textAlign = 'center';
@@ -115,7 +99,6 @@ export function drawJoker(font: string, figure: HTMLImageElement | null) {
   corner();
   ctx.restore();
 
-  // The full-length jester (see JOKER_SVG), centred between the corner indices.
   if (figure) {
     const h = TEX_H - 120;
     const w = (h * 200) / 320;
@@ -125,10 +108,6 @@ export function drawJoker(font: string, figure: HTMLImageElement | null) {
   return c;
 }
 
-// The jester, after the classic full-length joker: three-pointed cap with bells, ruff, a tunic
-// split in two colours with the four suits, two-tone tights and curled shoes, but in the site's
-// velvet, gold and ink, with a magician's face (domino mask, curled moustache) and a wand.
-// viewBox 200 × 320. Loaded as an image once, then painted onto the card canvas.
 const I = '#f4ead2';
 const JOKER_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 320">
 <g stroke="${INK}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
@@ -184,7 +163,6 @@ function loadJokerFigure(): Promise<HTMLImageElement | null> {
   });
 }
 
-// Small seeded random, so every card ages the same way on every visit.
 function rng(seed: number) {
   let s = seed >>> 0;
   return () => {
@@ -195,8 +173,6 @@ function rng(seed: number) {
   };
 }
 
-// Old card stock: fine grain, a few faint stains, darker worn corners and edges. On the backs
-// the print is rubbed lighter along the edge, as on a deck that has been played a lot.
 function ageCard(
   ctx: CanvasRenderingContext2D,
   seed: number,
@@ -267,7 +243,6 @@ function ageCard(
   ctx.restore();
 }
 
-// Ivory face: gold inner frame, rank + suit in two corners, big pip in the middle.
 function drawFront(
   rank: string,
   suit: Suit,
@@ -301,7 +276,6 @@ function drawFront(
   return c;
 }
 
-// Velvet-red back with a gold lattice and a gold spade medallion.
 function drawBack(font: string) {
   const c = document.createElement('canvas');
   c.width = TEX_W;
@@ -373,11 +347,10 @@ export function MagicDeck() {
           powerPreference: 'high-performance'
         });
       } catch {
-        return; // no WebGL: hero without cards
+        return;
       }
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.outputColorSpace = THREE.SRGBColorSpace;
-      // Filmic tone mapping keeps the ivory faces from blowing out to white.
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 0.85;
 
@@ -389,7 +362,7 @@ export function MagicDeck() {
       const key = new THREE.DirectionalLight(0xfff1d6, 1.1);
       key.position.set(2, 3, 6);
       scene.add(key);
-      const sheen = new THREE.PointLight(0xffd88a, 14, 0, 2); // follows the mouse
+      const sheen = new THREE.PointLight(0xffd88a, 14, 0, 2);
       sheen.position.set(0, 0, 3);
       scene.add(sheen);
       const rimL = new THREE.PointLight(0xc0303d, 14, 0, 2);
@@ -408,13 +381,11 @@ export function MagicDeck() {
         t.anisotropy = renderer.capabilities.getMaxAnisotropy();
         return t;
       };
-      // Real shadows: the key light casts them from the cards onto each other and onto an invisible
-      // surface behind the fan, so the shadow moves with every fan, rearrangement and tilt.
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFShadowMap;
       key.castShadow = true;
       key.shadow.mapSize.set(2048, 2048);
-      key.shadow.radius = 5; // soft edge
+      key.shadow.radius = 5;
       Object.assign(key.shadow.camera, {
         left: -8,
         right: 8,
@@ -433,8 +404,6 @@ export function MagicDeck() {
       catcher.receiveShadow = true;
       scene.add(catcher);
 
-      // A card is a rounded rectangle with real thickness: a cream paper edge (extruded body)
-      // with the printed faces on both sides. Geometry rounds the corners, so edges stay smooth.
       const CARD_H = TEX_H / TEX_W;
       const shape = new THREE.Shape();
       const hw = 0.5;
@@ -456,7 +425,6 @@ export function MagicDeck() {
       });
       body.translate(0, 0, -CARD_DEPTH / 2);
       const face = new THREE.ShapeGeometry(shape, 10);
-      // ShapeGeometry's UVs are the shape's coordinates; map them onto the 0–1 texture.
       const uv = face.attributes.uv;
       for (let i = 0; i < uv.count; i++)
         uv.setXY(i, uv.getX(i) + 0.5, (uv.getY(i) + hh) / CARD_H);
@@ -465,7 +433,7 @@ export function MagicDeck() {
         roughness: 0.75,
         metalness: 0
       });
-      const hiddenMat = new THREE.MeshBasicMaterial({ visible: false }); // the body's own caps sit under the faces
+      const hiddenMat = new THREE.MeshBasicMaterial({ visible: false });
 
       const backTex = toTexture(drawBack(font));
       const backMat = new THREE.MeshStandardMaterial({
@@ -474,7 +442,6 @@ export function MagicDeck() {
         metalness: 0.25
       });
 
-      // Each card: holder (rotates around the fan pivot) > card (offset by the radius; pulled out along it when moved).
       const deck = new THREE.Group();
       scene.add(deck);
       const disposables: { dispose(): void }[] = [
@@ -512,12 +479,9 @@ export function MagicDeck() {
         const holder = new THREE.Group();
         holder.add(card);
         deck.add(holder);
-        // slot: where the card sits in the fan right now (animated, can be fractional);
-        // from/to: the slots of the current rearrangement; lift: 0–1, pulled up out of the hand.
         return { holder, card, index: i, slot: i, from: i, to: i, lift: 0 };
       });
 
-      // Fit the fan to the poster: pivot just below its centre, cards peeking out around it.
       const fit = {
         radius: 2,
         size: 1.2,
@@ -545,9 +509,7 @@ export function MagicDeck() {
           -(cy - h / 2) * unit - posterH * 0.12,
           -0.6
         );
-        // Shadow surface a little behind the fan, so the shadow sits offset from the cards.
         catcher.position.z = fit.pivot.z - 0.9;
-        // Narrow layouts (poster under the text): a smaller, tighter fan that stays on screen.
         const narrow = w < 960;
         fit.size = posterH * (narrow ? 0.42 : 0.52) * (TEX_W / TEX_H);
         fit.radius = posterH * (narrow ? 0.53 : 0.54);
@@ -558,7 +520,6 @@ export function MagicDeck() {
       const ro = new ResizeObserver(layout);
       ro.observe(hero);
 
-      // Mouse (window-wide) → lean + light; scroll → fold.
       const mouse = { x: 0, y: 0 };
       const onMove = (e: PointerEvent) => {
         mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -572,8 +533,6 @@ export function MagicDeck() {
       );
       io.observe(hero);
 
-      // Phones and tablets: the poster sits below the title, often under the fold, so the cards
-      // wait until it is actually on screen instead of flying in where nobody sees them.
       const posterEl = hero.querySelector('.hero__poster');
       let posterSeen = !posterEl || hero.getBoundingClientRect().width >= 960;
       const pio = new IntersectionObserver(
@@ -591,16 +550,13 @@ export function MagicDeck() {
       let shown = false;
       const mid = (DECK.length - 1) / 2;
 
-      // Rearranging, like a player sorting a hand: one card is pulled up out of the fan, carried
-      // over to another place while the cards in between slide aside, then pushed back in.
       const MOVE_MS = 1700;
-      const order = cards.map((c) => c); // order[slot] = card
+      const order = cards.map((c) => c);
       let moving: (typeof cards)[number] | null = null;
       let moveStart = -1;
       let nextMove = 4200;
       const startMove = (t: number) => {
         const from = Math.floor(Math.random() * order.length);
-        // Two to four places away, in whichever direction fits inside the hand.
         const dist = 2 + Math.floor(Math.random() * 3);
         const dir =
           from + dist < order.length && (from - dist < 0 || Math.random() < 0.5)
@@ -616,22 +572,17 @@ export function MagicDeck() {
         moving = card;
         moveStart = t;
       };
-      // Depth in the hand, in card gaps (in a fan the card to the right lies on top).
-      // The moved card goes straight to the depth of its new place, half a gap off to the side
-      // the shifting cards are not on, so it never cuts through them; as it is pushed back in it
-      // settles to its exact place, sliding under the card that will lie on top of it.
       const depthOf = (c: (typeof cards)[number], t: number) => {
         if (c !== moving) return c.slot;
         const p = clamp01((t - moveStart) / MOVE_MS);
         const travel = c.to + 0.5 * Math.sign(c.to - c.from);
-        const out = easeInOut(clamp01((p - 0.14) / 0.12)); // only once it is almost out of the hand
+        const out = easeInOut(clamp01((p - 0.14) / 0.12));
         const back = easeInOut(clamp01((p - 0.76) / 0.24));
         return c.from + (travel - c.from) * out + (c.to - travel) * back;
       };
       const updateMove = (t: number) => {
         if (!moving) return;
         const p = clamp01((t - moveStart) / MOVE_MS);
-        // The others shift while the card is up; the card itself travels in the same window.
         const shift = easeInOut(clamp01((p - 0.27) / 0.49));
         for (const c of cards) c.slot = c.from + (c.to - c.from) * shift;
         moving.lift =
@@ -649,7 +600,6 @@ export function MagicDeck() {
         if (!visible || document.hidden || !posterSeen) return;
         if (start < 0) start = now;
         const t = now - start;
-        // Fold as the hero scrolls away; on narrow layouts only once the poster itself starts leaving the top.
         const pr =
           fit.spread !== SPREAD ? posterEl?.getBoundingClientRect() : undefined;
         const gone = pr
@@ -657,18 +607,15 @@ export function MagicDeck() {
           : window.scrollY / Math.max(1, hero.offsetHeight);
         const fold = 1 - 0.85 * clamp01(gone);
 
-        // Rearrange only while the fan is fully open (not while it flies in or folds away).
         if (!moving && t > nextMove && gone < 0.15) {
           startMove(t);
           nextMove = t + MOVE_MS + 2600 + Math.random() * 2400;
         }
         updateMove(t);
 
-        // Each card a bit more than its own thickness in front of the previous one, so overlapping cards never cut into each other.
         const gap = fit.size * CARD_DEPTH * 1.8;
         for (const c of cards) {
           const d = Math.abs(c.index - mid);
-          // 1) rise into a stack, 2) fan out (outer cards a little later), 3) breathe.
           const rise = easeOutCubic(clamp01((t - c.index * 45) / 700));
           const open = easeOutBack(clamp01((t - 750 - d * 70) / 1100));
           const breathe = 1 + 0.035 * Math.sin(t / 1300 + c.index * 0.6);
@@ -685,7 +632,6 @@ export function MagicDeck() {
           );
           c.holder.rotation.z =
             -angle - (fit.spread === SPREAD ? LEAN : 0) * open * fold;
-          // Pulled out along its own length (out of the hand), with a slight tilt as fingers grab it.
           c.card.position.y = fit.radius + c.lift * fit.size * 0.6;
           c.card.position.z = gap * 0.25 * Math.sin(t / 900 + c.index);
           c.card.rotation.z = c.lift * 0.06;

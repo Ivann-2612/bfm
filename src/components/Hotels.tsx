@@ -7,9 +7,7 @@ export function Hotels({ lang }: LangProps) {
   const h = s.c.hotels;
   if (h.rooms.length === 0) return null;
   const place = h.location;
-  // The hotel's own Google Maps page (photos, reviews), found by name and address.
   const google = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place.name}, ${place.address}`)}`;
-  // Hotel rates are shown in dinars on the Serbian page and in euros on the English one.
   const inRsd = h.priceCurrency === "RSD";
   const fmt = new Intl.NumberFormat(s.c.site.locale, {
     style: "currency",

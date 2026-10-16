@@ -3,15 +3,12 @@ import { getContent, type Lang } from "./content";
 export type PriceInput = { packageId: string; extras: Partial<Record<string, number>> };
 export type PriceLine = { label: string; amount: number };
 export type Tier = "early" | "regular";
-/** `extras` holds only the add-ons that were actually charged (allowed by the package, quantity > 0). */
 export type Quote = { tier: Tier; lines: PriceLine[]; total: number; extras: Record<string, number> };
 
 export function tierAt(now: Date, lang: Lang): Tier {
   return now.getTime() <= new Date(getContent(lang).packages.earlyBirdUntil).getTime() ? "early" : "regular";
 }
 
-// Used by the browser for display and by /api/register as the source of truth.
-// Amounts are identical in every language (enforced in content.ts); only labels differ.
 export function computePrice(input: PriceInput, now: Date, lang: Lang): Quote {
   const cfg = getContent(lang).packages;
   const pkg = cfg.items.find((p) => p.id === input.packageId);
