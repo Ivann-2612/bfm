@@ -5,6 +5,7 @@ export default function config(phase: string): NextConfig {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       allowedDevOrigins: ["192.168.1.12", "localhost", "127.0.0.1"],
+      images: { unoptimized: true },
       async redirects() {
         return [
           { source: "/en", destination: "/", permanent: true },

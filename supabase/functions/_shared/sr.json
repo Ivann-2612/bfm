@@ -243,10 +243,10 @@
         "points": [],
         "name": "Stručni program",
         "meta": "Znanje koje pokreće umetnost",
-        "text": "Seminari, predavanja, demonstracije, razmena iskustava i izložba savremene mađioničarske opreme.",
+        "text": "Predavanja, demonstracije, razmena iskustava i izložba savremene mađioničarske opreme.",
         "photo": {
           "src": "/images/seminar-1.jpg",
-          "alt": "Seminar za mađioničare"
+          "alt": "Predavanje za mađioničare"
         },
         "shows": []
       }
@@ -255,7 +255,7 @@
       "title": "Festivalski program",
       "items": [
         "Stručni program za mađioničare",
-        "Seminari i radionice",
+        "Predavanja i radionice",
         "Dilerska sala",
         "Takmičarske sale",
         "Program za publiku (u foajeu)",
@@ -350,7 +350,7 @@
               },
               {
                 "time": "12:00",
-                "title": "Seminar"
+                "title": "Predavanje"
               },
               {
                 "time": "13:00–16:00",
@@ -359,15 +359,15 @@
               },
               {
                 "time": "17:00",
-                "title": "Seminar"
+                "title": "Predavanje"
               },
               {
                 "time": "19:00",
-                "title": "Seminar"
+                "title": "Predavanje"
               },
               {
                 "time": "21:00",
-                "title": "Koktel",
+                "title": "Rakija party",
                 "place": "Bar klub „Lisabon“ u objektu MTS dvorane"
               }
             ]
@@ -395,7 +395,7 @@
               },
               {
                 "time": "15:00–16:00",
-                "title": "Seminar"
+                "title": "Predavanje"
               },
               {
                 "time": "17:00–19:00",
@@ -448,7 +448,7 @@
       },
       {
         "src": "/images/seminar-1.jpg",
-        "alt": "Seminar za mađioničare"
+        "alt": "Predavanje za mađioničare"
       },
       {
         "src": "/images/seminar-2.jpg",
@@ -595,7 +595,7 @@
         "code": "gb",
         "role": "Sudija FISM-a · predavač",
         "photo": "/images/jury/lee-alex.jpg",
-        "bio": "Rođeni Britanac, Lee Alex je profesionalni mađioničar, predavač i autor originalne magije sa tkaninama. Više od tri decenije nastupa širom sveta kao scenski iluzionista i mađioničar, a radio je i kao konsultant za film, pozorište, televiziju i reklame.\n\nZvanični je sudija FISM-a (Fédération Internationale des Sociétés Magiques) i redovno sedi u žirijima međunarodnih takmičenja. Njegovo predavanje o magiji brzog presvlačenja, „Time for a Change?“, održano je u Magic Circle-u u Londonu, Magic Castle-u u Holivudu, na World Magic Seminar-u u Las Vegasu i u školi „Magic and Mystery School“ Džefa Makbrajda."
+        "bio": "Rođeni Britanac, Lee Alex je profesionalni mađioničar, predavač i autor originalne magije sa tkaninama. Više od tri decenije nastupa širom sveta kao scenski iluzionista i mađioničar, a radio je i kao konsultant za film, pozorište, televiziju i reklame.\n\nZvanični je sudija FISM-a (Fédération Internationale des Sociétés Magiques) i redovno sedi u žirijima međunarodnih takmičenja. Njegovo predavanje o magiji brzog presvlačenja, „Time for a Change?“, održano je u Magic Circle-u u Londonu, Magic Castle-u u Holivudu, na jednom međunarodnom mađioničarskom događaju u Las Vegasu i u školi „Magic and Mystery School“ Džefa Makbrajda."
       },
       {
         "name": "Bojan Barišić",

@@ -243,10 +243,10 @@
         "points": [],
         "name": "Professional programme",
         "meta": "Knowledge that moves the art forward",
-        "text": "Seminars, lectures, demonstrations, exchange of experience and an exhibition of contemporary magic equipment.",
+        "text": "Lectures, demonstrations, exchange of experience and an exhibition of contemporary magic equipment.",
         "photo": {
           "src": "/images/seminar-1.jpg",
-          "alt": "Seminar for magicians"
+          "alt": "Lecture for magicians"
         },
         "shows": []
       }
@@ -255,7 +255,7 @@
       "title": "Festival programme",
       "items": [
         "Professional programme for magicians",
-        "Seminars and workshops",
+        "Lectures and workshops",
         "Dealer room",
         "Competition halls",
         "Artist programme for the audience (in the foyer)",
@@ -350,7 +350,7 @@
               },
               {
                 "time": "12:00",
-                "title": "Seminar"
+                "title": "Lecture"
               },
               {
                 "time": "13:00–16:00",
@@ -359,15 +359,15 @@
               },
               {
                 "time": "17:00",
-                "title": "Seminar"
+                "title": "Lecture"
               },
               {
                 "time": "19:00",
-                "title": "Seminar"
+                "title": "Lecture"
               },
               {
                 "time": "21:00",
-                "title": "Cocktail",
+                "title": "Rakija party",
                 "place": "Bar Club Lisbon, inside MTS Hall"
               }
             ]
@@ -395,7 +395,7 @@
               },
               {
                 "time": "15:00–16:00",
-                "title": "Seminar"
+                "title": "Lecture"
               },
               {
                 "time": "17:00–19:00",
@@ -448,7 +448,7 @@
       },
       {
         "src": "/images/seminar-1.jpg",
-        "alt": "Seminar for magicians"
+        "alt": "Lecture for magicians"
       },
       {
         "src": "/images/seminar-2.jpg",
@@ -595,7 +595,7 @@
         "code": "gb",
         "role": "FISM judge · lecturer",
         "photo": "/images/jury/lee-alex.jpg",
-        "bio": "British-born, Lee Alex is a professional magician, lecturer and creator of original textile magic. For more than three decades he has performed worldwide as a stage illusionist and magician, and consulted for film, stage, television and advertising productions.\n\nLee is an official judge for the Fédération Internationale des Sociétés Magiques (FISM), regularly serving on juries at international competitions. His lecture on quick-change magic, “Time for a Change?”, has been presented at the Magic Circle in London, the Magic Castle in Hollywood, the World Magic Seminar in Las Vegas and Jeff McBride's Magic and Mystery School."
+        "bio": "British-born, Lee Alex is a professional magician, lecturer and creator of original textile magic. For more than three decades he has performed worldwide as a stage illusionist and magician, and consulted for film, stage, television and advertising productions.\n\nLee is an official judge for the Fédération Internationale des Sociétés Magiques (FISM), regularly serving on juries at international competitions. His lecture on quick-change magic, “Time for a Change?”, has been presented at the Magic Circle in London, the Magic Castle in Hollywood, an international magic convention in Las Vegas and Jeff McBride's Magic and Mystery School."
       },
       {
         "name": "Bojan Barišić",
