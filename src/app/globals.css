@@ -2370,12 +2370,26 @@ html.menu-open .site-header {
 }
 
 .links-admin {
-  max-width: 40rem;
+  max-width: var(--wrap);
   padding: clamp(2rem, 6vw, 4rem) var(--gutter);
   margin: 0 auto;
 }
+.links-admin > p:last-child {
+  max-width: 48rem;
+}
+.sheet-data {
+  margin-top: 1.5rem;
+}
+.sheet-data__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 .links-admin ul {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   gap: 1rem;
   margin: 2rem 0;
   padding: 0;

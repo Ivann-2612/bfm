@@ -1,5 +1,6 @@
 import links from "@content/links.json";
 import { getContent, ORGANIZER_LANG } from "@/lib/content";
+import { SheetData } from "./SheetData";
 
 const { event } = getContent(ORGANIZER_LANG);
 
@@ -20,6 +21,7 @@ export function AdminLinks() {
         {event.name} {event.year}
       </p>
       <h1 className="section-title">Prijave</h1>
+      <SheetData api={links.dataApi} />
       <ul>
         {items.map((i) => (
           <li key={i.title}>
@@ -31,8 +33,8 @@ export function AdminLinks() {
         ))}
       </ul>
       <p>
-        Tabela se otvara samo Google nalozima kojima je podeljena (Share u tabeli). Ova stranica nije u pretrazi, ali je adresu bolje ne
-        objavljivati.
+        Tabela se otvara samo Google nalozima kojima je podeljena (Share u tabeli). Pregled iznad se vidi samo uz ključ posle # u adresi
+        (/karte/#ključ); adresu sa ključem ne prosleđuj nikome kome ne treba.
       </p>
     </main>
   );
