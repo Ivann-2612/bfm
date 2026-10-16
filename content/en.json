@@ -74,6 +74,7 @@
     "showBio": "Show bio",
     "hideBio": "Hide bio",
     "perNight": "night",
+    "soldOutLabel": "Sold out",
     "from": "from",
     "otherLang": "Srpski",
     "otherLangShort": "SR",
@@ -687,37 +688,22 @@
     "priceCurrency": "EUR",
     "rooms": [
       {
-        "label": "Economy single room",
-        "note": "single bed",
-        "price": 57,
-        "priceRsd": 6600
-      },
-      {
         "label": "Single room",
-        "note": "double bed",
-        "price": 62,
-        "priceRsd": 7300
+        "note": "",
+        "price": 55
       },
       {
-        "label": "Double or twin room",
-        "note": "15 m², double or two single beds",
-        "price": 67,
-        "priceRsd": 7900
+        "label": "Double room",
+        "note": "",
+        "price": 60
       },
       {
-        "label": "Superior double room",
-        "note": "37 m², king-size bed",
-        "price": 78,
-        "priceRsd": 9200
-      },
-      {
-        "label": "Family room",
-        "note": "32 m², double bed and two sofa beds",
-        "price": 105,
-        "priceRsd": 12300
+        "label": "Triple room",
+        "note": "",
+        "price": 75
       }
     ],
-    "note": "Approximate prices per room per night with breakfast, converted from dinars and rounded. The exact price depends on the dates and the rate you book; city tax (about 160 RSD per night) is extra."
+    "note": "Festival prices per room per night, breakfast included. Limited availability: book your room through the registration form, and you pay the hotel on arrival."
   },
   "travel": {
     "kicker": "Getting here",
@@ -748,15 +734,17 @@
   },
   "registration": {
     "googleForm": {
-      "url": "https://docs.google.com/forms/d/e/1FAIpQLScAJUBsSs-eCfcwbZvb4dyYt00DSro4TlrqGTCJM2fZBzladA/viewform",
-      "text": "Registration is a short Google form. It takes about two minutes, and you only see the questions that apply to you.",
+      "title": "Registration form",
+      "open": "Register now",
+      "text": "Registration takes about two minutes, and you only see the questions that apply to you.",
       "steps": [
         "Fill in the form — about 2 minutes.",
         "Check your e-mail: we send you the total and how to pay.",
         "Pay within 7 days. We hold your place until then."
       ],
-      "button": "Open the registration form",
-      "note": "Opens in a new tab (Google Forms)."
+      "note": "Prefer a separate window?",
+      "button": "Open the form in a new tab",
+      "loading": "Loading the form…"
     },
     "kicker": "Registration for the professional programme",
     "title": "Register",

@@ -1,8 +1,11 @@
+import links from "@content/links.json";
 import { getContent } from "@/lib/content";
+import { FormDialog } from "./FormDialog";
 import { SectionHead, type LangProps } from "./ui";
 
 export function RegistrationLink({ lang }: LangProps) {
-  const r = getContent(lang).registration;
+  const c = getContent(lang);
+  const r = c.registration;
   const g = r.googleForm;
   return (
     <section id="prijava" className="section register" aria-labelledby="register-title">
@@ -23,10 +26,13 @@ export function RegistrationLink({ lang }: LangProps) {
               </li>
             ))}
           </ol>
-          <a className="btn register-link__btn" href={g.url} target="_blank" rel="noopener noreferrer">
-            {g.button} <span aria-hidden="true">↗</span>
-          </a>
-          <p className="register-link__note">{g.note}</p>
+          <FormDialog url={links.googleForm} title={g.title} open={g.open} newTab={g.button} close={c.ui.close} loading={g.loading} />
+          <p className="register-link__note">
+            {g.note}{" "}
+            <a href={links.googleForm} target="_blank" rel="noopener noreferrer">
+              {g.button} ↗
+            </a>
+          </p>
         </div>
       </div>
     </section>

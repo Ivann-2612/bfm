@@ -8,10 +8,9 @@ export function Hotels({ lang }: LangProps) {
   if (h.rooms.length === 0) return null;
   const place = h.location;
   const google = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place.name}, ${place.address}`)}`;
-  const inRsd = h.priceCurrency === "RSD";
   const fmt = new Intl.NumberFormat(s.c.site.locale, {
     style: "currency",
-    currency: inRsd ? "RSD" : "EUR",
+    currency: h.priceCurrency,
     maximumFractionDigits: 0,
   });
 
@@ -24,17 +23,24 @@ export function Hotels({ lang }: LangProps) {
         </div>
         <div>
           <ul className="hotels__rooms">
-            {h.rooms.map((r) => (
-              <li key={r.label}>
-                <span className="hotels__room">
-                  {r.label}
-                  {r.note && <small>{r.note}</small>}
-                </span>
-                <span className="hotels__price">
-                  <small>{s.c.ui.from}</small> {fmt.format(inRsd ? r.priceRsd : r.price)} <small>/ {s.c.ui.perNight}</small>
-                </span>
-              </li>
-            ))}
+            {h.rooms.map((r) => {
+              const soldOut = "soldOut" in r && r.soldOut === true;
+              return (
+                <li key={r.label} className={soldOut ? "is-sold-out" : undefined}>
+                  <span className="hotels__room">
+                    {r.label}
+                    {r.note && <small>{r.note}</small>}
+                  </span>
+                  {soldOut ? (
+                    <span className="hotels__sold">{s.c.ui.soldOutLabel}</span>
+                  ) : (
+                    <span className="hotels__price">
+                      {fmt.format(r.price)} <small>/ {s.c.ui.perNight}</small>
+                    </span>
+                  )}
+                </li>
+              );
+            })}
           </ul>
           <p className="hotels__note">{h.note}</p>
         </div>

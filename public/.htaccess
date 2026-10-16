@@ -30,7 +30,7 @@ ErrorDocument 404 /404.html
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 </IfModule>
 
-<If "%{REQUEST_URI} =~ m#^/karte#">
+<If "%{REQUEST_URI} =~ m#^/(karte|prijave)#">
   Header set X-Robots-Tag "noindex, nofollow"
   Header set Cache-Control "no-store"
 </If>

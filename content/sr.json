@@ -74,6 +74,7 @@
     "showBio": "Prikaži biografiju",
     "hideBio": "Sakrij biografiju",
     "perNight": "noć",
+    "soldOutLabel": "Rasprodato",
     "from": "od",
     "otherLang": "English",
     "otherLangShort": "EN",
@@ -684,40 +685,25 @@
       "lat": 44.8110148,
       "lng": 20.4597196
     },
-    "priceCurrency": "RSD",
+    "priceCurrency": "EUR",
     "rooms": [
       {
-        "label": "Ekonomična jednokrevetna soba",
-        "note": "singl krevet",
-        "price": 57,
-        "priceRsd": 6600
-      },
-      {
         "label": "Jednokrevetna soba",
-        "note": "francuski ležaj",
-        "price": 62,
-        "priceRsd": 7300
+        "note": "",
+        "price": 55
       },
       {
         "label": "Dvokrevetna soba",
-        "note": "15 m², bračni ili dva odvojena kreveta",
-        "price": 67,
-        "priceRsd": 7900
+        "note": "",
+        "price": 60
       },
       {
-        "label": "Superior dvokrevetna soba",
-        "note": "37 m², veliki bračni krevet",
-        "price": 78,
-        "priceRsd": 9200
-      },
-      {
-        "label": "Porodična soba",
-        "note": "32 m², bračni krevet i dva sofe-kreveta",
-        "price": 105,
-        "priceRsd": 12300
+        "label": "Trokrevetna soba",
+        "note": "",
+        "price": 75
       }
     ],
-    "note": "Okvirne cene po sobi za jednu noć, sa doručkom, zaokružene. Tačna cena zavisi od datuma i izabrane tarife; boravišna taksa (oko 160 RSD po noći) plaća se posebno."
+    "note": "Festivalske cene po sobi za jednu noć, sa doručkom. Broj soba je ograničen: sobu rezervišite kroz formu za prijavu, a plaćate je u hotelu, po dolasku."
   },
   "travel": {
     "kicker": "Kako do nas",
@@ -748,15 +734,17 @@
   },
   "registration": {
     "googleForm": {
-      "url": "https://docs.google.com/forms/d/e/1FAIpQLScAJUBsSs-eCfcwbZvb4dyYt00DSro4TlrqGTCJM2fZBzladA/viewform",
-      "text": "Prijava je kratka Google forma. Traje oko dva minuta, a vidite samo pitanja koja se odnose na vas.",
+      "title": "Forma za prijavu",
+      "open": "Prijavite se",
+      "text": "Prijava traje oko dva minuta, a vidite samo pitanja koja se odnose na vas.",
       "steps": [
         "Popunite formu — oko 2 minuta.",
         "Proverite mejl: šaljemo vam iznos i podatke za uplatu.",
         "Uplatite u roku od 7 dana. Do tada vam čuvamo mesto."
       ],
-      "button": "Otvorite formu za prijavu",
-      "note": "Otvara se u novom prozoru (Google Forms)."
+      "note": "Više volite poseban prozor?",
+      "button": "Otvorite formu u novom prozoru",
+      "loading": "Forma se učitava…"
     },
     "kicker": "Prijava za stručni program",
     "title": "Prijavite se",

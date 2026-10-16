@@ -1815,6 +1815,22 @@ html.menu-open .site-header {
   color: var(--gold-pale);
   white-space: nowrap;
 }
+.hotels__rooms li.is-sold-out .hotels__room {
+  opacity: 0.45;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+.hotels__sold {
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--velvet);
+  border-radius: 999px;
+  font: 500 0.72rem / 1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f08a8f;
+  white-space: nowrap;
+  transform: rotate(-3deg);
+}
 .hotels__note {
   margin-top: 1.25rem;
   color: var(--smoke);
@@ -2247,18 +2263,151 @@ html.menu-open .site-header {
   color: #e2737a;
 }
 .register-link__btn {
-  padding: 1.1rem 2rem;
+  padding: 1.1rem 2.2rem;
   font-size: 0.9rem;
 }
 .register-link__note {
-  margin-top: 0.8rem;
-  font-size: 0.85rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
   color: var(--smoke);
+}
+.register-link__note a {
+  color: var(--gold);
 }
 @media (max-width: 640px) {
   .register-link__btn {
     width: 100%;
   }
+}
+
+.form-dialog {
+  width: min(52rem, calc(100vw - 2rem));
+  height: min(56rem, calc(100dvh - 2rem));
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  border: 1px solid rgb(200 160 75 / 0.6);
+  border-radius: var(--radius-card);
+  background: var(--ink-2);
+  color: var(--bone);
+  box-shadow: 0 30px 90px rgb(0 0 0 / 0.7);
+  overflow: hidden;
+}
+.form-dialog::backdrop {
+  background: rgb(8 6 8 / 0.82);
+  backdrop-filter: blur(3px);
+}
+.form-dialog[open] {
+  animation: form-dialog-in 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes form-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+.form-dialog__box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.form-dialog__bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.7rem 0.7rem 0.7rem 1.2rem;
+  border-bottom: 1px solid rgb(200 160 75 / 0.35);
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgb(163 48 59 / 0.35), rgb(163 48 59 / 0) 60%),
+    var(--ink-2);
+}
+.form-dialog__title {
+  flex: 1;
+  font: 400 var(--step-1) / 1.2 var(--display);
+  color: var(--gold-pale);
+}
+.form-dialog__title span {
+  color: #e2737a;
+}
+.form-dialog__tab {
+  font: 500 0.72rem / 1.2 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+}
+.form-dialog__close {
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid rgb(200 160 75 / 0.45);
+  border-radius: 50%;
+  background: none;
+  color: var(--gold-pale);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.form-dialog__close:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.form-dialog iframe {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  background: #f4efe6;
+}
+@media (max-width: 640px) {
+  .form-dialog {
+    width: 100vw;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+  .form-dialog__tab {
+    display: none;
+  }
+}
+
+.links-admin {
+  max-width: 40rem;
+  padding: clamp(2rem, 6vw, 4rem) var(--gutter);
+  margin: 0 auto;
+}
+.links-admin ul {
+  display: grid;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 0;
+  list-style: none;
+}
+.links-admin li a {
+  display: block;
+  padding: 1.1rem 1.3rem;
+  border: 1px solid rgb(200 160 75 / 0.45);
+  border-radius: var(--radius-card);
+  background: var(--ink-2);
+  color: var(--bone);
+  text-decoration: none;
+}
+.links-admin li a:hover {
+  border-color: var(--gold);
+}
+.links-admin li b {
+  display: block;
+  font: 400 var(--step-1) / 1.2 var(--display);
+  color: var(--gold-pale);
+}
+.links-admin li span {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+  color: var(--smoke);
+}
+.links-admin p {
+  color: var(--smoke);
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 .register__grid {
   display: grid;
