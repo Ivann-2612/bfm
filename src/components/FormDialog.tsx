@@ -10,14 +10,29 @@ const embedUrl = (url: string) => {
   return u.toString();
 };
 
+const RETURN_KEY = "bmf-return-to-register";
+
 export function FormDialog({ url, title, open, newTab, close, loading }: Props) {
   const dialog = useRef<HTMLDialogElement>(null);
+  const loads = useRef(0);
   const [src, setSrc] = useState("");
 
   const show = useCallback(() => {
     setSrc(embedUrl(url));
     dialog.current?.showModal();
   }, [url]);
+
+  const onClosed = useCallback(() => {
+    if (loads.current < 2) return;
+    sessionStorage.setItem(RETURN_KEY, "1");
+    window.location.reload();
+  }, []);
+
+  useEffect(() => {
+    if (sessionStorage.getItem(RETURN_KEY) !== "1") return;
+    sessionStorage.removeItem(RETURN_KEY);
+    document.getElementById("prijava")?.scrollIntoView({ block: "start" });
+  }, []);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -35,7 +50,13 @@ export function FormDialog({ url, title, open, newTab, close, loading }: Props) 
       <button type="button" className="btn register-link__btn" onClick={show}>
         {open}
       </button>
-      <dialog ref={dialog} className="form-dialog" aria-label={title} onClick={(e) => e.target === dialog.current && dialog.current?.close()}>
+      <dialog
+        ref={dialog}
+        className="form-dialog"
+        aria-label={title}
+        onClose={onClosed}
+        onClick={(e) => e.target === dialog.current && dialog.current?.close()}
+      >
         <div className="form-dialog__box">
           <div className="form-dialog__bar">
             <span className="form-dialog__title">
@@ -49,7 +70,7 @@ export function FormDialog({ url, title, open, newTab, close, loading }: Props) 
             </button>
           </div>
           {src && (
-            <iframe src={src} title={title}>
+            <iframe src={src} title={title} onLoad={() => (loads.current += 1)}>
               {loading}
             </iframe>
           )}
