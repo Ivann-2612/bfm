@@ -391,7 +391,8 @@
               },
               {
                 "time": "11:00–14:00",
-                "title": "Takmičenje u scenskoj magiji (stage)"
+                "title": "Takmičenje u scenskoj magiji",
+                "highlight": true
               },
               {
                 "time": "15:00–16:00",
@@ -497,7 +498,7 @@
       {
         "name": "Domenico Dante",
         "country": "Italija",
-        "specialty": "Prijatelj festivala · predavanje",
+        "specialty": "Prijatelj festivala · predavanje · žiri",
         "photo": "/images/artists/domenico-dante.png",
         "bio": ""
       },
@@ -569,7 +570,7 @@
         "name": "Domenico Dante",
         "country": "Italija",
         "code": "it",
-        "role": "Počasni predsednik FISM-a · predavač",
+        "role": "Počasni predsednik FISM-a · predavač · žiri",
         "bio": "Italijanski mađioničar i trgovac mađioničarskom opremom od 1984, posle petnaest godina rada kao menadžer i direktor bolnice. Bio je predsednik Club Magico Italiano od 1990. do 2015, a danas je njegov doživotni počasni predsednik; član je Inner Magic Circle sa zlatnom zvezdom, doživotni član Magic Castle-a u Holivudu i dobitnik nagrade Murray Award (Blekpul, 2008).\n\nKvalifikovani je član žirija FISM-a od 1991. Bio je predsednik FISM International od 2012. do 2022, a danas je njegov počasni predsednik. Producent je ili organizator više od 120 međunarodnih konvencija. Njegov moto: „Promoting Magic as an Art“.",
         "photo": "/images/artists/domenico-dante.png"
       },
@@ -887,11 +888,14 @@
         "members": [
           {
             "name": "Igor Trifunov",
-            "photo": "/images/team/igor-trifunov.jpg"
+            "photo": "/images/team/igor-trifunov.jpg",
+            "bio": "Igor Trifunov je najuspešniji srpski mađioničar i iluzionista novije generacije. Ostvario je uspeh na brojnim svetskim takmičenjima, među kojima su četvrto mesto na svetskom prvenstvu mađioničara u Riminiju, Grand Prix na Balkanskom kongresu mađioničara i prvo mesto na takmičenju mađioničara u Badenu.\n\nAutor je TV serije Ulična Magija, dečje predstave Igorov Magični Šou, iluzionističke predstave Igorov Magični Spektakl i internacionalnog spektakla Magični Varijete."
           },
           {
             "name": "Dejan Đurđević Piksi",
-            "photo": "/images/team/dejan-djurdjevic-piksi.jpg"
+            "photo": "/images/team/dejan-djurdjevic-piksi.jpg",
+            "subtitle": "Mađioničar, iluzionista, autor i osnivač Magičnog sveta",
+            "bio": "Dejan Đurđević, poznatiji kao Piksi, profesionalni je mađioničar i iluzionista koji od 2004. godine gradi karijeru spajajući magiju, scenski nastup, humor i savremenu zabavu. Prepoznatljiv po svom elegantnom izvođačkom stilu, neposrednoj komunikaciji sa publikom i nastupima koji pomeraju granice mogućeg, Piksi je tokom godina izgradio prepoznatljivo ime na domaćoj mađioničarskoj sceni.\n\nZa njega magija nikada nije bila samo izvođenje trikova. Ona je način izražavanja, umetnost stvaranja emocija i trenutaka u kojima publika na kratko počinje da preispituje ono što smatra mogućim.\n\nOd izvođača do stvaranja magične scene\n\nTokom svoje karijere, Piksi je nastupao pred različitim publikama, od intimnih i porodičnih događaja do velikih scenskih programa i televizijskih projekata. Njegov repertoar obuhvata scensku magiju, iluzije, mentalizam i interaktivne nastupe u kojima publika postaje deo samog čuda.\n\nGodine 2014. osnovao je udruženje građana Magični svet, sa ciljem promocije, razvoja i popularizacije mađioničarske umetnosti. Kao njegov osnivač i predsednik, posvećen je stvaranju prostora za nove generacije izvođača, povezivanju umetnika i približavanju magije široj publici.\n\nZa svoj doprinos mađioničarstvu i scenskoj umetnosti dobio je Merlin nagradu 2014. godine, priznanje koje predstavlja važan deo njegove profesionalne biografije.\n\nBeogradski festival magije\n\nJedan od najznačajnijih projekata u njegovoj karijeri jeste Beogradski festival magije, čiji je idejni tvorac. Od 2012. godine festival predstavlja važnu platformu za okupljanje mađioničara, razmenu znanja i promociju ove umetnosti.\n\nPre prekida održavanja tokom pandemije, Piksi je organizovao sedam izdanja festivala, ulažući sopstvena sredstva i energiju u njegov razvoj. Njegova vizija bila je da Beograd dobije događaj koji će povezivati domaće i međunarodne umetnike, pružati prostor za edukaciju i takmičenje i doprineti većoj vidljivosti mađioničarstva u Srbiji.\n\nGodine 2027. radi na novom izdanju Beogradskog festivala magije, sa međunarodnim programom, stručnim predavanjima, takmičenjima i gala predstavama. Festival se realizuje u saradnji sa udruženjem Magični svet, organizacijom Serbia Magic Ring i partnerima, uz međunarodnu podršku FISM-a — Svetske federacije mađioničarskih društava.\n\nPosvećenost magiji kao umetnosti\n\nPored izvođačkog rada, Dejan Đurđević aktivno doprinosi organizovanju i povezivanju mađioničarske zajednice. Kroz rad u organizacijama posvećenim magiji, festivalske projekte i saradnju sa kolegama iz zemlje i inostranstva, nastoji da stvori bolje uslove za razvoj ove umetnosti i njeno predstavljanje novim generacijama.\n\nNjegov rad zasniva se na uverenju da magija nije samo trenutak iznenađenja, već iskustvo koje ostaje u sećanju. Upravo zato svaki nastup posmatra kao priliku da publici pruži nešto više od onoga što očekuje — emociju, nevericu, smeh i trenutak u kojem je nemoguće ponovo postalo moguće.\n\nPiksi Magic je više od scenskog imena. To je lični umetnički izraz, profesionalni put i dugogodišnja posvećenost svetu magije."
           }
         ]
       },

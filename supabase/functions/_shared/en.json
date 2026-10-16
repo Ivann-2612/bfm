@@ -50,12 +50,7 @@
     "countdown": {
       "startsAt": "2027-02-27T09:00:00+01:00",
       "label": "Until the festival opens",
-      "units": [
-        "days",
-        "hours",
-        "min",
-        "sec"
-      ],
+      "units": ["days", "hours", "min", "sec"],
       "done": "The festival has begun. See you at MTS Hall!"
     }
   },
@@ -225,10 +220,7 @@
       },
       {
         "id": "takmicenja",
-        "points": [
-          "Close-up",
-          "Stage"
-        ],
+        "points": ["Close-up", "Stage"],
         "name": "Competitions",
         "meta": "Serbian and international entrants",
         "text": "Stage and close-up magic judged by an international jury against professional criteria. Winners receive valuable prizes.",
@@ -391,7 +383,8 @@
               },
               {
                 "time": "11:00–14:00",
-                "title": "Stage magic competition"
+                "title": "Stage magic competition",
+                "highlight": true
               },
               {
                 "time": "15:00–16:00",
@@ -497,7 +490,7 @@
       {
         "name": "Domenico Dante",
         "country": "Italy",
-        "specialty": "Friend of the festival · lecture",
+        "specialty": "Friend of the festival · lecture · jury",
         "photo": "/images/artists/domenico-dante.png",
         "bio": ""
       },
@@ -569,7 +562,7 @@
         "name": "Domenico Dante",
         "country": "Italy",
         "code": "it",
-        "role": "FISM Honorary President · lecturer",
+        "role": "FISM Honorary President · lecturer · jury",
         "bio": "An Italian magician and magic dealer since 1984, after fifteen years as a manager and hospital director. President of the Club Magico Italiano from 1990 to 2015 and now its Life Honorary President, he is a member of the Inner Magic Circle with Gold Star, a Lifetime Member of the Magic Castle in Hollywood and a winner of the Murray Award (Blackpool, 2008).\n\nA FISM Qualified Jury Member since 1991, he was President of FISM International from 2012 to 2022 and is now its Honorary President. He has produced or organised more than 120 international conventions. His motto: “Promoting Magic as an Art”.",
         "photo": "/images/artists/domenico-dante.png"
       },
@@ -651,10 +644,7 @@
           "early": 149,
           "regular": 200
         },
-        "allowExtras": [
-          "table",
-          "assistant"
-        ]
+        "allowExtras": ["table", "assistant"]
       }
     ],
     "extras": [
@@ -887,11 +877,14 @@
         "members": [
           {
             "name": "Igor Trifunov",
-            "photo": "/images/team/igor-trifunov.jpg"
+            "photo": "/images/team/igor-trifunov.jpg",
+            "bio": "Igor Trifunov is one of the most successful Serbian magicians and illusionists of the new generation. He has achieved success at numerous international competitions, including fourth place at the World Championship of Magic in Rimini, the Grand Prix at the Balkan Magic Congress and first place at the magic competition in Baden.\n\nHe created the TV series Ulična Magija (Street Magic), the children’s show Igorov Magični Šou (Igor’s Magic Show), the illusion show Igorov Magični Spektakl (Igor’s Magic Spectacle) and the international spectacle Magični Varijete (Gala Show Variete)."
           },
           {
             "name": "Dejan Đurđević Piksi",
-            "photo": "/images/team/dejan-djurdjevic-piksi.jpg"
+            "photo": "/images/team/dejan-djurdjevic-piksi.jpg",
+            "subtitle": "Magician, illusionist, author and founder of Magični svet (Magic World)",
+            "bio": "Dejan Đurđević, better known as Piksi, is a professional magician and illusionist who has built his career since 2004 by bringing together magic, stage performance, humour and contemporary entertainment. Recognised for his elegant performance style, direct connection with audiences and shows that push the boundaries of what seems possible, Piksi has built a distinctive name on Serbia’s magic scene.\n\nFor him, magic has never been just about performing tricks. It is a form of expression and an art of creating emotions and moments that make audiences briefly question what they believe is possible.\n\nFrom performer to building a magic scene\n\nThroughout his career, Piksi has performed for many different audiences, from intimate and family events to large stage productions and television projects. His repertoire includes stage magic, illusions, mentalism and interactive performances in which the audience becomes part of the wonder.\n\nIn 2014, he founded the non-profit association Magični svet (Magic World) to promote, develop and popularise the art of magic. As its founder and president, he is dedicated to creating opportunities for new generations of performers, connecting artists and bringing magic to wider audiences.\n\nIn recognition of his contribution to magic and the performing arts, he received the Merlin Award in 2014, an important distinction in his professional career.\n\nBelgrade Magic Festival\n\nOne of the most significant projects of his career is the Belgrade Magic Festival, which he conceived. Since 2012, the festival has provided an important platform for bringing magicians together, sharing knowledge and promoting the art of magic.\n\nBefore the festival paused during the pandemic, Piksi organised seven editions, investing his own resources and energy in its growth. His vision was for Belgrade to host an event that would connect local and international artists, provide opportunities for education and competition, and raise the profile of magic in Serbia.\n\nIn 2027, he is working on a new edition of the Belgrade Magic Festival, featuring an international programme, specialist lectures, competitions and gala shows. The festival is being held in collaboration with Magični svet, Serbia Magic Ring and its partners, with international support from FISM — the International Federation of Magic Societies.\n\nA commitment to magic as an art\n\nAlongside his work as a performer, Dejan Đurđević actively contributes to organising and connecting the magic community. Through his work with organisations dedicated to magic, festival projects and collaboration with colleagues at home and abroad, he aims to create better conditions for the development of this art and to introduce it to new generations.\n\nHis work is grounded in the belief that magic is not just a moment of surprise, but an experience that stays in the memory. He sees every performance as an opportunity to give audiences more than they expect: emotion, wonder, laughter and a moment in which the impossible becomes possible again.\n\nPiksi Magic is more than a stage name. It is a personal artistic expression, a professional journey and a lifelong commitment to the world of magic."
           }
         ]
       },

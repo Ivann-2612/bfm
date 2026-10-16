@@ -1055,6 +1055,12 @@ html.menu-open .site-header {
 .pcard__photo {
   flex: 1;
 }
+.pcard__photo img {
+  object-position: 50% 0%;
+}
+.artist__photo img {
+  object-position: 50% 0%;
+}
 .pcard__caption {
   display: flex;
   flex-direction: column;
@@ -1373,8 +1379,29 @@ html.menu-open .site-header {
   margin-top: 3.5rem;
 }
 .organizers__team .organizers__role {
+  position: relative;
   display: block;
-  margin-bottom: 1.1rem;
+  width: min(100%, 30rem);
+  padding-bottom: 1.5rem;
+  margin-bottom: 0.3rem;
+  text-align: center;
+}
+.organizers__team .organizers__role::before,
+.organizers__team .organizers__role::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  height: 1.25rem;
+  width: 25%;
+  pointer-events: none;
+}
+.organizers__team .organizers__role::before {
+  left: 25%;
+  background: linear-gradient(to bottom right, transparent calc(50% - 0.5px), rgb(200 160 75 / 0.6) 50%, transparent calc(50% + 0.5px));
+}
+.organizers__team .organizers__role::after {
+  right: 25%;
+  background: linear-gradient(to bottom left, transparent calc(50% - 0.5px), rgb(200 160 75 / 0.6) 50%, transparent calc(50% + 0.5px));
 }
 .organizers__team ul {
   display: grid;
@@ -1421,6 +1448,31 @@ html.menu-open .site-header {
 .person__name {
   margin-top: 0.7rem;
   font: 400 var(--step-1) / 1.25 var(--display);
+}
+.person__subtitle {
+  margin-top: 0.4rem;
+  color: var(--smoke);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.person__bio {
+  margin-top: 0.65rem;
+  color: var(--bone);
+  opacity: 0.85;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.person__more summary {
+  margin-top: 0.6rem;
+  width: fit-content;
+  cursor: pointer;
+  font: 500 var(--step--1) / 1.4 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+.person__more[open] summary {
+  display: none;
 }
 
 /* ---------- Closing ---------- */

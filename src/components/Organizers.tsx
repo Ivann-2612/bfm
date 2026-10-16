@@ -2,7 +2,8 @@ import { getContent } from "@/lib/content";
 import { Portrait, SectionHead, type LangProps } from "./ui";
 
 export function Organizers({ lang }: LangProps) {
-  const o = getContent(lang).organizers;
+  const c = getContent(lang);
+  const o = c.organizers;
   return (
     <section id="organizatori" className="section organizers" aria-labelledby="organizers-title">
       <div className="wrap">
@@ -31,6 +32,8 @@ export function Organizers({ lang }: LangProps) {
                   <li key={m.name} className="person">
                     <Portrait src={m.photo} alt={m.name} sizes="(max-width: 640px) 45vw, 14rem" />
                     <p className="person__name">{m.name}</p>
+                    {"subtitle" in m && m.subtitle && <p className="person__subtitle">{m.subtitle}</p>}
+                    {"bio" in m && m.bio && <PersonBio text={m.bio} more={c.ui.readMore} />}
                   </li>
                 ))}
               </ul>
@@ -39,5 +42,24 @@ export function Organizers({ lang }: LangProps) {
         </div>
       </div>
     </section>
+  );
+}
+
+function PersonBio({ text, more }: { text: string; more: string }) {
+  const [first, ...rest] = text.split("\n\n");
+  return (
+    <>
+      <p className="person__bio">{first}</p>
+      {rest.length > 0 && (
+        <details className="person__more">
+          <summary>{more}</summary>
+          {rest.map((para) => (
+            <p key={para} className="person__bio">
+              {para}
+            </p>
+          ))}
+        </details>
+      )}
+    </>
   );
 }
