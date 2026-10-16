@@ -1407,11 +1407,21 @@ html.menu-open .site-header {
 }
 .organizers__team .organizers__role::before {
   left: 25%;
-  background: linear-gradient(to bottom right, transparent calc(50% - 0.5px), rgb(200 160 75 / 0.6) 50%, transparent calc(50% + 0.5px));
+  background: linear-gradient(
+    to bottom right,
+    transparent calc(50% - 0.5px),
+    rgb(200 160 75 / 0.6) 50%,
+    transparent calc(50% + 0.5px)
+  );
 }
 .organizers__team .organizers__role::after {
   right: 25%;
-  background: linear-gradient(to bottom left, transparent calc(50% - 0.5px), rgb(200 160 75 / 0.6) 50%, transparent calc(50% + 0.5px));
+  background: linear-gradient(
+    to bottom left,
+    transparent calc(50% - 0.5px),
+    rgb(200 160 75 / 0.6) 50%,
+    transparent calc(50% + 0.5px)
+  );
 }
 .organizers__team ul {
   display: grid;
@@ -1991,7 +2001,7 @@ html.menu-open .site-header {
   transform: rotate(180deg);
 }
 .artist__name {
-  font: 400 1.1rem / 1.2 var(--display);
+  font: 400 1rem / 1.2 var(--display);
 }
 .artist__country {
   font: var(--step--1) var(--mono);
