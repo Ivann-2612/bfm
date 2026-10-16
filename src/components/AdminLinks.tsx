@@ -13,7 +13,7 @@ const items = [
   { href: links.googleForm, title: "Forma kao posetilac", text: "Ono što vide posetioci, za probnu prijavu." },
 ].filter((i) => i.href);
 
-export default function AdminLinks() {
+export function AdminLinks() {
   return (
     <main className="links-admin">
       <p className="kicker">
