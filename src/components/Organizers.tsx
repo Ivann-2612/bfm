@@ -1,5 +1,6 @@
 import { getContent } from "@/lib/content";
 import { Portrait, SectionHead, type LangProps } from "./ui";
+import { ReadMore } from "./ReadMore";
 
 export function Organizers({ lang }: LangProps) {
   const c = getContent(lang);
@@ -33,7 +34,7 @@ export function Organizers({ lang }: LangProps) {
                     <Portrait src={m.photo} alt={m.name} sizes="(max-width: 640px) 45vw, 14rem" />
                     <p className="person__name">{m.name}</p>
                     {"subtitle" in m && m.subtitle && <p className="person__subtitle">{m.subtitle}</p>}
-                    {"bio" in m && m.bio && <PersonBio text={m.bio} more={c.ui.readMore} />}
+                    {"bio" in m && m.bio && <ReadMore text={m.bio} more={c.ui.readMore} less={c.ui.readLess} className="person__bio" />}
                   </li>
                 ))}
               </ul>
@@ -42,24 +43,5 @@ export function Organizers({ lang }: LangProps) {
         </div>
       </div>
     </section>
-  );
-}
-
-function PersonBio({ text, more }: { text: string; more: string }) {
-  const [first, ...rest] = text.split("\n\n");
-  return (
-    <>
-      <p className="person__bio">{first}</p>
-      {rest.length > 0 && (
-        <details className="person__more">
-          <summary>{more}</summary>
-          {rest.map((para) => (
-            <p key={para} className="person__bio">
-              {para}
-            </p>
-          ))}
-        </details>
-      )}
-    </>
   );
 }

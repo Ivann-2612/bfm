@@ -1,5 +1,6 @@
 import { site } from "@/lib/content";
 import { Flag, Portrait, SectionHead, type LangProps } from "./ui";
+import { ReadMore } from "./ReadMore";
 
 export function Jury({ lang }: LangProps) {
   const { c, jury } = site(lang);
@@ -21,31 +22,12 @@ export function Jury({ lang }: LangProps) {
                   </p>
                 )}
                 <p className="juror__role">{j.role}</p>
-                {j.bio && <Bio text={j.bio} more={c.ui.readMore} />}
+                {j.bio && <ReadMore text={j.bio} more={c.ui.readMore} less={c.ui.readLess} className="juror__bio" />}
               </div>
             </li>
           ))}
         </ul>
       </div>
     </section>
-  );
-}
-
-function Bio({ text, more }: { text: string; more: string }) {
-  const [first, ...rest] = text.split("\n\n");
-  return (
-    <>
-      <p className="juror__bio">{first}</p>
-      {rest.length > 0 && (
-        <details className="juror__more">
-          <summary>{more}</summary>
-          {rest.map((para) => (
-            <p key={para} className="juror__bio">
-              {para}
-            </p>
-          ))}
-        </details>
-      )}
-    </>
   );
 }

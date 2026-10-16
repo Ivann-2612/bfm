@@ -1482,17 +1482,26 @@ html.menu-open .site-header {
   font-size: 0.92rem;
   line-height: 1.6;
 }
-.person__more summary {
+.read-more {
+  display: block;
   margin-top: 0.6rem;
-  width: fit-content;
+  padding: 0;
+  border: 0;
+  background: none;
   cursor: pointer;
   font: 500 var(--step--1) / 1.4 var(--mono);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--gold);
 }
-.person__more[open] summary {
-  display: none;
+.read-more::after {
+  content: " ↓";
+}
+.read-more[aria-expanded="true"]::after {
+  content: " ↑";
+}
+.read-more:hover {
+  color: var(--gold-pale);
 }
 
 /* ---------- Closing ---------- */
@@ -1658,18 +1667,6 @@ html.menu-open .site-header {
   font-size: 0.95rem;
   line-height: 1.6;
 }
-.juror__more summary {
-  margin-top: 0.6rem;
-  width: fit-content;
-  cursor: pointer;
-  font: 500 var(--step--1) / 1.4 var(--mono);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--gold);
-}
-.juror__more[open] summary {
-  display: none;
-}
 @media (max-width: 640px) {
   .juror {
     display: grid;
@@ -1692,7 +1689,8 @@ html.menu-open .site-header {
     grid-column: 2;
   }
   .juror__bio,
-  .juror__more {
+  .juror .read-more__rest,
+  .juror .read-more {
     grid-column: 1 / -1;
     max-width: none;
   }
