@@ -21,17 +21,32 @@ export function Jury({ lang }: LangProps) {
                   </p>
                 )}
                 <p className="juror__role">{j.role}</p>
-                {j.bio &&
-                  j.bio.split("\n\n").map((para) => (
-                    <p key={para} className="juror__bio">
-                      {para}
-                    </p>
-                  ))}
+                {j.bio && <Bio text={j.bio} more={c.ui.readMore} />}
               </div>
             </li>
           ))}
         </ul>
       </div>
     </section>
+  );
+}
+
+// First paragraph always visible; the rest folds away so long bios don't stretch the grid.
+function Bio({ text, more }: { text: string; more: string }) {
+  const [first, ...rest] = text.split("\n\n");
+  return (
+    <>
+      <p className="juror__bio">{first}</p>
+      {rest.length > 0 && (
+        <details className="juror__more">
+          <summary>{more}</summary>
+          {rest.map((para) => (
+            <p key={para} className="juror__bio">
+              {para}
+            </p>
+          ))}
+        </details>
+      )}
+    </>
   );
 }

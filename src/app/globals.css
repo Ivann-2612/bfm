@@ -1598,6 +1598,18 @@ html.menu-open .site-header {
   font-size: 0.95rem;
   line-height: 1.6;
 }
+.juror__more summary {
+  margin-top: 0.6rem;
+  width: fit-content;
+  cursor: pointer;
+  font: 500 var(--step--1) / 1.4 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+.juror__more[open] summary {
+  display: none;
+}
 /* Phones: photo beside the name so three bios don't become one very long column of pictures. */
 @media (max-width: 640px) {
   .juror {
@@ -1620,7 +1632,8 @@ html.menu-open .site-header {
   .juror__role {
     grid-column: 2;
   }
-  .juror__bio {
+  .juror__bio,
+  .juror__more {
     grid-column: 1 / -1;
     max-width: none;
   }

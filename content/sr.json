@@ -91,6 +91,7 @@
     "menuClose": "Zatvori meni",
     "bioSoon": "Biografija uskoro.",
     "aboutArtist": "Više o izvođaču",
+    "readMore": "Pročitaj više",
     "dayLink": "Program: {date}",
     "instagramLabel": "Festival na Instagramu",
     "openGoogleMaps": "Google mape"
@@ -601,8 +602,8 @@
         "country": "",
         "code": "",
         "role": "Član žirija · kreator BB Magic",
-        "photo": "/images/jury/bojan-barisic-2.jpg",
-        "bio": "Bojan Barišić je kreator i izumitelj mađioničarskih rekvizita, poznat po ekskluzivnim scenskim rekvizitima koje pravi pod brendom BB Magic. Njegove kreacije traže vrhunski profesionalni mađioničari širom sveta, a izrađuju se u ograničenom broju zbog složene konstrukcije i posebnih delova.\n\nMeđu njima su Thin Air, scenski rekvizit koji je razvijao pet godina, za upečatljivo pojavljivanje karata dok su vrhovi prstiju potpuno vidljivi; Double Production, kojim se iz obe prazne ruke istovremeno pojave lepeze karata, marame ili novčanice; BB Vanishing Cane 3.0, savremena verzija klasičnog štapa koji se pojavljuje, uz preporuku legendarnog Fantasia; i Final Night, njegovo rešenje klasičnog trika Bank Nite, uz potpuno čiste ruke."
+        "photo": "/images/jury/bojan-barisic-3.jpg",
+        "bio": "Bojan Barišić je poznati hrvatski mađioničar, inovator i kreator originalnih mađioničarskih trikova i rekvizita čije izume koriste profesionalni mađioničari širom sveta. U mađioničarskoj zajednici, kako u regionu tako i globalno, prepoznat je po svom brendu BB Magic i saradnji sa uglednim svetskim mađioničarima i distributerima rekvizita.\n\nPovremeno drži predavanja, predaje na mađioničarskim kongresima i nudi stručne konsultacije, mentorstvo i savetovanje za mađioničare (od osmišljavanja tačaka do tehničke izvedbe sa rekvizitima). U poslednjih nekoliko sezona čuvenog šoua Penn & Teller: Fool Us njegove ideje su koristili mađioničari iz Evrope, Azije i Amerike. Takođe je dugogodišnji sudija na međunarodnim takmičenjima mađioničara.\n\nSpecijalizovan je za scensku magiju i manipulaciju kartama i predmetima, a njegovi najpoznatiji autorski proizvodi su:\n\n• Double Production: revolucionarni scenski rekvizit koji mađioničaru omogućava da tačku počne potpuno praznih ruku, a zatim trenutno stvori karte, novčanice ili svilene marame.\n\n• BB Vanishing Cane (3.0): vrhunski štap koji nestaje ili se pretvara u konfete, lepeze karata ili marame, a podržala su ga i velika svetska mađioničarska imena.\n\n• Fansy: njegova originalna metoda za neprekidnu produkciju lepeza karata raširenih prstiju.\n\n• BB Card Spider 2.0 i BB Reel: specijalizovani mehanički rekviziti za vizuelne transformacije i nestajanje predmeta."
       }
     ]
   },
