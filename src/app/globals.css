@@ -774,16 +774,26 @@ html.menu-open .site-header {
 }
 
 @media (max-width: 640px) {
+  .countdown {
+    margin-bottom: 2.5rem;
+  }
   .countdown__cards {
-    gap: 0.4rem;
+    gap: 0.25rem;
   }
   .countdown__card {
     flex: 1;
     min-width: 0;
-    padding: 0.85rem 0.3rem 0.45rem;
+    padding: 0.55rem 0.15rem 0.3rem;
   }
   .countdown__num {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
+  }
+  .countdown__unit {
+    font-size: 0.5rem;
+  }
+  .countdown__suit {
+    top: 0.2rem;
+    left: 0.3rem;
   }
 }
 
