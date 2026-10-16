@@ -29,6 +29,18 @@ jobs:
           protocol: ftps
           local-dir: ./out/
           server-dir: ${{ vars.FTP_DIR }}
+      - name: Upload .htaccess
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_DIR: ${{ vars.FTP_DIR }}
+        run: |
+          dir="${FTP_DIR%/}"
+          curl --fail --show-error --silent --ssl-reqd \
+            --user "$FTP_USERNAME:$FTP_PASSWORD" \
+            -T out/.htaccess \
+            "ftp://$FTP_SERVER/${dir:+$dir/}.htaccess"
 
   functions:
     runs-on: ubuntu-latest
