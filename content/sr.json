@@ -747,6 +747,17 @@
     }
   },
   "registration": {
+    "googleForm": {
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLScAJUBsSs-eCfcwbZvb4dyYt00DSro4TlrqGTCJM2fZBzladA/viewform",
+      "text": "Prijava je kratka Google forma. Traje oko dva minuta, a vidite samo pitanja koja se odnose na vas.",
+      "steps": [
+        "Popunite formu — oko 2 minuta.",
+        "Proverite mejl: šaljemo vam iznos i podatke za uplatu.",
+        "Uplatite u roku od 7 dana. Do tada vam čuvamo mesto."
+      ],
+      "button": "Otvorite formu za prijavu",
+      "note": "Otvara se u novom prozoru (Google Forms)."
+    },
     "kicker": "Prijava za stručni program",
     "title": "Prijavite se",
     "text": "Popunite formu i poslaćemo vam mejlom rezime i podatke za uplatu. Mesto vam čuvamo 7 dana.",

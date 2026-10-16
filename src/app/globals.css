@@ -2209,6 +2209,57 @@ html.menu-open .site-header {
 .register .wrap {
   position: relative;
 }
+.register-link {
+  max-width: 40rem;
+  margin-top: 1.5rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid rgb(200 160 75 / 0.45);
+  border-radius: var(--radius-card);
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgb(163 48 59 / 0.18), rgb(163 48 59 / 0) 60%),
+    var(--ink-2);
+  box-shadow: 0 24px 60px rgb(0 0 0 / 0.45);
+}
+.register-link__text {
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--bone);
+}
+.register-link__steps {
+  display: grid;
+  gap: 0.85rem;
+  margin: 1.5rem 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+.register-link__steps li {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  align-items: baseline;
+  color: var(--bone);
+  opacity: 0.9;
+}
+.register-link__num {
+  font: 400 1.2rem / 1 var(--display);
+  color: var(--gold);
+}
+.register-link__steps li:nth-child(2) .register-link__num {
+  color: #e2737a;
+}
+.register-link__btn {
+  padding: 1.1rem 2rem;
+  font-size: 0.9rem;
+}
+.register-link__note {
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--smoke);
+}
+@media (max-width: 640px) {
+  .register-link__btn {
+    width: 100%;
+  }
+}
 .register__grid {
   display: grid;
   gap: 3rem;

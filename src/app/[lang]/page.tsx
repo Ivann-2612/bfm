@@ -17,7 +17,8 @@ import { Jury } from "@/components/Jury";
 import { Packages } from "@/components/Packages";
 import { Hotels } from "@/components/Hotels";
 import { Travel } from "@/components/Travel";
-import { Registration } from "@/components/Registration";
+// import { Registration } from "@/components/Registration";
+import { RegistrationLink } from "@/components/RegistrationLink";
 import { Organizers } from "@/components/Organizers";
 // import { Closing } from "@/components/Closing";
 import { Partners } from "@/components/Partners";
@@ -57,7 +58,8 @@ export default async function Home({
         <History lang={lang} />
         <Hotels lang={lang} />
         <Travel lang={lang} />
-        <Registration lang={lang} />
+        <RegistrationLink lang={lang} />
+        {/* <Registration lang={lang} /> */}
         <Organizers lang={lang} />
         {/* <Closing lang={lang} /> */}
         <Partners lang={lang} />
