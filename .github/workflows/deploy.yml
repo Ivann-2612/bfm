@@ -37,7 +37,7 @@ jobs:
           FTP_DIR: ${{ vars.FTP_DIR }}
         run: |
           dir="${FTP_DIR%/}"
-          curl --fail --show-error --silent --ssl-reqd \
+          curl --fail --show-error --silent --ssl-reqd --insecure \
             --user "$FTP_USERNAME:$FTP_PASSWORD" \
             -T out/.htaccess \
             "ftp://$FTP_SERVER/${dir:+$dir/}.htaccess"
