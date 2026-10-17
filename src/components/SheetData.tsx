@@ -11,7 +11,6 @@ type Person = {
   package: string;
   hotel: string;
   contest: string;
-  payment: string;
   amount: number;
   paid: string;
   fism: string;
@@ -110,7 +109,7 @@ export function SheetData({ api }: { api: string }) {
           <table className="admin__table">
             <thead>
               <tr>
-                {["Primljeno", "Ime i prezime", "Kontakt", "Država", "Paket", "Hotel", "Takmičenje", "Plaćanje", "Iznos", "Uplata", "FISM"].map((h) => (
+                {["Primljeno", "Ime i prezime", "Kontakt", "Država", "Paket", "Hotel", "Takmičenje", "Iznos", "Uplata", "FISM"].map((h) => (
                   <th key={h}>{h}</th>
                 ))}
               </tr>
@@ -129,7 +128,6 @@ export function SheetData({ api }: { api: string }) {
                   <td>{p.package}</td>
                   <td>{p.hotel}</td>
                   <td>{p.contest}</td>
-                  <td>{p.payment}</td>
                   <td className="admin__nowrap">{euro.format(p.amount)}</td>
                   <td>{p.paid}</td>
                   <td>{p.fism}</td>

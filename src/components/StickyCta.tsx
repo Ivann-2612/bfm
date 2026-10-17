@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export function StickyCta({ label }: { label: string }) {
   const [heroVisible, setHeroVisible] = useState(true);
   const [formVisible, setFormVisible] = useState(false);
 
   useEffect(() => {
-    const hero = document.getElementById("top");
-    const form = document.getElementById("prijava");
+    const hero = document.getElementById('top');
+    const form = document.getElementById('prijava');
     if (!hero || !form) return;
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
